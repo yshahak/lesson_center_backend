@@ -17,7 +17,7 @@ dependencies:
 #    git: https://github.com/dart-lang/sdk/tree/master/samples/ffi/sqlite
 #    git: https://github.com/putraxor/dart-sqlite
   lessons_center_common:
-    path: /Users/yaakovshahak/Development/dart/lessons_center/lessons_center_common
+    path: ../lessons_center_common
 
 dev_dependencies:
   test: ^1.0.0
