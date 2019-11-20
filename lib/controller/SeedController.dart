@@ -17,7 +17,6 @@ class SeedController extends ResourceController {
       return Response.ok({source: ids});
     } else {
       return Response.ok({source: []});
-
     }
     return Response.ok({source: []});
   }

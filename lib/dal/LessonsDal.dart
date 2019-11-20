@@ -77,9 +77,4 @@ class LessonsDal {
     }
     return ids;
   }
-
-  Future convertPsqlToSqlite(ManagedContext context) async{
-    final lessonQuery = Query<Lesson>(context);
-    final lessons = await lessonQuery.fetch();
-  }
 }

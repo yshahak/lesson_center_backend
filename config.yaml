@@ -1,0 +1,6 @@
+database:
+  username: yaakov
+  password: '4431'
+  host: localhost
+  port: 5432
+  databaseName: lessons

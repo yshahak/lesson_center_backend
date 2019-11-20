@@ -22,8 +22,16 @@ class LessonCenterBackendChannel extends ApplicationChannel {
   @override
   Future prepare() async {
     logger.onRecord.listen((rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
+
+    final config = MyConfiguration(options.configurationFilePath);
+
     final dataModel = ManagedDataModel.fromCurrentMirrorSystem();
-    final persistentStore = PostgreSQLPersistentStore.fromConnectionInfo("yaakov", "4431", "localhost", 5432, "lessons");
+//    final persistentStore = PostgreSQLPersistentStore.fromConnectionInfo("yaakov", "4431", "localhost", 5432, "lessons");
+    final persistentStore = PostgreSQLPersistentStore.fromConnectionInfo(config.database.username,
+        config.database.password,
+        config.database.host,
+        config.database.port,
+        config.database.databaseName);
 
     context = ManagedContext(dataModel, persistentStore);
   }
@@ -38,4 +46,10 @@ class LessonCenterBackendChannel extends ApplicationChannel {
 
     return router;
   }
+}
+
+class MyConfiguration extends Configuration {
+  MyConfiguration(String configPath) : super.fromFile(File(configPath));
+
+  DatabaseConfiguration database;
 }
