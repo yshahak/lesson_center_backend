@@ -15,6 +15,9 @@ class LessonCenterBackendChannel extends ApplicationChannel {
   RESETING DB:
   1. drop table lessons;
   2. drop table _aqueduct_version_pgsql;
+  
+  aqueduct db generate
+  aqueduct db upgrade --connect postgres://yaakov:dart@localhost:5432/lessons
   ''';
 
   ManagedContext context;
@@ -26,7 +29,7 @@ class LessonCenterBackendChannel extends ApplicationChannel {
     final config = MyConfiguration(options.configurationFilePath);
 
     final dataModel = ManagedDataModel.fromCurrentMirrorSystem();
-//    final persistentStore = PostgreSQLPersistentStore.fromConnectionInfo("yaakov", "4431", "localhost", 5432, "lessons");
+//    final persistentStore = PostgreSQLPersistentStore.fromConnectionInfo("yaakov", "1234", "localhost", 5432, "lessons");
     final persistentStore = PostgreSQLPersistentStore.fromConnectionInfo(config.database.username,
         config.database.password,
         config.database.host,
