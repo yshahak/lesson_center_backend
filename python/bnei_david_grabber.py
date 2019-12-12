@@ -309,7 +309,7 @@ def extract_media(lesson_url):
             valid = validate_media_url(audio_link)
             if not valid:
                 audio_link = None
-        print 'extracted video={0} audio={1}'.format(video_link, audio_link)
+        print('extracted video={0} audio={1}'.format(video_link, audio_link))
         return video_link, audio_link
     print('extracted audio file name is {0}'.format(filename))
     return None, None
