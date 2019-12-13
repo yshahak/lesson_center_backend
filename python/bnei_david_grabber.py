@@ -13,14 +13,7 @@ from pyluach.dates import HebrewDate
 import traceback
 import datetime
 import psycopg2.extras
-
-postgres_con = {
-    'host': 'localhost',
-    'user': 'yaakov',
-    'password': '1234',
-    'port': '5432',
-    'database': 'lessons'
-}
+from config import *
 postgres = psycopg2.connect(**postgres_con)
 
 lesson_template = 'http://www.bneidavid.org%s'
@@ -363,10 +356,12 @@ def remove_non_letters(word):
             parsed = parsed + char
     return parsed
 
+def grab():
+    # for i in range(1, 500):
+    for i in range(1, 10):
+        get_lesson(i)
+    postgres.close()
 
 if __name__ == "__main__":
     pass
-    for i in range(1, 500):
-    # for i in range(1, 10):
-        get_lesson(i)
-    postgres.close()
+    grab()
