@@ -357,8 +357,8 @@ def remove_non_letters(word):
     return parsed
 
 def grab():
-    # for i in range(1, 500):
-    for i in range(1, 10):
+    for i in range(1, 500):
+    # for i in range(1, 10):
         get_lesson(i)
     postgres.close()
 
