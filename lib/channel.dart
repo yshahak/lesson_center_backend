@@ -47,6 +47,8 @@ class LessonCenterBackendChannel extends ApplicationChannel {
 
     router.route('/seed/[:source]').link(() => SeedController(context));
 
+    router.route("/files/*").link(() => FileController("files/public/"));
+
     return router;
   }
 }

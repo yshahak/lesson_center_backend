@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
 import 'package:aqueduct/aqueduct.dart';
 import 'package:lesson_center_backend/dal/LessonsDal.dart';
@@ -13,16 +15,6 @@ class LessonController extends ResourceController {
 
   final ManagedContext context;
 
-  @Operation.get()
-  Future<Response> getAllLessons({@Bind.query('title') String title}) async {
-    final lessonQuery = Query<Lesson>(context);
-    if (title != null) {
-      lessonQuery.where((record) => record.title).contains(title, caseSensitive: false);
-    }
-    final lessons = await lessonQuery.fetch();
-    return Response.ok(lessons);
-  }
-
   @Operation.get('id')
   Future<Response> getLessonByID(@Bind.path('id') int id) async {
     final lessonQuery = Query<Lesson>(context)
@@ -34,6 +26,29 @@ class LessonController extends ResourceController {
     }
     return Response.ok(lesson);
   }
+
+  @Operation.get()
+  Future<Response> getAllLessonsByTimestamp({@Bind.query('timestamp') String timestamp}) async {
+    final lessonQuery = Query<Lesson>(context);
+    timestamp ??= "-1";
+    lessonQuery.where((record) => record.insertedAt).greaterThanEqualTo(int.parse(timestamp));
+    final lessons = await lessonQuery.fetch();
+    final response = Response.ok(lessons);
+    final general = File("general.json");
+    final lastRun = (json.decode(general.readAsStringSync()) as Map)['last_run'] as int;
+    response.headers['ts'] = lastRun;
+    return response;
+  }
+
+//  @Operation.get()
+//  Future<Response> getAllLessons({@Bind.query('title') String title}) async {
+//    final lessonQuery = Query<Lesson>(context);
+//    if (title != null) {
+//      lessonQuery.where((record) => record.title).contains(title, caseSensitive: false);
+//    }
+//    final lessons = await lessonQuery.fetch();
+//    return Response.ok(lessons);
+//  }
 
   @Operation.get('subject')
   Future<Response> getLessonBySubject(@Bind.path('subject') String subject) async {
@@ -52,33 +67,12 @@ class LessonController extends ResourceController {
     return Response.ok({"key": "value"});
   }
 
-//  @Operation.post()
-//  Future<Response> createLesson() async {
-//    print('createLesson called');
-//    final newLesson = Lesson()
-//      ..read(await request.body.decode());
-//    print(newLesson);
+//  @Operation.delete()
+//  Future<Response> deleteAll() async {
 //    final lessonQuery = Query<Lesson>(context)
-//      ..values = newLesson;
-//    try {
-//      final insertedLesson = await lessonQuery.insert();
-//      return Response.ok(insertedLesson);
-//    } on QueryException catch (e) {
-//      print(e);
-//      final updateQuery = Query<Lesson>(context)
-//          ..values = newLesson
-//        ..where((h) => h.id).equalTo(newLesson.id);
-//      final insertedLesson = await updateQuery.update();
-//      return Response.ok(insertedLesson);
-//    }
+//      ..where((u) => u.id).notEqualTo(-200);
+//    final insertedLesson = await lessonQuery.delete();
+//    return Response.ok(insertedLesson);
 //  }
-
-  @Operation.delete()
-  Future<Response> deleteAll() async {
-    final lessonQuery = Query<Lesson>(context)
-      ..where((u) => u.id).notEqualTo(-200);
-    final insertedLesson = await lessonQuery.delete();
-    return Response.ok(insertedLesson);
-  }
 
 }

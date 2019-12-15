@@ -69,7 +69,7 @@ def get_all_lessons():
             # print("{0}\t{1}\t{2}".format(key, type(value), value))
         convert(body)
     print('finished convert postgres to sqlite!')
-    dest = '%s/files/lessons.db' % root_path
+    dest = '%s/files/public/lessons.db' % root_path
     with open(sqlite_source, 'r') as src, open(dest, 'w') as dst:
         dst.write(src.read())
 
