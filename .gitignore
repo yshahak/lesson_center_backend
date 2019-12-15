@@ -6,6 +6,7 @@ packages
 *.dart.js
 *.js_
 *.js.deps
+.dart_tool
 *.js.map
 workspace.xml
 Dart_Packages.xml
@@ -13,4 +14,7 @@ Dart_Packages.xml
 .idea/
 *.aqueduct.pid
 /venv
+migrations
 *.pyc
+files/public/lesssons.db
+sqlite
