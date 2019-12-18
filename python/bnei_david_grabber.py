@@ -4,10 +4,10 @@ import eventlet
 eventlet.monkey_patch()
 from ftplib import FTP
 import calendar
-import urllib2
+import urllib.request
 from bs4 import BeautifulSoup
-from urlparse import urlparse, parse_qs
-import requests
+from urllib.parse import urlparse, parse_qs
+# import requests
 import json
 from pyluach.dates import HebrewDate
 import traceback
@@ -17,7 +17,9 @@ import os
 from config import *
 postgres = psycopg2.connect(**postgres_con)
 
+
 lesson_template = 'http://www.bneidavid.org%s'
+template_main = 'http://www.bneidavid.org/Web/He/VirtualTorah/Default.aspx'
 template = 'http://www.bneidavid.org/Web/He/VirtualTorah/Lessons/Default.aspx?serie=%d'
 template_id = 'http://www.bneidavid.org/Web/He/VirtualTorah/Lessons/Default.aspx?id=%d'
 
@@ -125,10 +127,10 @@ now = get_timestamp()
 counter = 0
 
 
-def get_lesson(_id):
-    print('running on id {0}'.format(_id))
+def get_lesson(url, is_main_page=False):
+    print('running on url {0}'.format(url))
     global counter
-    response = urllib2.urlopen(template % _id)
+    response = urllib.request.urlopen(url)
     soup = BeautifulSoup(response, 'html.parser')
     tables = soup.findAll("div", {"class": 'tables_list'})
     cursor = postgres.cursor()
@@ -142,6 +144,11 @@ def get_lesson(_id):
                 lesson_id = row.find('span', id=lambda x: x and x.endswith('_lblId'))
                 if lesson_id is None:
                     continue
+                if is_main_page:
+                    label =  'מומלצים' if lesson_id.attrs['id'].__contains__('Recommended') else 'אחרונים'
+                    # label = unicode(label, 'utf-8')
+                else:
+                    label = ''
                 lesson['id'] = lesson_id.text
                 lesson['label'] = 'label'
                 subject = row.find('span', id=lambda x: x and x.endswith('_lblSubject')).text
@@ -157,14 +164,15 @@ def get_lesson(_id):
                 name = row.find('a', id=lambda x: x and x.endswith('_hlName'))
                 title = name.text
                 lesson_url = lesson_template % name.attrs['href']
-                lesson['title'] = unicode(title)
+                # lesson['title'] = unicode(title)
+                lesson['title'] = title
                 lesson['lessonUrl'] = lesson_url
                 sidra = row.find('a', id=lambda x: x and x.endswith('_hlSerieName'))
                 sidre_name = sidra.text
                 sidra_url = sidra.attrs['href']
-                lesson['seriesId'] = _id
                 lesson['series'] = sidre_name
                 lesson['seriesUrl'] = sidra_url
+                lesson['seriesId'] = sidra_url.split('serie=')[1]
                 date = row.find('span', id=lambda x: x and x.endswith('_lblDate')).text.strip()
                 timestamp = get_timestamp_for_date(date)
                 lesson['timestamp'] = timestamp
@@ -203,34 +211,13 @@ def get_lesson(_id):
                 counter = counter + 1
                 # print('counter={0}'.format(counter))
                 # print('rav={0}\travId={1}'.format(lesson["rav"],lesson["rav_id"]))
-
                 # print '{0}, audio={1} video={2}'.format(lesson['id'], lesson['audioUrl'], lesson['videoUrl'])
                 if not audio_url and not video_url:
                     print('no content for id={0}'.format(lesson['id']))
                     continue
-                # if  True:
-                #     continue
-                body = json.dumps({
-                    "id": int(lesson["id"]),
-                    "label": "myLabel",
-                    "title": lesson["title"],
-                    "subjectId": lesson["subject_id"],
-                    "subject": lesson["subject"],
-                    "seriesId": lesson["seriesId"],
-                    "series": lesson["series"],
-                    "seriesUrl": lesson["seriesUrl"],
-                    "ravId": lesson["rav_id"],
-                    "rav": lesson["rav"],
-                    "dateStr": lesson["dateStr"],
-                    "length": lesson["length"],
-                    "videoUrl": lesson["videoUrl"],
-                    "audioUrl": lesson["audioUrl"],
-                    "lessonUrl": lesson["lessonUrl"],
-                    "timestamp": lesson["timestamp"],
-                }).encode('utf-8')
                 body = {
                     "id": int(lesson["id"]),
-                    "label": "myLabel",
+                    "label": label,
                     "title": lesson["title"],
                     "subjectId": lesson["subject_id"],
                     "subject": lesson["subject"],
@@ -253,23 +240,24 @@ def get_lesson(_id):
                 values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
                 ON CONFLICT(id)
                 DO UPDATE SET
-                updatedat = %s;
+                updatedat = %s,
+                label = %s;
                 ''', (body["id"],body["source"],body["title"],body["label"],body["subjectId"],body["subject"],body["seriesId"],body["series"],
-                      body["dateStr"],body["ravId"],body["rav"],body["length"],body["videoUrl"],body["audioUrl"],body["timestamp"],now,now,now,))
+                      body["dateStr"],body["ravId"],body["rav"],body["length"],body["videoUrl"],body["audioUrl"],body["timestamp"],now,now,now,label,))
                 postgres.commit()
             except Exception as e:
-                print("Error !!! id={0}\ne={1}".format(lesson['id'], traceback.format_exc()))
+                print("Error !!! id={0}\ne={1}".format(lesson_id, traceback.format_exc()))
                 break
 
 def validate_media_url(url):
     try:
-        response = urllib2.urlopen(url)
+        response = urllib.request.urlopen(url)
         # print("response for %s is %s" % url, response.read())
         return True
     except:
         try:
             with eventlet.Timeout(5):
-                return requests.get(url).status_code < 400
+                return urllib.request.get(url).status_code < 400
         except:
             return False
 
@@ -279,7 +267,7 @@ template_audio = 'http://forest-flash-4.media-line.co.il/BneiDavid/{0}'
 
 
 def extract_media(lesson_url):
-    response = urllib2.urlopen(lesson_url)
+    response = urllib.request.urlopen(lesson_url)
     soup = BeautifulSoup(response, 'html.parser')
     iframe = soup.find("iframe", {"name": "Media-Line-Player"})
     src = iframe.attrs['src']
@@ -287,7 +275,8 @@ def extract_media(lesson_url):
     query = parsed.query
     filename = parse_qs(query)['filename']
     if filename:
-        filename = filename[0].encode('utf-8')
+        filename = filename[0]
+        # filename = filename[0].encode('utf-8')
         if filename.__contains__('mp4'):
             video_link = template_media.format(filename)
             valid = validate_media_url(video_link)
@@ -307,16 +296,6 @@ def extract_media(lesson_url):
         return video_link, audio_link
     print('extracted audio file name is {0}'.format(filename))
     return None, None
-
-
-def seed_url(_id):
-    req = urllib2.Request('http://localhost:8888/seed')
-    req.add_header('Content-Type', 'application/json')
-    body = json.dumps({"url": template_id % _id}).encode('utf-8')
-    req.add_header('Content-Length', len(body))
-    r = urllib2.urlopen(req, body)
-    pastebin_url = r.read()
-    print("response is:%s" % pastebin_url)
 
 
 def get_timestamp_for_date(date_str):
@@ -358,15 +337,11 @@ def remove_non_letters(word):
     return parsed
 
 def grab():
-    # for i in range(1, 1):
-    for i in range(1, 500):
-        get_lesson(i)
-    # cur = postgres.cursor()
-    # cur.execute('''
-    # SELECT max(insertedat) from lessons
-    # ''')
-    # now = cur.fetchone()[0]
-    # cur.close()
+    for i in range(1, 10):
+    # for i in range(1, 500):
+        get_lesson(template % i)
+    # getting main page
+    get_lesson(template_main, True)
     postgres.close()
     root_path = os.getcwd()
     with open('{}/general.json'.format(root_path), 'r+') as f:

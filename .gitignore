@@ -13,7 +13,7 @@ Dart_Packages.xml
 .DS_Store
 .idea/
 *.aqueduct.pid
-/venv
+/venv*
 migrations
 *.pyc
 files/public/lesssons.db
