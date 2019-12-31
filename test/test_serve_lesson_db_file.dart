@@ -15,6 +15,7 @@ Future main() async {
 //  });
   test("GET /endpoint returns 200 and a file", () async {
     final response = await harness.agent.get("/files/lessons.db");
+    expect(true, int.parse(response.headers['timestamp'][0]) > 200);
     expect(response.statusCode, 200);
   });
 }

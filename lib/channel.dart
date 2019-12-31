@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:lesson_center_backend/controller/LessonController.dart';
 import 'package:lesson_center_backend/controller/SeedController.dart';
 
@@ -47,9 +49,22 @@ class LessonCenterBackendChannel extends ApplicationChannel {
 
     router.route('/seed/[:source]').link(() => SeedController(context));
 
-    router.route("/files/*").link(() => FileController("files/public/"));
+    router.route("/files/*").link(() => FileTimeStamp()).link(() => FileController("files/public/"));
 
     return router;
+  }
+}
+class FileTimeStamp extends Controller {
+
+  @override
+  Future<RequestOrResponse> handle(Request request) async {
+    request.addResponseModifier((response) {
+      final general = File("general.json");
+      final lastRun = (json.decode(general.readAsStringSync()) as Map)['last_run'] as int;
+      response.headers["timestamp"] = lastRun;
+    });
+
+    return request;
   }
 }
 

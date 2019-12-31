@@ -1,7 +1,6 @@
 name: lesson_center_backend
 description: An empty Aqueduct application.
 version: 0.0.1
-author: stable|kernel <jobs@stablekernel.com>
 
 environment:
   sdk: ">=2.0.0 <3.0.0"
@@ -14,4 +13,4 @@ dependencies:
 
 dev_dependencies:
   test: ^1.0.0
-  aqueduct_test: ^1.0.0
+  aqueduct_test: ^1.0.01

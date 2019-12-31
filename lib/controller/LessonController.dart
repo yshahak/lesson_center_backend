@@ -6,19 +6,14 @@ import 'package:aqueduct/aqueduct.dart';
 import 'package:lesson_center_backend/dal/LessonsDal.dart';
 import 'package:lesson_center_backend/model/Lesson.dart';
 
-
-
-
 class LessonController extends ResourceController {
-
   LessonController(this.context);
 
   final ManagedContext context;
 
   @Operation.get('id')
   Future<Response> getLessonByID(@Bind.path('id') int id) async {
-    final lessonQuery = Query<Lesson>(context)
-      ..where((h) => h.id).equalTo(id);
+    final lessonQuery = Query<Lesson>(context)..where((h) => h.id).equalTo(id);
 
     final lesson = await lessonQuery.fetchOne();
     if (lesson == null) {
@@ -33,9 +28,17 @@ class LessonController extends ResourceController {
     timestamp ??= "-1";
     lessonQuery.where((record) => record.insertedAt).greaterThanEqualTo(int.parse(timestamp));
     final lessons = await lessonQuery.fetch();
-    final response = Response.ok(lessons);
     final general = File("general.json");
     final lastRun = (json.decode(general.readAsStringSync()) as Map)['last_run'] as int;
+    final mainPage = Query<Lesson>(context);
+    mainPage.where((record) => record.label).oneOf(['מומלצים', 'אחרונים']);
+    final mainPageLessons = await mainPage.fetch();
+    final body = {
+      "lessons": lessons.map((l) => l.asMap()).toList(),
+      "mainPage": mainPageLessons.map((l) => l.asMap()).toList(),
+      "ts": lastRun,
+    };
+    final response = Response.ok(body)..contentType = ContentType.json;
     response.headers['ts'] = lastRun;
     return response;
   }
@@ -52,8 +55,7 @@ class LessonController extends ResourceController {
 
   @Operation.get('subject')
   Future<Response> getLessonBySubject(@Bind.path('subject') String subject) async {
-    final lessonQuery = Query<Lesson>(context)
-      ..where((h) => h.subject).equalTo(subject);
+    final lessonQuery = Query<Lesson>(context)..where((h) => h.subject).equalTo(subject);
     final lesson = await lessonQuery.fetchOne();
     if (lesson == null) {
       return Response.notFound();
