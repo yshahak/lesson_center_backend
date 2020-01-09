@@ -160,7 +160,7 @@ def get_lesson(url, is_main_page=False):
                 rav = row.find('span', id=lambda x: x and x.endswith('_lblRabi')).text
                 lesson['rav'] = rav
                 rav_id = row.find('span', id=lambda x: x and x.endswith('_lblRabiIdCol')).text
-                lesson['rav_id'] = int(rav_id)
+                lesson['rav_id'] = int(rav_id) if rav_id else -1
                 name = row.find('a', id=lambda x: x and x.endswith('_hlName'))
                 title = name.text
                 lesson_url = lesson_template % name.attrs['href']
