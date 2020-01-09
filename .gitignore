@@ -22,3 +22,4 @@ pubspec.lock
 files/public/lessons.db
 web/assets/assets/lessons.db
 sqlite/lessons.db
+general.json
