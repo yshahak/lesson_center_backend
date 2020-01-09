@@ -17,5 +17,7 @@ Dart_Packages.xml
 migrations
 *.pyc
 files/public/lesssons.db
-#sqlite
+sqlite
 pubspec.lock
+files/public/lessons.db
+web/assets/assets/lessons.db

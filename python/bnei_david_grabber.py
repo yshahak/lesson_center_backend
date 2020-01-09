@@ -126,6 +126,16 @@ def get_timestamp():
 now = get_timestamp()
 counter = 0
 
+def clear_labels():
+    cursor = postgres.cursor()
+    cursor.execute('''
+                UPDATE lessons
+                SET
+                label = ''
+                WHERE source = %s;
+                ''', ('bnei_david',))
+    postgres.commit()
+
 
 def get_lesson(url, is_main_page=False):
     print('running on url {0}'.format(url))
@@ -340,9 +350,7 @@ def grab():
     # for i in range(1, 10):
     for i in range(1, 500):
         get_lesson(template % i)
-    # getting main page
-    get_lesson(template_main, True)
-    postgres.close()
+    grab_main_page()
     root_path = os.getcwd()
     with open('{}/general.json'.format(root_path), 'r+') as f:
         data = json.load(f)
@@ -350,6 +358,12 @@ def grab():
         f.seek(0)        # <--- should reset file position to the beginning.
         json.dump(data, f, indent=4)
         f.truncate()
+
+def grab_main_page():
+    # getting main page
+    clear_labels()
+    get_lesson(template_main, True)
+    postgres.close()
 
 
 if __name__ == "__main__":
