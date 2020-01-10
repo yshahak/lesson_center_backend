@@ -1,12 +1,11 @@
 import sqlite3
 import os
-
-root_path = os.getcwd()
 import psycopg2.extras
 from config import *
-
+root_path = "%s/.." % os.path.dirname(os.path.realpath(__file__))
 postgres = psycopg2.connect(**postgres_con)
 sqlite_source = '%s/sqlite/lessons.db' % root_path
+print(sqlite_source)
 conn = sqlite3.connect(sqlite_source)
 
 
