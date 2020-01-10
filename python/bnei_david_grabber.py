@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 import eventlet
 eventlet.monkey_patch()
-from ftplib import FTP
 import calendar
 import urllib.request
 from bs4 import BeautifulSoup
