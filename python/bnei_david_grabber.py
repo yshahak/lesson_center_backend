@@ -350,7 +350,8 @@ def grab():
     for i in range(1, 500):
         get_lesson(template % i)
     grab_main_page()
-    root_path = os.getcwd()
+    # root_path = os.getcwd()
+    root_path = "%s/.." % os.path.dirname(os.path.realpath(__file__))
     with open('{}/general.json'.format(root_path), 'r+') as f:
         data = json.load(f)
         data['last_run'] = now
