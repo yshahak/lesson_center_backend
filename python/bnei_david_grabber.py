@@ -178,10 +178,10 @@ def get_lesson(url, is_main_page=False):
                 lesson['lessonUrl'] = lesson_url
                 sidra = row.find('a', id=lambda x: x and x.endswith('_hlSerieName'))
                 sidre_name = sidra.text
-                sidra_url = sidra.attrs['href']
+                sidra_url = sidra.attrs['href'] if 'href' in sidra.attrs else ''
                 lesson['series'] = sidre_name
                 lesson['seriesUrl'] = sidra_url
-                lesson['seriesId'] = sidra_url.split('serie=')[1]
+                lesson['seriesId'] = sidra_url.split('serie=')[1] if sidra_url else -1
                 date = row.find('span', id=lambda x: x and x.endswith('_lblDate')).text.strip()
                 timestamp = get_timestamp_for_date(date)
                 lesson['timestamp'] = timestamp
@@ -368,4 +368,5 @@ def grab_main_page():
 
 if __name__ == "__main__":
     pass
-    grab()
+    # grab()
+    grab_main_page()
