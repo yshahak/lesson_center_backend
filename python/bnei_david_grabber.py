@@ -427,5 +427,3 @@ def grab_main_page():
 
 if __name__ == "__main__":
     grab()
-
-curl 'https://www.yeshiva.org.il/midrash/api/contents?size=30&catid=1391&order=1&orderby=1&mediatypes=0&getContent=true' -H 'authority: www.yeshiva.org.il' -H 'accept: application/json, text/plain, */*' -H 'sec-fetch-dest: empty' -H 'lang: heb' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36' -H 'sec-fetch-site: same-origin' -H 'sec-fetch-mode: cors' -H 'referer: https://www.yeshiva.org.il/midrash/category/1391' -H 'accept-language: en-US,en;q=0.9' -H 'cookie: __utma=257614851.778495363.1586197938.1586197938.1586197938.1; __utmc=257614851; __utmz=257614851.1586197938.1.1.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); _hjid=01c85611-d5e0-4c79-ae02-4975c240ba83; __utmt=1; __utmb=257614851.13.10.1586197938' --compressed
