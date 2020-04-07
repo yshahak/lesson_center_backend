@@ -34,6 +34,7 @@ with_no_series = set()
 
 def grab():
     global sets_arr, exists_original_ids, categories_ids
+    fill_complementary_tables()
     print('getting ids')
     cursor = postgres.cursor()
     cursor.execute('select originalid from lessons where sourceid = %s;', (source_id,))
@@ -113,6 +114,7 @@ def fill_complementary_tables():
             , (get_hash_for_id(source_id, orginalid), orginalid, source_id, entry['FullName'],))
     cursor.close()
     postgres.commit()
+    grab_widgets()
 
 
 def add_missing_serie_id(cursor, serie_id, name):
@@ -243,8 +245,6 @@ def get_heb_date(date_time_obj):
 
 
 if __name__ == '__main__':
-    fill_complementary_tables()
     grab()
-    grab_widgets()
     # http://player.vimeo.com/external/335685696.hd.mp4?s=3fe2de2efc420884a4f6c13d0986e0cb2255a062&profile_id=175&oauth2_token_id=1009673393
     # exeption in category exception for 4095 exception for 4575,4576,4713,4747,4960,3966,

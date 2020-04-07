@@ -425,5 +425,6 @@ def grab_main_page():
     postgres.close()
     driver.quit()
 
+
 if __name__ == "__main__":
     grab()
