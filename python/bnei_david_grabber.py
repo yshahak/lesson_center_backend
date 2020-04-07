@@ -1,26 +1,31 @@
 # coding=utf-8
 from __future__ import unicode_literals
-import eventlet
-eventlet.monkey_patch()
+from selenium import webdriver
 import calendar
 import urllib.request
+import hashlib
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 # import requests
 import json
 from pyluach.dates import HebrewDate
 import traceback
-import datetime
 import psycopg2.extras
 import os
 from config import *
+from sql_helper import *
+
 postgres = psycopg2.connect(**postgres_con)
-
-
+source_id = 1
 lesson_template = 'http://www.bneidavid.org%s'
 template_main = 'http://www.bneidavid.org/Web/He/VirtualTorah/Default.aspx'
 template = 'http://www.bneidavid.org/Web/He/VirtualTorah/Lessons/Default.aspx?serie=%d'
 template_id = 'http://www.bneidavid.org/Web/He/VirtualTorah/Lessons/Default.aspx?id=%d'
+
+cursor = postgres.cursor()
+cursor.execute('select originalid from lessons where sourceid = %s;', (source_id,))
+exists_original_ids = [row[0] for row in cursor.fetchall()]
+cursor.close()
 
 subjectsIdMap = {
     'ללא': 1,
@@ -81,6 +86,7 @@ day_map = [
     u'יא',
     u'יב',
     u'יג',
+    u'יד',
     u'טו',
     u'טז',
     u'יז',
@@ -119,28 +125,49 @@ month_dict = {
     u'אלול': 6,
 }
 
-def get_timestamp():
-    return int((datetime.datetime.utcnow() - datetime.datetime(1970, 1, 1)).total_seconds())
-
 now = get_timestamp()
 counter = 0
+series_map = {}
+subjects_map = {}
+ravs_map = {}
+without_valid_content = set()
+# def clear_labels():
+#     cursor = postgres.cursor()
+#     cursor.execute('''
+#                 UPDATE lessons
+#                 SET
+#                 label = ''
+#                 WHERE source = %s;
+#                 ''', ('bnei_david',))
+#     postgres.commit()
 
-def clear_labels():
-    cursor = postgres.cursor()
-    cursor.execute('''
-                UPDATE lessons
-                SET
-                label = ''
-                WHERE source = %s;
-                ''', ('bnei_david',))
-    postgres.commit()
+
+source = 'bnei_david'
+
+driver = webdriver.PhantomJS()
+driver.set_window_size(1120, 550)
 
 
 def get_lesson(url, is_main_page=False):
     print('running on url {0}'.format(url))
-    global counter
-    response = urllib.request.urlopen(url)
-    soup = BeautifulSoup(response, 'html.parser')
+    driver.get(url)
+    parse_lesson(driver.page_source, is_main_page)
+    if not is_main_page:
+        page = 2
+        while True:
+            try:
+                driver.find_element_by_xpath("//a[text()='%s']" % page).click()
+                parse_lesson(driver.page_source, False)
+                print('page %s grabbed successfully' % page)
+                page = page + 1
+            except:
+                print('page %s not exists' % page)
+                break
+
+
+def parse_lesson(html_content, is_main_page=False):
+    global counter, series_map, subjects_map, ravs_map, exists_original_ids, without_valid_content
+    soup = BeautifulSoup(html_content, 'html.parser')
     tables = soup.findAll("div", {"class": 'tables_list'})
     cursor = postgres.cursor()
     for table in tables:
@@ -154,11 +181,13 @@ def get_lesson(url, is_main_page=False):
                 if lesson_id is None:
                     continue
                 if is_main_page:
-                    label =  'מומלצים' if lesson_id.attrs['id'].__contains__('Recommended') else 'אחרונים'
-                    # label = unicode(label, 'utf-8')
+                    label = 'מומלצים' if lesson_id.attrs['id'].__contains__('Recommended') else 'אחרונים'
                 else:
                     label = ''
                 lesson['id'] = lesson_id.text
+                if int(lesson['id']) in exists_original_ids and not is_main_page:
+                    print('id exists', lesson['id'])
+                    continue
                 lesson['label'] = 'label'
                 subject = row.find('span', id=lambda x: x and x.endswith('_lblSubject')).text
                 lesson['subject'] = subject
@@ -183,11 +212,15 @@ def get_lesson(url, is_main_page=False):
                 lesson['seriesUrl'] = sidra_url
                 lesson['seriesId'] = sidra_url.split('serie=')[1] if sidra_url else -1
                 date = row.find('span', id=lambda x: x and x.endswith('_lblDate')).text.strip()
-                timestamp = get_timestamp_for_date(date)
+                try:
+                    timestamp = get_timestamp_for_date(date)
+                except:
+                    timestamp = now
                 lesson['timestamp'] = timestamp
                 lesson['dateStr'] = date
                 length = row.find('span', id=lambda x: x and x.endswith('_lbllength')).text
                 lesson['length'] = length
+                lesson['duration'] = get_duration_in_seconds(length)
                 video = row.find('a', id=lambda x: x and x.endswith('_hlVideo'))
                 extracted = None
                 video_url, audio_url = None, None
@@ -197,11 +230,9 @@ def get_lesson(url, is_main_page=False):
                         video_url = None
                     else:
                         valid = validate_media_url(video_url)
-                        # print('valid={0} {1}'.format(valid, video_url))
                         if not valid:
                             extracted = extract_media(lesson_url)
                             video_url = extracted[0]
-                            # print ('restored {0}'.format(video_url))
                 lesson['videoUrl'] = video_url
                 audio = row.find('a', id=lambda x: x and x.endswith('_hlAudio'))
                 if audio.attrs and 'href' in audio.attrs:
@@ -218,45 +249,55 @@ def get_lesson(url, is_main_page=False):
                             # print ('restored {0}'.format(audio_url))
                 lesson['audioUrl'] = audio_url
                 counter = counter + 1
-                # print('counter={0}'.format(counter))
-                # print('rav={0}\travId={1}'.format(lesson["rav"],lesson["rav_id"]))
-                # print '{0}, audio={1} video={2}'.format(lesson['id'], lesson['audioUrl'], lesson['videoUrl'])
                 if not audio_url and not video_url:
                     print('no content for id={0}'.format(lesson['id']))
+                    without_valid_content.add(int(lesson['id']))
                     continue
+                original_id = int(lesson["id"])
+                id = get_hash_for_id(source_id, original_id)
+                original_subjectId = lesson["subject_id"]
+                if original_subjectId not in subjects_map:
+                    cursor.execute(
+                        '''INSERT INTO categories(id,originalid,sourceid,category) VALUES(%s,%s,%s,%s) ON CONFLICT (id) DO NOTHING;'''
+                        , (get_hash_for_id(source_id, original_subjectId), original_subjectId, source_id,
+                           lesson['subject'],))
+                    subjects_map[original_subjectId] = get_hash_for_id(source_id, original_subjectId)
+                original_series_id = lesson["seriesId"]
+                if original_series_id not in series_map:
+                    cursor.execute(
+                        '''INSERT INTO series(id,originalid,sourceid,serie) VALUES(%s,%s,%s,%s) ON CONFLICT (id) DO NOTHING;'''
+                        , (get_hash_for_id(source_id, original_series_id), original_series_id, source_id,
+                           lesson['series'],))
+                    series_map[original_series_id] = get_hash_for_id(source_id, original_series_id)
+                original_rav_id = lesson["rav_id"]
+                if original_rav_id not in ravs_map:
+                    cursor.execute(
+                        '''INSERT INTO ravs(id,originalid,sourceid,rav) VALUES(%s,%s,%s,%s) ON CONFLICT (id) DO NOTHING;'''
+                        , (get_hash_for_id(source_id, original_rav_id), original_rav_id, source_id, lesson['rav'],))
+                    ravs_map[original_rav_id] = get_hash_for_id(source_id, original_rav_id)
                 body = {
-                    "id": int(lesson["id"]),
-                    "label": label,
+                    "id": id,
+                    "sourceid": source_id,
+                    "originalid": original_id,
                     "title": lesson["title"],
-                    "subjectId": lesson["subject_id"],
-                    "subject": lesson["subject"],
-                    "seriesId": lesson["seriesId"],
-                    "series": lesson["series"],
-                    "seriesUrl": lesson["seriesUrl"],
-                    "ravId": lesson["rav_id"],
-                    "rav": lesson["rav"],
+                    "categoryid": subjects_map[original_subjectId],
+                    "seriesId": series_map[original_series_id],
+                    "ravId": ravs_map[original_rav_id],
                     "dateStr": lesson["dateStr"],
-                    "length": lesson["length"],
+                    "duration": lesson["duration"],
                     "videoUrl": lesson["videoUrl"],
                     "audioUrl": lesson["audioUrl"],
-                    "lessonUrl": lesson["lessonUrl"],
                     "timestamp": lesson["timestamp"],
-                    "source": 'bnei_david',
                 }
-                # print body
-                cursor.execute('''
-                insert into lessons(id,source,title,label,subjectid,subject,seriesid,series,datestr,ravid,rav,"length","videourl","audiourl","timestamp","insertedat","updatedat")
-                values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-                ON CONFLICT(id)
-                DO UPDATE SET
-                updatedat = %s,
-                label = %s;
-                ''', (body["id"],body["source"],body["title"],body["label"],body["subjectId"],body["subject"],body["seriesId"],body["series"],
-                      body["dateStr"],body["ravId"],body["rav"],body["length"],body["videoUrl"],body["audioUrl"],body["timestamp"],now,now,now,label,))
+                add_lesson_to_db(cursor, now, body)
+                if is_main_page:
+                    cursor.execute('''INSERT INTO labels (label,sourceid,lessonid) VALUES(%s,%s,%s);''',
+                                   (label, source_id, id))
                 postgres.commit()
             except Exception as e:
                 print("Error !!! id={0}\ne={1}".format(lesson_id, traceback.format_exc()))
                 break
+
 
 def validate_media_url(url):
     try:
@@ -322,8 +363,14 @@ def get_timestamp_for_date(date_str):
     year_as_int = 5000
     for char in year:
         year_as_int += gimatria_map.get(char)
-    heb = HebrewDate(year_as_int, month, day)
-    return calendar.timegm(heb.to_pydate().timetuple())
+    try:
+        heb = HebrewDate(year_as_int, month, day)
+        return calendar.timegm(heb.to_pydate().timetuple())
+    except ValueError as e:
+        if 'Given month' in str(e):
+            heb = HebrewDate(year_as_int, month, 1)
+            return calendar.timegm(heb.to_pydate().timetuple())
+        return now
 
 
 def convert_str_to_hebrew_date(date_str):
@@ -345,8 +392,16 @@ def remove_non_letters(word):
             parsed = parsed + char
     return parsed
 
+
 def grab():
-    # for i in range(1, 10):
+    global series_map, subjects_map, ravs_map, without_valid_content
+    cursor = postgres.cursor()
+    cursor.execute('select originalid,id from series where sourceid = 1')
+    series_map = {row[0]: row[1] for row in cursor.fetchall()}
+    cursor.execute('select originalid,id from categories where sourceid = 1')
+    subjects_map = {row[0]: row[1] for row in cursor.fetchall()}
+    cursor.execute('select originalid,id from ravs where sourceid = 1')
+    ravs_map = {row[0]: row[1] for row in cursor.fetchall()}
     for i in range(1, 500):
         get_lesson(template % i)
     grab_main_page()
@@ -355,18 +410,22 @@ def grab():
     with open('{}/general.json'.format(root_path), 'r+') as f:
         data = json.load(f)
         data['last_run'] = now
-        f.seek(0)        # <--- should reset file position to the beginning.
+        f.seek(0)  # <--- should reset file position to the beginning.
         json.dump(data, f, indent=4)
         f.truncate()
+    print(without_valid_content)
+    postgres.close()
+    driver.quit()
+
 
 def grab_main_page():
     # getting main page
-    clear_labels()
+    clear_labels(postgres, source_id)
     get_lesson(template_main, True)
     postgres.close()
-
+    driver.quit()
 
 if __name__ == "__main__":
-    pass
-    # grab()
-    grab_main_page()
+    grab()
+
+curl 'https://www.yeshiva.org.il/midrash/api/contents?size=30&catid=1391&order=1&orderby=1&mediatypes=0&getContent=true' -H 'authority: www.yeshiva.org.il' -H 'accept: application/json, text/plain, */*' -H 'sec-fetch-dest: empty' -H 'lang: heb' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36' -H 'sec-fetch-site: same-origin' -H 'sec-fetch-mode: cors' -H 'referer: https://www.yeshiva.org.il/midrash/category/1391' -H 'accept-language: en-US,en;q=0.9' -H 'cookie: __utma=257614851.778495363.1586197938.1586197938.1586197938.1; __utmc=257614851; __utmz=257614851.1586197938.1.1.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); _hjid=01c85611-d5e0-4c79-ae02-4975c240ba83; __utmt=1; __utmb=257614851.13.10.1586197938' --compressed

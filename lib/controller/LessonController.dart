@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:aqueduct/aqueduct.dart';
 import 'package:lesson_center_backend/dal/LessonsDal.dart';
+import 'package:lesson_center_backend/model/Label.dart';
 import 'package:lesson_center_backend/model/Lesson.dart';
 
 class LessonController extends ResourceController {
@@ -23,19 +24,30 @@ class LessonController extends ResourceController {
   }
 
   @Operation.get()
-  Future<Response> getAllLessonsByTimestamp({@Bind.query('timestamp') String timestamp}) async {
-    final lessonQuery = Query<Lesson>(context);
-    timestamp ??= "-1";
-    lessonQuery.where((record) => record.insertedAt).greaterThanEqualTo(int.parse(timestamp));
+  Future<Response> getAllLessonsByTimestamp(
+      {@Bind.query('timestamp') String timestamp, @Bind.query('page') String page, @Bind.query('limit') String limit, @Bind.query('source') String sourceId}) async {
+    timestamp ??= "0";
+    page ??= "1";
+    limit ??= "200";
+    final offset = (int.parse(page) - 1) * int.parse(limit);
+    print('$timestamp\t$page\t$limit\t$sourceId\toffset=$offset');
+    final lessonQuery = Query<Lesson>(context)
+      ..where((record) => record.updatedAt).greaterThan(int.parse(timestamp))
+      ..sortBy((record) => record.updatedAt, QuerySortOrder.descending)
+      ..sortBy((record) => record.timestamp, QuerySortOrder.descending)
+      ..fetchLimit = int.parse(limit)
+      ..offset = offset;
+    if (sourceId != null){
+      lessonQuery.where((record) => record.sourceId).equalTo(int.parse(sourceId));
+    }
     final lessons = await lessonQuery.fetch();
-    final general = File("general.json");
-    final lastRun = (json.decode(general.readAsStringSync()) as Map)['last_run'] as int;
-    final mainPage = Query<Lesson>(context);
-    mainPage.where((record) => record.label).oneOf(['מומלצים', 'אחרונים']);
-    final mainPageLessons = await mainPage.fetch();
+    final query = Query<Lesson>(context);
+    final lastRun = await query.reduce.maximum((u) => u.updatedAt);
+
+//    final general = File("general.json");
+//    final lastRun = (json.decode(general.readAsStringSync()) as Map)['last_run'] as int;
     final body = {
       "lessons": lessons.map((l) => l.asMap()).toList(),
-      "mainPage": mainPageLessons.map((l) => l.asMap()).toList(),
       "ts": lastRun,
     };
     final response = Response.ok(body)..contentType = ContentType.json;
@@ -53,21 +65,21 @@ class LessonController extends ResourceController {
 //    return Response.ok(lessons);
 //  }
 
-  @Operation.get('subject')
-  Future<Response> getLessonBySubject(@Bind.path('subject') String subject) async {
-    final lessonQuery = Query<Lesson>(context)..where((h) => h.subject).equalTo(subject);
-    final lesson = await lessonQuery.fetchOne();
-    if (lesson == null) {
-      return Response.notFound();
-    }
-    return Response.ok(lesson);
-  }
+//  @Operation.get('subject')
+//  Future<Response> getLessonBySubject(@Bind.path('subject') String subject) async {
+//    final lessonQuery = Query<Lesson>(context)..where((h) => h.subject).equalTo(subject);
+//    final lesson = await lessonQuery.fetchOne();
+//    if (lesson == null) {
+//      return Response.notFound();
+//    }
+//    return Response.ok(lesson);
+//  }
 
-  @Operation.post()
-  Future<Response> seedLessons(@Bind.body() List<Lesson> lessons) async {
-    final ids = await LessonsDal.insertLessons(context, lessons);
-    return Response.ok({"key": "value"});
-  }
+//  @Operation.post()
+//  Future<Response> seedLessons(@Bind.body() List<Lesson> lessons) async {
+//    final ids = await LessonsDal.insertLessons(context, lessons);
+//    return Response.ok({"key": "value"});
+//  }
 
 //  @Operation.delete()
 //  Future<Response> deleteAll() async {

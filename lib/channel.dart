@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:lesson_center_backend/controller/LessonController.dart';
+import 'package:lesson_center_backend/controller/LabelsController.dart';
 
 import 'lesson_center_backend.dart';
 
@@ -25,8 +26,9 @@ class LessonCenterBackendChannel extends ApplicationChannel {
 
   @override
   Future prepare() async {
+    Controller.includeErrorDetailsInServerErrorResponses = true;
     logger.onRecord.listen((rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
-
+//    logger.parent.level = Level.FINE;
     final config = MyConfiguration(options.configurationFilePath);
 
     final dataModel = ManagedDataModel.fromCurrentMirrorSystem();
@@ -45,6 +47,8 @@ class LessonCenterBackendChannel extends ApplicationChannel {
     final router = Router();
 
     router.route('/lessons/[:id]').link(() => LessonController(context));
+
+    router.route('/labels').link(() => LabelsController(context));
 
     router.route("/files/*").link(() => FileTimeStamp()).link(() => FileController("files/public/"));
 

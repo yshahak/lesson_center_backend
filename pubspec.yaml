@@ -8,8 +8,8 @@ environment:
 dependencies:
   aqueduct: ^3.2.1
   html: ^0.14.0+2
-  lessons_center_common:
-    path: ../lessons_center_common
+#  lessons_center_common:
+#    path: ../lessons_center_common
 
 dev_dependencies:
   test: ^1.0.0
