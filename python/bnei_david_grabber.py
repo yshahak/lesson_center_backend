@@ -224,7 +224,9 @@ def parse_lesson(html_content, is_main_page=False):
                 video = row.find('a', id=lambda x: x and x.endswith('_hlVideo'))
                 extracted = None
                 video_url, audio_url = None, None
+                has_link = False
                 if video.attrs and 'href' in video.attrs:
+                    has_link = True
                     video_url = video.attrs['href']
                     if video_url.endswith('/vf/audio/'):
                         video_url = None
@@ -236,6 +238,7 @@ def parse_lesson(html_content, is_main_page=False):
                 lesson['videoUrl'] = video_url
                 audio = row.find('a', id=lambda x: x and x.endswith('_hlAudio'))
                 if audio.attrs and 'href' in audio.attrs:
+                    has_link = True
                     audio_url = audio.attrs['href']
                     if audio_url.endswith('/vf/audio/'):
                         audio_url = None
@@ -246,12 +249,12 @@ def parse_lesson(html_content, is_main_page=False):
                             if not extracted:
                                 extracted = extract_media(lesson_url)
                             audio_url = extracted[1]
-                            # print ('restored {0}'.format(audio_url))
                 lesson['audioUrl'] = audio_url
                 counter = counter + 1
                 if not audio_url and not video_url:
                     print('no content for id={0}'.format(lesson['id']))
-                    without_valid_content.add(int(lesson['id']))
+                    if has_link:
+                        without_valid_content.add(int(lesson['id']))
                     continue
                 original_id = int(lesson["id"])
                 id = get_hash_for_id(source_id, original_id)

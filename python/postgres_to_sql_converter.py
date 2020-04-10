@@ -203,18 +203,20 @@ def start_conversion():
     print('finished convert postgres to sqlite!')
 
 
-def updateTotals():
+def updateTotals(table:str, col:str):
     cursor = postgres.cursor()
     cursor.execute('SELECT id  FROM ravs')
     rows = cursor.fetchall()
     for row in rows:
         id = row[0]
-        cursor.execute('select count(*) from lessons where ravid = %s', (id,))
+        cursor.execute('select count(*) from lessons where %s = %s', (col, id,))
         total = cursor.fetchone()[0]
-        cursor.execute('''UPDATE ravs SET totalcount = %s where id = %s''', (total, id,))
+        cursor.execute('''UPDATE {0} SET totalcount = %s where id = %s'''.format(table), (total, id,))
     postgres.commit()
 
 
 if __name__ == '__main__':
-    start_conversion()
-    # updateTotals()
+    # start_conversion()
+    updateTotals('ravs', 'rav')
+    updateTotals('series', 'serie')
+    updateTotals('categories', 'category')
