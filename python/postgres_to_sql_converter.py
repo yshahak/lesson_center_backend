@@ -209,7 +209,7 @@ def updateTotals(table:str, col:str):
     rows = cursor.fetchall()
     for row in rows:
         id = row[0]
-        cursor.execute('select count(*) from lessons where %s = %s', (col, id,))
+        cursor.execute('select count(*) from lessons where {0} = %s'.format(col), (id,))
         total = cursor.fetchone()[0]
         cursor.execute('''UPDATE {0} SET totalcount = %s where id = %s'''.format(table), (total, id,))
     postgres.commit()
