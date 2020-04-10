@@ -205,7 +205,7 @@ def start_conversion():
 
 def updateTotals(table:str, col:str):
     cursor = postgres.cursor()
-    cursor.execute('SELECT id  FROM ravs')
+    cursor.execute('SELECT id  FROM {}'.format(table))
     rows = cursor.fetchall()
     for row in rows:
         id = row[0]
@@ -216,7 +216,7 @@ def updateTotals(table:str, col:str):
 
 
 if __name__ == '__main__':
-    start_conversion()
-    # updateTotals('ravs', 'ravid')
-    # updateTotals('series', 'seriesid')
-    # updateTotals('categories', 'categoryid')
+    # start_conversion()
+    updateTotals('ravs', 'ravid')
+    updateTotals('series', 'seriesid')
+    updateTotals('categories', 'categoryid')
