@@ -217,6 +217,6 @@ def updateTotals(table:str, col:str):
 
 if __name__ == '__main__':
     # start_conversion()
-    updateTotals('ravs', 'rav')
-    updateTotals('series', 'serie')
-    updateTotals('categories', 'category')
+    updateTotals('ravs', 'ravid')
+    updateTotals('series', 'seriesid')
+    updateTotals('categories', 'categoryid')
