@@ -1,10 +1,7 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:aqueduct/aqueduct.dart';
-import 'package:lesson_center_backend/dal/LessonsDal.dart';
-import 'package:lesson_center_backend/model/Label.dart';
 import 'package:lesson_center_backend/model/Lesson.dart';
 
 class LessonController extends ResourceController {
@@ -25,7 +22,9 @@ class LessonController extends ResourceController {
 
   @Operation.get()
   Future<Response> getAllLessonsByTimestamp(
-      {@Bind.query('timestamp') String timestamp, @Bind.query('page') String page, @Bind.query('limit') String limit, @Bind.query('source') String sourceId}) async {
+      {@Bind.query('timestamp') String timestamp, @Bind.query('page') String page,
+        @Bind.query('limit') String limit, @Bind.query('source') String sourceId,
+        @Bind.query('rav') String rav, @Bind.query('category') String category, @Bind.query('series') String serie}) async {
     timestamp ??= "0";
     page ??= "1";
     limit ??= "200";
@@ -40,12 +39,19 @@ class LessonController extends ResourceController {
     if (sourceId != null){
       lessonQuery.where((record) => record.sourceId).equalTo(int.parse(sourceId));
     }
+    if (category != null){
+      lessonQuery.where((record) => record.categoryId).equalTo(int.parse(category));
+    }
+    if (serie != null){
+      lessonQuery.where((record) => record.seriesId).equalTo(int.parse(serie));
+    }
+    if (rav != null){
+      lessonQuery.where((record) => record.ravId).equalTo(int.parse(rav));
+    }
     final lessons = await lessonQuery.fetch();
     final query = Query<Lesson>(context);
     final lastRun = await query.reduce.maximum((u) => u.updatedAt);
 
-//    final general = File("general.json");
-//    final lastRun = (json.decode(general.readAsStringSync()) as Map)['last_run'] as int;
     final body = {
       "lessons": lessons.map((l) => l.asMap()).toList(),
       "ts": lastRun,

@@ -11,13 +11,17 @@ class LabelsController extends ResourceController {
   final ManagedContext context;
 
   @Operation.get()
-  Future<Response> getLabels() async {
+  Future<Response> getLabels({@Bind.query('source') String sourceId}) async {
     final mainPage = Query<Label>(context);
+    if (sourceId != null){
+      mainPage.where((record) => record.sourceId).equalTo(int.parse(sourceId));
+    }
     final labels = await mainPage.fetch();
     final ids = labels.map((e) => e.lessonId);
     final lessonQuery = Query<Lesson>(context)
       ..where((record) => record.id).oneOf(ids);
     final lessons = await lessonQuery.fetch();
+    //we add lessons to make sure the client will have the lessons in it database
     final body = {
       "mainPage": labels.map((l) => l.asMap()).toList(),
       "lessons": lessons.map((l) => l.asMap()).toList(),
