@@ -40,7 +40,7 @@ class LessonController extends ResourceController {
       lessonQuery.where((record) => record.sourceId).equalTo(int.parse(sourceId));
     }
     if (title != null) {
-      lessonQuery.where((record) => record.title).like(title);
+      lessonQuery.where((record) => record.title).like('%$title%');
     }
     if (category != null){
       lessonQuery.where((record) => record.categoryId).equalTo(int.parse(category));
