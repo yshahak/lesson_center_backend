@@ -12,7 +12,6 @@ class LessonController extends ResourceController {
   @Operation.get('id')
   Future<Response> getLessonByID(@Bind.path('id') int id) async {
     final lessonQuery = Query<Lesson>(context)..where((h) => h.id).equalTo(id);
-
     final lesson = await lessonQuery.fetchOne();
     if (lesson == null) {
       return Response.notFound();
@@ -24,7 +23,8 @@ class LessonController extends ResourceController {
   Future<Response> getAllLessonsByTimestamp(
       {@Bind.query('timestamp') String timestamp, @Bind.query('page') String page,
         @Bind.query('limit') String limit, @Bind.query('source') String sourceId,
-        @Bind.query('rav') String rav, @Bind.query('category') String category, @Bind.query('series') String serie}) async {
+        @Bind.query('rav') String rav, @Bind.query('category') String category,
+        @Bind.query('serie') String serie, @Bind.query('title') String title}) async {
     timestamp ??= "0";
     page ??= "1";
     limit ??= "200";
@@ -38,6 +38,9 @@ class LessonController extends ResourceController {
       ..offset = offset;
     if (sourceId != null){
       lessonQuery.where((record) => record.sourceId).equalTo(int.parse(sourceId));
+    }
+    if (title != null) {
+      lessonQuery.where((record) => record.title).like(title);
     }
     if (category != null){
       lessonQuery.where((record) => record.categoryId).equalTo(int.parse(category));
