@@ -1,6 +1,6 @@
 /// lesson_center_backend
 ///
-/// A Aqueduct web server.
+/// An Aqueduct web server.
 library lesson_center_backend;
 
 export 'dart:async';
