@@ -27,3 +27,4 @@ logs/
 python/venv3/
 general.json
 web/server.py
+ghostdriver.log
