@@ -6,7 +6,8 @@ environment:
   sdk: ">=2.0.0 <3.0.0"
 
 dependencies:
-  aqueduct: ^3.2.1
+  aqueduct: ^3.3.0+1
+#  postgres: ^2.1.1
   html: ^0.14.0+2
 #  lessons_center_common:
 #    path: ../lessons_center_common
