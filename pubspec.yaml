@@ -11,6 +11,8 @@ dependencies:
   html: ^0.14.0+2
 #  lessons_center_common:
 #    path: ../lessons_center_common
+dependency_overrides:
+  postgres: 2.1.1
 
 dev_dependencies:
   test: ^1.0.0

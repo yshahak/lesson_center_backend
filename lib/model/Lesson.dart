@@ -4,32 +4,32 @@ class Lesson extends ManagedObject<Lessons> implements Lessons {}
 
 class Lessons {
 
-  @Column(primaryKey: true, unique: true, databaseType: ManagedPropertyType.bigInteger, autoincrement: false)
+  @Column(primaryKey: true, unique: true, databaseType: ManagedPropertyType.integer, autoincrement: false)
   int id;
   @Column(nullable: false)
-  int sourceId;
+  int sourceid;
   @Column(nullable: false)
-  int originalId;
+  int originalid;
   @Column(nullable: false)
   String title;
   @Column(nullable: true)
-  int categoryId;
+  int categoryid;
   @Column(nullable: true)
-  int seriesId;
+  int seriesid;
   @Column(nullable: true)
-  String dateStr;
+  String datestr;
   @Column(nullable: true)
-  int ravId;
+  int ravid;
   @Column(nullable: true)
   int duration;
   @Column(nullable: true)
-  String videoUrl;
+  String videourl;
   @Column(nullable: true)
-  String audioUrl;
-  @Column(nullable: true)
-  int timestamp;
-  @Column(nullable: true)
-  int insertedAt;
+  String audiourl;
   @Column(nullable: false)
-  int updatedAt;
+  int timestamp;
+  @Column(nullable: false)
+  int insertedat;
+  @Column(nullable: false)
+  int updatedat;
 }

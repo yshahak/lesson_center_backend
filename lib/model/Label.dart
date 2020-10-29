@@ -8,9 +8,13 @@ class Labels {
   int id;
   @Column(nullable: false)
   String label;
+  @Column(nullable: false, )
+  int sourceid;
   @Column(nullable: false)
-  int sourceId;
+  int lessonid;
   @Column(nullable: false)
-  int lessonId;
+  int insertedat;
+  @Column(nullable: false)
+  int updatedat;
 
 }

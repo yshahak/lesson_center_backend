@@ -17,10 +17,10 @@ from sql_helper import *
 
 postgres = psycopg2.connect(**postgres_con)
 source_id = 1
-lesson_template = 'http://www.bneidavid.org%s'
-template_main = 'http://www.bneidavid.org/Web/He/VirtualTorah/Default.aspx'
-template = 'http://www.bneidavid.org/Web/He/VirtualTorah/Lessons/Default.aspx?serie=%d'
-template_id = 'http://www.bneidavid.org/Web/He/VirtualTorah/Lessons/Default.aspx?id=%d'
+lesson_template = 'https://www.bneidavid.org%s'
+template_main = 'https://www.bneidavid.org/Web/He/VirtualTorah/Default.aspx'
+template = 'https://www.bneidavid.org/Web/He/VirtualTorah/Lessons/Default.aspx?subject=&rabi=&name=&rfs=&rfh=&serie=%d'
+template_id = 'https://www.bneidavid.org/Web/He/VirtualTorah/Lessons/Default.aspx?id=%d'
 
 cursor = postgres.cursor()
 cursor.execute('select originalid from lessons where sourceid = %s;', (source_id,))
@@ -151,8 +151,8 @@ driver.set_window_size(1120, 550)
 def get_lesson(url, is_main_page=False):
     print('running on url {0}'.format(url))
     driver.get(url)
-    parse_lesson(driver.page_source, is_main_page)
-    if not is_main_page:
+    grabbed_something = parse_lesson(driver.page_source, is_main_page)
+    if grabbed_something and not is_main_page:
         page = 2
         while True:
             try:
@@ -169,6 +169,7 @@ def parse_lesson(html_content, is_main_page=False):
     global counter, series_map, subjects_map, ravs_map, exists_original_ids, without_valid_content
     soup = BeautifulSoup(html_content, 'html.parser')
     tables = soup.findAll("div", {"class": 'tables_list'})
+    grab_something = False
     cursor = postgres.cursor()
     for table in tables:
         rows = table.findAll("tr")
@@ -292,6 +293,7 @@ def parse_lesson(html_content, is_main_page=False):
                     "audioUrl": lesson["audioUrl"],
                     "timestamp": lesson["timestamp"],
                 }
+                grab_something = True
                 add_lesson_to_db(cursor, now, body)
                 if is_main_page:
                     cursor.execute('''INSERT INTO labels (label,sourceid,lessonid) VALUES(%s,%s,%s);''',
@@ -300,6 +302,7 @@ def parse_lesson(html_content, is_main_page=False):
             except Exception as e:
                 print("Error !!! id={0}\ne={1}".format(lesson_id, traceback.format_exc()))
                 break
+    return grab_something
 
 
 def validate_media_url(url):

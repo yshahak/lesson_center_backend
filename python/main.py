@@ -11,6 +11,6 @@ if __name__ == '__main__':
         grab_meir_widgets()
     else:
         print('grabbing all')
-        grab_meir()
         grab()
+        grab_meir()
     start_conversion()

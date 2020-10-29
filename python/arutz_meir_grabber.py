@@ -104,7 +104,10 @@ def fill_complementary_tables():
     add_missing_serie_id(cursor, 23011, 'ספר הכוזרי אלול תשעט')
     add_missing_serie_id(cursor, 23014, 'שיעורים באורות הקודש')
     add_missing_serie_id(cursor, 23015, 'הרב קוק על פרשת השבוע - תשפ')
-
+    add_missing_serie_id(cursor, 21639, 'לימוד בוקר בפרשה')
+    add_missing_serie_id(cursor, 22561, 'ספר ישעיהו')
+    add_missing_serie_id(cursor, 21025, 'אורות התשובה')
+    postgres.commit()
     response = requests.get(ravs_url)
     ravs = response.json()
     for entry in ravs:
@@ -143,8 +146,10 @@ def grab_widget(widget: int):
             label = entry['Title']
             print('grabbing ', label)
             for lesson in entry['Lessons']:
-                cursor.execute('''INSERT INTO labels (label,sourceid,lessonid) VALUES(%s,%s,%s);''',
-                               (label, source_id, get_hash_for_id(source_id, lesson['Id'])))
+                try:
+                    cursor.execute('''INSERT INTO labels (label,sourceid,lessonid) VALUES(%s,%s,%s);''', (label, source_id, get_hash_for_id(source_id, lesson['Id'])))
+                except Exception as e:
+                    print("Error sql execute !!! in lesson={0}\ne={1}".format(lesson, traceback.format_exc()))
             cursor.close()
 
 

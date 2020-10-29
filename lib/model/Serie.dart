@@ -14,4 +14,8 @@ class Series {
   int totalCount;
   @Column(nullable: false)
   String serie;
+  @Column(nullable: false)
+  int insertedat;
+  @Column(nullable: false)
+  int updatedat;
 }

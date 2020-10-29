@@ -31,32 +31,45 @@ class LessonController extends ResourceController {
     final offset = (int.parse(page) - 1) * int.parse(limit);
     print('$timestamp\t$page\t$limit\t$sourceId\toffset=$offset');
     final lessonQuery = Query<Lesson>(context)
-      ..where((record) => record.updatedAt).greaterThan(int.parse(timestamp))
-      ..sortBy((record) => record.updatedAt, QuerySortOrder.descending)
+      ..where((record) => record.updatedat).greaterThan(int.parse(timestamp))
+      ..sortBy((record) => record.updatedat, QuerySortOrder.descending)
       ..sortBy((record) => record.timestamp, QuerySortOrder.descending)
       ..fetchLimit = int.parse(limit)
       ..offset = offset;
     if (sourceId != null){
-      lessonQuery.where((record) => record.sourceId).equalTo(int.parse(sourceId));
+      lessonQuery.where((record) => record.sourceid).equalTo(int.parse(sourceId));
     }
     if (title != null) {
       lessonQuery.where((record) => record.title).like('%$title%');
     }
     if (category != null){
-      lessonQuery.where((record) => record.categoryId).equalTo(int.parse(category));
+      lessonQuery.where((record) => record.categoryid).equalTo(int.parse(category));
     }
     if (serie != null){
-      lessonQuery.where((record) => record.seriesId).equalTo(int.parse(serie));
+      lessonQuery.where((record) => record.seriesid).equalTo(int.parse(serie));
     }
     if (rav != null){
-      lessonQuery.where((record) => record.ravId).equalTo(int.parse(rav));
+      lessonQuery.where((record) => record.ravid).equalTo(int.parse(rav));
     }
     final lessons = await lessonQuery.fetch();
     final query = Query<Lesson>(context);
-    final lastRun = await query.reduce.maximum((u) => u.updatedAt);
+    final lastRun = await query.reduce.maximum((u) => u.updatedat);
 
     final body = {
-      "lessons": lessons.map((l) => l.asMap()).toList(),
+      "lessons": lessons.map((l) => {
+        "id": l.id,
+        "originalId": l.originalid,
+        "sourceId": l.sourceid,
+        "title": l.title,
+        "categoryId": l.categoryid,
+        "seriesId": l.seriesid,
+        "ravId": l.ravid,
+        "dateStr": l.datestr,
+        "duration": l.duration,
+        "videoUrl": l.videourl,
+        "audioUrl": l.audiourl,
+        "timestamp": l.timestamp,
+      }).toList(),
       "ts": lastRun,
     };
     final response = Response.ok(body)..contentType = ContentType.json;
