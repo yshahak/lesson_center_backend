@@ -14,10 +14,10 @@ class Categories {
   int totalCount;
   @Column(nullable: false)
   String category;
-  @Column(nullable: false)
-  int insertedat;
-  @Column(nullable: false)
-  int updatedat;
+  @Column(nullable: false, databaseType: ManagedPropertyType.datetime)
+  DateTime insertedat;
+  @Column(nullable: false, databaseType: ManagedPropertyType.datetime)
+  DateTime updatedat;
 }
 var table = '''
 create table categories(

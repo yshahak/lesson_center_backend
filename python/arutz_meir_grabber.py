@@ -141,16 +141,8 @@ def grab_widget(widget: int):
     lessons = response.json()
     for entry in lessons:
         if 'Lessons' in entry and entry['Lessons']:
-            iterate_over_lessons(entry['Lessons'])
-            cursor = postgres.cursor()
             label = entry['Title']
-            print('grabbing ', label)
-            for lesson in entry['Lessons']:
-                try:
-                    cursor.execute('''INSERT INTO labels (label,sourceid,lessonid) VALUES(%s,%s,%s);''', (label, source_id, get_hash_for_id(source_id, lesson['Id'])))
-                except Exception as e:
-                    print("Error sql execute !!! in lesson={0}\ne={1}".format(lesson, traceback.format_exc()))
-            cursor.close()
+            iterate_over_lessons(entry['Lessons'], label)
 
 
 def grab_for_category(category_id: int, page=1):
@@ -163,16 +155,18 @@ def grab_for_category(category_id: int, page=1):
     cursor.close()
 
 
-def iterate_over_lessons(lessons: dict):
+def iterate_over_lessons(lessons: dict, label=None):
     cursor = postgres.cursor()
     for lesson in lessons:
         if lesson:
             try:
-                body = grab_lesson(lesson)
+                exist, body = grab_lesson(lesson)
+                if exist and label:
+                    cursor.execute('''INSERT INTO labels (label,sourceid,lessonid) VALUES(%s,%s,%s);''',
+                                   (label, source_id, get_hash_for_id(source_id, lesson['Id'])))
                 if body:
-                    add_lesson_to_db(cursor, now, body)
-                    postgres.commit()
-                    break
+                    add_lesson_to_db(cursor, body)
+                postgres.commit()
             except Exception as e:
                 print("Error !!! in lesson={0}\ne={1}".format(lesson, traceback.format_exc()))
     cursor.close()
@@ -183,7 +177,7 @@ def grab_lesson(lesson):
     original_id = lesson["Id"]
     if original_id in exists_original_ids:
         print('id exists', original_id)
-        return None
+        return True, None
     date_str = lesson["RecordDate"]
     format = '%Y-%m-%d %H:%M:%S.%f' if '.' in date_str else '%Y-%m-%d %H:%M:%S'
     date_time_obj = datetime.datetime.strptime(date_str.replace('T', ' '), format)
@@ -213,7 +207,7 @@ def grab_lesson(lesson):
         "timestamp": timestamp,
     }
     exists_original_ids.append(original_id)
-    return body
+    return True, body
 
 
 flag_api = False
@@ -251,5 +245,6 @@ def get_heb_date(date_time_obj):
 
 if __name__ == '__main__':
     grab()
+    # grab_widgets()
     # http://player.vimeo.com/external/335685696.hd.mp4?s=3fe2de2efc420884a4f6c13d0986e0cb2255a062&profile_id=175&oauth2_token_id=1009673393
     # exeption in category exception for 4095 exception for 4575,4576,4713,4747,4960,3966,

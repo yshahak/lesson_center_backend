@@ -12,9 +12,4 @@ class Labels {
   int sourceid;
   @Column(nullable: false)
   int lessonid;
-  @Column(nullable: false)
-  int insertedat;
-  @Column(nullable: false)
-  int updatedat;
-
 }

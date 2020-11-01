@@ -31,7 +31,8 @@ class LessonController extends ResourceController {
     final offset = (int.parse(page) - 1) * int.parse(limit);
     print('$timestamp\t$page\t$limit\t$sourceId\toffset=$offset');
     final lessonQuery = Query<Lesson>(context)
-      ..where((record) => record.updatedat).greaterThan(int.parse(timestamp))
+      // ..where((record) => record.updatedat).isNotNull()
+      // ..where((record) => record.updatedat.millisecondsSinceEpoch).greaterThan(int.parse(timestamp))
       ..sortBy((record) => record.updatedat, QuerySortOrder.descending)
       ..sortBy((record) => record.timestamp, QuerySortOrder.descending)
       ..fetchLimit = int.parse(limit)
@@ -53,7 +54,7 @@ class LessonController extends ResourceController {
     }
     final lessons = await lessonQuery.fetch();
     final query = Query<Lesson>(context);
-    final lastRun = await query.reduce.maximum((u) => u.updatedat);
+    final lastRun = (await query.reduce.maximum((u) => u.updatedat)).millisecondsSinceEpoch;
 
     final body = {
       "lessons": lessons.map((l) => {
@@ -76,39 +77,4 @@ class LessonController extends ResourceController {
     response.headers['ts'] = lastRun;
     return response;
   }
-
-//  @Operation.get()
-//  Future<Response> getAllLessons({@Bind.query('title') String title}) async {
-//    final lessonQuery = Query<Lesson>(context);
-//    if (title != null) {
-//      lessonQuery.where((record) => record.title).contains(title, caseSensitive: false);
-//    }
-//    final lessons = await lessonQuery.fetch();
-//    return Response.ok(lessons);
-//  }
-
-//  @Operation.get('subject')
-//  Future<Response> getLessonBySubject(@Bind.path('subject') String subject) async {
-//    final lessonQuery = Query<Lesson>(context)..where((h) => h.subject).equalTo(subject);
-//    final lesson = await lessonQuery.fetchOne();
-//    if (lesson == null) {
-//      return Response.notFound();
-//    }
-//    return Response.ok(lesson);
-//  }
-
-//  @Operation.post()
-//  Future<Response> seedLessons(@Bind.body() List<Lesson> lessons) async {
-//    final ids = await LessonsDal.insertLessons(context, lessons);
-//    return Response.ok({"key": "value"});
-//  }
-
-//  @Operation.delete()
-//  Future<Response> deleteAll() async {
-//    final lessonQuery = Query<Lesson>(context)
-//      ..where((u) => u.id).notEqualTo(-200);
-//    final insertedLesson = await lessonQuery.delete();
-//    return Response.ok(insertedLesson);
-//  }
-
 }

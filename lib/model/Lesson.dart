@@ -28,8 +28,8 @@ class Lessons {
   String audiourl;
   @Column(nullable: false)
   int timestamp;
-  @Column(nullable: false)
-  int insertedat;
-  @Column(nullable: false)
-  int updatedat;
+  @Column(nullable: false, databaseType: ManagedPropertyType.datetime)
+  DateTime insertedat;
+  @Column(nullable: false, databaseType: ManagedPropertyType.datetime)
+  DateTime updatedat;
 }

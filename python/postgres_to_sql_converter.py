@@ -68,6 +68,18 @@ def create_sqlite_tables():
                   label TEXT NOT NULL
                 );
     ''')
+    c.execute('''
+                CREATE TRIGGER trigger_incrementer
+                AFTER INSERT ON lessons
+                BEGIN
+                    UPDATE ravs SET totalCount = totalCount + 1
+                    WHERE id = new.ravId;
+                    UPDATE series SET totalCount = totalCount + 1
+                    WHERE id = new.seriesId;
+                    UPDATE categories SET totalCount = totalCount + 1
+                    WHERE id = new.categoryId;
+                END;
+    ''')
     c.close()
     conn.commit()
 
@@ -126,7 +138,8 @@ def convert(row):
 
 def get_other_tables(table: str, col: str, col_id_name: str):
     cursor = postgres.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
-    cursor.execute('SELECT id,originalid as "originalId",sourceid as "sourceId",totalcount as "totalCount",{0} FROM {1}'.format(col, table))
+    # cursor.execute('SELECT id,originalid as "originalId",sourceid as "sourceId",totalcount as "totalCount",{0} FROM {1}'.format(col, table))
+    cursor.execute('SELECT id,originalid as "originalId",sourceid as "sourceId",0 as "totalCount",{0} FROM {1}'.format(col, table))
     # ids = []
     for row in cursor:
         body = {}

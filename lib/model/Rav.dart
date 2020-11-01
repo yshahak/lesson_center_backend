@@ -14,8 +14,8 @@ class Ravs {
   int totalCount;
   @Column(nullable: false)
   String rav;
-  @Column(nullable: false)
-  int insertedat;
-  @Column(nullable: false)
-  int updatedat;
+  @Column(nullable: false, databaseType: ManagedPropertyType.datetime)
+  DateTime insertedat;
+  @Column(nullable: false, databaseType: ManagedPropertyType.datetime)
+  DateTime updatedat;
 }

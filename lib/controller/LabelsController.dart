@@ -11,7 +11,8 @@ class LabelsController extends ResourceController {
   final ManagedContext context;
 
   @Operation.get()
-  Future<Response> getLabels({@Bind.query('source') String sourceId}) async {
+  Future<Response> getLabels({@Bind.query('source') String sourceId, @Bind.query('timestamp') String timestamp}) async {
+    timestamp ??= "0";
     final mainPage = Query<Label>(context);
     if (sourceId != null) {
       mainPage.where((record) => record.sourceid).equalTo(int.parse(sourceId));
@@ -52,7 +53,6 @@ class LabelsController extends ResourceController {
         "lessons": [],
       };
     }
-
     final response = Response.ok(body)..contentType = ContentType.json;
     return response;
   }

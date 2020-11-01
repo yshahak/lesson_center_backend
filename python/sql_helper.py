@@ -32,21 +32,19 @@ def clear_labels(postgres, source_id):
     postgres.commit()
 
 
-def add_lesson_to_db(cursor, now, body):
+def add_lesson_to_db(cursor, body):
     cursor.execute('''
     insert into lessons(
-    id,sourceid,originalid,title,categoryid,seriesid,ravid,videourl,audiourl,datestr,duration,"timestamp",insertedat,updatedat)
-    values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+    id,sourceid,originalid,title,categoryid,seriesid,ravid,videourl,audiourl,datestr,duration,"timestamp")
+    values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     ON CONFLICT(id)
-    DO NOTHING 
-    --UPDATE SET
-    --updatedat = %s;
+    DO UPDATE SET updatedat =  now();
     ''', (
         body["id"], body["sourceid"], body["originalid"], body["title"],
         body["categoryid"], body["seriesId"], body["ravId"],
         body["videoUrl"], body["audioUrl"],
         body["dateStr"], body["duration"],
-        body["timestamp"], now, now, now))
+        body["timestamp"]))
 
 
 

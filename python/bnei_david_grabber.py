@@ -3,15 +3,11 @@ from __future__ import unicode_literals
 from selenium import webdriver
 import calendar
 import urllib.request
-import hashlib
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
-# import requests
-import json
 from pyluach.dates import HebrewDate
 import traceback
 import psycopg2.extras
-import os
 from config import *
 from sql_helper import *
 
@@ -131,16 +127,6 @@ series_map = {}
 subjects_map = {}
 ravs_map = {}
 without_valid_content = set()
-# def clear_labels():
-#     cursor = postgres.cursor()
-#     cursor.execute('''
-#                 UPDATE lessons
-#                 SET
-#                 label = ''
-#                 WHERE source = %s;
-#                 ''', ('bnei_david',))
-#     postgres.commit()
-
 
 source = 'bnei_david'
 
@@ -182,12 +168,17 @@ def parse_lesson(html_content, is_main_page=False):
                 if lesson_id is None:
                     continue
                 if is_main_page:
-                    label = 'מומלצים' if lesson_id.attrs['id'].__contains__('Recommended') else 'אחרונים'
+                    label = 'מומלצים - בני דוד' if lesson_id.attrs['id'].__contains__('Recommended') else 'אחרונים - בני דוד'
                 else:
                     label = ''
                 lesson['id'] = lesson_id.text
+                original_id = int(lesson["id"])
+                id = get_hash_for_id(source_id, original_id)
                 if int(lesson['id']) in exists_original_ids and not is_main_page:
                     print('id exists', lesson['id'])
+                    if is_main_page:
+                        cursor.execute('''INSERT INTO labels (label,sourceid,lessonid) VALUES(%s,%s,%s);''',
+                                       (label, source_id, id))
                     continue
                 lesson['label'] = 'label'
                 subject = row.find('span', id=lambda x: x and x.endswith('_lblSubject')).text
@@ -257,8 +248,6 @@ def parse_lesson(html_content, is_main_page=False):
                     if has_link:
                         without_valid_content.add(int(lesson['id']))
                     continue
-                original_id = int(lesson["id"])
-                id = get_hash_for_id(source_id, original_id)
                 original_subjectId = lesson["subject_id"]
                 if original_subjectId not in subjects_map:
                     cursor.execute(
@@ -294,7 +283,7 @@ def parse_lesson(html_content, is_main_page=False):
                     "timestamp": lesson["timestamp"],
                 }
                 grab_something = True
-                add_lesson_to_db(cursor, now, body)
+                add_lesson_to_db(cursor, body)
                 if is_main_page:
                     cursor.execute('''INSERT INTO labels (label,sourceid,lessonid) VALUES(%s,%s,%s);''',
                                    (label, source_id, id))
@@ -412,13 +401,6 @@ def grab():
         get_lesson(template % i)
     grab_main_page()
     # root_path = os.getcwd()
-    root_path = "%s/.." % os.path.dirname(os.path.realpath(__file__))
-    with open('{}/general.json'.format(root_path), 'r+') as f:
-        data = json.load(f)
-        data['last_run'] = now
-        f.seek(0)  # <--- should reset file position to the beginning.
-        json.dump(data, f, indent=4)
-        f.truncate()
     print(without_valid_content)
     postgres.close()
     driver.quit()
@@ -434,3 +416,4 @@ def grab_main_page():
 
 if __name__ == "__main__":
     grab()
+    # grab_main_page()
