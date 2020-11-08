@@ -4,7 +4,7 @@ class Lesson extends ManagedObject<Lessons> implements Lessons {}
 
 class Lessons {
 
-  @Column(primaryKey: true, unique: true, databaseType: ManagedPropertyType.integer, autoincrement: false)
+  @Column(primaryKey: true, unique: true, databaseType: ManagedPropertyType.bigInteger, autoincrement: false)
   int id;
   @Column(nullable: false)
   int sourceid;
@@ -12,13 +12,13 @@ class Lessons {
   int originalid;
   @Column(nullable: false)
   String title;
-  @Column(nullable: true)
+  @Column(nullable: true, databaseType: ManagedPropertyType.bigInteger)
   int categoryid;
-  @Column(nullable: true)
+  @Column(nullable: true, databaseType: ManagedPropertyType.bigInteger)
   int seriesid;
   @Column(nullable: true)
   String datestr;
-  @Column(nullable: true)
+  @Column(nullable: true, databaseType: ManagedPropertyType.bigInteger)
   int ravid;
   @Column(nullable: true)
   int duration;

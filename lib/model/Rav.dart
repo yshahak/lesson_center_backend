@@ -4,7 +4,7 @@ class Rav extends ManagedObject<Ravs> implements Ravs {}
 
 class Ravs {
 
-  @Column(primaryKey: true, unique: true, databaseType: ManagedPropertyType.integer, autoincrement: false)
+  @Column(primaryKey: true, unique: true, databaseType: ManagedPropertyType.bigInteger, autoincrement: false)
   int id;
   @Column(nullable: false)
   int originalId;

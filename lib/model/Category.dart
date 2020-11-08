@@ -4,7 +4,7 @@ class Category extends ManagedObject<Categories> implements Categories {}
 
 class Categories {
 
-  @Column(primaryKey: true, unique: true, databaseType: ManagedPropertyType.integer, autoincrement: false)
+  @Column(primaryKey: true, unique: true, databaseType: ManagedPropertyType.bigInteger, autoincrement: false)
   int id;
   @Column(nullable: false)
   int originalId;

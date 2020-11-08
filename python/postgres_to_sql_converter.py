@@ -80,6 +80,15 @@ def create_sqlite_tables():
                     WHERE id = new.categoryId;
                 END;
     ''')
+    c.execute('''
+                CREATE TABLE sessions(
+                lessonId INTEGER NOT NULL PRIMARY KEY,
+                lastPositioninSec INTEGER NOT NULL,
+                sessionType INTEGER NOT NULL,
+                updatedAt INTEGER NOT NULL,
+                FOREIGN KEY (lessonId) REFERENCES lessons (id)
+);
+    ''')
     c.close()
     conn.commit()
 

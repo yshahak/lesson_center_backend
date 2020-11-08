@@ -10,6 +10,6 @@ class Labels {
   String label;
   @Column(nullable: false, )
   int sourceid;
-  @Column(nullable: false)
+  @Column(nullable: false, databaseType: ManagedPropertyType.bigInteger)
   int lessonid;
 }

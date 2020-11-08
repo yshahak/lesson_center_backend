@@ -5,7 +5,7 @@ import re
 
 def get_hash_for_id(source_id: int, originalid: int) -> int:
     hash_object = hashlib.md5(('%s_%s' % (source_id, originalid,)).encode())
-    return int(hash_object.hexdigest(), 16) % 10 ** 8
+    return int(hash_object.hexdigest(), 16) % 10 ** 18
 
 
 def get_timestamp():
@@ -45,7 +45,6 @@ def add_lesson_to_db(cursor, body):
         body["videoUrl"], body["audioUrl"],
         body["dateStr"], body["duration"],
         body["timestamp"]))
-
 
 
 month_dict = {

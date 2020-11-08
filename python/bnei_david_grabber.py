@@ -289,7 +289,7 @@ def parse_lesson(html_content, is_main_page=False):
                                    (label, source_id, id))
                 postgres.commit()
             except Exception as e:
-                print("Error !!! id={0}\ne={1}".format(lesson_id, traceback.format_exc()))
+                print( "Error !!! id={0}\ne={1}\n{2}".format(lesson_id, traceback.format_exc(), e))
                 break
     return grab_something
 

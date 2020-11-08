@@ -4,7 +4,7 @@ class Serie extends ManagedObject<Series> implements Series {}
 
 class Series {
 
-  @Column(primaryKey: true, unique: true, databaseType: ManagedPropertyType.integer, autoincrement: false)
+  @Column(primaryKey: true, unique: true, databaseType: ManagedPropertyType.bigInteger, autoincrement: false)
   int id;
   @Column(nullable: false)
   int originalId;

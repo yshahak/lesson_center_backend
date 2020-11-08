@@ -30,10 +30,10 @@ class LessonController extends ResourceController {
     limit ??= "200";
     final offset = (int.parse(page) - 1) * int.parse(limit);
     print('$timestamp\t$page\t$limit\t$sourceId\toffset=$offset');
+    final dateTimeTS = DateTime.fromMillisecondsSinceEpoch(int.parse(timestamp));
     final lessonQuery = Query<Lesson>(context)
-      // ..where((record) => record.updatedat).isNotNull()
-      // ..where((record) => record.updatedat.millisecondsSinceEpoch).greaterThan(int.parse(timestamp))
-      ..sortBy((record) => record.updatedat, QuerySortOrder.descending)
+      ..where((record) => record.updatedat).greaterThan(dateTimeTS)
+      // ..sortBy((record) => record.updatedat, QuerySortOrder.descending)
       ..sortBy((record) => record.timestamp, QuerySortOrder.descending)
       ..fetchLimit = int.parse(limit)
       ..offset = offset;
