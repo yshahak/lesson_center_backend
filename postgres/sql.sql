@@ -45,7 +45,7 @@ CREATE TABLE labels(
     id SERIAL PRIMARY KEY,
     label varchar(60) NOT NULL,
     sourceid int NOT NULL,
-    lessonid int NOT NULL,
+    lessonid BIGINT NOT NULL,
     insertedat timestamp NOT NULL DEFAULT now(),
     updatedat timestamp NOT NULL DEFAULT now()
 );

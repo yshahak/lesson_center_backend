@@ -245,7 +245,7 @@ def get_heb_date(date_time_obj):
 
 
 if __name__ == '__main__':
-    # grab()
-    grab_widgets()
+    grab()
+    # grab_widgets()
     # http://player.vimeo.com/external/335685696.hd.mp4?s=3fe2de2efc420884a4f6c13d0986e0cb2255a062&profile_id=175&oauth2_token_id=1009673393
     # exeption in category exception for 4095 exception for 4575,4576,4713,4747,4960,3966,
