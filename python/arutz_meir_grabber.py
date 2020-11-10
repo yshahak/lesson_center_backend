@@ -225,8 +225,8 @@ def get_video_url(vimeo_id: int, first=True):
         if 'files' not in vimeo:
             raise Exception('missing files')
         return vimeo['files'][0]['link']
-    except:
-        print(first, ' couldn"t grab %s' % vimeo_url % vimeo_id, "bearer %s" % api, )
+    except Exception as e:
+        print(first, ' couldn"t grab %s' % vimeo_url % vimeo_id, "bearer %s" % api, e)
         flag_api = not flag_api
         # traceback.print_exc()
         return get_video_url(vimeo_id, False) if first else None
