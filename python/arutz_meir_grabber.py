@@ -168,7 +168,7 @@ def iterate_over_lessons(lessons: dict, label=None):
                     add_lesson_to_db(cursor, body)
                 postgres.commit()
             except Exception as e:
-                print("Error !!! in lesson={0}\ne={1}".format(lesson, e))
+                print("Error !!! in lesson={0}\ne={1}".format(lesson, traceback.format_exc()))
                 break
     cursor.close()
 
@@ -227,9 +227,9 @@ def get_video_url(vimeo_id: int, first=True):
             raise Exception('missing files')
         return vimeo['files'][0]['link']
     except Exception as e:
-        print(first, ' couldn"t grab %s' % vimeo_url % vimeo_id, "bearer %s" % api, e)
+        print(first, ' couldn"t grab %s' % vimeo_url % vimeo_id, "bearer %s" % api, )
         flag_api = not flag_api
-        traceback.print_exc()
+        # traceback.print_exc()
         return get_video_url(vimeo_id, False) if first else None
 
 
@@ -245,7 +245,7 @@ def get_heb_date(date_time_obj):
 
 
 if __name__ == '__main__':
-    grab()
-    # grab_widgets()
+    # grab()
+    grab_widgets()
     # http://player.vimeo.com/external/335685696.hd.mp4?s=3fe2de2efc420884a4f6c13d0986e0cb2255a062&profile_id=175&oauth2_token_id=1009673393
     # exeption in category exception for 4095 exception for 4575,4576,4713,4747,4960,3966,
