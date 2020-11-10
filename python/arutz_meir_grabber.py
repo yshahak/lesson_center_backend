@@ -168,7 +168,8 @@ def iterate_over_lessons(lessons: dict, label=None):
                     add_lesson_to_db(cursor, body)
                 postgres.commit()
             except Exception as e:
-                print("Error !!! in lesson={0}\ne={1}".format(lesson, traceback.format_exc()))
+                print("Error !!! in lesson={0}\ne={1}".format(lesson, e))
+                break
     cursor.close()
 
 
@@ -228,7 +229,7 @@ def get_video_url(vimeo_id: int, first=True):
     except Exception as e:
         print(first, ' couldn"t grab %s' % vimeo_url % vimeo_id, "bearer %s" % api, e)
         flag_api = not flag_api
-        # traceback.print_exc()
+        traceback.print_exc()
         return get_video_url(vimeo_id, False) if first else None
 
 
