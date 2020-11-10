@@ -18,6 +18,7 @@ def create_sqlite_tables():
     c.execute('''DROP TABLE IF EXISTS categories''')
     c.execute('''DROP TABLE IF EXISTS series''')
     c.execute('''DROP TABLE IF EXISTS labels''')
+    c.execute('''DROP TABLE IF EXISTS sessions''')
     c.execute(str('''
                  CREATE TABLE lessons
                  (id INTEGER NOT NULL PRIMARY KEY,
