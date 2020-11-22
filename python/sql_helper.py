@@ -33,6 +33,7 @@ def clear_labels(postgres, source_id):
 
 
 def add_lesson_to_db(cursor, body):
+    print("adding lesson:{0}".format(body))
     cursor.execute('''
     insert into lessons(
     id,sourceid,originalid,title,categoryid,seriesid,ravid,videourl,audiourl,datestr,duration,"timestamp")

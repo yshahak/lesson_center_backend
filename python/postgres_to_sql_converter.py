@@ -203,7 +203,7 @@ def convert_record(table: str, col: str, record: dict):
                      :totalCount,
                      :{1})
                                     '''.format(table, col)), record)
-    c.close()
+    # c.close()
 
 
 def copy_files():

@@ -21,7 +21,14 @@ template_id = 'https://www.bneidavid.org/Web/He/VirtualTorah/Lessons/Default.asp
 cursor = postgres.cursor()
 cursor.execute('select originalid from lessons where sourceid = %s;', (source_id,))
 exists_original_ids = [row[0] for row in cursor.fetchall()]
+cursor.execute('select originalid,id from series where sourceid = 1')
+series_map = {row[0]: row[1] for row in cursor.fetchall()}
+cursor.execute('select originalid,id from categories where sourceid = 1')
+subjects_map = {row[0]: row[1] for row in cursor.fetchall()}
+cursor.execute('select originalid,id from ravs where sourceid = 1')
+ravs_map = {row[0]: row[1] for row in cursor.fetchall()}
 cursor.close()
+
 
 subjectsIdMap = {
     'ללא': 1,
@@ -174,11 +181,12 @@ def parse_lesson(html_content, is_main_page=False):
                 lesson['id'] = lesson_id.text
                 original_id = int(lesson["id"])
                 id = get_hash_for_id(source_id, original_id)
-                if int(lesson['id']) in exists_original_ids and not is_main_page:
+                if int(lesson['id']) in exists_original_ids:
                     print('id exists', lesson['id'])
                     if is_main_page:
                         cursor.execute('''INSERT INTO labels (label,sourceid,lessonid) VALUES(%s,%s,%s);''',
                                        (label, source_id, id))
+                        postgres.commit()
                     continue
                 lesson['label'] = 'label'
                 subject = row.find('span', id=lambda x: x and x.endswith('_lblSubject')).text
@@ -389,14 +397,6 @@ def remove_non_letters(word):
 
 
 def grab():
-    global series_map, subjects_map, ravs_map, without_valid_content
-    cursor = postgres.cursor()
-    cursor.execute('select originalid,id from series where sourceid = 1')
-    series_map = {row[0]: row[1] for row in cursor.fetchall()}
-    cursor.execute('select originalid,id from categories where sourceid = 1')
-    subjects_map = {row[0]: row[1] for row in cursor.fetchall()}
-    cursor.execute('select originalid,id from ravs where sourceid = 1')
-    ravs_map = {row[0]: row[1] for row in cursor.fetchall()}
     for i in range(1, 500):
         get_lesson(template % i)
     grab_main_page()
@@ -415,5 +415,5 @@ def grab_main_page():
 
 
 if __name__ == "__main__":
-    grab()
-    # grab_main_page()
+    # grab()
+    grab_main_page()

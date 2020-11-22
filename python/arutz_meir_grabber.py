@@ -20,37 +20,48 @@ categories_url = '%sCategories' % base_url
 sets_url = '%sSets' % base_url
 ravs_url = '%sRabbis' % base_url
 search_for_category_url = '%sLessons?catId=%s&page=%s'
+search_for_rav_url = '%sLessons?ravId=%s&page=%s'
 search_for_sets_url = '%sLessons?setId=%s'
 vimeo_url = 'https://api.vimeo.com/videos/%s'
 vimeo_API1 = 'd482105551a9c3fb8673259fe5277a81'
 vimeo_API2 = '3522b8c3a30812bbab8572551f0fea10'
 source = 'arutz_meir'
 
+ravs_arr = set()
 sets_arr = set()
-exists_original_ids = []
 categories_ids = []
 with_no_series = set()
 
+print('getting ids')
+cursor = postgres.cursor()
+cursor.execute('select originalid from lessons where sourceid = %s;', (source_id,))
+exists_original_ids = [row[0] for row in cursor.fetchall()]
+print('got ids')
+cursor.execute('select originalid from series where sourceid = %s;', (source_id,))
+series = [row[0] for row in cursor.fetchall()]
+sets_arr.update(series)
+cursor.close()
+
 
 def grab():
-    global sets_arr, exists_original_ids, categories_ids
+    global categories_ids, ravs_arr
     fill_complementary_tables()
-    print('getting ids')
-    cursor = postgres.cursor()
-    cursor.execute('select originalid from lessons where sourceid = %s;', (source_id,))
-    exists_original_ids = [row[0] for row in cursor.fetchall()]
-    cursor.close()
-    print('got ids')
-    for category in categories_ids:
+    # for category in categories_ids:
+    #     try:
+    #         grab_for_category(category)
+    #     except Exception:
+    #         print('exception for', category)
+    #         traceback.print_exc()
+    for rav in ravs_arr:
         try:
-            grab_for_category(category)
+            grab_for_rav(rav)
         except Exception:
-            print('exception for', category)
+            print('exception for', rav)
             traceback.print_exc()
 
 
 def fill_complementary_tables():
-    global sets_arr, exists_original_ids, categories_ids
+    global sets_arr, exists_original_ids, categories_ids, ravs_arr
     cursor = postgres.cursor()
     response = requests.get(categories_url)
     categories = response.json()
@@ -65,6 +76,8 @@ def fill_complementary_tables():
     sets = response.json()
     for entry in sets:
         orginalid = entry['Id']
+        if orginalid in sets_arr:
+            continue
         sets_arr.add(orginalid)
         cursor.execute(
             '''INSERT INTO series(id,originalid,sourceid,serie) VALUES(%s,%s,%s,%s) ON CONFLICT (id) DO NOTHING;'''
@@ -107,11 +120,22 @@ def fill_complementary_tables():
     add_missing_serie_id(cursor, 21639, 'לימוד בוקר בפרשה')
     add_missing_serie_id(cursor, 22561, 'ספר ישעיהו')
     add_missing_serie_id(cursor, 21025, 'אורות התשובה')
+    add_missing_serie_id(cursor, 23018, 'פרשת השבוע - מחזור תש״פ')
+    add_missing_serie_id(cursor, 23019, 'הגדה של פסח - מחזור תש״פ')
+    add_missing_serie_id(cursor, 23020, 'שורשיה העמוקים של ארץ ישראל')
+    add_missing_serie_id(cursor, 23022, 'פרשת השבוע - מחזור תש״פ')
+    add_missing_serie_id(cursor, 23025, 'יום עיון במשנת הרב קוק - מחזור תש״פ')
+    add_missing_serie_id(cursor, 23026, 'ארבעה נכנסו לפרדס - מחזור תש״פ')
+    add_missing_serie_id(cursor, 23027, 'טעמי המצות - מחזור תש״פ')
+    add_missing_serie_id(cursor, 23028, 'זיו הפרשה והמועדים - מחזור תש״פ')
+    add_missing_serie_id(cursor, 23030, 'סוגיות תשובה בתנ"ך')
+    add_missing_serie_id(cursor, 23004, 'לומדים לקרוא תנ"ך ספר ישעיה - מחזור תשע״ט')
     postgres.commit()
     response = requests.get(ravs_url)
     ravs = response.json()
     for entry in ravs:
         orginalid = entry['Id']
+        ravs_arr.add(orginalid)
         cursor.execute(
             '''INSERT INTO ravs(id,originalid,sourceid,rav) VALUES(%s,%s,%s,%s) ON CONFLICT (id) DO NOTHING;'''
             , (get_hash_for_id(source_id, orginalid), orginalid, source_id, entry['FullName'],))
@@ -122,14 +146,16 @@ def fill_complementary_tables():
 
 def add_missing_serie_id(cursor, serie_id, name):
     global sets_arr
-    cursor.execute(
-        '''INSERT INTO series(id,originalid,sourceid,serie) VALUES(%s,%s,%s,%s) ON CONFLICT (id) DO 
-        UPDATE SET serie = %s;'''
-        , (get_hash_for_id(source_id, serie_id), serie_id, source_id, name, name))
-    sets_arr.add(serie_id)
+    if serie_id not in sets_arr:
+        cursor.execute(
+            '''INSERT INTO series(id,originalid,sourceid,serie) VALUES(%s,%s,%s,%s) ON CONFLICT (id) DO 
+            UPDATE SET serie = %s;'''
+            , (get_hash_for_id(source_id, serie_id), serie_id, source_id, name, name))
+        sets_arr.add(serie_id)
 
 
 def grab_widgets():
+    print("grabbing arutz meir widgets")
     clear_labels(postgres, source_id)
     grab_widget(4)
     grab_widget(5)
@@ -141,18 +167,24 @@ def grab_widget(widget: int):
     lessons = response.json()
     for entry in lessons:
         if 'Lessons' in entry and entry['Lessons']:
-            label = entry['Title']
+            label = "מכון מאיר - {0}".format(entry['Title'])
             iterate_over_lessons(entry['Lessons'], label)
 
 
 def grab_for_category(category_id: int, page=1):
     response = requests.get(search_for_category_url % (base_url, category_id, page), timeout=15)
     lessons = response.json()
-    cursor = postgres.cursor()
     if lessons:
         iterate_over_lessons(lessons)
         grab_for_category(category_id, page + 1)
-    cursor.close()
+
+
+def grab_for_rav(rav_id: int, page=1):
+    response = requests.get(search_for_rav_url % (base_url, rav_id, page), timeout=15)
+    lessons = response.json()
+    if lessons:
+        iterate_over_lessons(lessons)
+        grab_for_rav(rav_id, page + 1)
 
 
 def iterate_over_lessons(lessons: dict, label=None):
