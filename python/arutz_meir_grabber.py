@@ -20,7 +20,7 @@ categories_url = '%sCategories' % base_url
 sets_url = '%sSets' % base_url
 ravs_url = '%sRabbis' % base_url
 search_for_category_url = '%sLessons?catId=%s&page=%s'
-search_for_rav_url = '%sLessons?ravId=%s&page=%s'
+search_for_rav_url = '%sLessons?rabbiId=%s&page=%s'
 search_for_sets_url = '%sLessons?setId=%s'
 vimeo_url = 'https://api.vimeo.com/videos/%s'
 vimeo_API1 = 'd482105551a9c3fb8673259fe5277a81'
