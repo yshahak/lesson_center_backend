@@ -180,6 +180,7 @@ def grab_for_category(category_id: int, page=1):
 
 
 def grab_for_rav(rav_id: int, page=1):
+    print("request", search_for_rav_url % (base_url, rav_id, page))
     response = requests.get(search_for_rav_url % (base_url, rav_id, page), timeout=15)
     lessons = response.json()
     if lessons:
