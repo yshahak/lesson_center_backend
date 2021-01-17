@@ -34,10 +34,10 @@ with_no_series = set()
 
 print('getting ids')
 cursor = postgres.cursor()
-cursor.execute('select originalid from lessons where sourceid = %s;', (source_id,))
+cursor.execute('select "originalId" from lessons where "sourceId" = %s;', (source_id,))
 exists_original_ids = [row[0] for row in cursor.fetchall()]
 print('got ids')
-cursor.execute('select originalid from series where sourceid = %s;', (source_id,))
+cursor.execute('select "originalId" from series where "sourceId" = %s;', (source_id,))
 series = [row[0] for row in cursor.fetchall()]
 sets_arr.update(series)
 cursor.close()
@@ -195,7 +195,7 @@ def iterate_over_lessons(lessons: dict, label=None):
             try:
                 exist, body = grab_lesson(lesson)
                 if exist and label:
-                    cursor.execute('''INSERT INTO labels (label,sourceid,lessonid) VALUES(%s,%s,%s);''',
+                    cursor.execute('''INSERT INTO labels (label,"sourceId","lessonId") VALUES(%s,%s,%s);''',
                                    (label, source_id, get_hash_for_id(source_id, lesson['Id'])))
                 if body:
                     add_lesson_to_db(cursor, body)
@@ -228,10 +228,10 @@ def grab_lesson(lesson):
     video_url = get_video_url(lesson['VimeoId'])
     body = {
         "id": id,
-        "sourceid": source_id,
-        "originalid": original_id,
+        "sourceId": source_id,
+        "originalId": original_id,
         "title": lesson["Title"],
-        "categoryid": get_hash_for_id(source_id, lesson["CategoryId"]),
+        "categoryId": get_hash_for_id(source_id, lesson["CategoryId"]),
         "seriesId": get_hash_for_id(source_id, original_series_id),
         "ravId": get_hash_for_id(source_id, lesson["RabbiId"]),
         "dateStr": get_heb_date(date_time_obj),
@@ -266,19 +266,8 @@ def get_video_url(vimeo_id: int, first=True):
         return get_video_url(vimeo_id, False) if first else None
 
 
-def get_heb_date(date_time_obj):
-    heb = HebrewDate.from_pydate(date_time_obj)
-    month = (month_dict[heb.month])
-    remains = heb.year - 5700
-    dosens = 10 * int(remains / 10)
-    last = remains % 10
-    year = u'התש%s%s' % (gimatria_map[dosens], gimatria_map[last])
-    heb_date = '%s %s %s' % (day_list[heb.day], month, year)
-    return heb_date
-
-
 if __name__ == '__main__':
-    grab()
-    # grab_widgets()
+    # grab()
+    grab_widgets()
     # http://player.vimeo.com/external/335685696.hd.mp4?s=3fe2de2efc420884a4f6c13d0986e0cb2255a062&profile_id=175&oauth2_token_id=1009673393
     # exeption in category exception for 4095 exception for 4575,4576,4713,4747,4960,3966,

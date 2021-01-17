@@ -28,3 +28,5 @@ python/venv3/
 general.json
 web/server.py
 ghostdriver.log
+
+/node/node_modules

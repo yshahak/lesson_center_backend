@@ -101,19 +101,19 @@ def get_all_lessons():
     for category_id in all_categories:
         cursor.execute('''
             select id,
-                         sourceid as "sourceId",
-                         originalid as "originalId",
+                         "sourceId",
+                         "originalId",
                          title,
-                         categoryid as "categoryId",
-                         seriesid as "seriesId",
-                         datestr as "dateStr",
-                         ravid as "ravId",
+                         "categoryId",
+                         "seriesId",
+                         "dateStr",
+                         "ravId",
                          duration,
-                         videourl as "videoUrl",
-                         audiourl as "audioUrl",
+                         "videoUrl",
+                         "audioUrl",
                          timestamp 
                          FROM lessons
-                         WHERE categoryid = %s 
+                         WHERE "categoryId" = %s
                          LIMIT 100;
                          
         ''', (category_id,))
@@ -146,11 +146,10 @@ def convert(row):
     c.close()
 
 
-def get_other_tables(table: str, col: str, col_id_name: str):
+def get_other_tables(table: str, col: str):
     cursor = postgres.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
-    # cursor.execute('SELECT id,originalid as "originalId",sourceid as "sourceId",totalcount as "totalCount",{0} FROM {1}'.format(col, table))
-    cursor.execute('SELECT id,originalid as "originalId",sourceid as "sourceId",0 as "totalCount",{0} FROM {1}'.format(col, table))
-    # ids = []
+    cursor.execute(
+        'SELECT id,"originalId","sourceId",0 as "totalCount",{0} FROM {1} WHERE "totalCount" > 0'.format(col, table))
     for row in cursor:
         body = {}
         for key, value in row.items():
@@ -158,9 +157,7 @@ def get_other_tables(table: str, col: str, col_id_name: str):
                 body[key] = value.encode().decode('utf-8')
             else:
                 body[key] = value
-        # ids.append(body['id'])
         convert_record(table, col, body)
-    # get_lessons_for_type(ids, col_id_name)
 
 
 def get_lessons_for_type(ids, col):
@@ -168,16 +165,16 @@ def get_lessons_for_type(ids, col):
     for id in ids:
         cursor.execute('''
             select id,
-                         sourceid as "sourceId",
-                         originalid as "originalId",
+                         "sourceId",
+                         "originalId",
                          title,
-                         categoryid as "categoryId",
-                         seriesid as "seriesId",
-                         datestr as "dateStr",
-                         ravid as "ravId",
+                         "categoryId",
+                         "seriesId",
+                         "dateStr",
+                         "ravId",
                          duration,
-                         videourl as "videoUrl",
-                         audiourl as "audioUrl",
+                         "videoUrl",
+                         "audioUrl",
                          timestamp 
                          FROM lessons
                          WHERE {0} = %s 
@@ -210,23 +207,26 @@ def copy_files():
     dest1 = '%s/files/public/lessons.db' % root_path
     with open(sqlite_source, 'rb') as src, open(dest1, 'wb') as dst:
         dst.write(src.read())
-    dest2 = '%s/web/assets/assets/lessons.db' % root_path
+    dest2 = '%s/node/public/files/lessons.db' % root_path
     with open(sqlite_source, 'rb') as src, open(dest2, 'wb') as dst:
+        dst.write(src.read())
+    dest3 = '%s/web/assets/assets/lessons.db' % root_path
+    with open(sqlite_source, 'rb') as src, open(dest3, 'wb') as dst:
         dst.write(src.read())
 
 
 def start_conversion():
     create_sqlite_tables()
-    get_other_tables('categories', 'category', 'subjectid')
-    get_other_tables('series', 'serie', 'seriesid')
-    get_other_tables('ravs', 'rav', 'ravid')
+    get_other_tables('categories', 'category')
+    get_other_tables('series', 'serie')
+    get_other_tables('ravs', 'rav')
     # get_all_lessons()
     conn.commit()
     copy_files()
     print('finished convert postgres to sqlite!')
 
 
-def updateTotals(table:str, col:str):
+def updateTotals(table: str, col: str):
     cursor = postgres.cursor()
     cursor.execute('SELECT id  FROM {}'.format(table))
     rows = cursor.fetchall()

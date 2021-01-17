@@ -5,7 +5,6 @@ import calendar
 import urllib.request
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
-from pyluach.dates import HebrewDate
 import traceback
 import psycopg2.extras
 from config import *
@@ -19,13 +18,13 @@ template = 'https://www.bneidavid.org/Web/He/VirtualTorah/Lessons/Default.aspx?s
 template_id = 'https://www.bneidavid.org/Web/He/VirtualTorah/Lessons/Default.aspx?id=%d'
 
 cursor = postgres.cursor()
-cursor.execute('select originalid from lessons where sourceid = %s;', (source_id,))
+cursor.execute('select "originalId" from lessons where "sourceId" = %s;', (source_id,))
 exists_original_ids = [row[0] for row in cursor.fetchall()]
-cursor.execute('select originalid,id from series where sourceid = 1')
+cursor.execute('select "originalId",id from series where "sourceId" = 1')
 series_map = {row[0]: row[1] for row in cursor.fetchall()}
-cursor.execute('select originalid,id from categories where sourceid = 1')
+cursor.execute('select "originalId",id from categories where "sourceId" = 1')
 subjects_map = {row[0]: row[1] for row in cursor.fetchall()}
-cursor.execute('select originalid,id from ravs where sourceid = 1')
+cursor.execute('select "originalId",id from ravs where "sourceId" = 1')
 ravs_map = {row[0]: row[1] for row in cursor.fetchall()}
 cursor.close()
 
@@ -130,9 +129,7 @@ month_dict = {
 
 now = get_timestamp()
 counter = 0
-series_map = {}
-subjects_map = {}
-ravs_map = {}
+
 without_valid_content = set()
 
 source = 'bnei_david'
@@ -184,7 +181,7 @@ def parse_lesson(html_content, is_main_page=False):
                 if int(lesson['id']) in exists_original_ids:
                     print('id exists', lesson['id'])
                     if is_main_page:
-                        cursor.execute('''INSERT INTO labels (label,sourceid,lessonid) VALUES(%s,%s,%s);''',
+                        cursor.execute('''INSERT INTO labels (label,"sourceId","lessonId") VALUES(%s,%s,%s);''',
                                        (label, source_id, id))
                         postgres.commit()
                     continue
@@ -259,29 +256,29 @@ def parse_lesson(html_content, is_main_page=False):
                 original_subjectId = lesson["subject_id"]
                 if original_subjectId not in subjects_map:
                     cursor.execute(
-                        '''INSERT INTO categories(id,originalid,sourceid,category) VALUES(%s,%s,%s,%s) ON CONFLICT (id) DO NOTHING;'''
+                        '''INSERT INTO categories(id,"originalId","sourceId",category) VALUES(%s,%s,%s,%s) ON CONFLICT (id) DO NOTHING;'''
                         , (get_hash_for_id(source_id, original_subjectId), original_subjectId, source_id,
                            lesson['subject'],))
                     subjects_map[original_subjectId] = get_hash_for_id(source_id, original_subjectId)
                 original_series_id = lesson["seriesId"]
                 if original_series_id not in series_map:
                     cursor.execute(
-                        '''INSERT INTO series(id,originalid,sourceid,serie) VALUES(%s,%s,%s,%s) ON CONFLICT (id) DO NOTHING;'''
+                        '''INSERT INTO series(id,"originalId","sourceId",serie) VALUES(%s,%s,%s,%s) ON CONFLICT (id) DO NOTHING;'''
                         , (get_hash_for_id(source_id, original_series_id), original_series_id, source_id,
                            lesson['series'],))
                     series_map[original_series_id] = get_hash_for_id(source_id, original_series_id)
                 original_rav_id = lesson["rav_id"]
                 if original_rav_id not in ravs_map:
                     cursor.execute(
-                        '''INSERT INTO ravs(id,originalid,sourceid,rav) VALUES(%s,%s,%s,%s) ON CONFLICT (id) DO NOTHING;'''
+                        '''INSERT INTO ravs(id,"originalId","sourceId",rav) VALUES(%s,%s,%s,%s) ON CONFLICT (id) DO NOTHING;'''
                         , (get_hash_for_id(source_id, original_rav_id), original_rav_id, source_id, lesson['rav'],))
                     ravs_map[original_rav_id] = get_hash_for_id(source_id, original_rav_id)
                 body = {
                     "id": id,
-                    "sourceid": source_id,
-                    "originalid": original_id,
+                    "sourceId": source_id,
+                    "originalId": original_id,
                     "title": lesson["title"],
-                    "categoryid": subjects_map[original_subjectId],
+                    "categoryId": subjects_map[original_subjectId],
                     "seriesId": series_map[original_series_id],
                     "ravId": ravs_map[original_rav_id],
                     "dateStr": lesson["dateStr"],
@@ -293,7 +290,7 @@ def parse_lesson(html_content, is_main_page=False):
                 grab_something = True
                 add_lesson_to_db(cursor, body)
                 if is_main_page:
-                    cursor.execute('''INSERT INTO labels (label,sourceid,lessonid) VALUES(%s,%s,%s);''',
+                    cursor.execute('''INSERT INTO labels (label,"sourceId","lessonId") VALUES(%s,%s,%s);''',
                                    (label, source_id, id))
                 postgres.commit()
             except Exception as e:

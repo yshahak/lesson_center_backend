@@ -1,6 +1,7 @@
 import hashlib
 import datetime
 import re
+from pyluach.dates import HebrewDate
 
 
 def get_hash_for_id(source_id: int, originalid: int) -> int:
@@ -8,8 +9,24 @@ def get_hash_for_id(source_id: int, originalid: int) -> int:
     return int(hash_object.hexdigest(), 16) % 10 ** 18
 
 
+def get_hash_for_string(originalid: str) -> int:
+    hash_object = hashlib.md5(originalid.encode())
+    return int(hash_object.hexdigest(), 16) % 10 ** 18
+
+
 def get_timestamp():
     return int((datetime.datetime.utcnow() - datetime.datetime(1970, 1, 1)).total_seconds())
+
+
+def get_heb_date(date_time_obj):
+    heb = HebrewDate.from_pydate(date_time_obj)
+    month = (month_dict[heb.month])
+    remains = heb.year - 5700
+    dosens = 10 * int(remains / 10)
+    last = remains % 10
+    year = u'התש%s%s' % (gimatria_map[dosens], gimatria_map[last])
+    heb_date = '%s %s %s' % (day_list[heb.day], month, year)
+    return heb_date
 
 
 def get_duration_in_seconds(duration: str):
@@ -28,7 +45,7 @@ def get_duration_in_seconds(duration: str):
 
 def clear_labels(postgres, source_id):
     cursor = postgres.cursor()
-    cursor.execute('''DELETE FROM labels WHERE sourceid = %s;''', (source_id,))
+    cursor.execute('''DELETE FROM labels WHERE "sourceId" = %s;''', (source_id,))
     postgres.commit()
 
 
@@ -36,13 +53,13 @@ def add_lesson_to_db(cursor, body):
     print("adding lesson:{0}".format(body))
     cursor.execute('''
     insert into lessons(
-    id,sourceid,originalid,title,categoryid,seriesid,ravid,videourl,audiourl,datestr,duration,"timestamp")
+    id,"sourceId","originalId",title,"categoryId","seriesId","ravId","videoUrl","audioUrl","dateStr",duration,"timestamp")
     values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     ON CONFLICT(id)
     DO UPDATE SET updatedat =  now();
     ''', (
-        body["id"], body["sourceid"], body["originalid"], body["title"],
-        body["categoryid"], body["seriesId"], body["ravId"],
+        body["id"], body["sourceId"], body["originalId"], body["title"],
+        body["categoryId"], body["seriesId"], body["ravId"],
         body["videoUrl"], body["audioUrl"],
         body["dateStr"], body["duration"],
         body["timestamp"]))
