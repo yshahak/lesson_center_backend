@@ -29,10 +29,11 @@ def extract_lessons_for_channel_id(source_id: int, channel_url: str, category: s
     cursor.close()
     ydl_opts = {
         'ignoreerrors': True,
+        'youtube_include_dash_manifest': False
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         cursor = postgres.cursor()
-        videos = ydl.extract_info("{}/playlists".format(channel_url), download=False)
+        videos = ydl.extract_info("{}/playlists?view=1&sort=dd&shelf_id=0".format(channel_url), download=False)
         for playlist in videos['entries']:
             playlist_id = playlist['id']
             original_playlist_id = int(str(get_hash_for_string(playlist_id))[:8])
@@ -40,7 +41,7 @@ def extract_lessons_for_channel_id(source_id: int, channel_url: str, category: s
             if series_id not in exists_series_ids:
                 cursor.execute(
                     '''INSERT INTO series(id,"originalId","sourceId",serie) VALUES(%s,%s,%s,%s) ON CONFLICT (id) DO NOTHING;'''
-                    , (series_id, original_playlist_id, source_id, playlist['title'],))
+                    , (series_id, original_playlist_id, source_id, playlist['title'][:80],))
                 exists_series_ids.append(playlist)
                 postgres.commit()
             for video in playlist['entries']:
@@ -132,7 +133,7 @@ def insert_labels(label: str, source_id: int):
 
 if __name__ == "__main__":
     pass
-    # extract_lessons_for_channel_id(50, "https://www.youtube.com/channel/UCeDrtyuUbMLB_z6razI33dQ", "אמונה-הסדר חיפה")
-    extract_lessons_for_channel_id(60, "https://www.youtube.com/channel/UCS6OvEopzPGEEwYbAG4ismA", "ברכת משה", 'ברכת משה- מעלה אדומים')
-    # extract_lessons_for_channel_id(51, "https://www.youtube.com/channel/UCBN2YMjFoJHX1qlpEcra29w", "ישיבת המאירי")
+    # extract_lessons_for_channel_id(50, "https://www.youtube.com/channel/UCeDrtyuUbMLB_z6razI33dQ", "אמונה-הסדר חיפה" , "אמונה-הסדר חיפה")
+    extract_lessons_for_channel_id(60, "https://www.youtube.com/channel/UCS6OvEopzPGEEwYbAG4ismA", "מעלה אדומים", 'ברכת משה- מעלה אדומים')
+    # extract_lessons_for_channel_id(51, "https://www.youtube.com/channel/UCBN2YMjFoJHX1qlpEcra29w", "ישיבת המאירי", "ישיבת המאירי")
     postgres.close()

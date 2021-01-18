@@ -69,12 +69,14 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE TRIGGER trig_incrementer
+DROP TRIGGER IF EXISTS trig_incrementer ON lessons;
+CREATE TRIGGER trig_incrementer
      AFTER INSERT ON lessons
      FOR EACH ROW
      EXECUTE PROCEDURE function_incrementer();
 
-CREATE OR REPLACE TRIGGER trig_set_timestamp
+DROP TRIGGER IF EXISTS trig_set_timestamp ON lessons;
+CREATE TRIGGER trig_set_timestamp
 BEFORE UPDATE ON lessons
 FOR EACH ROW
 EXECUTE PROCEDURE function_update_inserted_at();
