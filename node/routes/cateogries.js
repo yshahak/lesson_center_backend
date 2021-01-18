@@ -8,7 +8,7 @@ const router = new Router()
 module.exports = router
 
 router.get('/', async (req, res) => {
-    await db.readTable(req, res, `SELECT * FROM categories WHERE extract(epoch from updatedat) > $1 AND "totalCount" > 0 ORDER BY updatedat DESC LIMIT $2 OFFSET $3;`, "categories")
+    await db.readTable(req, res, `SELECT * FROM categories WHERE extract(epoch from updatedat) * 1000 > $1 AND "totalCount" > 0 ORDER BY updatedat DESC LIMIT $2 OFFSET $3;`, "categories")
 })
 
 module.exports = router;
