@@ -10,7 +10,7 @@ youtube_base_url = "https://www.youtube.com/watch?v=%s"
 postgres = psycopg2.connect(**postgres_con)
 
 
-def extract_lessons_for_channel_id(source_id: int, channel_url: str, category: str):
+def extract_lessons_for_channel_id(source_id: int, channel_url: str, category: str, label: str):
     cursor = postgres.cursor()
     cursor.execute('select id from lessons where "sourceId" = %s;', (source_id,))
     exists_video_ids = [row[0] for row in cursor.fetchall()]
@@ -101,7 +101,7 @@ def extract_lessons_for_channel_id(source_id: int, channel_url: str, category: s
         add_lesson_to_db(cursor, body)
         postgres.commit()
     cursor.close()
-    # insert_labels(category, source_id)
+    insert_labels(label, source_id)
 
 
 def extract_audio_from_youtube_link(link: str):
@@ -133,7 +133,6 @@ def insert_labels(label: str, source_id: int):
 if __name__ == "__main__":
     pass
     # extract_lessons_for_channel_id(50, "https://www.youtube.com/channel/UCeDrtyuUbMLB_z6razI33dQ", "אמונה-הסדר חיפה")
-    # extract_lessons_for_channel_id(60, "https://www.youtube.com/channel/UCS6OvEopzPGEEwYbAG4ismA", "ברכת משה")
+    extract_lessons_for_channel_id(60, "https://www.youtube.com/channel/UCS6OvEopzPGEEwYbAG4ismA", "ברכת משה", 'ברכת משה- מעלה אדומים')
     # extract_lessons_for_channel_id(51, "https://www.youtube.com/channel/UCBN2YMjFoJHX1qlpEcra29w", "ישיבת המאירי")
-    insert_labels('ברכת משה- מעלה אדומים', 60)
     postgres.close()
