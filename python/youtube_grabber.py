@@ -134,7 +134,8 @@ def insert_labels(label: str, source_id: int):
 if __name__ == "__main__":
     pass
     # extract_lessons_for_channel_id(50, "https://www.youtube.com/channel/UCeDrtyuUbMLB_z6razI33dQ", "אמונה-הסדר חיפה" , "הסדר חיפה - אחרונים")
-    # extract_lessons_for_channel_id(60, "https://www.youtube.com/channel/UCS6OvEopzPGEEwYbAG4ismA", "מעלה אדומים", 'ברכת משה- מעלה אדומים')
     # extract_lessons_for_channel_id(51, "https://www.youtube.com/channel/UCBN2YMjFoJHX1qlpEcra29w", "ישיבת המאירי", "ישיבת המאירי - אחרונים")
-    extract_lessons_for_channel_id(51, "https://www.youtube.com/channel/UCAcP4Dx-c66fPD5fYcYF0PQ", "ישיבת הכותל", "ישיבת הכותל - אחרונים")
+    # extract_lessons_for_channel_id(60, "https://www.youtube.com/channel/UCS6OvEopzPGEEwYbAG4ismA", "מעלה אדומים", 'ברכת משה- מעלה אדומים')
+    # extract_lessons_for_channel_id(61, "https://www.youtube.com/channel/UCAcP4Dx-c66fPD5fYcYF0PQ", "ישיבת הכותל", "ישיבת הכותל - אחרונים")
+    extract_lessons_for_channel_id(62, "https://www.youtube.com/user/YeshivatRamatGan", "ישיבת ר״ג", "ישיבת רמת גן - אחרונים")
     postgres.close()
