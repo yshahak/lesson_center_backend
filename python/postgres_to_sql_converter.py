@@ -18,6 +18,7 @@ def create_sqlite_tables():
     c.execute('''DROP TABLE IF EXISTS categories''')
     c.execute('''DROP TABLE IF EXISTS series''')
     c.execute('''DROP TABLE IF EXISTS labels''')
+    c.execute('''DROP TABLE IF EXISTS sources''')
     c.execute('''DROP TABLE IF EXISTS sessions''')
     c.execute(str('''
                  CREATE TABLE lessons
@@ -90,6 +91,7 @@ def create_sqlite_tables():
                 FOREIGN KEY (lessonId) REFERENCES lessons (id)
 );
     ''')
+    c.execute('''CREATE TABLE sources(id INTEGER NOT NULL PRIMARY KEY,label TEXT NOT NULL);''')
     c.close()
     conn.commit()
 
@@ -100,22 +102,9 @@ def get_all_lessons():
     all_categories = [row['id'] for row in cursor]
     for category_id in all_categories:
         cursor.execute('''
-            select id,
-                         "sourceId",
-                         "originalId",
-                         title,
-                         "categoryId",
-                         "seriesId",
-                         "dateStr",
-                         "ravId",
-                         duration,
-                         "videoUrl",
-                         "audioUrl",
-                         timestamp 
+            select id,"sourceId","originalId",title,"categoryId","seriesId","ravId","videoUrl","audioUrl","dateStr",duration,"timestamp"
                          FROM lessons
-                         WHERE "categoryId" = %s
-                         LIMIT 100;
-                         
+                         WHERE "categoryId" = %s;
         ''', (category_id,))
         for row in cursor:
             body = {}
@@ -158,6 +147,14 @@ def get_other_tables(table: str, col: str):
             else:
                 body[key] = value
         convert_record(table, col, body)
+
+
+def get_sources_table():
+    cursor = postgres.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cursor.execute('SELECT id,label from sources')
+    c = conn.cursor()
+    for row in cursor:
+        c.execute('''INSERT INTO sources VALUES (:id,:label);''', row)
 
 
 def get_lessons_for_type(ids, col):
@@ -220,6 +217,7 @@ def start_conversion():
     get_other_tables('categories', 'category')
     get_other_tables('series', 'serie')
     get_other_tables('ravs', 'rav')
+    get_sources_table()
     # get_all_lessons()
     conn.commit()
     copy_files()

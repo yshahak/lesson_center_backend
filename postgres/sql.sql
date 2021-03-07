@@ -49,6 +49,12 @@ CREATE TABLE labels(
     insertedat timestamp NOT NULL DEFAULT now(),
     updatedat timestamp NOT NULL DEFAULT now()
 );
+CREATE TABLE sources(
+    id INTEGER PRIMARY KEY,
+    label varchar(60) NOT NULL,
+    insertedat timestamp NOT NULL DEFAULT now(),
+    updatedat timestamp NOT NULL DEFAULT now()
+);
 
 CREATE OR REPLACE FUNCTION function_incrementer() RETURNS TRIGGER AS $BODY$
 BEGIN
@@ -81,6 +87,13 @@ BEFORE UPDATE ON lessons
 FOR EACH ROW
 EXECUTE PROCEDURE function_update_inserted_at();
 
+INSERT INTO sources (id,label) VALUES(1, 'בני דוד');
+INSERT INTO sources (id,label) VALUES(2, 'מכון מאיר');
+INSERT INTO sources (id,label) VALUES(60, 'מעלה אדומים');
+INSERT INTO sources (id,label) VALUES(61, 'ישיבת הכותל');
+INSERT INTO sources (id,label) VALUES(62, 'ישיבת ר״ג');
+INSERT INTO sources (id,label) VALUES(63, 'ישיבת הר עציון');
+INSERT INTO sources (id,label) VALUES(64, 'ישיבת הר ברכה');
 --alter table lessons ALTER COLUMN updatedat TYPE timestamptz USING to_timestamp("updatedat");
 --alter table lessons ALTER COLUMN updatedat SET DEFAULT now();
 --alter table lessons ALTER COLUMN updatedat SET NOT NULL;

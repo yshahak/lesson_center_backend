@@ -11,6 +11,7 @@ postgres = psycopg2.connect(**postgres_con)
 
 
 def extract_lessons_for_channel_id(source_id: int, channel_url: str, category: str, label: str):
+    insert_source(source_id, category)
     cursor = postgres.cursor()
     cursor.execute('select id from lessons where "sourceId" = %s;', (source_id,))
     exists_video_ids = [row[0] for row in cursor.fetchall()]
@@ -131,13 +132,22 @@ def insert_labels(label: str, source_id: int):
     postgres.commit()
 
 
+def insert_source(source_id: int, source_name: str):
+    cursor = postgres.cursor()
+    cursor.execute('''INSERT INTO sources(id,label) VALUES(%s,%s) ON CONFLICT (id) DO NOTHING;''',
+                   (source_id, source_name,))
+    cursor.close()
+    postgres.commit()
+
+
 if __name__ == "__main__":
     pass
-    # extract_lessons_for_channel_id(50, "https://www.youtube.com/channel/UCeDrtyuUbMLB_z6razI33dQ", "אמונה-הסדר חיפה" , "הסדר חיפה - אחרונים")
-    # extract_lessons_for_channel_id(51, "https://www.youtube.com/channel/UCBN2YMjFoJHX1qlpEcra29w", "ישיבת המאירי", "ישיבת המאירי - אחרונים")
-    # extract_lessons_for_channel_id(52, "https://www.youtube.com/user/YeshivatTefahot", "הסדר טפחות", 'הסדר טפחות - אחרונים')
-    # extract_lessons_for_channel_id(60, "https://www.youtube.com/channel/UCS6OvEopzPGEEwYbAG4ismA", "מעלה אדומים", 'ברכת משה- מעלה אדומים')
-    # extract_lessons_for_channel_id(61, "https://www.youtube.com/channel/UCAcP4Dx-c66fPD5fYcYF0PQ", "ישיבת הכותל", "ישיבת הכותל - אחרונים")
-    # extract_lessons_for_channel_id(62, "https://www.youtube.com/user/YeshivatRamatGan", "ישיבת ר״ג", "ישיבת רמת גן - אחרונים")
+    extract_lessons_for_channel_id(50, "https://www.youtube.com/channel/UCeDrtyuUbMLB_z6razI33dQ", "אמונה-הסדר חיפה" , "הסדר חיפה - אחרונים")
+    extract_lessons_for_channel_id(51, "https://www.youtube.com/channel/UCBN2YMjFoJHX1qlpEcra29w", "ישיבת המאירי", "ישיבת המאירי - אחרונים")
+    extract_lessons_for_channel_id(52, "https://www.youtube.com/user/YeshivatTefahot", "הסדר טפחות", 'הסדר טפחות - אחרונים')
+    extract_lessons_for_channel_id(60, "https://www.youtube.com/channel/UCS6OvEopzPGEEwYbAG4ismA", "מעלה אדומים", 'ברכת משה- מעלה אדומים')
+    extract_lessons_for_channel_id(61, "https://www.youtube.com/channel/UCAcP4Dx-c66fPD5fYcYF0PQ", "ישיבת הכותל", "ישיבת הכותל - אחרונים")
+    extract_lessons_for_channel_id(62, "https://www.youtube.com/user/YeshivatRamatGan", "ישיבת ר״ג", "ישיבת רמת גן - אחרונים")
     extract_lessons_for_channel_id(63, "https://www.youtube.com/user/barihs", "ישיבת הר עציון", "ישיבת הר עציון - אחרונים")
+    extract_lessons_for_channel_id(64, "https://www.youtube.com/user/YHBVideo", "ישיבת הר ברכה", "ישיבת הר ברכה - אחרונים")
     postgres.close()
