@@ -7,11 +7,11 @@ def get_parash():
     cursor = postgres.cursor()
     insert_cursor = postgres.cursor()
     insert_cursor.execute('delete from labels where "sourceId" = 400;')
-    cursor.execute('select id,title from lessons where "title" like %s or "title" like %s or "title" like %s ;', ("%כי תשא%", "%כי תישא%", "%פרשת פרה%"))
+    cursor.execute('select id,title from lessons where "title" like %s or "title" like %s or "title" like %s ;', ("%ויקהל%", "%פקודי%", "%ויקהל פקודי%", ))
     for row in cursor.fetchall():
         print(row)
         insert_cursor.execute('''INSERT INTO labels (label,"sourceId","lessonId") VALUES(%s,%s,%s);''',
-                              ('פרשת כי תשא', 400, row[0]))
+                              ('פרשת ויקהל פקודי', 400, row[0]))
     cursor.execute('select * from labels where "sourceId" = 400 limit 1;')
     for row in cursor.fetchall():
         print(row)

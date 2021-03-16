@@ -12,7 +12,7 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         print('grabbing main page')
         grab_main_page()
-        grab_meir_widgets()
+        # grab_meir_widgets()
     else:
         print('grabbing all')
         now = get_timestamp()

@@ -157,18 +157,28 @@ def add_missing_serie_id(cursor, serie_id, name):
 def grab_widgets():
     print("grabbing arutz meir widgets")
     clear_labels(postgres, source_id)
-    grab_widget(4)
-    grab_widget(5)
-    postgres.commit()
+    try:
+        grab_widget(4)
+        grab_widget(5)
+        postgres.commit()
+    except Exception as e:
+        print("Error grab widget {}".format(traceback.format_exc()))
 
 
 def grab_widget(widget: int):
     response = requests.get('%swidgets?pageBox=%s' % (base_url, widget,), timeout=15)
-    lessons = response.json()
-    for entry in lessons:
-        if 'Lessons' in entry and entry['Lessons']:
-            label = "מכון מאיר - {0}".format(entry['Title'])
-            iterate_over_lessons(entry['Lessons'], label)
+    try:
+        lessons = response.json()
+        for entry in lessons:
+            if 'Lessons' in entry and entry['Lessons']:
+                label = "מכון מאיר - {0}".format(entry['Title'])
+                iterate_over_lessons(entry['Lessons'], label)
+    except Exception as e:
+        print("Error grab lesson {} ".format(response, ))
+        print("Error grab lesson {} ".format(traceback.format_exc(), ))
+        raise e
+
+
 
 
 def grab_for_category(category_id: int, page=1):
