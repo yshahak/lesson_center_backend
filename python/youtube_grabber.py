@@ -85,7 +85,12 @@ def extract_lessons_for_channel_id(source_id: int, channel_url: str, category: s
         if _id in exists_video_ids:
             continue
         video = ydl.extract_info(youtube_base_url % (video_id,), download=False)
-        date = datetime.strptime(video['upload_date'], '%Y%m%d')
+        upload_date = video['upload_date']
+        if upload_date:
+            date = datetime.strptime(upload_date, '%Y%m%d')
+            heb_date = get_heb_date(date)
+        else:
+            print("missing upload date for {}".format(video_id))
         body = {
             "id": _id,
             "sourceId": source_id,
@@ -94,7 +99,7 @@ def extract_lessons_for_channel_id(source_id: int, channel_url: str, category: s
             "categoryId": category_id,
             "seriesId": series_id,
             "ravId": None,
-            "dateStr": get_heb_date(date),
+            "dateStr": heb_date,
             "duration": video['duration'],
             "videoUrl": youtube_base_url % video_id,
             "audioUrl": None,
@@ -144,14 +149,14 @@ def insert_source(source_id: int, source_name: str):
 
 if __name__ == "__main__":
     pass
-    # extract_lessons_for_channel_id(50, "https://www.youtube.com/channel/UCeDrtyuUbMLB_z6razI33dQ", "אמונה-הסדר חיפה" , "הסדר חיפה - אחרונים")
-    # extract_lessons_for_channel_id(51, "https://www.youtube.com/channel/UCBN2YMjFoJHX1qlpEcra29w", "ישיבת המאירי", "ישיבת המאירי - אחרונים")
-    # extract_lessons_for_channel_id(52, "https://www.youtube.com/user/YeshivatTefahot", "הסדר טפחות", 'הסדר טפחות - אחרונים')
-    # extract_lessons_for_channel_id(60, "https://www.youtube.com/channel/UCS6OvEopzPGEEwYbAG4ismA", "מעלה אדומים", 'ברכת משה- מעלה אדומים')
-    # extract_lessons_for_channel_id(61, "https://www.youtube.com/channel/UCAcP4Dx-c66fPD5fYcYF0PQ", "ישיבת הכותל", "ישיבת הכותל - אחרונים")
-    # extract_lessons_for_channel_id(62, "https://www.youtube.com/user/YeshivatRamatGan", "ישיבת ר״ג", "ישיבת רמת גן - אחרונים")
-    # extract_lessons_for_channel_id(63, "https://www.youtube.com/user/barihs", "ישיבת הר עציון", "ישיבת הר עציון - אחרונים")
-    # extract_lessons_for_channel_id(64, "https://www.youtube.com/user/YHBVideo", "ישיבת הר ברכה", "ישיבת הר ברכה - אחרונים")
     extract_lessons_for_channel_id(2, "https://www.youtube.com/channel/UCEAZVyOtukIOH4BJ3gHKdng", "ערוץ מאיר-יוטיוב", "ערוץ מאיר - אחרונים")
+    extract_lessons_for_channel_id(50, "https://www.youtube.com/channel/UCeDrtyuUbMLB_z6razI33dQ", "אמונה-הסדר חיפה" , "הסדר חיפה - אחרונים")
+    extract_lessons_for_channel_id(51, "https://www.youtube.com/channel/UCBN2YMjFoJHX1qlpEcra29w", "ישיבת המאירי", "ישיבת המאירי - אחרונים")
+    extract_lessons_for_channel_id(52, "https://www.youtube.com/user/YeshivatTefahot", "הסדר טפחות", 'הסדר טפחות - אחרונים')
+    extract_lessons_for_channel_id(60, "https://www.youtube.com/channel/UCS6OvEopzPGEEwYbAG4ismA", "מעלה אדומים", 'ברכת משה- מעלה אדומים')
+    extract_lessons_for_channel_id(61, "https://www.youtube.com/channel/UCAcP4Dx-c66fPD5fYcYF0PQ", "ישיבת הכותל", "ישיבת הכותל - אחרונים")
+    extract_lessons_for_channel_id(62, "https://www.youtube.com/user/YeshivatRamatGan", "ישיבת ר״ג", "ישיבת רמת גן - אחרונים")
+    extract_lessons_for_channel_id(63, "https://www.youtube.com/user/barihs", "ישיבת הר עציון", "ישיבת הר עציון - אחרונים")
+    extract_lessons_for_channel_id(64, "https://www.youtube.com/user/YHBVideo", "ישיבת הר ברכה", "ישיבת הר ברכה - אחרונים")
     print("finish extracting youtube")
     postgres.close()
