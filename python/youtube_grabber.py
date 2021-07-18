@@ -75,7 +75,7 @@ def extract_lessons_for_channel_id(source_id: int, channel_url: str, category: s
                 add_lesson_to_db(cursor, body)
                 postgres.commit()
         cursor.close()
-    run_results = subprocess.run(['youtube-dl', '--get-id', channel_url], stdout=subprocess.PIPE)
+    run_results = subprocess.run(['youtube-dl', '--get-id', '--skip-download', channel_url], stdout=subprocess.PIPE)
     channel_videos_ids = run_results.stdout.decode("utf-8").split('\n')
     channel_videos_ids.remove('')
     cursor = postgres.cursor()
