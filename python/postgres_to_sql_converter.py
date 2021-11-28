@@ -20,6 +20,7 @@ def create_sqlite_tables():
     c.execute('''DROP TABLE IF EXISTS labels''')
     c.execute('''DROP TABLE IF EXISTS sources''')
     c.execute('''DROP TABLE IF EXISTS sessions''')
+    c.execute('''DROP TRIGGER IF EXISTS trigger_incrementer''')
     c.execute(str('''
                  CREATE TABLE lessons
                  (id INTEGER NOT NULL PRIMARY KEY,
@@ -71,6 +72,16 @@ def create_sqlite_tables():
                 );
     ''')
     c.execute('''
+                CREATE TABLE sessions(
+                lessonId INTEGER NOT NULL PRIMARY KEY,
+                lastPositioninSec INTEGER NOT NULL,
+                sessionType INTEGER NOT NULL,
+                updatedAt INTEGER NOT NULL,
+                FOREIGN KEY (lessonId) REFERENCES lessons (id)
+    );
+    ''')
+    c.execute('''CREATE TABLE sources(id INTEGER NOT NULL PRIMARY KEY,label TEXT NOT NULL,totalCount INTEGER DEFAULT 0);''')
+    c.execute('''
                 CREATE TRIGGER trigger_incrementer
                 AFTER INSERT ON lessons
                 BEGIN
@@ -80,18 +91,10 @@ def create_sqlite_tables():
                     WHERE id = new.seriesId;
                     UPDATE categories SET totalCount = totalCount + 1
                     WHERE id = new.categoryId;
+                    UPDATE sources SET totalCount = totalCount + 1
+                    WHERE id = new.sourceId;
                 END;
     ''')
-    c.execute('''
-                CREATE TABLE sessions(
-                lessonId INTEGER NOT NULL PRIMARY KEY,
-                lastPositioninSec INTEGER NOT NULL,
-                sessionType INTEGER NOT NULL,
-                updatedAt INTEGER NOT NULL,
-                FOREIGN KEY (lessonId) REFERENCES lessons (id)
-);
-    ''')
-    c.execute('''CREATE TABLE sources(id INTEGER NOT NULL PRIMARY KEY,label TEXT NOT NULL);''')
     c.close()
     conn.commit()
 
@@ -151,10 +154,10 @@ def get_other_tables(table: str, col: str):
 
 def get_sources_table():
     cursor = postgres.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
-    cursor.execute('SELECT id,label from sources')
+    cursor.execute('SELECT id,label,0 as "totalCount" from sources')
     c = conn.cursor()
     for row in cursor:
-        c.execute('''INSERT INTO sources VALUES (:id,:label);''', row)
+        c.execute('''INSERT INTO sources VALUES (:id,:label,:totalCount);''', row)
 
 
 def get_lessons_for_type(ids, col):

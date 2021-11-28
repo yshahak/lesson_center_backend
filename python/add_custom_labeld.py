@@ -7,11 +7,11 @@ def get_parash():
     cursor = postgres.cursor()
     insert_cursor = postgres.cursor()
     insert_cursor.execute('delete from labels where "sourceId" = 400;')
-    cursor.execute('select id,title from lessons where "title" like %s or "title" like %s or "title" like %s ;', ("%ויקהל%", "%פקודי%", "%ויקהל פקודי%", ))
+    cursor.execute('select id,title from lessons where "title" like %s or "title" like %s or "title" like %s ;', ("%וישב%", "%מצבדגבדגבדגורע%", "%בדגבגדבדגבד%", ))
     for row in cursor.fetchall():
         print(row)
         insert_cursor.execute('''INSERT INTO labels (label,"sourceId","lessonId") VALUES(%s,%s,%s);''',
-                              ('פרשת ויקהל פקודי', 400, row[0]))
+                              ('פרשת וישב', 400, row[0]))
     cursor.execute('select * from labels where "sourceId" = 400 limit 1;')
     for row in cursor.fetchall():
         print(row)
@@ -26,14 +26,11 @@ def get_chag():
     cursor = postgres.cursor()
     insert_cursor = postgres.cursor()
     insert_cursor.execute('delete from labels where "sourceId" = 500;')
-    cursor.execute('select id,title from lessons where "title" like %s ;', ("% פורים%",))
+    cursor.execute('select id,title,"dateStr" from lessons where "title" like %s or "title" like %s group by id order by timestamp desc;', ("%חנוכה%", "%ליבגבדגבדגבדסדר%", ))
     for row in cursor.fetchall():
         print(row)
         insert_cursor.execute('''INSERT INTO labels (label,"sourceId","lessonId") VALUES(%s,%s,%s);''',
-                              ('שיעורים לפורים', 500, row[0]))
-    cursor.execute('select * from labels where "sourceId" = 400 limit 1;')
-    for row in cursor.fetchall():
-        print(row)
+                              ('שיעורים לחנוכה', 500, row[0]))
     insert_cursor.close()
     cursor.close()
     postgres.commit()
@@ -42,5 +39,5 @@ def get_chag():
 
 if __name__ == "__main__":
     pass
-    get_parash()
-    # get_chag()
+    # get_parash()
+    get_chag()
