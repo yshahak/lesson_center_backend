@@ -48,14 +48,14 @@ def extract_lessons_for_channel_id(source_id: int, channel_id: str, category: st
     cursor.close()
     # get_channel_videos(channel_id, "", source_id, category)
     get_channel_videos_from_uploads(channel_id, source_id, category)
-    insert_labels(label, source_id)
+    insert_labels(label, source_id, category_id)
 
 
-def insert_labels(label: str, source_id: int):
+def insert_labels(label: str, source_id: int, category_id: int):
     clear_labels(postgres, source_id)
     cursor = postgres.cursor()
-    cursor.execute('''SELECT id from lessons where "sourceId" = %s ORDER BY timestamp DESC LIMIT 10;''',
-                   (source_id,))
+    cursor.execute('''SELECT id from lessons where "sourceId" = %s AND "categoryId" = %s ORDER BY timestamp DESC LIMIT 10;''',
+                   (source_id, category_id, ))
     labels_ids = [row[0] for row in cursor.fetchall()]
     for lesson_id in labels_ids:
         cursor.execute('''INSERT INTO labels (label,"sourceId","lessonId") VALUES(%s,%s,%s);''',
@@ -188,8 +188,6 @@ def should_filter_video(source_id: int, video_id: str) -> bool:
 
 
 def grab_yotube():
-    extract_lessons_for_channel_id(1, "UC3MjXqiy3SNNSWiixX2Mybw", "בני דוד - כללי", "בני דוד - ערוץ יוטיוב")
-    extract_lessons_for_channel_id(2, "UCEAZVyOtukIOH4BJ3gHKdng", "ערוץ מאיר-יוטיוב", "ערוץ מאיר - אחרונים")
     extract_lessons_for_channel_id(50, "UCeDrtyuUbMLB_z6razI33dQ", "אמונה-הסדר חיפה", "הסדר חיפה - אחרונים")
     extract_lessons_for_channel_id(51, "UCBN2YMjFoJHX1qlpEcra29w", "ישיבת המאירי", "ישיבת המאירי - אחרונים")
     extract_lessons_for_channel_id(52, "UCMSm6HR03oQ7HfgOhtumEhQ", "הסדר טפחות", 'הסדר טפחות - אחרונים')

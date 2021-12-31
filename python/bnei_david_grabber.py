@@ -9,6 +9,7 @@ import traceback
 import psycopg2.extras
 from config import *
 from sql_helper import *
+from youtube_grabber import extract_lessons_for_channel_id
 
 postgres = psycopg2.connect(**postgres_con)
 source_id = 1
@@ -27,7 +28,6 @@ subjects_map = {row[0]: row[1] for row in cursor.fetchall()}
 cursor.execute('select "originalId",id from ravs where "sourceId" = 1')
 ravs_map = {row[0]: row[1] for row in cursor.fetchall()}
 cursor.close()
-
 
 subjectsIdMap = {
     'ללא': 1,
@@ -172,7 +172,8 @@ def parse_lesson(html_content, is_main_page=False):
                 if lesson_id is None:
                     continue
                 if is_main_page:
-                    label = 'מומלצים - בני דוד' if lesson_id.attrs['id'].__contains__('Recommended') else 'אחרונים - בני דוד'
+                    label = 'מומלצים - בני דוד' if lesson_id.attrs['id'].__contains__(
+                        'Recommended') else 'אחרונים - בני דוד'
                 else:
                     label = ''
                 lesson['id'] = lesson_id.text
@@ -294,7 +295,7 @@ def parse_lesson(html_content, is_main_page=False):
                                    (label, source_id, id))
                 postgres.commit()
             except Exception as e:
-                print( "Error !!! id={0}\ne={1}\n{2}".format(lesson_id, traceback.format_exc(), e))
+                print("Error !!! id={0}\ne={1}\n{2}".format(lesson_id, traceback.format_exc(), e))
                 break
     return grab_something
 
@@ -405,7 +406,9 @@ def grab():
 
 def grab_main_page():
     # getting main page
-    clear_labels(postgres, source_id)
+    # clear_labels(postgres, source_id)
+    # extract youtbue also clears label
+    extract_lessons_for_channel_id(1, "UC3MjXqiy3SNNSWiixX2Mybw", "בני דוד - כללי", "בני דוד - ערוץ יוטיוב")
     get_lesson(template_main, True)
     postgres.close()
     driver.quit()
