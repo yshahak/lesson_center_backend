@@ -200,6 +200,7 @@ def grab_yotube():
     extract_lessons_for_channel_id(66, "UCp_YIYD7Ol3DXp6iR8A0ppg", "הרב אורי שרקי", "הרב אורי שרקי - אחרונים")
     extract_lessons_for_channel_id(67, "UC1UJunP8IpS4xfCRtB2HrPQ", "ישיבת שבי חברון", "ישיבת שבי חברון - אחרונים")
     extract_lessons_for_channel_id(68, "UCLUz-ovexcSqyW1xjShqZ7A", "דף יומי", "סיני - דף יומי")
+    extract_lessons_for_channel_id(69, "UCLUz-ovexcSqyW1xjShqZ7A", "הרב ראובן ששון", "הרב ראובן ששון - אחרונים")
     postgres.close()
 
 
