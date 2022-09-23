@@ -201,13 +201,17 @@ def grab_yotube():
     extract_lessons_for_channel_id(67, "UC1UJunP8IpS4xfCRtB2HrPQ", "ישיבת שבי חברון", "ישיבת שבי חברון - אחרונים")
     extract_lessons_for_channel_id(68, "UCLUz-ovexcSqyW1xjShqZ7A", "דף יומי", "סיני - דף יומי")
     extract_lessons_for_channel_id(69, "UCLUz-ovexcSqyW1xjShqZ7A", "הרב ראובן ששון", "הרב ראובן ששון - אחרונים")
+    extract_lessons_for_channel_id(70, "UC5WgSWUKh-I_G-rDCYanTsg", "הרב אשר וייס", "הרב אשר וייס - אחרונים")
+    extract_lessons_for_channel_id(71, "UCE5C5A71vpM0INCP7IJ53hg", "ישיבת ברוכין", "ישיבת ברוכין - אחרונים")
+    extract_lessons_for_channel_id(72, "UCoLW4u9Mj9XIMNOlIn2ICKg", "מכינת עצמונה", "מכינת עצמונה - אחרונים")
+    extract_lessons_for_channel_id(73, "UCLlBotitx4zAGffm_Wdh7Bg", "הרב מאיר אליהו", "הרב מאיר אליהו - אחרונים")
     postgres.close()
 
 
 if __name__ == "__main__":
     pass
     grab_yotube()
-
+# https://developers.google.com/youtube/v3/docs/channels/list?apix_params=%7B%22part%22%3A%5B%22id%22%5D%2C%22forUsername%22%3A%22RAVaviner%22%7D
 urlC = '''
 curl \
 'https://youtube.googleapis.com/youtube/v3/playlists?part=player%2snippet%2CcontentDetails&channelId=UC3MjXqiy3SNNSWiixX2Mybw&maxResults=25&pageToken=CBkQAA&key=AIzaSyDK-HwpEZa2oIQAuU1cI__e7nWOVJ4SX_4' \
