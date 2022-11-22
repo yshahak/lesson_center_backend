@@ -483,6 +483,6 @@ if __name__ == '__main__':
     # postgres.commit()
     # grab_page(1184)
     extract_lessons_for_channel_id(2, "UCEAZVyOtukIOH4BJ3gHKdng", "ערוץ מאיר-יוטיוב", "ערוץ מאיר - יוטיוב")
-    grab_page(is_main_page=True)
+    # grab_page(is_main_page=True)
     # grab_for_serie()
     # http://player.vimeo.com/external/335685696.hd.mp4?s=3fe2de2efc420884a4f6c13d0986e0cb2255a062&profile_id=175&oauth2_token_id=1009673393
