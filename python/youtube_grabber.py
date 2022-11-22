@@ -200,17 +200,29 @@ def grab_yotube():
     extract_lessons_for_channel_id(66, "UCp_YIYD7Ol3DXp6iR8A0ppg", "הרב אורי שרקי", "הרב אורי שרקי - אחרונים")
     extract_lessons_for_channel_id(67, "UC1UJunP8IpS4xfCRtB2HrPQ", "ישיבת שבי חברון", "ישיבת שבי חברון - אחרונים")
     extract_lessons_for_channel_id(68, "UCLUz-ovexcSqyW1xjShqZ7A", "דף יומי", "סיני - דף יומי")
-    extract_lessons_for_channel_id(69, "UCLUz-ovexcSqyW1xjShqZ7A", "הרב ראובן ששון", "הרב ראובן ששון - אחרונים")
+    extract_lessons_for_channel_id(69, "UC3Kr93MBtpTJ0T-SIT7YM1g", "הרב ראובן ששון", "הרב ראובן ששון - אחרונים")
     extract_lessons_for_channel_id(70, "UC5WgSWUKh-I_G-rDCYanTsg", "הרב אשר וייס", "הרב אשר וייס - אחרונים")
     extract_lessons_for_channel_id(71, "UCE5C5A71vpM0INCP7IJ53hg", "ישיבת ברוכין", "ישיבת ברוכין - אחרונים")
     extract_lessons_for_channel_id(72, "UCoLW4u9Mj9XIMNOlIn2ICKg", "מכינת עצמונה", "מכינת עצמונה - אחרונים")
     extract_lessons_for_channel_id(73, "UCLlBotitx4zAGffm_Wdh7Bg", "הרב מאיר אליהו", "הרב מאיר אליהו - אחרונים")
+    extract_lessons_for_channel_id(74, "UCewVpZ62BD241aNxjIMX_Yw", "ישיבת המקובלים בית אל", "ישיבת המקובלים בית אל - אחרונים")
+    postgres.close()
+
+
+def delete_channel():
+    postgres = psycopg2.connect(**postgres_con)
+    insert_cursor = postgres.cursor()
+    insert_cursor.execute('delete from lessons where "sourceId" = 74;')
+    insert_cursor.execute('delete from labels where "sourceId" = 74;')
+    insert_cursor.close()
+    postgres.commit()
     postgres.close()
 
 
 if __name__ == "__main__":
     pass
     grab_yotube()
+    # delete_channel()
 # https://developers.google.com/youtube/v3/docs/channels/list?apix_params=%7B%22part%22%3A%5B%22id%22%5D%2C%22forUsername%22%3A%22RAVaviner%22%7D
 urlC = '''
 curl \
