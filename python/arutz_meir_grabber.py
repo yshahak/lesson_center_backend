@@ -471,7 +471,7 @@ def check_int(str_int):
 
 def grab_meir_main():
     extract_lessons_for_channel_id(2, "UCEAZVyOtukIOH4BJ3gHKdng", "ערוץ מאיר-יוטיוב", "ערוץ מאיר - יוטיוב")
-    grab_page(is_main_page=True)
+    # grab_page(is_main_page=True)
 
 
 if __name__ == '__main__':
