@@ -159,6 +159,7 @@ def yt_api_get_videos(ids: list, source_id: int, category: str, playlist_id: str
         original_video_id = int(str(get_hash_for_string(video_id))[:8])
         _id = get_hash_for_id(source_id, original_video_id)
         date = datetime.strptime(item["snippet"]["publishedAt"], '%Y-%m-%dT%H:%M:%Sz')
+        video_url = youtube_base_url % video_id
         body = {
             "id": _id,
             "sourceId": source_id,
@@ -168,8 +169,8 @@ def yt_api_get_videos(ids: list, source_id: int, category: str, playlist_id: str
             "seriesId": series_id,
             "ravId": None,
             "dateStr": get_heb_date(date),
-            "duration": get_duration_in_seconds(item["contentDetails"]["duration"]),
-            "videoUrl": youtube_base_url % video_id,
+            "duration": get_iso_duration_in_seconds(item["contentDetails"]["duration"]),
+            "videoUrl": video_url,
             "audioUrl": None,
             "timestamp": date.timestamp(),
         }
@@ -209,11 +210,10 @@ def grab_yotube():
     postgres.close()
 
 
-def delete_channel():
-    postgres = psycopg2.connect(**postgres_con)
+def delete_channel(source_id: int):
     insert_cursor = postgres.cursor()
-    insert_cursor.execute('delete from lessons where "sourceId" = 74;')
-    insert_cursor.execute('delete from labels where "sourceId" = 74;')
+    insert_cursor.execute('delete from lessons where "sourceId" = %s;', (source_id,))
+    insert_cursor.execute('delete from labels where "sourceId" = %s;', (source_id,))
     insert_cursor.close()
     postgres.commit()
     postgres.close()

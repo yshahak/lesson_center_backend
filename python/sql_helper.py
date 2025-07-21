@@ -2,6 +2,7 @@ import hashlib
 import datetime
 import re
 from pyluach.dates import HebrewDate
+import isodate
 
 
 def get_hash_for_id(source_id: int, originalid: int) -> int:
@@ -42,6 +43,15 @@ def get_duration_in_seconds(duration: str):
         print('duration issue!!:', duration)
         return 0
 
+
+def get_iso_duration_in_seconds(duration: str):
+    if not duration:
+        return 0
+    try:
+        return int(isodate.parse_duration(duration).total_seconds())
+    except:
+        print('duration issue!!:', duration)
+        return 0
 
 def clear_labels(postgres, source_id):
     cursor = postgres.cursor()

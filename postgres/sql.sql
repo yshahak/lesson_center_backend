@@ -1,23 +1,23 @@
 CREATE TABLE lessons (
     id BIGINT NOT NULL PRIMARY KEY,
+    "originalId" INTEGER NOT NULL,
     "sourceId" INTEGER NOT NULL,
-    sourceid INTEGER NOT NULL,
     title text,
     "categoryId" BIGINT,
     "seriesId" BIGINT,
     "ravId" BIGINT,
-    datestr varchar(60),
+    "dateStr" varchar(60),
     duration INTEGER,
-    videourl text,
-    audiourl text,
+    "videoUrl" text,
+    "audioUrl" text,
     "timestamp" INTEGER,
     insertedat timestamp NOT NULL DEFAULT now(),
     updatedat timestamp NOT NULL DEFAULT now()
 );
 CREATE TABLE categories (
     id BIGINT NOT NULL PRIMARY KEY,
+    "originalId" INTEGER NOT NULL,
     "sourceId" INTEGER NOT NULL,
-    sourceid INTEGER NOT NULL,
     "totalCount" INTEGER NOT NULL DEFAULT 0,
     category varchar(60) NOT NULL,
     insertedat timestamp NOT NULL DEFAULT now(),
@@ -25,8 +25,8 @@ CREATE TABLE categories (
 );
 CREATE TABLE series (
     id BIGINT NOT NULL PRIMARY KEY,
+    "originalId" INTEGER NOT NULL,
     "sourceId" INTEGER NOT NULL,
-    sourceid INTEGER NOT NULL,
     "totalCount" INTEGER NOT NULL DEFAULT 0,
     serie varchar(80) NOT NULL,
     insertedat timestamp NOT NULL DEFAULT now(),
@@ -34,6 +34,7 @@ CREATE TABLE series (
 );
 CREATE TABLE ravs (
     id BIGINT NOT NULL PRIMARY KEY,
+    "originalId" INTEGER NOT NULL,
     "sourceId" INTEGER NOT NULL,
     sourceid INTEGER NOT NULL,
     "totalCount" INTEGER NOT NULL DEFAULT 0,
@@ -44,8 +45,8 @@ CREATE TABLE ravs (
 CREATE TABLE labels(
     id SERIAL PRIMARY KEY,
     label varchar(60) NOT NULL,
-    sourceid int NOT NULL,
-    lessonid BIGINT NOT NULL,
+    "sourceId" int NOT NULL,
+    "lessonId" BIGINT NOT NULL,
     insertedat timestamp NOT NULL DEFAULT now(),
     updatedat timestamp NOT NULL DEFAULT now()
 );
