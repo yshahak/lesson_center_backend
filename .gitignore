@@ -25,8 +25,16 @@ sqlite/lessons.db
 general.json
 logs/
 python/venv3/
+python/venv/
 general.json
 web/server.py
 ghostdriver.log
 
 /node/node_modules
+
+local.properties
+
+# Firebase - exclude large data files and credentials
+firestore_data/
+google-services.json
+*.json.backup
