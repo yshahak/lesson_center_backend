@@ -145,6 +145,7 @@ def extract_lessons_for_channel_id(source_id: int, channel_id: str, category: st
         exists_lesson_ids = set(source_data.get('lessonIds', []))
         logger.info(f"📦 Loaded {len(exists_lesson_ids)} existing lesson IDs for source {source_id}")
 
+
     # 3. Track new lessons and counters in memory
     new_lesson_ids = []
     categories_affected = defaultdict(int)
@@ -389,6 +390,26 @@ def process_channel_videos(channel_id, source_id, category, label,
 
         # Load current source data to check playlist map cache
         source_data = source_doc_ref.get().to_dict() or {}
+
+        # Safety: if exists_lesson_ids is empty for an existing source, the migration
+        # may have seeded Firestore with lessons under a different ID scheme (e.g.
+        # PostgreSQL bigint IDs). Scan existing videoUrls and compute their hash-based
+        # IDs so the dedup check correctly skips already-present videos.
+        # This is a one-time O(N) cost per channel on the first scrape after migration.
+        if not exists_lesson_ids:
+            logger.info(f"⚠️ exists_lesson_ids empty — scanning Firestore videoUrls to prevent duplicates from ID-scheme mismatch")
+            lessons_ref_scan = firestore_db.db.collection(f'{firestore_db.collection_prefix}lessons')
+            from urllib.parse import urlparse, parse_qs
+            for doc in lessons_ref_scan.where('sourceId', '==', source_id).stream():
+                url = doc.to_dict().get('videoUrl', '')
+                if url and 'youtube.com/watch?v=' in url:
+                    try:
+                        vid = parse_qs(urlparse(url).query).get('v', [None])[0]
+                        if vid:
+                            exists_lesson_ids.add(get_hash_for_id(source_id, get_hash_for_string(vid)))
+                    except Exception:
+                        pass
+            logger.info(f"📦 Populated {len(exists_lesson_ids)} synthetic IDs from existing videoUrls")
 
         # Phase 1: collect all new videos first (before deciding on playlist refresh)
         # We need to know if new_videos_found to decide whether to refresh.

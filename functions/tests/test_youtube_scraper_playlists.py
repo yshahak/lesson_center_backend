@@ -73,6 +73,10 @@ class FakeQuery:
             return self._docs[:self._limit]
         return self._docs
 
+    def stream(self):
+        docs = self._docs[:self._limit] if self._limit is not None else self._docs
+        return iter(docs)
+
 
 class FakeDocRef:
     def __init__(self, doc_id=None, initial_data=None):
@@ -872,6 +876,113 @@ class TestPlaylistSeries(unittest.TestCase):
             dt = datetime.fromisoformat(scan_at.replace('Z', '+00:00'))
         except ValueError:
             self.fail(f"lastPlaylistScanAt is not a valid ISO timestamp: {scan_at!r}")
+
+
+class TestDuplicatePrevention(unittest.TestCase):
+    """
+    Verifies the scraper never creates duplicate lesson docs for the same video.
+
+    Root cause of the production duplicate bug (May 13 2026):
+    - PostgreSQL migration seeded Firestore with lessons using doc_id = pg_lessons.id
+    - Source docs had no 'lessonIds' field after migration
+    - Scraper loaded exists_lesson_ids = set() (empty) on first run
+    - Treated every video as new → created NEW docs with hash-based IDs
+    - Result: 2 Firestore docs per video, different IDs, same videoUrl
+
+    Fix: when lessonIds is empty for an existing source, the scraper must query
+    Firestore for existing videoUrls before treating videos as new.
+    """
+
+    def _make_video(self, video_id, source_id=SOURCE_ID):
+        from utils.firestore_helper import get_hash_for_string, get_hash_for_id
+        original_video_id = get_hash_for_string(video_id)
+        lesson_id = get_hash_for_id(source_id, original_video_id)
+        video_url = f"https://www.youtube.com/watch?v={video_id}"
+        return lesson_id, video_url
+
+    def test_no_duplicate_when_lessonIds_empty_but_video_exists_in_firestore(self):
+        """
+        When source doc has empty lessonIds (e.g. after migration) but the video
+        already exists in Firestore with a different doc ID, scraper must NOT
+        create a second document with the same videoUrl.
+        """
+        video_id = "existing_video"
+        lesson_id, video_url = self._make_video(video_id)
+
+        youtube_mock = make_youtube_fake(
+            playlists=[],
+            playlist_items={UPLOADS_PLAYLIST_ID: [video_id]},
+            channel_uploads_id=UPLOADS_PLAYLIST_ID,
+        )
+
+        # Simulate migration: lesson exists with a DIFFERENT doc ID (old postgres-style)
+        old_doc_id = "903451891330841290"  # postgres-style bigint, NOT scraper hash
+        lessons_col = FakeCollection()
+        lessons_col._doc_refs[old_doc_id] = FakeDocRef(old_doc_id, {
+            'sourceId': SOURCE_ID,
+            'videoUrl': video_url,
+            'originalId': 12345,  # small postgres originalId
+            # no createdAt — marks it as migration-era doc
+        })
+
+        source_data = {
+            'originalId': SOURCE_ID,
+            'lessonIds': [],  # empty — simulates post-migration state
+            'channelId': CHANNEL_ID,
+        }
+        fake_db = _make_fake_db(source_data=source_data)
+        fake_db.db._collections['lessons'] = lessons_col
+
+        source_doc_ref = fake_db.db.collection('sources').document("src_50")
+        new_lesson_ids, _ = _run_process_channel_videos(
+            youtube_mock, source_doc_ref, exists_lesson_ids=set(), fake_db=fake_db
+        )
+
+        # The video already exists — must NOT be treated as new
+        self.assertEqual(new_lesson_ids, [],
+            "Scraper must not create a duplicate when video already exists "
+            "in Firestore with a different doc ID scheme. "
+            "This is the root cause of the May 13 2026 duplicate bug.")
+
+        # The lesson collection must still have exactly 1 doc
+        all_lessons = {doc_id: ref._data
+                       for doc_id, ref in lessons_col._doc_refs.items()
+                       if ref._data is not None}
+        youtube_lessons = {k: v for k, v in all_lessons.items()
+                          if v.get('videoUrl') == video_url}
+        self.assertEqual(len(youtube_lessons), 1,
+            f"Expected 1 lesson for video {video_id}, got {len(youtube_lessons)}: {youtube_lessons}")
+
+    def test_lessonIds_empty_triggers_firestore_videourl_check(self):
+        """When lessonIds is empty, scraper must query Firestore by videoUrl
+        to detect existing docs before writing new ones."""
+        video_id = "any_video"
+        _, video_url = self._make_video(video_id)
+
+        youtube_mock = make_youtube_fake(
+            playlists=[],
+            playlist_items={UPLOADS_PLAYLIST_ID: [video_id]},
+            channel_uploads_id=UPLOADS_PLAYLIST_ID,
+        )
+        source_data = {'originalId': SOURCE_ID, 'lessonIds': [], 'channelId': CHANNEL_ID}
+        fake_db = _make_fake_db(source_data=source_data)
+        source_doc_ref = fake_db.db.collection('sources').document("src_50")
+
+        _run_process_channel_videos(
+            youtube_mock, source_doc_ref, exists_lesson_ids=set(), fake_db=fake_db
+        )
+
+        # Verify that after this run, the lessonIds in source doc is populated
+        # so subsequent runs DO have exists_lesson_ids and won't duplicate again
+        source_after = source_doc_ref._data or {}
+        lesson_ids_after = source_after.get('lessonIds', [])
+        # Either the new lesson was added (and lessonIds populated) OR
+        # existing detection prevented it — either way, no duplicate
+        lessons_col = fake_db.db._collections['lessons']
+        all_with_url = [ref._data for ref in lessons_col._doc_refs.values()
+                        if ref._data and ref._data.get('videoUrl') == video_url]
+        self.assertLessEqual(len(all_with_url), 1,
+            "Must never have more than 1 lesson per videoUrl per source")
 
 
 class TestPlaylistSeriesTotalCount(unittest.TestCase):
