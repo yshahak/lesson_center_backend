@@ -204,7 +204,7 @@ def _get_vimeo_duration(vimeo_id: str) -> int:
     try:
         r = _session.get(
             f"https://vimeo.com/api/oembed.json?url=https://vimeo.com/{vimeo_id}",
-            timeout=10,
+            timeout=45,
         )
         if r.status_code == 200:
             return int(r.json().get("duration", 0))
@@ -302,7 +302,7 @@ def _get_category_firestore_id(
         try:
             r = _session.get(
                 f"{BASE_URL}/subject/{wp_subject_id}",
-                timeout=10,
+                timeout=45,
             )
             if r.status_code == 200:
                 term_name = r.json().get("name", "").strip()
