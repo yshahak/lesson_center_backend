@@ -80,9 +80,9 @@ def run_scrapers(scraper_type='all'):
     if scraper_type in ['all', 'bnei_david']:
         try:
             logger.info("🏛️ Running Bnei David scraper...")
-            # TODO: Implement when converted
-            results['bnei_david'] = {'status': 'not_implemented'}
-            logger.info("⚠️ Bnei David scraper not yet implemented")
+            bnei_david_result = scrape_bnei_david()
+            results['bnei_david'] = bnei_david_result
+            logger.info(f"✅ Bnei David scraping complete: {bnei_david_result}")
         except Exception as e:
             logger.error(f"❌ Bnei David scraping failed: {e}")
             results['bnei_david'] = {'error': str(e)}

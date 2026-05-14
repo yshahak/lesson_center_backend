@@ -71,7 +71,9 @@ def scrape_youtube_channels(collection_prefix=""):
             {"source_id": 71, "channel_id": "UCE5C5A71vpM0INCP7IJ53hg", "category": "ישיבת ברוכין", "label": "ישיבת ברוכין - אחרונים"},
             {"source_id": 72, "channel_id": "UCoLW4u9Mj9XIMNOlIn2ICKg", "category": "מכינת עצמונה", "label": "מכינת עצמונה - אחרונים"},
             {"source_id": 73, "channel_id": "UCLlBotitx4zAGffm_Wdh7Bg", "category": "הרב מאיר אליהו", "label": "הרב מאיר אליהו - אחרונים"},
-            {"source_id": 74, "channel_id": "UCewVpZ62BD241aNxjIMX_Yw", "category": "ישיבת המקובלים בית אל", "label": "ישיבת המקובלים בית אל - אחרונים"}
+            {"source_id": 74, "channel_id": "UCewVpZ62BD241aNxjIMX_Yw", "category": "ישיבת המקובלים בית אל", "label": "ישיבת המקובלים בית אל - אחרונים"},
+            {"source_id": 2, "channel_id": "UCEAZVyOtukIOH4BJ3gHKdng", "category": "ערוץ מאיר", "label": "ערוץ מאיר - יוטיוב"},
+            {"source_id": 1, "channel_id": "UC3MjXqiy3SNNSWiixX2Mybw", "category": "בני דוד - כללי", "label": "בני דוד - ערוץ יוטיוב"}
         ]
         
         results = {
