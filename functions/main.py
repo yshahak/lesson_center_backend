@@ -90,9 +90,9 @@ def run_scrapers(scraper_type='all'):
     if scraper_type in ['all', 'arutz_meir']:
         try:
             logger.info("📻 Running Arutz Meir scraper...")
-            # TODO: Implement when converted
-            results['arutz_meir'] = {'status': 'not_implemented'}
-            logger.info("⚠️ Arutz Meir scraper not yet implemented")
+            arutz_meir_result = scrape_arutz_meir()
+            results['arutz_meir'] = arutz_meir_result
+            logger.info(f"✅ Arutz Meir scraping complete: {arutz_meir_result}")
         except Exception as e:
             logger.error(f"❌ Arutz Meir scraping failed: {e}")
             results['arutz_meir'] = {'error': str(e)}
@@ -253,6 +253,148 @@ def resolve_vimeo_url(request):
         200,
         {"Content-Type": "application/json"},
     )
+
+
+###############################################################################
+# Smart Lesson Search — Vertex AI vector embeddings + Firestore findNearest
+###############################################################################
+
+_NIKUD_RE = re.compile(r'[ְ-ׇ]')
+
+# Module-level cache: persists across warm requests, avoiding re-initialization
+_search_embedding_model = None
+
+
+def _get_search_embedding_model():
+    global _search_embedding_model
+    if _search_embedding_model is None:
+        import vertexai
+        from vertexai.language_models import TextEmbeddingModel
+        vertexai.init(project='tora-or', location='us-central1')
+        _search_embedding_model = TextEmbeddingModel.from_pretrained(
+            'text-multilingual-embedding-002'
+        )
+    return _search_embedding_model
+
+
+def _lesson_to_dict(data: dict) -> dict:
+    """Return the fields Flutter expects from a Firestore lesson document."""
+    return {
+        'originalId': data.get('originalId'),
+        'id': data.get('id') or data.get('originalId'),
+        'sourceId': data.get('sourceId'),
+        'title': data.get('title'),
+        'categoryId': data.get('categoryId'),
+        'seriesId': data.get('seriesId'),
+        'ravId': data.get('ravId'),
+        'dateStr': data.get('dateStr'),
+        'duration': data.get('duration'),
+        'videoUrl': data.get('videoUrl'),
+        'audioUrl': data.get('audioUrl'),
+        'timestamp': data.get('timestamp'),
+        'streamAudioFileId': data.get('streamAudioFileId'),
+        'vimeoId': data.get('vimeoId'),
+    }
+
+
+@functions_framework.http
+def search_lessons(request):
+    """Semantic lesson search via Vertex AI embeddings + Firestore vector search.
+
+    POST body (JSON):
+      query        string   – raw Hebrew query (filler words OK)
+      rav_id       string?  – Firestore doc ID of the rav (resolved client-side)
+      source_id    int?     – integer sourceId
+      max_duration int?     – max duration in seconds
+      limit        int      – max results to return (default 30, max 50)
+
+    Returns:
+      { lessons: [...], total_found: int, filters_applied: {...} }
+    """
+    cors_headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json; charset=utf-8',
+    }
+
+    if request.method == 'OPTIONS':
+        return ('', 204, {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+        })
+
+    body = request.get_json(silent=True) or {}
+    query = (body.get('query') or '').strip()
+    rav_id = body.get('rav_id')        # Firestore doc ID string or None
+    source_id = body.get('source_id')  # integer or None
+    max_duration = body.get('max_duration')  # seconds int or None
+    limit = min(int(body.get('limit', 30)), 50)
+
+    if len(query) < 2:
+        return (
+            json.dumps({'lessons': [], 'total_found': 0, 'filters_applied': {}}, ensure_ascii=False),
+            200, cors_headers,
+        )
+
+    try:
+        db = _get_db()
+        model = _get_search_embedding_model()
+
+        # Strip nikud before embedding to reduce token variance for the same word
+        normalized = _NIKUD_RE.sub('', query).strip()
+        query_vector = model.get_embeddings([normalized])[0].values
+
+        from google.cloud.firestore_v1.vector import Vector
+        from google.cloud.firestore_v1.base_vector_query import DistanceMeasure
+
+        # Fetch 150 candidates — over-fetch to allow in-memory post-filtering
+        candidate_docs = list(
+            db.collection('lessons')
+            .find_nearest(
+                vector_field='embedding',
+                query_vector=Vector(query_vector),
+                distance_measure=DistanceMeasure.COSINE,
+                limit=150,
+            )
+            .stream()
+        )
+
+        lessons = []
+        for doc in candidate_docs:
+            data = doc.to_dict()
+            if not data:
+                continue
+            # Apply entity filters post-query
+            if rav_id and data.get('ravId') != rav_id:
+                continue
+            if source_id is not None and data.get('sourceId') != source_id:
+                continue
+            if max_duration is not None and (data.get('duration') or 99999) > max_duration:
+                continue
+            lessons.append(_lesson_to_dict(data))
+            if len(lessons) >= limit:
+                break
+
+        filters_applied = {}
+        if rav_id:
+            filters_applied['rav_id'] = rav_id
+        if source_id is not None:
+            filters_applied['source_id'] = source_id
+        if max_duration is not None:
+            filters_applied['max_duration'] = max_duration
+
+        return (
+            json.dumps({
+                'lessons': lessons,
+                'total_found': len(lessons),
+                'filters_applied': filters_applied,
+            }, ensure_ascii=False),
+            200, cors_headers,
+        )
+
+    except Exception as e:
+        logger.error(f'search_lessons error: {e}', exc_info=True)
+        return (json.dumps({'error': str(e)}), 500, cors_headers)
 
 
 if __name__ == '__main__':
