@@ -238,7 +238,7 @@ def resolve_vimeo_url(request):
     try:
         cache_ref.set({
             "url": url,
-            "resolved_at": datetime.datetime.utcfromtimestamp(now).isoformat() + "Z",
+            "resolved_at": datetime.datetime.fromtimestamp(now, tz=datetime.timezone.utc).isoformat(),
             "expires_at": expires_at,
             "video_id": video_id,
         })
