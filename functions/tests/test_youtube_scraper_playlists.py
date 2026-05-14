@@ -874,5 +874,89 @@ class TestPlaylistSeries(unittest.TestCase):
             self.fail(f"lastPlaylistScanAt is not a valid ISO timestamp: {scan_at!r}")
 
 
+class TestPlaylistSeriesTotalCount(unittest.TestCase):
+    """
+    Verifies that series_affected tracks the PLAYLIST series, not כללי,
+    so that extract_lessons_for_channel_id increments totalCount on the
+    right series doc when new lessons are added.
+    """
+
+    def test_series_affected_contains_playlist_series_id(self):
+        """When a new video belongs to a playlist, series_affected must track
+        the playlist series doc ID — NOT the כללי fallback — so totalCount
+        gets incremented on the right series."""
+        video_id = "vid_in_playlist"
+        playlist_id = "PLparasha"
+        playlist_title = "פרשת השבוע"
+
+        youtube_mock = make_youtube_fake(
+            playlists=[{'id': playlist_id, 'title': playlist_title}],
+            playlist_items={
+                UPLOADS_PLAYLIST_ID: [video_id],
+                playlist_id: [video_id],
+            },
+            channel_uploads_id=UPLOADS_PLAYLIST_ID,
+        )
+        fake_db = _make_fake_db(source_data={
+            'originalId': SOURCE_ID,
+            'lessonIds': [],
+            'channelId': CHANNEL_ID,
+        })
+        source_doc_ref = fake_db.db.collection('sources').document("src_50")
+        _, series_affected = _run_process_channel_videos(
+            youtube_mock, source_doc_ref, exists_lesson_ids=set(), fake_db=fake_db
+        )
+
+        # Identify כללי and playlist series doc IDs from what was written
+        series_col = fake_db.db.collection('series')
+        all_series = {doc_id: ref._data for doc_id, ref in series_col.doc_refs.items()
+                      if ref._data is not None}
+        כללי_ids = {doc_id for doc_id, s in all_series.items() if s.get('serie') == 'כללי'}
+        playlist_ids = {doc_id for doc_id, s in all_series.items() if s.get('serie') == playlist_title}
+
+        self.assertTrue(playlist_ids, "Expected a playlist series doc to be created")
+
+        # series_affected must include the playlist series, not כללי
+        self.assertTrue(
+            any(sid in series_affected for sid in playlist_ids),
+            f"series_affected must contain playlist series ID {playlist_ids}; got {dict(series_affected)}"
+        )
+        for כללי_id in כללי_ids:
+            self.assertNotIn(
+                כללי_id, series_affected,
+                f"series_affected must NOT contain כללי series ID {כללי_id} when lesson belongs to a playlist"
+            )
+
+    def test_series_affected_contains_כללי_when_no_playlist(self):
+        """When a new video is NOT in any named playlist, series_affected must
+        track כללי so its totalCount gets incremented."""
+        video_id = "vid_no_playlist"
+
+        youtube_mock = make_youtube_fake(
+            playlists=[],  # no named playlists
+            playlist_items={UPLOADS_PLAYLIST_ID: [video_id]},
+            channel_uploads_id=UPLOADS_PLAYLIST_ID,
+        )
+        fake_db = _make_fake_db(source_data={
+            'originalId': SOURCE_ID,
+            'lessonIds': [],
+            'channelId': CHANNEL_ID,
+        })
+        source_doc_ref = fake_db.db.collection('sources').document("src_50")
+        _, series_affected = _run_process_channel_videos(
+            youtube_mock, source_doc_ref, exists_lesson_ids=set(), fake_db=fake_db
+        )
+
+        series_col = fake_db.db.collection('series')
+        all_series = {doc_id: ref._data for doc_id, ref in series_col.doc_refs.items()
+                      if ref._data is not None}
+        כללי_ids = {doc_id for doc_id, s in all_series.items() if s.get('serie') == 'כללי'}
+
+        self.assertTrue(
+            any(sid in series_affected for sid in כללי_ids),
+            f"series_affected must contain כללי series when video has no playlist; got {dict(series_affected)}"
+        )
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -17,6 +17,7 @@ import json
 import logging
 import os
 import sys
+from collections import defaultdict
 from datetime import datetime
 from urllib.parse import urlparse, parse_qs
 
@@ -181,6 +182,7 @@ def retrofit_channel(db, youtube_client, source_id, channel_id, dry_run=False):
 
     # Paginate through all lessons for this source
     stats = {'updated': 0, 'skipped': 0, 'no_playlist': 0, 'errors': 0}
+    series_lesson_counts = defaultdict(int)  # track actual count per series for totalCount update
     batch = db.batch()
     batch_count = 0
     last_doc = None
@@ -206,6 +208,9 @@ def retrofit_channel(db, youtube_client, source_id, channel_id, dry_run=False):
 
                 target_series_id = playlist_map.get(video_id, כללי_doc_id)
                 current_series_id = data.get('seriesId')
+
+                # Always count toward series total regardless of whether update needed
+                series_lesson_counts[target_series_id] += 1
 
                 if current_series_id == target_series_id:
                     stats['skipped'] += 1
@@ -233,6 +238,20 @@ def retrofit_channel(db, youtube_client, source_id, channel_id, dry_run=False):
 
     if not dry_run and batch_count > 0:
         batch.commit()
+
+    # Update totalCount on every series that has lessons for this source.
+    # This is critical: the retrofit moves lessons between series but the
+    # series docs' totalCount fields are stale (0 for new playlist series,
+    # inflated for the old כללי series).
+    # Using individual updates (not batch) — at most ~50 series per channel.
+    if not dry_run and series_lesson_counts:
+        series_ref = db.collection('series')
+        for series_doc_id, count in series_lesson_counts.items():
+            series_ref.document(series_doc_id).update({
+                'totalCount': count,
+                'updatedAt': datetime.now().isoformat(),
+            })
+        logger.info(f"  📊 Updated totalCount on {len(series_lesson_counts)} series docs")
 
     prefix = "[DRY RUN] " if dry_run else ""
     logger.info(f"  {prefix}✅ source {source_id}: updated={stats['updated']} "

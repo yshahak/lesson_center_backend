@@ -289,6 +289,140 @@ class TestRetrofitChannel(unittest.TestCase):
         db._batch.commit.assert_not_called()
 
 
+class TestRetrofitTotalCount(unittest.TestCase):
+    """
+    The retrofit script updates seriesId on lessons but must ALSO update
+    totalCount on each series doc. Without this, series show 0 in the app
+    even when they contain thousands of lessons.
+    """
+
+    def _make_db_with_series_update_tracking(self, lessons, existing_כללי_id):
+        """Extended fake db that tracks series update() calls with their args."""
+        db = MagicMock()
+        series_updates = {}  # series_doc_id -> data passed to update()
+
+        def _series_doc(doc_id):
+            ref = MagicMock()
+            ref.get.return_value.exists = False
+            ref.set.side_effect = lambda data: None
+            def _update(data):
+                series_updates[doc_id] = data
+            ref.update.side_effect = _update
+            return ref
+
+        db.collection.return_value.document.side_effect = _series_doc
+        db._series_updates = series_updates
+
+        lesson_docs = []
+        for lesson in lessons:
+            doc = MagicMock()
+            doc.id = str(lesson.get('id', 'x'))
+            doc.to_dict.return_value = lesson
+            doc.reference = MagicMock()
+            lesson_docs.append(doc)
+
+        call_count = [0]
+        def _stream():
+            call_count[0] += 1
+            return iter(lesson_docs) if call_count[0] == 1 else iter([])
+
+        db.collection.return_value.where.return_value.limit.return_value.stream.side_effect = _stream
+        db.collection.return_value.where.return_value.limit.return_value.start_after.return_value.stream.return_value = iter([])
+        db.batch.return_value = MagicMock()
+        return db
+
+    def test_series_totalcount_updated_after_retrofit(self):
+        """Series docs must receive a totalCount update after lessons are assigned."""
+        yt = _make_youtube(
+            playlists=[{'id': 'PL001', 'snippet': {'title': 'פרשת השבוע'}}],
+            playlist_items=[
+                {'snippet': {'resourceId': {'videoId': 'vid1'}}},
+                {'snippet': {'resourceId': {'videoId': 'vid2'}}},
+            ],
+            channels_uploads='UPabc',
+        )
+        db = self._make_db_with_series_update_tracking(
+            lessons=[
+                {'sourceId': 50, 'videoUrl': 'https://www.youtube.com/watch?v=vid1', 'seriesId': 'ser_old'},
+                {'sourceId': 50, 'videoUrl': 'https://www.youtube.com/watch?v=vid2', 'seriesId': 'ser_old'},
+            ],
+            existing_כללי_id='ser_כללי',
+        )
+        retrofit_channel(db, yt, 50, 'UCchannel')
+
+        # At least one series doc must have received a totalCount update
+        self.assertTrue(
+            any('totalCount' in v for v in db._series_updates.values()),
+            "retrofit_channel must update totalCount on series docs after assigning lessons"
+        )
+
+    def test_playlist_series_totalcount_equals_lesson_count(self):
+        """The totalCount written to the playlist series = number of lessons assigned to it."""
+        yt = _make_youtube(
+            playlists=[{'id': 'PL001', 'snippet': {'title': 'פרשת השבוע'}}],
+            playlist_items=[
+                {'snippet': {'resourceId': {'videoId': 'vid1'}}},
+                {'snippet': {'resourceId': {'videoId': 'vid2'}}},
+                {'snippet': {'resourceId': {'videoId': 'vid3'}}},
+            ],
+            channels_uploads='UPabc',
+        )
+        db = self._make_db_with_series_update_tracking(
+            lessons=[
+                {'sourceId': 50, 'videoUrl': 'https://www.youtube.com/watch?v=vid1', 'seriesId': 'old'},
+                {'sourceId': 50, 'videoUrl': 'https://www.youtube.com/watch?v=vid2', 'seriesId': 'old'},
+                {'sourceId': 50, 'videoUrl': 'https://www.youtube.com/watch?v=vid3', 'seriesId': 'old'},
+            ],
+            existing_כללי_id='ser_כללי',
+        )
+        retrofit_channel(db, yt, 50, 'UCchannel')
+
+        # Find the playlist series update and check its totalCount
+        playlist_updates = {k: v for k, v in db._series_updates.items()
+                           if v.get('totalCount', 0) > 0}
+        self.assertTrue(playlist_updates, "No series got a non-zero totalCount update")
+        # The playlist series should show 3 (all lessons belong to it)
+        counts = [v['totalCount'] for v in playlist_updates.values()]
+        self.assertIn(3, counts, f"Expected totalCount=3 for playlist series, got: {counts}")
+
+    def test_כללי_series_totalcount_updated_to_remaining_count(self):
+        """כללי series must also get its totalCount updated to reflect only its remaining lessons."""
+        yt = _make_youtube(
+            playlists=[{'id': 'PL001', 'snippet': {'title': 'פרשת השבוע'}}],
+            playlist_items=[{'snippet': {'resourceId': {'videoId': 'vid1'}}}],
+            channels_uploads='UPabc',
+        )
+        db = self._make_db_with_series_update_tracking(
+            lessons=[
+                {'sourceId': 50, 'videoUrl': 'https://www.youtube.com/watch?v=vid1', 'seriesId': 'old'},  # → playlist
+                {'sourceId': 50, 'videoUrl': 'https://www.youtube.com/watch?v=vid2', 'seriesId': 'old'},  # → כללי
+            ],
+            existing_כללי_id='ser_כללי',
+        )
+        retrofit_channel(db, yt, 50, 'UCchannel')
+
+        # Every series that has lessons must get a totalCount update
+        updated_series = {k for k, v in db._series_updates.items() if 'totalCount' in v}
+        self.assertGreaterEqual(len(updated_series), 2,
+            "Both the playlist series AND כללי series must get totalCount updates")
+
+    def test_dry_run_does_not_update_totalcount(self):
+        yt = _make_youtube(
+            playlists=[{'id': 'PL001', 'snippet': {'title': 'שיעורים'}}],
+            playlist_items=[{'snippet': {'resourceId': {'videoId': 'vid1'}}}],
+            channels_uploads='UPabc',
+        )
+        db = self._make_db_with_series_update_tracking(
+            lessons=[{'sourceId': 50, 'videoUrl': 'https://www.youtube.com/watch?v=vid1', 'seriesId': 'old'}],
+            existing_כללי_id='ser_כללי',
+        )
+        retrofit_channel(db, yt, 50, 'UCchannel', dry_run=True)
+
+        totalcount_updates = [v for v in db._series_updates.values() if 'totalCount' in v]
+        self.assertEqual(totalcount_updates, [],
+            "dry_run must not write totalCount updates")
+
+
 class TestCheckpoint(unittest.TestCase):
 
     def test_save_and_load_roundtrip(self):
