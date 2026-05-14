@@ -243,6 +243,122 @@ def add_labels_for_recent_lessons(source_id: int, category_id: str, label: str):
     })
     logger.info(f"✅ Label '{label}': {len(lesson_ids)} lesson IDs written")
 
+def _should_refresh_playlist_map(source_data, new_videos_found):
+    """
+    Return True if the playlist map needs to be refreshed.
+
+    Refresh when ANY of the following:
+    - new_videos_found: new lessons were added this run
+    - playlistMap is missing (first run)
+    - lastPlaylistScanAt is missing (first run)
+    - more than 7 days have elapsed since lastPlaylistScanAt
+    """
+    if new_videos_found:
+        return True
+    if 'playlistMap' not in source_data:
+        return True
+    last_scan_str = source_data.get('lastPlaylistScanAt')
+    if not last_scan_str:
+        return True
+    try:
+        from datetime import timezone
+        last_scan = datetime.fromisoformat(last_scan_str.replace('Z', '+00:00'))
+        # Make timezone-aware if naive
+        if last_scan.tzinfo is None:
+            last_scan = last_scan.replace(tzinfo=timezone.utc)
+        elapsed = datetime.now(timezone.utc) - last_scan
+        if elapsed.days >= 7:
+            return True
+    except Exception:
+        return True  # unparseable → refresh
+    return False
+
+
+def _get_or_create_series_doc(series_ref, source_id, playlist_id, playlist_title):
+    """
+    Get or create a Firestore series doc for a named playlist.
+    Returns the series doc ID.
+    """
+    original_playlist_id = int(str(get_hash_for_string(playlist_id))[:8])
+    numeric_series_id = get_hash_for_id(source_id, original_playlist_id)
+    series_doc_id = f"ser_{str(numeric_series_id)[:16]}"
+
+    series_doc = series_ref.document(series_doc_id).get()
+    if not series_doc.exists:
+        series_ref.document(series_doc_id).set({
+            'id': numeric_series_id,
+            'originalId': original_playlist_id,
+            'sourceId': source_id,
+            'serie': playlist_title[:80],
+            'totalCount': 0,
+            'createdAt': datetime.now().isoformat(),
+            'updatedAt': datetime.now().isoformat()
+        })
+        logger.info(f"📂 Created series: {playlist_title}")
+    return series_doc_id
+
+
+def _fetch_playlist_map(channel_id, source_id, uploads_playlist_id, series_ref):
+    """
+    Fetch all user-created playlists for the channel and build a
+    {videoId: seriesDocId} map.
+
+    The uploads playlist (auto-generated, whose ID matches uploads_playlist_id)
+    is excluded. Any playlist whose ID starts with 'UU' is also excluded
+    (YouTube's auto-generated uploads playlist naming convention).
+
+    Returns: dict {videoId: series_doc_id}
+    """
+    playlist_map = {}
+
+    # Fetch all playlists for the channel
+    next_page_token = None
+    while True:
+        req_kwargs = dict(part="snippet", channelId=channel_id, maxResults=50)
+        if next_page_token:
+            req_kwargs['pageToken'] = next_page_token
+
+        response = youtube.playlists().list(**req_kwargs).execute()
+        items = response.get('items', [])
+
+        for playlist in items:
+            pl_id = playlist['id']
+            pl_title = playlist['snippet']['title']
+
+            # Exclude the auto-generated uploads playlist
+            if pl_id == uploads_playlist_id:
+                continue
+            # Exclude any playlist with auto-generated 'UU' prefix
+            if pl_id.startswith('UU'):
+                continue
+
+            # Create/get series doc for this playlist
+            series_doc_id = _get_or_create_series_doc(series_ref, source_id, pl_id, pl_title)
+
+            # Fetch all video IDs in this playlist
+            items_page_token = None
+            while True:
+                items_kwargs = dict(part="snippet", playlistId=pl_id, maxResults=50)
+                if items_page_token:
+                    items_kwargs['pageToken'] = items_page_token
+
+                items_response = youtube.playlistItems().list(**items_kwargs).execute()
+                for item in items_response.get('items', []):
+                    video_id = item['snippet']['resourceId']['videoId']
+                    playlist_map[video_id] = series_doc_id  # last one wins
+
+                items_page_token = items_response.get('nextPageToken')
+                if not items_page_token:
+                    break
+
+        next_page_token = response.get('nextPageToken')
+        if not next_page_token:
+            break
+
+    logger.info(f"📋 Built playlist map: {len(playlist_map)} video→series entries")
+    return playlist_map
+
+
 def process_channel_videos(channel_id, source_id, category, label,
                            exists_lesson_ids, new_lesson_ids,
                            categories_affected, series_affected,
@@ -264,32 +380,27 @@ def process_channel_videos(channel_id, source_id, category, label,
 
         uploads_playlist_id = channel_response['items'][0]['contentDetails']['relatedPlaylists']['uploads']
 
-        # Create series entry for uploads playlist
         series_ref = firestore_db.db.collection(f'{firestore_db.collection_prefix}series')
-        original_playlist_id = int(str(get_hash_for_string(uploads_playlist_id))[:8])
-        numeric_series_id = get_hash_for_id(source_id, original_playlist_id)
-        series_doc_id = f"ser_{str(numeric_series_id)[:16]}"
-        series_title = "כללי"
 
-        series_doc = series_ref.document(series_doc_id).get()
-        if not series_doc.exists:
-            series_ref.document(series_doc_id).set({
-                'id': numeric_series_id,
-                'originalId': original_playlist_id,
-                'sourceId': source_id,
-                'serie': series_title[:80],
-                'totalCount': 0,
-                'createdAt': datetime.now().isoformat(),
-                'updatedAt': datetime.now().isoformat()
-            })
-            logger.info(f"📂 Created series: {series_title}")
+        # Always ensure the כללי (fallback) series exists
+        כללי_series_doc_id = _get_or_create_series_doc(
+            series_ref, source_id, uploads_playlist_id, "כללי"
+        )
 
+        # Load current source data to check playlist map cache
+        source_data = source_doc_ref.get().to_dict() or {}
+
+        # Phase 1: collect all new videos first (before deciding on playlist refresh)
+        # We need to know if new_videos_found to decide whether to refresh.
+        # So we do a two-pass approach:
+        #   Pass 1 — collect raw video items from uploads playlist (no writes yet)
+        #   Decide refresh
+        #   Fetch playlist map if needed
+        #   Pass 2 — write lessons with correct seriesId
+
+        raw_videos = []  # list of (video_id, snippet, content_details) for new videos only
         next_page_token = ""
-        videos_processed = 0
-        lessons_ref = firestore_db.db.collection(f'{firestore_db.collection_prefix}lessons')
 
-        # YouTube returns videos newest-first. Stop when a full page is all already-seen —
-        # that means we've caught up to previously scraped content.
         while True:
             playlist_request = youtube.playlistItems().list(
                 part="snippet",
@@ -299,76 +410,35 @@ def process_channel_videos(channel_id, source_id, category, label,
             )
             playlist_response = playlist_request.execute()
 
-            video_ids = [item['snippet']['resourceId']['videoId'] for item in playlist_response['items']]
+            video_ids_in_page = [
+                item['snippet']['resourceId']['videoId']
+                for item in playlist_response['items']
+            ]
 
-            if not video_ids:
+            if not video_ids_in_page:
                 break
 
-            # Get video details
+            # Fetch video details
             videos_request = youtube.videos().list(
                 part="snippet,contentDetails",
-                id=','.join(video_ids)
+                id=','.join(video_ids_in_page)
             )
             videos_response = videos_request.execute()
 
             new_in_page = 0
             for video in videos_response['items']:
                 video_id = video['id']
-                snippet = video['snippet']
-                content_details = video['contentDetails']
-
-                # Create lesson ID
                 original_video_id = get_hash_for_string(video_id)
                 lesson_id = get_hash_for_id(source_id, original_video_id)
 
-                # Skip if already exists (O(1) lookup in set)
                 if lesson_id in exists_lesson_ids:
                     continue
 
-                # Parse publish date
-                published_at = snippet.get('publishedAt', '')
-                try:
-                    publish_date = datetime.fromisoformat(published_at.replace('Z', '+00:00'))
-                    timestamp = int(publish_date.timestamp())
-                    date_str = publish_date.strftime('%Y-%m-%d')
-                except Exception:
-                    timestamp = get_timestamp()
-                    date_str = datetime.now().strftime('%Y-%m-%d')
-
-                # Parse duration
-                duration_iso = content_details.get('duration', 'PT0S')
-                duration_seconds = get_iso_duration_in_seconds(duration_iso)
-
-                lesson_data = {
-                    "id": lesson_id,
-                    "sourceId": source_id,
-                    "originalId": original_video_id,
-                    "title": snippet.get('title', ''),
-                    "categoryId": category_doc_id,
-                    "seriesId": series_doc_id,
-                    "ravId": None,  # YouTube videos don't have rabbi info
-                    "videoUrl": youtube_base_url % video_id,
-                    "audioUrl": None,
-                    "dateStr": date_str,
-                    "duration": duration_seconds,
-                    "timestamp": timestamp,
-                    "createdAt": datetime.now().isoformat(),
-                    "updatedAt": datetime.now().isoformat()
-                }
-
-                lessons_ref.document(str(lesson_id)).set(lesson_data)
-                print(f"  ➕ NEW: [{source_id}] {snippet.get('title', '')[:60]} | {date_str} | {duration_seconds}s | {youtube_base_url % video_id}", flush=True)
-
-                new_lesson_ids.append(lesson_id)
-                exists_lesson_ids.add(lesson_id)
-                categories_affected[category_doc_id] += 1
-                series_affected[series_doc_id] += 1
+                raw_videos.append((video_id, video['snippet'], video['contentDetails'], lesson_id, original_video_id))
                 new_in_page += 1
 
-            videos_processed += len(video_ids)
-            logger.info(f"📊 Processed {videos_processed} videos so far, +{new_in_page} new this page")
+            logger.info(f"📊 Scanned page: {new_in_page} new videos")
 
-            # All videos in this page already existed → we've caught up, stop paginating
             if new_in_page == 0:
                 logger.info("🏁 Full page already seen, stopping pagination")
                 break
@@ -377,7 +447,70 @@ def process_channel_videos(channel_id, source_id, category, label,
             if not next_page_token:
                 break
 
-        logger.info(f"✅ Finished processing {videos_processed} videos, added {len(new_lesson_ids)} new lessons")
+        new_videos_found = len(raw_videos) > 0
+
+        # Decide whether to refresh the playlist map
+        if _should_refresh_playlist_map(source_data, new_videos_found):
+            logger.info("🔄 Refreshing playlist map from YouTube API")
+            playlist_map = _fetch_playlist_map(
+                channel_id, source_id, uploads_playlist_id, series_ref
+            )
+            # Persist updated map to source doc
+            source_doc_ref.update({
+                'playlistMap': playlist_map,
+                'lastPlaylistScanAt': datetime.now().isoformat(),
+            })
+        else:
+            playlist_map = source_data.get('playlistMap', {})
+            logger.info(f"✅ Using cached playlist map ({len(playlist_map)} entries)")
+
+        # Write new lessons with correct seriesId
+        lessons_ref = firestore_db.db.collection(f'{firestore_db.collection_prefix}lessons')
+
+        for video_id, snippet, content_details, lesson_id, original_video_id in raw_videos:
+            # Determine seriesId: use playlist map, fallback to כללי
+            series_doc_id = playlist_map.get(video_id, כללי_series_doc_id)
+
+            # Parse publish date
+            published_at = snippet.get('publishedAt', '')
+            try:
+                publish_date = datetime.fromisoformat(published_at.replace('Z', '+00:00'))
+                timestamp = int(publish_date.timestamp())
+                date_str = publish_date.strftime('%Y-%m-%d')
+            except Exception:
+                timestamp = get_timestamp()
+                date_str = datetime.now().strftime('%Y-%m-%d')
+
+            # Parse duration
+            duration_iso = content_details.get('duration', 'PT0S')
+            duration_seconds = get_iso_duration_in_seconds(duration_iso)
+
+            lesson_data = {
+                "id": lesson_id,
+                "sourceId": source_id,
+                "originalId": original_video_id,
+                "title": snippet.get('title', ''),
+                "categoryId": category_doc_id,
+                "seriesId": series_doc_id,
+                "ravId": None,  # YouTube videos don't have rabbi info
+                "videoUrl": youtube_base_url % video_id,
+                "audioUrl": None,
+                "dateStr": date_str,
+                "duration": duration_seconds,
+                "timestamp": timestamp,
+                "createdAt": datetime.now().isoformat(),
+                "updatedAt": datetime.now().isoformat()
+            }
+
+            lessons_ref.document(str(lesson_id)).set(lesson_data)
+            print(f"  ➕ NEW: [{source_id}] {snippet.get('title', '')[:60]} | {date_str} | {duration_seconds}s | {youtube_base_url % video_id}", flush=True)
+
+            new_lesson_ids.append(lesson_id)
+            exists_lesson_ids.add(lesson_id)
+            categories_affected[category_doc_id] += 1
+            series_affected[series_doc_id] += 1
+
+        logger.info(f"✅ Finished processing, added {len(new_lesson_ids)} new lessons")
         return {'lessons_added': len(new_lesson_ids)}
 
     except Exception as e:
