@@ -37,7 +37,7 @@ FIRESTORE_BATCH_SIZE = 400  # stay well under 500 limit
 
 CHANNELS = [
     {"source_id": 50, "channel_id": "UCeDrtyuUbMLB_z6razI33dQ"},
-    {"source_id": 51, "channel_id": "UCBN2YMjFoJHX1qlpEcra49w"},
+    {"source_id": 51, "channel_id": "UCBN2YMjFoJHX1qlpEcra29w"},
     {"source_id": 52, "channel_id": "UCMSm6HR03oQ7HfgOhtumEhQ"},
     {"source_id": 60, "channel_id": "UCS6OvEopzPGEEwYbAG4ismA"},
     {"source_id": 61, "channel_id": "UCAcP4Dx-c66fPD5fYcYF0PQ"},
