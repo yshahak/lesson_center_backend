@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
 """
-Remove duplicate YouTube lessons created by the ID-scheme mismatch bug (May 13 2026).
+Remove duplicate YouTube lessons created by ID-scheme mismatches.
 
 Background:
-  The PostgreSQL migration seeded YouTube lessons (sources 50-74) with Firestore
-  doc IDs derived from pg_lessons.id. When the Cloud Function scraper ran for the
-  first time, source docs had empty 'lessonIds' arrays, so the scraper treated every
-  video as new and created a second doc per video using hash-based IDs. Result:
-  ~42K duplicate lessons across 18 channels.
+  Multiple historical scraper/migration runs created multiple Firestore docs for the
+  same YouTube video under different doc ID schemes:
+  - PostgreSQL migration: doc_id = pg_lessons.id (bigint)
+  - Aug 2024 scraper: doc_id = get_hash_for_id(source_id, get_hash_for_string(video_id))
+  - May 2026 scraper: same hash function, same IDs as Aug 2024 (overwrites correctly)
 
-How we identify old (migration-era) docs:
-  - sourceId in [50, 51, 52, 60-74]
-  - No 'createdAt' field (migration never set it; scraper always sets it)
+  BUT the migration and Aug 2024 scraper used DIFFERENT source_id values for some
+  channels, producing different hash outputs → multiple docs per video.
 
-Safety check (never delete unless a new doc exists for the same video):
-  For every candidate old doc, verify a NEW doc exists with the same sourceId+videoUrl
-  before deleting. If no new doc found, the old doc is kept (it's the only copy).
+The only authoritative doc for each video is the one whose doc ID equals
+get_hash_for_id(source_id, get_hash_for_string(video_id)) — the deterministic
+hash the current scraper uses. Any doc with a different ID for the same videoUrl
+is a stale duplicate and can be safely deleted.
+
+Safety: never delete a doc unless a correctly-hashed doc exists for the same video.
 
 Usage:
     cd lesson_center_backend
@@ -28,6 +30,7 @@ import argparse
 import logging
 import os
 import sys
+from urllib.parse import urlparse, parse_qs
 from datetime import datetime
 
 import firebase_admin
@@ -36,8 +39,27 @@ from firebase_admin import firestore
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 logger = logging.getLogger(__name__)
 
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'functions'))
+from utils.firestore_helper import get_hash_for_id, get_hash_for_string
+
 YOUTUBE_SOURCE_IDS = [50, 51, 52, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74]
 BATCH_SIZE = 400
+
+
+def canonical_doc_id(source_id: int, video_url: str) -> str:
+    """
+    Compute the canonical Firestore doc ID for a YouTube lesson.
+    This is the deterministic hash the current scraper uses.
+    Any doc with a different ID for the same videoUrl is a stale duplicate.
+    """
+    params = parse_qs(urlparse(video_url).query)
+    ids = params.get('v', [])
+    if not ids:
+        return None
+    video_id = ids[0]
+    original_video_id = get_hash_for_string(video_id)
+    lesson_id = get_hash_for_id(source_id, original_video_id)
+    return str(lesson_id)
 
 
 def is_old_format(data: dict) -> bool:
@@ -46,30 +68,35 @@ def is_old_format(data: dict) -> bool:
 
 
 def find_new_doc_for_url(db, source_id: int, video_url: str, old_doc_id: str) -> bool:
-    """Return True if a NEW doc (with createdAt) exists for this sourceId+videoUrl,
-    different from the old doc itself."""
-    docs = list(
-        db.collection('lessons')
-        .where('sourceId', '==', source_id)
-        .where('videoUrl', '==', video_url)
-        .stream()
-    )
-    for doc in docs:
-        if doc.id == old_doc_id:
-            continue
-        if doc.to_dict().get('createdAt'):
-            return True
-    return False
+    """Return True if the canonical doc exists for this videoUrl (different from old_doc_id)."""
+    canon_id = canonical_doc_id(source_id, video_url)
+    if not canon_id or canon_id == old_doc_id:
+        return False
+    # Check if canonical doc actually exists in Firestore
+    doc = db.collection('lessons').document(canon_id).get()
+    return doc.exists
+
+
+def get_authoritative_lesson_ids(db, source_id: int) -> set:
+    """Kept for backwards compatibility with tests."""
+    source_query = db.collection('sources').where('originalId', '==', source_id).limit(1).get()
+    if not source_query:
+        return set()
+    return set(str(lid) for lid in source_query[0].to_dict().get('lessonIds', []))
 
 
 def cleanup_source(db, source_id: int, dry_run: bool = False):
     """
-    Delete old-format duplicate docs for one source.
-    Returns stats dict.
-    """
-    logger.info(f"🔍 Scanning source {source_id} for old-format duplicates")
+    Delete stale duplicate docs for one YouTube source.
 
-    stats = {'deleted': 0, 'kept_no_new_doc': 0, 'skipped_new_format': 0, 'errors': 0}
+    For each lesson, compute the canonical doc ID from the videoUrl hash.
+    - If this doc's ID == canonical ID → it's the correct doc, keep it.
+    - If this doc's ID != canonical ID → it's a stale duplicate.
+      Only delete if the canonical doc actually exists (safety check).
+    """
+    logger.info(f"🔍 Scanning source {source_id} for stale duplicates")
+
+    stats = {'deleted': 0, 'kept_no_new_doc': 0, 'skipped_authoritative': 0, 'errors': 0}
     batch = db.batch()
     batch_count = 0
     last_doc = None
@@ -86,20 +113,26 @@ def cleanup_source(db, source_id: int, dry_run: bool = False):
         for doc in docs:
             try:
                 data = doc.to_dict()
-
-                if not is_old_format(data):
-                    stats['skipped_new_format'] += 1
-                    continue
-
                 video_url = data.get('videoUrl', '')
+
                 if not video_url or 'youtube.com' not in video_url:
-                    # Non-YouTube lesson without createdAt — don't touch
-                    stats['skipped_new_format'] += 1
+                    stats['skipped_authoritative'] += 1
                     continue
 
-                # Safety: only delete if a new-format doc exists for same video
+                canon_id = canonical_doc_id(source_id, video_url)
+                if not canon_id:
+                    stats['skipped_authoritative'] += 1
+                    continue
+
+                # This doc IS the canonical one → keep
+                if str(doc.id) == canon_id:
+                    stats['skipped_authoritative'] += 1
+                    continue
+
+                # This doc is NOT canonical → stale duplicate.
+                # Safety: only delete if the canonical doc actually exists.
                 if not find_new_doc_for_url(db, source_id, video_url, doc.id):
-                    logger.debug(f"  ⚠️ No new doc found for {doc.id} ({video_url[:60]}) — keeping")
+                    logger.debug(f"  ⚠️ No canonical doc for {doc.id} ({video_url[:60]}) — keeping")
                     stats['kept_no_new_doc'] += 1
                     continue
 
@@ -128,7 +161,7 @@ def cleanup_source(db, source_id: int, dry_run: bool = False):
         f"  {prefix}✅ source {source_id}: "
         f"deleted={stats['deleted']} "
         f"kept_no_new_doc={stats['kept_no_new_doc']} "
-        f"skipped_new_format={stats['skipped_new_format']} "
+        f"skipped_authoritative={stats['skipped_authoritative']} "
         f"errors={stats['errors']}"
     )
     return stats
@@ -155,7 +188,7 @@ def main():
             sys.exit(1)
         sources = [args.source]
 
-    total = {'deleted': 0, 'kept_no_new_doc': 0, 'errors': 0}
+    total = {'deleted': 0, 'kept_no_new_doc': 0, 'skipped_authoritative': 0, 'errors': 0}
     for source_id in sources:
         stats = cleanup_source(db, source_id, dry_run=args.dry_run)
         for k in total:
