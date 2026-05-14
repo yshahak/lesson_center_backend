@@ -1057,3 +1057,32 @@ account required), so it cannot be banned without affecting all yt-dlp users.
 Embedding `https://player.vimeo.com/video/VIDEO_ID` in a `webview_flutter` WebView.
 Not needed given Rank 1 and 2 work. Adds WebView dependency, breaks native UI, makes seek/fullscreen
 controls harder to implement. Do not use.
+
+---
+
+## 10. Final Approved Implementation Decisions (May 14, 2026)
+
+### New Firestore fields
+
+| Field | Type | Source | Notes |
+|---|---|---|---|
+| `streamAudioFileId` | string? | HTML `<source>` tag file_id param | NOT the full URL — Flutter constructs it |
+| `vimeoId` | string? | HTML iframe Vimeo ID | Flutter resolves via Cloud Function proxy |
+| `scrapeSource` | array | Scraper | `['new_site']` for new, `ArrayUnion(['new_site'])` for existing |
+
+### Fields never touched by new scraper
+- `audioUrl` — kept as-is (media-line or other existing URLs)
+- `videoUrl` — kept as-is (media-line MP4 or other existing URLs)
+
+### Flutter playback priority
+- **Video**: `videoUrl` first (direct, zero overhead) → `vimeoId` → Cloud Function proxy
+- **Audio**: `streamAudioFileId` → construct stream_audio URL → `audioUrl` fallback
+
+### Upsert logic
+- **Existing lesson** (found by sourceId=1 + originalId): UPDATE `streamAudioFileId`, `vimeoId`, `scrapeSource` (ArrayUnion), taxonomy refs only if currently null in Firestore
+- **New lesson**: CREATE full doc with `audioUrl=null`, `videoUrl=null`
+
+### scrapeSource values
+- `'old_site'` — scraped from old bneidavid.org/Web/He/VirtualTorah/
+- `'youtube'` — from Bnei David YouTube channel
+- `'new_site'` — from new bneidavid.org WordPress site
