@@ -22,6 +22,8 @@ from datetime import datetime, timezone
 from html import unescape
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from google.cloud.firestore import ArrayUnion
 
 logger = logging.getLogger(__name__)
@@ -55,10 +57,27 @@ _REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__f
 _RAV_MAP_PATH = os.path.join(_REPO_ROOT, "data", "bnei_david_ravs_mapping.json")
 _SERIES_MAP_PATH = os.path.join(_REPO_ROOT, "data", "bnei_david_series_mapping.json")
 
-# Rate limits (seconds)
-_PAGE_SLEEP = 0.1
-_LESSON_SLEEP = 0.15
-_VIMEO_SLEEP = 0.1
+# Rate limits (seconds) — increased to be polite to bneidavid.org
+_PAGE_SLEEP = 0.5
+_LESSON_SLEEP = 0.5
+_VIMEO_SLEEP = 0.2
+
+# HTTP session with retry/backoff — bneidavid.org times out under load
+def _make_session() -> requests.Session:
+    session = requests.Session()
+    retry = Retry(
+        total=4,
+        backoff_factor=1.5,       # waits: 1.5s, 3s, 6s, 12s
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=["GET"],
+        raise_on_status=False,
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    return session
+
+_session = _make_session()
 
 # ---------------------------------------------------------------------------
 # Taxonomy maps (populated at startup)
@@ -177,7 +196,7 @@ def _build_audio_url(file_id: str) -> str:
 def _get_vimeo_duration(vimeo_id: str) -> int:
     """Fetch duration (seconds) from Vimeo oEmbed API. Returns 0 on failure."""
     try:
-        r = requests.get(
+        r = _session.get(
             f"https://vimeo.com/api/oembed.json?url=https://vimeo.com/{vimeo_id}",
             timeout=10,
         )
@@ -275,7 +294,7 @@ def _get_category_firestore_id(
             return _category_map[wp_subject_id]
         # Fetch the WP subject term to get its name
         try:
-            r = requests.get(
+            r = _session.get(
                 f"{BASE_URL}/subject/{wp_subject_id}",
                 timeout=10,
             )
@@ -478,7 +497,7 @@ def scrape_bnei_david(collection_prefix="", dry_run=False, max_pages=None):
 
         params["page"] = page
         try:
-            response = requests.get(LESSONS_ENDPOINT, params=params, timeout=20)
+            response = _session.get(LESSONS_ENDPOINT, params=params, timeout=45)
             response.raise_for_status()
         except Exception as e:
             logger.error(f"Failed to fetch page {page}: {e}")
@@ -530,7 +549,7 @@ def scrape_bnei_david(collection_prefix="", dry_run=False, max_pages=None):
             duration = 0
 
             try:
-                html_response = requests.get(lesson_url, timeout=20)
+                html_response = _session.get(lesson_url, timeout=45)
                 html = html_response.text
 
                 audio_file_id = _extract_audio_file_id(html)
