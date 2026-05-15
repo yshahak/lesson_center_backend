@@ -1,0 +1,545 @@
+source_id,channel,playlist_title,playlist_id,series_doc_id,youtube_count,firestore_count,gap
+50,הסדר חיפה,בניין הנפש | הרב יוסי קורט,PL-OGaafHhzgLqLGTKl_NycbxzmOuCNmHI,ser_8191470023773301,18,7,11
+50,הסדר חיפה,הרב אליהו זייני | הר הבית ובית המקדש,PL-OGaafHhzgIB1g8vB0E3JA_w5Wam0pqG,ser_6183796889054840,6,0,6
+50,הסדר חיפה,הרב אליהו זייניי | חגים ומועדים,PL-OGaafHhzgKAj1xzP6c-_JyiqJSHwd10,ser_5073706150987766,14,3,11
+50,הסדר חיפה,הרב אליהו זייני | הושענא רבה,PL-OGaafHhzgKD3-RSJ7Z6G0SziCWokERw,ser_3893611877477232,12,4,8
+50,הסדר חיפה,הרב אליהו זייני | שיחות ליום העצמאות,PL-OGaafHhzgLW_DQsxoiUtsmqsjxQU-zh,ser_7968834515109210,13,6,7
+50,הסדר חיפה,הרב אליהו זייני | ראיונות,PL-OGaafHhzgIZn9CPWtZMtDqOhCTVxs1o,ser_2544699497501231,58,6,52
+50,הסדר חיפה,הרב אליהו זייני | כל השיעורים,PL-OGaafHhzgKufFl1Z2raaBKs2hynahAM,ser_4543432032550969,85,41,44
+51,ישיבת המאירי,פרשת השבוע,PLuoHzqL_kXlev1s8T8UkjZ7-hPd2kSbOW,ser_2616178773228876,59,1,58
+51,ישיבת המאירי,חגי ישראל,PLuoHzqL_kXlepXF1pLA3rCrkeaKTmpdUD,ser_7293862379527712,33,4,29
+51,ישיבת המאירי,"הרב שמואל זעפרני זצ""ל",PLuoHzqL_kXlexhSGcXQ_GIRQIafdvU_Y-,ser_6286221033074484,93,77,16
+51,ישיבת המאירי,"הרב איסר קלונסקי שליט""א - אורות הקודש",PLuoHzqL_kXlcj3AN-imnfr0_HTTK6xqQo,ser_2081141652051230,64,40,24
+51,ישיבת המאירי,"הרב עדיאל אסייג שליט""א",PLuoHzqL_kXld6CX1QW7lyN_Z4k6F36A_5,ser_7206893582367110,92,85,7
+52,הסדר טפחות,מועדים | פסח,PL3oLF48e1rcUUnWe1syg7mys1B5QNRtTs,ser_9211488803848028,23,0,23
+52,הסדר טפחות,אישים | הרב אייל גריינר,PL3oLF48e1rcVTCvwPxwCsa_gBLsYkUyce,ser_7145083124341555,36,15,21
+52,הסדר טפחות,פנימיות | הרב אבנר עובדיה,PL3oLF48e1rcVC9v57DYt_M24RsY8gxlRR,ser_9780246422895807,106,25,81
+52,הסדר טפחות,"לימוד באורח חיים, ללומדי רבנות | הרב אייל גריינר",PL3oLF48e1rcU5W_HpVwK-mFu7zLbNbfD9,ser_5133524746418398,30,0,30
+52,הסדר טפחות,"דקותיים לפרשה | הרב אייל גריינר | התשפ""ב",PL3oLF48e1rcWq2vBhSJnNelboj7ep-W4W,ser_2517764857330476,66,29,37
+52,הסדר טפחות,הלכות כשרות - בין בשר לחלב | הרב אייל גריינר,PL3oLF48e1rcXRXLwSE3DcxIWZAgoJOUa4,ser_5420066171796102,18,12,6
+52,הסדר טפחות,דקותיים לשבת | הרב אייל גריינר,PL3oLF48e1rcUZXlFjohD415LhPTzrfn_2,ser_1176804226978377,56,44,12
+60,מעלה אדומים,פרשת כי תשא,PLTpvRg1R6379uVoxevvHQsXTZCSmhQWW0,ser_2923617941825764,15,1,14
+60,מעלה אדומים,פרשת ויגש,PLTpvRg1R637_4mMMWmOGVerpUNV9xkbui,ser_3450845193446613,21,0,21
+60,מעלה אדומים,שירי ישיבת ברכת משה,PLTpvRg1R637-6pRPzbrlEUNWPkFKvk-PQ,ser_6981946044366833,19,4,15
+60,מעלה אדומים,"לקראת שבת (תשפ""ו) - רה""י הרב חיים סבתו",PLTpvRg1R637-JJV38owmEadleCbvo__QX,ser_6920912035120568,30,4,26
+60,מעלה אדומים,פרשת האזינו,PLTpvRg1R6378yZZgSsSd3QC8LGn0QJupb,ser_3324547843604911,10,3,7
+60,מעלה אדומים,פרשת וילך,PLTpvRg1R6378hwpndka3Ozcsh0Ea8mhzr,ser_9055780957373010,13,2,11
+60,מעלה אדומים,פרשת נצבים,PLTpvRg1R637839wfXDlRIWJxughbWoR6j,ser_6841276110413206,14,1,13
+60,מעלה אדומים,פרשת כי תבוא,PLTpvRg1R6379_jwak_CBuywDVuFhL7A2u,ser_2696301638789717,14,1,13
+60,מעלה אדומים,פרשת כי תצא,PLTpvRg1R6378R4RA0sW51m9VWgP2sUwFD,ser_1406195068228024,15,1,14
+60,מעלה אדומים,פרשת שופטים,PLTpvRg1R6379Ofmn7jEBOWSNvasBbQ-IG,ser_6596161709519119,13,1,12
+60,מעלה אדומים,פרשת ראה,PLTpvRg1R637_zLOEfCemQAGaEDtLVS04C,ser_1756941354637703,11,1,10
+60,מעלה אדומים,פרשת עקב,PLTpvRg1R6378_tsAynmpZ9S4h4QequSIx,ser_4544164186391133,11,1,10
+60,מעלה אדומים,פרשת ואתחנן,PLTpvRg1R637_RB29XEHViF9qlnSwD_UbP,ser_8551669137223635,13,0,13
+60,מעלה אדומים,פרשת דברים,PLTpvRg1R63791ngg7m-oL2re3SEAaL2aT,ser_4183574044891295,15,0,15
+60,מעלה אדומים,תקראו אותם - תשעה באב,PLTpvRg1R637-tB2UrMUyaAE3KJ3tXJEaZ,ser_5324988270012831,14,5,9
+60,מעלה אדומים,פרשת מסעי,PLTpvRg1R637-oUM0NeE4ojBaBpIfdfZhE,ser_4483523293849391,18,1,17
+60,מעלה אדומים,פרשת מטות,PLTpvRg1R6378bZyvOO-at6xMKJWoUWu_1,ser_6159350938005068,19,4,15
+60,מעלה אדומים,פרשת פִּינְחָס,PLTpvRg1R637-K1C-J-ZCRJ2Vvd0lUVSpA,ser_9944325910872890,18,2,16
+60,מעלה אדומים,פרשת בלק,PLTpvRg1R6378rriyamxNLtrJRH0kUVBvZ,ser_7099177919791020,19,0,19
+60,מעלה אדומים,פרשת חקת,PLTpvRg1R637-zy7WP7KNVPrObWh1kcJWf,ser_6579260330062788,18,1,17
+60,מעלה אדומים,פרשת קרח,PLTpvRg1R637_pntkGcjCWnRkEUdWrvf3b,ser_9883884652641619,18,0,18
+60,מעלה אדומים,פרשת שלח,PLTpvRg1R637-srTxYoMZXW-OTKWhPoxxI,ser_4043454382400247,19,1,18
+60,מעלה אדומים,פרשת בהעלותך,PLTpvRg1R6378l_dUyQoYUhrswMhsjO41A,ser_5965042194228660,18,1,17
+60,מעלה אדומים,פרשת נשא,PLTpvRg1R637_qXstCf5Hg2EgvPvru9Qbd,ser_1110463091984560,18,2,16
+60,מעלה אדומים,פרשת במדבר,PLTpvRg1R637-Ii3rMXQRhPQrRoQjPuE4Q,ser_1346238371173412,17,1,16
+60,מעלה אדומים,פרשת בחוקותי,PLTpvRg1R6378DUROYCPX-JfRUTagbZivk,ser_6604105938564318,15,1,14
+60,מעלה אדומים,פרשת בהר,PLTpvRg1R637-liU4VvaRvkEg09lj5RVZu,ser_2173600946195626,16,1,15
+60,מעלה אדומים,פרשת אמור,PLTpvRg1R63787aTn9klbsbgKEevfucmG0,ser_5640539630545421,16,1,15
+60,מעלה אדומים,פרשת קדושים,PLTpvRg1R637_lFg2p_o23jjMX-B6A0OEM,ser_7685201913769268,10,0,10
+60,מעלה אדומים,פרשת אחרי מות,PLTpvRg1R637-MQ5fJHwgjMB-atbl5UHK-,ser_9992470283813975,16,1,15
+60,מעלה אדומים,פרשת מצורע,PLTpvRg1R6379pxaluwLe0mOpW5ACUVgIU,ser_4768781993092858,13,0,13
+60,מעלה אדומים,פרשת תזריע,PLTpvRg1R637-ByFYePOI96OCIF4jSNBaR,ser_2253535022793813,15,1,14
+60,מעלה אדומים,פרשת שמיני,PLTpvRg1R637-_vVnBOXqZAAeioO4YrbG8,ser_7380432022169981,14,2,12
+60,מעלה אדומים,פרשת צו,PLTpvRg1R637-gpYzMUb9JEpHrll-2JQQk,ser_5117913864577221,11,2,9
+60,מעלה אדומים,פרשת ויקרא,PLTpvRg1R6378JerqsDHNIA-v8cgw9HqG3,ser_7345579094225600,14,1,13
+60,מעלה אדומים,פרשת ויקהל,PLTpvRg1R637_s-L8izcEgJ4yDHf5HBe1G,ser_3320010977981355,14,1,13
+60,מעלה אדומים,פרשת תצוה,PLTpvRg1R637_uZzVssJmkM4Cgc9tb-5jj,ser_6433595008620108,13,0,13
+60,מעלה אדומים,פרשת תרומה,PLTpvRg1R637_0LvCqfSaxsvl2yi5W4a-z,ser_3517237212745280,19,2,17
+60,מעלה אדומים,פרשת משפטים,PLTpvRg1R637_4l33Q3l0eV8eTm8vKjWp3,ser_8312121835590610,19,1,18
+60,מעלה אדומים,פרשת יתרו,PLTpvRg1R6379V2y3PeeASLXQDkp-doPFp,ser_6472747597794979,21,1,20
+60,מעלה אדומים,פרשת בשלח,PLTpvRg1R6379SOb9tWPD2oJqIImsNXDkm,ser_2994069413025502,19,2,17
+60,מעלה אדומים,פרשת בא,PLTpvRg1R6379o_gU_Elj4B0Q6IawyzQPO,ser_3905656485085033,17,1,16
+60,מעלה אדומים,פרשת וארא,PLTpvRg1R637_AET_pZ1XKnIMjSJpDjW5v,ser_5611533879634863,19,2,17
+60,מעלה אדומים,פרשת שמות,PLTpvRg1R6378bp-V5TfweepIxx9aTAPgV,ser_5641482427587404,19,1,18
+60,מעלה אדומים,פרשת ויחי,PLTpvRg1R6379PcWKxikMHTNLNtm8I-p-b,ser_3934010446560194,17,1,16
+60,מעלה אדומים,פרשת וישב,PLTpvRg1R6379OEKdMLErac2_4QJutMO1C,ser_9049895828520436,17,2,15
+60,מעלה אדומים,פרשת וישלח,PLTpvRg1R637_LInKD8JoLtNu8stytRm69,ser_1035361392483796,23,1,22
+60,מעלה אדומים,פרשת ויצא,PLTpvRg1R63791hR6cUWCrN9vOGy1TIXWz,ser_1439211204607282,22,1,21
+60,מעלה אדומים,פרשת תולדות,PLTpvRg1R637-KgowR9s4WEmwGE5Mxhayl,ser_4238098711433168,19,1,18
+60,מעלה אדומים,פרשת חיי שרה,PLTpvRg1R637-08zz8gmZ5uIRE_kiVIVMc,ser_6699381795855086,16,1,15
+60,מעלה אדומים,פרשת וירא,PLTpvRg1R6379GOcXTrQxf25DbE9rpr3cA,ser_1563032040779542,20,1,19
+60,מעלה אדומים,פרשת לך לך,PLTpvRg1R63788jrRTPAhuQsJ-k5nGwZw-,ser_3273614082151530,24,5,19
+60,מעלה אדומים,פרשת נח,PLTpvRg1R637-j_so0YhN-1k8bf9wp1uRT,ser_9998431130664329,15,4,11
+60,מעלה אדומים,פרשת בראשית,PLTpvRg1R637-STkHVUALVNQt_mkX8CkVR,ser_1582507653072263,10,1,9
+60,מעלה אדומים,"הרמב""ם היומי (יד) - ספר שופטים | הרב חיים סבתו",PLTpvRg1R637-2JcKm8qD3temkxTukIW93,ser_2425203966762712,78,0,78
+60,מעלה אדומים,"הרמב""ם היומי (יג) - ספר משפטים | הרב חיים סבתו",PLTpvRg1R637-RYrRDO0e7ft1Ks0IfIkff,ser_9101454523994742,72,0,72
+60,מעלה אדומים,"הרמב""ם היומי (יב) - ספר קנין | הרב חיים סבתו",PLTpvRg1R637_fzTaQIpLmr8bHTIGVo8ku,ser_2570751207114138,69,0,69
+60,מעלה אדומים,"הרמב""ם היומי (יא) - ספר נזקים | הרב חיים סבתו",PLTpvRg1R637_gXkh1HlQgutNKX0OqtXMc,ser_2111091904009069,59,0,59
+60,מעלה אדומים,"הרמב""ם היומי (י) - ספר טהרה | הרב חיים סבתו",PLTpvRg1R637_NZL5wxgIkrSHT1_hDQ1a9,ser_6909970520205941,137,0,137
+60,מעלה אדומים,"הרמב""ם היומי (ט) - ספר הקרבנות | הרב חיים סבתו",PLTpvRg1R6379F2LxG8tEsjy7tIz1Lcga0,ser_3670264970949200,44,0,44
+60,מעלה אדומים,"הרמב""ם היומי (ח) - ספר עבודה | הרב חיים סבתו",PLTpvRg1R637-WN80UrxDG_Lb-FcGoEiPl,ser_2525282541689494,93,0,93
+60,מעלה אדומים,"הרמב""ם היומי (ז) - ספר זרעים | הרב חיים סבתו",PLTpvRg1R6378Ml_WIVNRV5Yocr9u1nmvk,ser_8435528378901358,84,0,84
+60,מעלה אדומים,"הרמב""ם היומי (ו) - ספר הפלאה | הרב חיים סבתו",PLTpvRg1R6378OokaH99Zj2cNA5RrUQbLi,ser_3947091673570414,42,0,42
+60,מעלה אדומים,"הרמב""ם היומי (ד) - ספר נשים | הרב חיים סבתו",PLTpvRg1R637_sZWWr-_iEW0097ySYjiAt,ser_6110885803883746,53,0,53
+60,מעלה אדומים,תקראו אותם - חנוכה,PLTpvRg1R6378elV3BkYxZQotn9ObpJ2Vz,ser_6796761126570453,15,9,6
+60,מעלה אדומים,"הרמב""ם היומי (ג) - ספר זמנים | הרב חיים סבתו",PLTpvRg1R6378nWm1FQrCGz0AYsYdLbpNv,ser_7891312508315187,96,0,96
+60,מעלה אדומים,"הרמב""ם היומי (ב) - ספר אהבה | הרב חיים סבתו",PLTpvRg1R6378RU2iDgnYkeD4OiQQ269iW,ser_7062317023892679,47,0,47
+60,מעלה אדומים,"הרמב""ם היומי (א) - ספר המדע | הרב חיים סבתו",PLTpvRg1R637-wOfFTPXfs4WvuIn7WdRnr,ser_2545715357229161,50,0,50
+60,מעלה אדומים,פרשיות המלחמה בתורה - הרב אפי ולץ,PLTpvRg1R6379PBs6dBz4_GqCLpD4vgvOq,ser_2968415943457940,17,9,8
+60,מעלה אדומים,תקראו אותם - סוכות,PLTpvRg1R63781VVJDphzaN5K-WuLzcfmG,ser_1519709818532657,7,0,7
+60,מעלה אדומים,תקראו אותם - אלול,PLTpvRg1R637-dD5XO0K41dH9Bcuw-274_,ser_3671987821432359,12,3,9
+60,מעלה אדומים,תקראו אותם - שבועות,PLTpvRg1R6379OMAXxmQdOJB8gUhafyfQv,ser_6002109775987505,19,12,7
+60,מעלה אדומים,תקראו אותם - פסח,PLTpvRg1R637_2MsGeNJPpCglrVY05b3Zg,ser_9146505319099196,47,35,12
+60,מעלה אדומים,תקראו אותם - פורים,PLTpvRg1R6378fiVQkEnVNT34RvqpB_QOo,ser_8099888029091067,37,21,16
+60,מעלה אדומים,"הרב יואב פלדמן - שיעורי עיון לפורים [תשפ""א]",PLTpvRg1R6378sqr-nM-l3CPZgmIWpFxW2,ser_3397573031006159,6,0,6
+60,מעלה אדומים,"והגדת לבנך 3 (התש""ף)",PLTpvRg1R6378HpSdYFsRl5b3yb3iKcKtt,ser_8938352496982122,8,0,8
+60,מעלה אדומים,הלכות פסח בימי הקורונה עם הרב אלישע אבינר,PLTpvRg1R637-bkaYrfK7n2oJnjbRVg-EW,ser_4534281051323800,7,0,7
+60,מעלה אדומים,3 דקות של חינוך מאת הרב אלישע אבינר,PLTpvRg1R6378ZOZPmXn3ZRa1-yfyd26HC,ser_2387787800217175,378,372,6
+61,ישיבת הכותל,"שיחות מו""ר רה""י - ה'תשפ""ו",PLwHtfxjPBu5uLAsHFW4BleEgenql5S_hv,ser_7211119428023188,84,27,57
+61,ישיבת הכותל,"שיעורי חנוכה תשפ""ג - תשפ""ה",PLwHtfxjPBu5tjp4n6R34lR0QhxpN5J3LJ,ser_3739601044721861,35,26,9
+61,ישיבת הכותל,ריקודי הודיה לה' יתברך I ישיבת הכותל,PLwHtfxjPBu5v4Vggplqr7nETTxN8L6SpY,ser_3228852264275541,65,59,6
+61,ישיבת הכותל,"שיחות מו""ר רה""י - תשפ""ד",PLwHtfxjPBu5uXVBl0GpyZDN6q3RukRACf,ser_5940652407979486,109,38,71
+61,ישיבת הכותל,"שיחות מו""ר הרב אביגדור נבנצל שליט""א - עם כתוביות",PLwHtfxjPBu5tdSt9wWfwo0a5JX0mjDknR,ser_9415580945152957,66,55,11
+61,ישיבת הכותל,אור החיים הקדוש | הרב זיו ששון ארזי,PLwHtfxjPBu5tCRl807WC-smNPQz6TFvCI,ser_6413658240579170,108,102,6
+61,ישיבת הכותל,חודש אלול,PLwHtfxjPBu5vCdkBu7I88pn0qmPqiQO34,ser_3029422214444000,22,7,15
+61,ישיבת הכותל,בין הזמנים,PLwHtfxjPBu5svokuwVacBEfA45aQZ-Sca,ser_5180135749996434,6,0,6
+61,ישיבת הכותל,ענייני תשעה באב,PLwHtfxjPBu5uw6-sDIApAmFMA9Fru8MsZ,ser_2163492355614481,25,7,18
+61,ישיבת הכותל,ימי בין המיצרים,PLwHtfxjPBu5tdNutzELfKAopld5B4Dwfe,ser_6104131448778433,24,6,18
+61,ישיבת הכותל,לימוד פרק ערבי פסחים עם הרב אהרון מורה,PLwHtfxjPBu5tyZFI9kHwhWvwqBjJ6_KnT,ser_1196313061345267,16,0,16
+61,ישיבת הכותל,דעת תבונות - הרב יהושע טשרנפסקי,PLwHtfxjPBu5v_OkPvHxf8PlvgEPbkIxCy,ser_6529815792240925,10,0,10
+61,ישיבת הכותל,יציאה מהמיצרים - הרב גדי שלוין,PLwHtfxjPBu5v8D8bP_AVfNS53thcG8r7I,ser_6776522104304431,12,1,11
+61,ישיבת הכותל,הרב יגאל חבשוש מהכותל המערבי,PLwHtfxjPBu5vcX2faIHSOGdSWN4qOfrn9,ser_5074827340295880,54,25,29
+61,ישיבת הכותל,"הגדה של פסח ע""פ עולת ראיה",PLwHtfxjPBu5vMjDgOkPOE7dCWd7b3edKq,ser_4439501687843120,13,2,11
+61,ישיבת הכותל,"לימוד סימני הסדר וההגדה - מו""ר ראש הישיבה הרב ברוך וידר שליט""א",PLwHtfxjPBu5sUVU04RXrxz-jx78tqcLHb,ser_9180847240043835,13,1,12
+61,ישיבת הכותל,"ממשיכים בתורה! - לו""ז שיעורים גדוש בכל טוב",PLwHtfxjPBu5u25MRnNR_Ghfgm1xlXg5v7,ser_6896949754555189,118,55,63
+61,ישיבת הכותל,ספר בראשית,PLwHtfxjPBu5si77wGhBJMcV5lC1W7XjtH,ser_3077391524288146,74,12,62
+61,ישיבת הכותל,אורות מהכותל,PLwHtfxjPBu5vMXvLL8-XRFLmB4GkIkqu9,ser_1880093742425436,236,182,54
+61,ישיבת הכותל,"שיחות רה""י תש""פ",PLwHtfxjPBu5t95BPXZV7n4fAYZiluDFRU,ser_8799013505631884,24,9,15
+61,ישיבת הכותל,ספר דברים,PLwHtfxjPBu5usUF08Wtt0JrWaRG7b1klH,ser_8845459517801130,32,13,19
+61,ישיבת הכותל,ספר במדבר,PLwHtfxjPBu5tiZldpPL8BpqmzIp2RnkCu,ser_3760845996065903,37,14,23
+61,ישיבת הכותל,"שיעורים לפורים התשע""ט",PLwHtfxjPBu5vdVNFgP97K0RVVuqqYwzQg,ser_9678720237816006,6,0,6
+61,ישיבת הכותל,מסכת שבת,PLwHtfxjPBu5v6NiDSI-lwXMthgirrvxAo,ser_7036243566923776,10,4,6
+61,ישיבת הכותל,ספר שמות,PLwHtfxjPBu5sn2ZM-YXUkfX6XF9MKlEoC,ser_4436950860623287,78,28,50
+61,ישיבת הכותל,"שיחות רה""י התשע""ט",PLwHtfxjPBu5tuf4yGFiGYD4vWT51TyYUw,ser_1651752287796822,30,2,28
+61,ישיבת הכותל,ימים נוראים,PLwHtfxjPBu5tm1J2CP1smmAYTptKca4O0,ser_5254869547703578,15,9,6
+61,ישיבת הכותל,פסח,PLwHtfxjPBu5sYiWdvPGtSdzjeNHMHUl1Y,ser_3976481882245606,48,37,11
+61,ישיבת הכותל,שיעורים לפורים מבית ישיבת הכותל,PLwHtfxjPBu5tjEtWPXVs_I7x01kesxm9k,ser_2437254223270588,40,19,21
+61,ישיבת הכותל,"לבניינה של תורה - שיחה שבועית של מו""ר ראש הישיבה",PLwHtfxjPBu5tWlIVQfedqGLvmB7zfoupY,ser_6325431848141493,160,151,9
+62,ישיבת ר״ג,מבקשי פניך 3 | שבת בישיבת רמת גן | האלבום המלא,PLtLV_QXIlbC9SZX3ClqtPq9_gMYcRcAeJ,ser_7365454021610579,14,1,13
+62,ישיבת ר״ג,מבקשי פניך 2 | מתוועדים בישיבת רמת גן | האלבום המלא,PLtLV_QXIlbC-9_aWEI8GdWGQeDmdhUL6w,ser_2666188270919819,10,0,10
+62,ישיבת ר״ג,מבקשי פניך 1 | מתוועדים בישיבת רמת גן |האלבום המלא,PLtLV_QXIlbC-mZhNZmwfwxdqA1P6WdJKa,ser_1621548560340810,12,1,11
+62,ישיבת ר״ג,בית מדרש לנשים אבקשך,PLtLV_QXIlbC_239zPeRVeHIWMBe1kBoz2,ser_1334262663095280,40,34,6
+62,ישיבת ר״ג,צדקת הצדיק | קצ''ד - קצ''ז | הרב יהושע שפירא,PLtLV_QXIlbC97E9GNj5PDXq2Z_KePvryz,ser_2760939174914738,14,1,13
+62,ישיבת ר״ג,שפת אמת הרבנית נעמי - לנשים,PLtLV_QXIlbC8CDYcAEPTYeW4DCZf1VtlU,ser_7922710057660401,28,0,28
+62,ישיבת ר״ג,מלחמת חרבות ברזל-שיעורי חיזוק מרבני ישיבת רמת גן,PLtLV_QXIlbC-BXcSi6NE-XyIeOhRmIMO9,ser_5883160235843112,28,8,20
+62,ישיבת ר״ג,הרבנית נעמי שפירא-שיעורים מתקופת מלחמת חרבות ברזל,PLtLV_QXIlbC8AXa22PncEb3Ttol_DEjBk,ser_9434180484582350,25,0,25
+62,ישיבת ר״ג,שיעורי הרבנית נעמי שפירא- לנשים בלבד,PLtLV_QXIlbC80CsJpzlI5dXFq-U_1hrhf,ser_8172128505705297,55,46,9
+62,ישיבת ר״ג,שיעורי פורים,PLtLV_QXIlbC8Jt_J_T1cRYYKcWJlB7st4,ser_3067333575553100,51,7,44
+62,ישיבת ר״ג,שיעורי הרב דודי דודקביץ',PLtLV_QXIlbC-JF4Pntc0ebUGfhNUygDwb,ser_9950369943301754,114,100,14
+62,ישיבת ר״ג,שירי שבת שקטים,PLtLV_QXIlbC9gLQG57OkbQG0WfEyvLCio,ser_1814929894770393,28,6,22
+62,ישיבת ר״ג,שיעורי פסח,PLtLV_QXIlbC958k368QyVQx-vsX-ZmE52,ser_8700693120511775,81,34,47
+62,ישיבת ר״ג,אגדתא- הרב בן ציון אלגאזי,PLtLV_QXIlbC9WSlWanw7pSbP88EP9TM_A,ser_7964589277050361,42,33,9
+62,ישיבת ר״ג,אל ה' ואל טובו- סבב ראשון,PLtLV_QXIlbC8-wAX5Q8iLZPqUcO1_mDfh,ser_5066442802074230,58,42,16
+62,ישיבת ר״ג,צורבא מרבנן - בין אדם לחברו - הרב בן ציון אלגאזי,PLtLV_QXIlbC9zmA-KQHNXqzNLYfylQCsd,ser_6047512375659581,9,0,9
+62,ישיבת ר״ג,שיעור כללי - מסכת גיטין - הרב יעקב אריאל,PLtLV_QXIlbC8pcfjAnRbEGUsZXmCW_5pP,ser_4229857177442428,6,0,6
+62,ישיבת ר״ג,אורות - למהלך האידיאות בישראל - הרב אליעזר קשתיאל,PLtLV_QXIlbC-AQkwVVeX3WOWbPUSn1DwT,ser_1947882608602501,9,2,7
+62,ישיבת ר״ג,שיעור כללי - מסכת קידושין,PLtLV_QXIlbC_JXJI6DCN87altWKS6TPur,ser_4351078344869841,32,4,28
+62,ישיבת ר״ג,שיעורים לחג השבועות,PLtLV_QXIlbC_d2UplCVuPLlNQW3ee1Oii,ser_1355416712675805,9,3,6
+62,ישיבת ר״ג,שיעורים לפורים,PLtLV_QXIlbC9DQ-_lDG-FE3SKXepeSyBX,ser_9186137365867252,72,51,21
+62,ישיבת ר״ג,אורות - ישראל ותחייתו. הרב אליעזר קשתיאל,PLtLV_QXIlbC9TRsHLaJaKu8fNcbSvhwch,ser_4679090315040630,35,2,33
+62,ישיבת ר״ג,שיעור כללי מסכת כתובות,PLtLV_QXIlbC8vD4irxvUIV9uEshZeqJ6I,ser_2151553289785745,26,1,25
+62,ישיבת ר״ג,דבר תורה שבועי לפרשת שבוע,PLtLV_QXIlbC8ercNAWJk7opFUCLaYqaaZ,ser_3022270167248487,248,208,40
+62,ישיבת ר״ג,שיעור כללי - הרב יעקב אריאל,PLtLV_QXIlbC8DSCLTeadyVRICVwGhr5tA,ser_3152324908266256,138,124,14
+62,ישיבת ר״ג,צדקת הצדיק | א' - ס''ד | הרב יהושע שפירא,PLtLV_QXIlbC9yKiakRisB8tLacJU9QC0W,ser_8927265587554389,91,83,8
+62,ישיבת ר״ג,שפת אמת לפרשת השבוע - הרב יהושע שפירא,PLtLV_QXIlbC-pGHnEhWLPTmW_gCTiBsSU,ser_7434170821572495,462,397,65
+62,ישיבת ר״ג,צורבא מרבנן - הרב בן ציון אלגאזי,PLtLV_QXIlbC-TPweG0TG-1zDCnkW7Buwa,ser_5812105177161415,381,372,9
+63,ישיבת הר עציון,"מן המיצר | רעיונות על ההלל | ליל הסדר תשפ""ו",PLYW43ncrfYv-ZzfTqOU4sLcQw4icaI9L1,ser_6374868609905021,9,2,7
+63,ישיבת הר עציון,"חידוש מהגוש | מגילת אסתר | תשע""ט",PLYW43ncrfYv_bWxrIxF-oRSZZdXoFOn5Q,ser_3310740374546385,8,0,8
+63,ישיבת הר עציון,"חנוכה תשפ""ו",PLYW43ncrfYv9csnzD0NL8-qMhnInTFOkw,ser_8738078317660388,7,0,7
+63,ישיבת הר עציון,Rav Eli Weber | This Week's Haftara,PLYW43ncrfYv_FnY_r_lSUO_L7IvUXM5dg,ser_2635178366865605,23,0,23
+63,ישיבת הר עציון,Shnayim LeYom Webinar | Rav Menachem Leibtag,PLYW43ncrfYv-yya3ANpjTwlOhEZmZY7e8,ser_2563689087121501,25,17,8
+63,ישיבת הר עציון,The Parasha Pod,PLYW43ncrfYv8ItcvMOF59mvHcFKrLJFJ-,ser_1423562724334491,33,2,31
+63,ישיבת הר עציון,"אלו ואלו בניגון מנגנים | ימים נוראים תשפ""ו",PLYW43ncrfYv_BOm4qR_sBDW3zZjtCG0Rm,ser_5175271371937203,12,6,6
+63,ישיבת הר עציון,שיחות לקראת סליחות ראשונות,PLYW43ncrfYv9b0mLciCRmFJuSHOF59iNt,ser_3899406337249740,10,0,10
+63,ישיבת הר עציון,"הרב בנימין תבורי זצ""ל | Rav Binyamin Tabory zt""l",PLYW43ncrfYv9MTvPqoi_J1RfVwc7pT8IQ,ser_4268815591038901,27,5,22
+63,ישיבת הר עציון,מהלך פרשות השבוע - ספר דברים | הרב דוד נתיב,PLYW43ncrfYv9yL-MmRwiTfDz2zpybAeuR,ser_6176043861120452,11,1,10
+63,ישיבת הר עציון,Sefer Bamidbar | Rabbi Ezra Bick,PLYW43ncrfYv_oLjm-F-si4pbgOtjJc_GF,ser_4473846886578235,9,0,9
+63,ישיבת הר עציון,honoring Olim Ceremony | טקס הוקרה לעולים,PLYW43ncrfYv-56gpC93wHaEC9uorGGzSQ,ser_8231030594311692,13,7,6
+63,ישיבת הר עציון,Abarbanel on the Parasha | Rabbi Elyakim Krumbein,PLYW43ncrfYv-Fd0utCmZ81VKQn1XtghFh,ser_6697670924064011,7,0,7
+63,ישיבת הר עציון,Sefer Shemot | Rav Yair Kahn,PLYW43ncrfYv-MUGRegcsHSBbKMxoCoIgg,ser_1321989717835754,11,0,11
+63,ישיבת הר עציון,Rav Moshe Taragin | ALLPARSHA,PLYW43ncrfYv9dF9xzvTk5oelhJHBLVqL3,ser_6271738071620107,48,0,48
+63,ישיבת הר עציון,Sefer Bereishit | Rav Menachem Leibtag,PLYW43ncrfYv8GpjbDFQgZ5gfsyLYmUogy,ser_8519483892687463,12,0,12
+63,ישיבת הר עציון,"כי מידי דברי בו זכור אזכרנו עוד- יום הזיכרון תשפ""ד",PLYW43ncrfYv89U-aYTeqNRr5yn86LcDj8,ser_4818104780464188,6,0,6
+63,ישיבת הר עציון,עיתים לתורה | שיעור מקוון במסכת פסחים,PLYW43ncrfYv-noCQ7xBt3RgrRx9VN0SzS,ser_3951397476830136,15,7,8
+63,ישיבת הר עציון,Purim,PLYW43ncrfYv9QaPMs7lxlMSvEBUDEcWKH,ser_9780396230099881,19,4,15
+63,ישיבת הר עציון,"שיעורי מוצאי שבת | תשפ""ד",PLYW43ncrfYv8W5Ry5xFxc_1h7Rvnzb92N,ser_7516402401468922,10,0,10
+63,ישיבת הר עציון,"על המלחמות ועל התשועות | חנוכה תשפ""ד",PLYW43ncrfYv8JaMzALrKoh70xsKAtnR3N,ser_2171320717434981,8,0,8
+63,ישיבת הר עציון,אמונה בשעת מלחמה 2 | הרב יעקב מדן והרב איתמר אלדר,PLYW43ncrfYv8XlwlpiMn8vqTGQRYkKhjQ,ser_6692484124296197,9,0,9
+63,ישיבת הר עציון,עיתים לתורה | שיעור מקוון במסכת בבא קמא,PLYW43ncrfYv-v6vO9ngv5le3GkbrtCa2z,ser_5064138907176159,22,0,22
+63,ישיבת הר עציון,"שניים ליום - מסיימים תנ""ך בשנה",PLYW43ncrfYv_L1oAwPtIKy-8080EymflI,ser_8677299517966765,71,59,12
+63,ישיבת הר עציון,"שיעורים ושיחות | מלחמת ""חרבות ברזל""",PLYW43ncrfYv9VGPBL9ibj9iP9kk0yvbED,ser_8497286760911285,17,9,8
+63,ישיבת הר עציון,Ramban on the Torah,PLYW43ncrfYv-RDvoeBTPjErlPSnQ9jM7p,ser_6494667844184479,101,0,101
+63,ישיבת הר עציון,"שיעורים למוצאי שבת | תשפ""ג",PLYW43ncrfYv-VyQgfBF1GJeLIKCXphAaI,ser_3957923851274633,8,0,8
+63,ישיבת הר עציון,"רמב""ן על התורה",PLYW43ncrfYv9wRfvn_IdeMl3iFSwjB4U9,ser_5131558759772828,48,3,45
+63,ישיבת הר עציון,שלושת השבועות,PLYW43ncrfYv_hmHW0A9589sPVVJuUx82O,ser_2011380689499513,12,1,11
+63,ישיבת הר עציון,הספדים,PLYW43ncrfYv9tbhW3erWXBpBW55nKqdfS,ser_6992358958013465,23,13,10
+63,ישיבת הר עציון,שיעורי מוצאי שבת,PLYW43ncrfYv-P-daKXF-4Ta2EmRqGP1np,ser_5927716692179095,54,32,22
+63,ישיבת הר עציון,צום עשרה בטבת,PLYW43ncrfYv8lii_3a8R9RW-vgjAxsTNn,ser_2979617365193247,18,12,6
+63,ישיבת הר עציון,הארה בפרשה | הרב יאיר קאהן,PLYW43ncrfYv-RTzf_eXjPYhwRsrb1fQgJ,ser_4203719518462382,44,0,44
+63,ישיבת הר עציון,"ימי לימוד 'רבבה' | ישראל בין העמים | חנוכה תשפ""ב",PLYW43ncrfYv8RVJUao94MxtXoHYZ4iFMA,ser_3765401611881917,8,2,6
+63,ישיבת הר עציון,חנוכה | Chanukah,PLYW43ncrfYv_B7p_FIrDdiCsJnO_gX6h9,ser_1351901249488642,103,50,53
+63,ישיבת הר עציון,שיעור לשישי | חצי שעה לפרשת השבוע,PLYW43ncrfYv9LhmZ1BCNRgn110IL-TKVH,ser_9423590487078466,59,1,58
+63,ישיבת הר עציון,פרשת שופטים | Parashat Shoftim,PLYW43ncrfYv8pam6I5K_jajRJcZD20Tmw,ser_7600191272194271,30,10,20
+63,ישיבת הר עציון,מיקירי ירושלים - לזכרו של ר' ידעיה הכהן,PLYW43ncrfYv9f2isf56xHBGJ8Q8YacYIk,ser_6516373634428906,7,1,6
+63,ישיבת הר עציון,פרשת עקב | Parashat Eikev,PLYW43ncrfYv_ZtdlQ19RxwJ0eAcAodvdp,ser_9186527222298869,22,5,17
+63,ישיבת הר עציון,פרשת קרח | Parashat Korach,PLYW43ncrfYv8A8OqqxVu9DT0H3AamyLU_,ser_6492429779063813,29,7,22
+63,ישיבת הר עציון,שיחות ושיעורים ליום ירושלים,PLYW43ncrfYv9uTm8HSYk9QOj0KzvDbosK,ser_7101725736070434,40,25,15
+63,ישיבת הר עציון,"תנ""ך | ספר מלכים א' | הרב יעקב מדן",PLYW43ncrfYv-6JmSgADYhx9F2IbOBeViG,ser_5218635127041833,45,35,10
+63,ישיבת הר עציון,אחרי מות-קדושים | Acharei Mot-Kedoshim,PLYW43ncrfYv9AIdX4u8v1Wx0mLC8VcWPm,ser_6164760813389430,38,10,28
+63,ישיבת הר עציון,"זיכרון ועצמאות תשפ""א",PLYW43ncrfYv8ytHfk9IXMI8BPo3dW7Ws5,ser_3288758065752419,7,0,7
+63,ישיבת הר עציון,תזריע-מצורע | Tazria Metzora,PLYW43ncrfYv-PLxXtJAFv5XuGh6mpM5sJ,ser_6199161501426692,38,11,27
+63,ישיבת הר עציון,יום העצמאות | Yom Haatzmaut,PLYW43ncrfYv_6JP5UGQcaKnn0fVhcHmdp,ser_8794224068307868,43,17,26
+63,ישיבת הר עציון,יום הזיכרון,PLYW43ncrfYv8JwXz6wONdb9aHuGJuVxu3,ser_6618131796366371,24,17,7
+63,ישיבת הר עציון,יום השואה,PLYW43ncrfYv9BQTfoX-dw5umMvBK-hYG5,ser_9802074654816902,28,22,6
+63,ישיבת הר עציון,פרשת שמיני | Parashat Shemini,PLYW43ncrfYv8tI58bc4oE8_fLeqvtV563,ser_9144079971010660,29,7,22
+63,ישיבת הר עציון,שביעי של פסח,PLYW43ncrfYv9B8rkcdSE4pAzs01VwHvPb,ser_5127800481822596,10,2,8
+63,ישיבת הר עציון,פרשת צו | Parashat Tzav,PLYW43ncrfYv_gGjgJboK8YRCna3Vggf0W,ser_1105328704695047,24,6,18
+63,ישיבת הר עציון,ויקהל-פקודי | Vayakhel-Pekudei,PLYW43ncrfYv-s1ICJiOFmiN-qaHk4YouD,ser_1672145692834147,54,18,36
+63,ישיבת הר עציון,פרשת כי תשא | Parashat Ki Tisa,PLYW43ncrfYv_QbKucRyKBu9s5-HBtiRWh,ser_5018344636657759,31,9,22
+63,ישיבת הר עציון,פרשת תצווה | Parashat Tetzaveh,PLYW43ncrfYv-iGfInvikVlvQjX7sDh3WD,ser_5180150887056564,31,9,22
+63,ישיבת הר עציון,פרשת תרומה | Parashat Teruma,PLYW43ncrfYv9yu3Yl2Lus7g3RqfiLXsOZ,ser_4726395030073919,34,10,24
+63,ישיבת הר עציון,פרשת משפטים | Parashat Mishpatim,PLYW43ncrfYv-c4av2UYajoxbyQb0VziQV,ser_3253153785715992,39,11,28
+63,ישיבת הר עציון,פרשת יתרו | Parashat Yitro,PLYW43ncrfYv8RADHKNUIWbcQON8XcqaCI,ser_6365896228898828,36,11,25
+63,ישיבת הר עציון,פרשת בשלח | Parashat Beshalach,PLYW43ncrfYv_rqHLur-p4wpM0FmxeHnQ4,ser_7005172049332932,32,10,22
+63,ישיבת הר עציון,"משה (מושקו) מושקוביץ ז""ל | איש רוח ומעשה",PLYW43ncrfYv9IxR_GOXFxadZVVlqRYD9W,ser_9730131929140266,36,28,8
+63,ישיבת הר עציון,פרשת בא | Parashat Bo,PLYW43ncrfYv9jUlVc5fZ9cFAqp1EYbPw8,ser_5194724202526972,31,10,21
+63,ישיבת הר עציון,פרשת וארא | Parashat Va’era,PLYW43ncrfYv9SRrMHMuE1TB-JngHYj1l2,ser_3483128409023661,32,10,22
+63,ישיבת הר עציון,פרשת שמות | Parashat Shemot,PLYW43ncrfYv9zcBT9XcXSh9XO5JKZC0xQ,ser_2645009778381278,37,14,23
+63,ישיבת הר עציון,פרשת ויחי | Parashat Vayechi,PLYW43ncrfYv9isF9Xtw42qIJ4wkuzvSPN,ser_3069997780118655,30,10,20
+63,ישיבת הר עציון,פרשת ויגש | Parashat Vayigash,PLYW43ncrfYv8_Z6t_hlrSIQANcR0yd7xq,ser_2623036163724628,32,9,23
+63,ישיבת הר עציון,פרשת מקץ | Parashat Miketz,PLYW43ncrfYv996cJEDdGZUioQmT59Wle3,ser_5569188379331058,30,11,19
+63,ישיבת הר עציון,פרשת וישב | Parashat Vayeshev,PLYW43ncrfYv-Z_o-HloWJ-1p-9EtB_dNc,ser_2950427244600353,32,11,21
+63,ישיבת הר עציון,פרשת וישלח | Parashat Vayishlach,PLYW43ncrfYv893eku0v_9izzrAyZDrfid,ser_6658499954740075,30,11,19
+63,ישיבת הר עציון,פרשת ויצא | Parashat Vayetzei,PLYW43ncrfYv-Yz8YL5swFv5b6aIVzHYLC,ser_6672166357061082,33,12,21
+63,ישיבת הר עציון,פרשת תולדות | Parashat Toldot,PLYW43ncrfYv_v2iWQ33KTX35pC3mO2mhs,ser_1750250937764901,31,10,21
+63,ישיבת הר עציון,פרשת חיי שרה |  Parashat Chayei Sarah,PLYW43ncrfYv92wfvqLXzez3lGOTLe62wr,ser_7709066632712178,28,8,20
+63,ישיבת הר עציון,פרשת וירא | Parshat Vayera,PLYW43ncrfYv8h9rQKwMJDbI8nSIFoQw2s,ser_1511686930273916,29,9,20
+63,ישיבת הר עציון,ככה זה כשיש שניים | הרב עמיחי גורדין והרב חיים נבון,PLYW43ncrfYv_54k7QIb8JLkWy5eKMdFlx,ser_7585121998205476,52,30,22
+63,ישיבת הר עציון,פרשת לך לך | Parshat Lech-Lecha,PLYW43ncrfYv_9-_btp11VMi3l2WID8mN5,ser_5299859870468877,28,9,19
+63,ישיבת הר עציון,פרשת נח | Parshat Noach,PLYW43ncrfYv-VSb_ctPpUoj0ORONcAXm5,ser_4026905436555034,25,7,18
+63,ישיבת הר עציון,"חידוש מהגוש | תשפ""א",PLYW43ncrfYv_JEFgvOqYPoNK4YtmJwYyg,ser_3605478412790633,46,0,46
+63,ישיבת הר עציון,פרשת בראשית | Parashat Bereishit,PLYW43ncrfYv9RFVhFvy6cFkBQ6HBAFSCT,ser_8820821190078925,20,7,13
+63,ישיבת הר עציון,סוכות | Sukkot,PLYW43ncrfYv-M4-f6vrsnTW06HNxzd91G,ser_1728578579559910,18,11,7
+63,ישיבת הר עציון,5 Minutes on Parashat HaShavua | 5781,PLYW43ncrfYv9_GRRRsYhxqAk9dBCRI7NK,ser_9081871980699459,46,0,46
+63,ישיבת הר עציון,שיחות מוסר לימי הרחמים והסליחות,PLYW43ncrfYv-f2vj9LV0fDj9dxaovdo9V,ser_8449759450074072,47,40,7
+63,ישיבת הר עציון,יום הכיפורים | Yom Hakipurim,PLYW43ncrfYv-2fop7jN4HYiZq482x_0Cy,ser_5038921207761169,19,12,7
+63,ישיבת הר עציון,פרשת האזינו | Parshat Ha'azinu,PLYW43ncrfYv9XD9yI5lPPoqh0Mur83nJO,ser_3683534136390271,18,5,13
+63,ישיבת הר עציון,ראש השנה | Rosh Hashana,PLYW43ncrfYv9ebOg42d_eLvI8i0LyQVFf,ser_4084677124658393,40,29,11
+63,ישיבת הר עציון,פרשת וילך | Parshat Vayelekh,PLYW43ncrfYv_zYftdcOa3w7Eopch0FWbM,ser_7397310848103704,22,0,22
+63,ישיבת הר עציון,פרשת ניצבים-וילך | Parshat Nitzavim-Vayelekh,PLYW43ncrfYv-Rrpu-tuQCP7xfIgCkuGOg,ser_1168333629574233,41,3,38
+63,ישיבת הר עציון,פרשת ניצבים | Parshat Nitzavim,PLYW43ncrfYv-qtfuaYQd7nutl9LhJ1D_b,ser_5047236137163984,24,10,14
+63,ישיבת הר עציון,פרשת כי תבוא | Parshat Ki Tavo,PLYW43ncrfYv_IiOckkKvYb63Jy4R-WwyU,ser_9296077953685668,28,9,19
+63,ישיבת הר עציון,פרשת כי תצא | Parashat Ki Tetze,PLYW43ncrfYv8InCeC9J0zr-vuSZF7eqIm,ser_9362393708455151,29,10,19
+63,ישיבת הר עציון,פרשת ראה | Parshat Re'eh,PLYW43ncrfYv8SbtbeygbUIf_RtC-0HyRh,ser_3249807736312557,22,6,16
+63,ישיבת הר עציון,תשעה באב,PLYW43ncrfYv_Hw0JgVoF8t7hgEKiiFYuf,ser_2832523267683598,18,12,6
+63,ישיבת הר עציון,פרשת ואתחנן | Parshat Vaetchanan,PLYW43ncrfYv-_HXx15sYP7y6szOrTQCTU,ser_5538641994043709,24,9,15
+63,ישיבת הר עציון,פותחים שערים | בוגרים ותיקים,PLYW43ncrfYv8m7VWLcZL8b3-ywGBekL6f,ser_6391600755231012,47,12,35
+63,ישיבת הר עציון,פרשת דברים | Parshat Devarim,PLYW43ncrfYv-cyuQ-b5Bhhd7OA_qL3O86,ser_9786717789102743,26,8,18
+63,ישיבת הר עציון,מטות - מסעי |  Matot - Masei,PLYW43ncrfYv8rZe_P78xQ7GiBQm_YjjkC,ser_8136591400911724,33,9,24
+63,ישיבת הר עציון,פרשת פנחס | Parshat Pinchas,PLYW43ncrfYv-KduSRu4RkRVLSIIai5Ev0,ser_3959846739293903,28,8,20
+63,ישיבת הר עציון,פרשת בלק | Parashat Balak,PLYW43ncrfYv_1ZrX1QcHLtQGjwaAAYJUh,ser_9772513346810533,30,9,21
+63,ישיבת הר עציון,"חידוש מהגוש | פרשת השבוע | תש""ף",PLYW43ncrfYv-nOZSMm1JKZrZUxciPrf91,ser_5842964067126365,44,4,40
+63,ישיבת הר עציון,פרשת חקת | Parshat Chukat,PLYW43ncrfYv_QUMVGrU-lD2aq2QO06h5h,ser_2873258759048504,30,8,22
+63,ישיבת הר עציון,מצוות ציצית,PLYW43ncrfYv9EiNT-k7N9NGp8leXC37O6,ser_4071219880600807,6,0,6
+63,ישיבת הר עציון,פרשת שלח | Parshat Shelach,PLYW43ncrfYv96Q84ljtjebAA1WrZrC988,ser_1304364029450987,30,10,20
+63,ישיבת הר עציון,פרשת בהעלותך | Parshat Beha'alotcha,PLYW43ncrfYv8OP902L5JsKswLBo1678vY,ser_7320366996706793,28,8,20
+63,ישיבת הר עציון,פרשת נשא | Parshat Naso,PLYW43ncrfYv8ZFuVqGKDWgeWBtj3g7pBm,ser_3700358316424541,24,7,17
+63,ישיבת הר עציון,Shavuot,PLYW43ncrfYv8C918FKQuVOOwPj_JaTuq9,ser_5375543667347954,23,15,8
+63,ישיבת הר עציון,וביום הביכורים | שבועות,PLYW43ncrfYv_cr-qMB2L3sPQNOm-9tXqt,ser_3908128396934152,20,13,7
+63,ישיבת הר עציון,פרשת במדבר | Parashat Bamidbar,PLYW43ncrfYv9X0fEMxBTJ1h6XpkvSKd4X,ser_7094114803175668,28,10,18
+63,ישיבת הר עציון,פרשיות בהר ובחוקותי | Parshiot Behar and Bechukotai,PLYW43ncrfYv8JzID6zCt7dbxllCjyo1Db,ser_1550912682146915,46,13,33
+63,ישיבת הר עציון,פרשת אמור | Parshat Emor,PLYW43ncrfYv_y8ik0VrEGe_YW_20PHy_-,ser_9922252768667470,33,10,23
+63,ישיבת הר עציון,פרשת ויקרא | Parshat Vayikra,PLYW43ncrfYv8ofZv6qqiQSufNJPLF7Y6A,ser_7025526619038560,34,14,20
+63,ישיבת הר עציון,בית מדרש חי | כט' אדר,PLYW43ncrfYv9t1MQ2kXLIyhIQp51QHenu,ser_2520039499442095,9,2,7
+63,ישיבת הר עציון,בית מדרש חי | כח' אדר,PLYW43ncrfYv_Lpt7AaXe9UsoRBg3u_hRr,ser_6652362787675946,8,0,8
+63,ישיבת הר עציון,עלייתו ונפילתו של המלך שלמה | הרב אמנון בזק,PLYW43ncrfYv_v4dqQ9O_s5127p9c9R3Mw,ser_2636963312481776,9,3,6
+63,ישיבת הר עציון,דף יומי | מסכת שבת,PLYW43ncrfYv8LqL51oYnkQn0Mt5YKJ0Ed,ser_4448812411883987,134,127,7
+63,ישיבת הר עציון,חידוש מהגוש | ספר בראשית | הרב יעקב מדן והרב אמנון בזק,PLYW43ncrfYv-s7buYUkL8JrwaYE-LaQx4,ser_2278583869172478,12,2,10
+63,ישיבת הר עציון,Five Minutes on Parshat HaShavua - 5780,PLYW43ncrfYv8fF8QXm4GFJhIPiokKGF_2,ser_5156977803883025,48,2,46
+63,ישיבת הר עציון,Five MInutes on Parshat HaShavua  - 5779,PLYW43ncrfYv_rwd4nQZd0SDVNavMRW8EO,ser_3087834894876537,46,6,40
+63,ישיבת הר עציון,"יום לימוד לפסח תשע""ט",PLYW43ncrfYv-TAKMx7I2U9pl-dhelVN25,ser_2810226250310245,6,0,6
+63,ישיבת הר עציון,חידוש מהגוש | חגים ומועדים,PLYW43ncrfYv9IHTNuLUqc5y0gR0MB-Y3a,ser_3519507286211655,27,17,10
+63,ישיבת הר עציון,פסח,PLYW43ncrfYv-sp4zv_gJlGzGZ13kbcKyh,ser_4173572171218267,45,30,15
+63,ישיבת הר עציון,פרשת שבוע | English,PLYW43ncrfYv_PBhKq_pdyI3xL_xHwN9CJ,ser_3918245690591560,476,429,47
+64,ישיבת הר ברכה,"בוקר של תורה תשפ""ד | יום העצמאות ה-76",PLD8G4dKEOeZxc51QZWjx1h5POCYnOHwKg,ser_9880831936452620,8,1,7
+64,ישיבת הר ברכה,"הכנת מאכלים בשבת | הרב אליעזר מלמד שליט""א",PLD8G4dKEOeZyut1lqLVFoOFF5hChfDKlq,ser_9892736357349913,10,3,7
+64,ישיבת הר ברכה,חנוכת בית הכנסת החדש וסיום פניני הלכה כשרות,PLD8G4dKEOeZwr7OrRbQLUaFa83z0s41JW,ser_5988739921164824,17,2,15
+64,ישיבת הר ברכה,הלכות תלמוד תורה | הרב אליעזר מלמד,PLD8G4dKEOeZwO9V4_iotAU6Kohcw145pR,ser_1209910919855398,21,15,6
+64,ישיבת הר ברכה,הלכות תשעה באב | הרב אליעזר מלמד,PLD8G4dKEOeZycQz5c3W6udbpJVKK4_cFA,ser_3260713570646608,8,1,7
+64,ישיבת הר ברכה,הלכות צער בעלי חיים | הרב אליעזר מלמד,PLD8G4dKEOeZw43skG2anhYHMAWpPBM9lY,ser_9890846361272115,10,1,9
+64,ישיבת הר ברכה,הלכות כשרות הבשר | הרב אליעזר מלמד,PLD8G4dKEOeZxv53Nx809mZr6h6ddOJJaU,ser_2394887023100716,24,11,13
+64,ישיבת הר ברכה,"הלכות ברכות | הרב אליעזר מלמד שליט""א",PLD8G4dKEOeZys81Fy7Y2wZBOErQa-0tsO,ser_6733086692575309,13,3,10
+64,ישיבת הר ברכה,"הלווית הרב איתמר בן גל הי""ד",PLD8G4dKEOeZwV7bDAJ-lpJqi8SVuAD-iP,ser_2935277832634450,8,1,7
+64,ישיבת הר ברכה,"אזכרה לרב נדב אטרה - תשע""ח",PLD8G4dKEOeZzxfD0P_AWs4Sdp1Tpnbzd6,ser_7022766074611189,8,1,7
+64,ישיבת הר ברכה,פניני הלכה | הרב אליעזר מלמד,PLD8G4dKEOeZyloXYZvBqBLd-ZHtXmSmhL,ser_7525502201977734,18,0,18
+64,ישיבת הר ברכה,הרב שלומי בדרך קצרה,PLD8G4dKEOeZxhuaIDzHJ2B3MBMWxuGVmM,ser_1593858143850560,15,7,8
+65,חב״ד,הרב שניאור אשכנזי - שיעורים לפורים,PLMGMCujFS-38M6wcFPKfC9B1CVYECcyYa,ser_3187815434012481,14,3,11
+65,חב״ד,הרב שניאור אשכנזי | מלחמה ואקטואליה,PLMGMCujFS-3-gFgJ3b0TEwzueIgQhjOVI,ser_8320247710841841,68,62,6
+65,חב״ד,"הרב שניאור אשכנזי | שיעורים בתניא תשפ""ה",PLMGMCujFS-39wBUVHy_9yBqXQgiRlInMA,ser_1435198959691932,23,15,8
+65,חב״ד,פרשת השבוע המרכזי תשפ״ו | הרב שניאור אשכנזי,PLMGMCujFS-3-8d41nufrO54SR5NViuA-B,ser_1056401513957330,112,6,106
+65,חב״ד,קצרים,PLMGMCujFS-38JAU3NExCRKZ6inIkI6clt,ser_3627897373755467,72,61,11
+65,חב״ד,שיעורים בתניא,PLMGMCujFS-38ucFwU1-UOc5V44Y-nbTPH,ser_4611086158521410,106,100,6
+65,חב״ד,נשמה יהודית,PLMGMCujFS-3-X_EVr534b768JMCjDHwFK,ser_4660673363412020,23,0,23
+65,חב״ד,לימוד תורה,PLMGMCujFS-38KIp6xXgjXJ8rt_cIkpkpn,ser_7434907695173190,14,0,14
+65,חב״ד,סיפורי ניסים,PLMGMCujFS-3_AkOkndQMA_J8-ncgW_Ogw,ser_9723213830467864,37,0,37
+65,חב״ד,חגים,PLMGMCujFS-39Trc542ah3PmacCA_DBgVo,ser_2877473373004271,64,40,24
+65,חב״ד,עזרה לזולת,PLMGMCujFS-39y4-bwA1MRBZpEJ592L4gP,ser_6301537746764322,23,0,23
+65,חב״ד,אושר,PLMGMCujFS-38IWUxFHe_viEBNNqdvsBhK,ser_1770366281538730,14,0,14
+65,חב״ד,מצוות,PLMGMCujFS-39lVPKSSMQm7ly09_sikVNy,ser_4477431101599624,35,0,35
+65,חב״ד,אמונה ובטחון,PLMGMCujFS-39XKfn0oCcQeug-xHy3sqah,ser_5474178434480078,22,0,22
+65,חב״ד,תקשורת,PLMGMCujFS-38JjkEQyGpRaIPEbZKLXLVX,ser_1481254848258465,38,1,37
+65,חב״ד,זוגיות,PLMGMCujFS-3_IySZGCaYNjCPzVq54MGEH,ser_2610961245601732,23,4,19
+65,חב״ד,משפחה,PLMGMCujFS-3-KLztZ-zV1f2p17i-8ZJ5A,ser_7680194835765606,19,0,19
+65,חב״ד,חינוך,PLMGMCujFS-39D-1t66R7XQCbevUKkq0eh,ser_8197505645124953,55,12,43
+65,חב״ד,בסוד הפרשה - השיעור השבועי בפרשת השבוע,PLMGMCujFS-38k80zbzl_JauPXCsY6Thlt,ser_7523860672794951,432,422,10
+66,הרב אורי שרקי,שיעורי הרב שרקי על פרי צדיק לר' צדוק הכהן מלובלין,PLltco4f4g3dmTuBu_AhRz5U4Qw5VBxU6X,ser_2521015006594606,26,1,25
+66,הרב אורי שרקי,ספר תהלים – הרב שרקי,PLltco4f4g3dl4HqBgUWOzKGyeaVstovZU,ser_4307203825967407,8,0,8
+66,הרב אורי שרקי,האיסלם – הרב שרקי,PLltco4f4g3dkAJZ5ZR2Nm3HysIuze8yzN,ser_8849718301616623,29,5,24
+66,הרב אורי שרקי,"מלחמת ""חרבות ברזל"" תשפ""ד – הרב שרקי",PLltco4f4g3dkMaj2_SsIMY2ffbNCBl3aS,ser_2246511885298943,51,13,38
+66,הרב אורי שרקי,"אומנות ותרבות: ציור, קולנוע, שירה, ספורט ועוד – הרב שרקי",PLltco4f4g3dm0Ceru48XWO2u6OH-t6UI-,ser_5582309624199471,14,4,10
+66,הרב אורי שרקי,על הדרך - הרב אורי שרקי,PLltco4f4g3dnAEk98fPzLbm4_CZs5o1mD,ser_8309193404977516,7,0,7
+66,הרב אורי שרקי,חינוך – הרב שרקי,PLltco4f4g3dlturknlTvLdE9aJIBmmhIY,ser_6228678151903765,9,1,8
+66,הרב אורי שרקי,"ליל יום ירושלים בקהילת ""בית יהודה"" – הרב שרקי",PLltco4f4g3dlYjbDqkwtRTdWRWZgLoivT,ser_9144689297270873,12,0,12
+66,הרב אורי שרקי,מדינת הלכה – הרב שרקי,PLltco4f4g3dkQPcUbhec0HXpDSLlUHmZf,ser_1078928982731866,11,0,11
+66,הרב אורי שרקי,ראיונות עם הרב שרקי בערוץ TOV,PLltco4f4g3dksysKwcIoSfBwQImvCxFSz,ser_4242336897175799,90,2,88
+66,הרב אורי שרקי,סליחות – הרב שרקי,PLltco4f4g3dkQeBRIQYbtC4K3aBilWyx2,ser_5197835313802206,13,0,13
+66,הרב אורי שרקי,Entretiens | Rav Cherki en Français,PLltco4f4g3dmJCrc3bObkWj4siJub3KNy,ser_3497158876100366,15,0,15
+66,הרב אורי שרקי,שיעור יום שישי בקהילת בית יהודה,PLltco4f4g3dmNSlB7PRDGTBkwzaGARaTI,ser_2322005072204033,197,59,138
+66,הרב אורי שרקי,חוזה המדינה: בנימין זאב הרצל – הרב שרקי,PLltco4f4g3dngOdwpwJvc7Dum31OKD1ZC,ser_4376406786271700,11,5,6
+66,הרב אורי שרקי,בני נח – הרב שרקי,PLltco4f4g3dmeTFkUaiNjBQVnL3tZTBML,ser_8243830086660732,22,4,18
+66,הרב אורי שרקי,La Paracha | Rav Cherki en Français,PLltco4f4g3dmVuIt5npIekYaEeXkF_Ts-,ser_2319898160497384,52,0,52
+66,הרב אורי שרקי,קצרצרים (#Shorts) – הרב שרקי,PLltco4f4g3dlr-f5dJUy3b5bivoO_X94Y,ser_3014166072261407,81,61,20
+66,הרב אורי שרקי,הרב קוק – הרב שרקי,PLltco4f4g3dlyuXDW39mYcZ3NmAXgxthT,ser_4011512746034438,27,18,9
+66,הרב אורי שרקי,"י""ז בתמוז, בין המצרים ותשעה באב – הרב שרקי",PLltco4f4g3dlP-YbE0hGJY-7uSnTtZ1wr,ser_8215663728184395,17,11,6
+66,הרב אורי שרקי,שבועות – הרב שרקי,PLltco4f4g3dncF7lI9xXAljhE0zPul9V6,ser_4511482135539431,19,8,11
+66,הרב אורי שרקי,"אלול, ראש השנה ויום הכיפורים (ימים נוראים) – הרב שרקי",PLltco4f4g3dnOvrMm7wC2OGX7qRCePICR,ser_5881390309897649,48,28,20
+66,הרב אורי שרקי,עשרה בטבת (יום הקדיש הכללי) – הרב שרקי,PLltco4f4g3dkIkThfX3j-UjBKBlbL2peA,ser_7160744182598202,12,5,7
+66,הרב אורי שרקי,פודקאסטים – הרב שרקי,PLltco4f4g3dnucChOWRBMoKj9JNZTcl2f,ser_6281006878922201,15,8,7
+66,הרב אורי שרקי,חנוכה – הרב שרקי,PLltco4f4g3dnVMaWZkvNn5CndsXQnrWnc,ser_5661593868138569,39,33,6
+66,הרב אורי שרקי,פסח ופסח שני – הרב שרקי,PLltco4f4g3dk7ZBUuN2heoxZPFCngIoVQ,ser_6263643403507383,38,30,8
+66,הרב אורי שרקי,משנתו של מניטו – הרב שרקי,PLltco4f4g3dmu9iFWwMGtaZNb1KDdRy3L,ser_3689054377413336,36,29,7
+66,הרב אורי שרקי,פורים – הרב שרקי,PLltco4f4g3dmShYa7fzQcMoAlZi4FG9dq,ser_2548224737248142,30,23,7
+66,הרב אורי שרקי,נושאים חמים – הרב שרקי,PLltco4f4g3dkFiIyQj2mGllC5KhAhLkwC,ser_6441148383827480,54,46,8
+66,הרב אורי שרקי,פאנלים – הרב שרקי,PLltco4f4g3dk5yRQ5-ojlwRWerGm6Equr,ser_7059317175911029,28,22,6
+66,הרב אורי שרקי,הרב שרקי בתקשורת,PLltco4f4g3dn8ojiCPm1pU90Lh1ZShKVQ,ser_9328852081000311,64,55,9
+66,הרב אורי שרקי,Fêtes d'Israël | Rav Cherki en Français,PLltco4f4g3dkNf9W8EWjw43rVYGBlYWoY,ser_8311254060030723,33,21,12
+66,הרב אורי שרקי,הרב והפרופסור | הרב שרקי ופרופ' שטרנגר,PLltco4f4g3dkI-s_AVlyADnjyKPEjcdOU,ser_8943093057867740,81,53,28
+66,הרב אורי שרקי,יום העצמאות – הרב שרקי,PLltco4f4g3dl9QVSDmRoNW5ncF5gFxi1e,ser_8205609296013021,28,20,8
+67,ישיבת שבי חברון,"שיעור כללי | גיטין | תשפ""ה",PLnai2vxKHUajY6tJMQvXRicPGw5gWsbFo,ser_9769005912047028,24,17,7
+67,ישיבת שבי חברון,שיעורים על יום כיפור | סוכות | הושענה רבא,PLnai2vxKHUajVFsd0Foatrdus0-fJfPxV,ser_7813978125431831,33,2,31
+68,דף יומי,"בגרות במסכת סוכה (בגרות בגמרא, תלמוד) - שיעורים קצרים וברורים במיוחד שיעזרו לכם ללמוד לבגרות בסוכה",PLqWea-DR5oXK1Qx72U9zgjI1MJWTNtqmq,ser_3621929671369303,10,0,10
+68,דף יומי,מסכת חגיגה - קריאה בגמרא עצמה,PLqWea-DR5oXLkgaLdFvgIOMhOOwh--Ipf,ser_6641923534770795,15,0,15
+68,דף יומי,מסכת חגיגה - השיעור המשולב (תרשים עם קריאה בגמרא),PLqWea-DR5oXKH2YAzyMPtfFrocUZeI4Mx,ser_8497401757693670,13,0,13
+68,דף יומי,מסכת חגיגה - דף יומי,PLqWea-DR5oXJnw4Pz3l7Nw0D90v-A9C7k,ser_2291693116854425,43,28,15
+68,דף יומי,מסכת מועד קטן - קריאה בגמרא עצמה,PLqWea-DR5oXLEqcUdzjSOV1f5nOLQNLlf,ser_4955310899571224,13,0,13
+68,דף יומי,מסכת מועד קטן - קריאה בגמרא עצמה,PLqWea-DR5oXLj-CP3juIpH6Za7KmDKdKj,ser_2824452098739559,13,0,13
+68,דף יומי,מסכת מועד קטן - השיעור המשולב (לימוד הדף יומי באמצעות תרשים במשולב עם קריאה בגמרא עצמה),PLqWea-DR5oXI6p_610V5b-s3uoSCNXdWM,ser_2800752297733226,19,0,19
+68,דף יומי,מסכת מועד קטן - דף יומי,PLqWea-DR5oXJTBIjogiQuldpjrKfwe7Fr,ser_3560998566498355,63,33,30
+68,דף יומי,מסכת תענית - קריאה בגמרא בלבד,PLqWea-DR5oXKSqIKSW-gqT_z6GV1BBbrK,ser_5219636592398989,8,0,8
+68,דף יומי,מסכת תענית - שיעור משולב של תרשים חי וקריאה בגמרא,PLqWea-DR5oXLKQa7V6qdcZpwce_uJn4Mu,ser_7575788970914843,11,1,10
+68,דף יומי,מסכת תענית - אתר סיני,PLqWea-DR5oXLQ71r-lor4lfSVosNxrHmM,ser_5830188600147819,31,17,14
+68,דף יומי,מסכת שבת - שיעורי דף יומי קצרים וברורים,PLqWea-DR5oXJY2sgVALRb9Zc6khO5lK4z,ser_1461533678856935,173,136,37
+68,דף יומי,מסכת ברכות - שיעורי דף יומי קצרים וברורים במיוחד של אתר סיני,PLqWea-DR5oXLcgefOHpZbTPrBmiFshs3x,ser_4299696816697679,115,42,73
+68,דף יומי,אנימציות גמרא - בבא קמא ( החומר לבגרות),PLqWea-DR5oXL7R-5inpjsjO89eidx5B9H,ser_1916158090785181,13,0,13
+68,דף יומי,מסכת חולין - הדף היומי,PLqWea-DR5oXJIXIUPvqK5XLqSVQn6gbjD,ser_9979242108952795,30,23,7
+69,הרב ראובן ששון,שיעורים לחודש אלול • הרב ראובן ששון,PLECdOafnlUTfUGqrP5NNcShyWN0TaXbyP,ser_4647972778259870,17,11,6
+69,הרב ראובן ששון,מאגר סרטונים קצרים לפרשות השבוע,PLECdOafnlUTdaDkQ6FVyvmxgie0jSaAbf,ser_9475188854146549,18,0,18
+69,הרב ראובן ששון,ניגוני ימים נוראים - מתוך התוועדות ג' אלול עם הרב ראובן ששון וחברים מנגנים,PLECdOafnlUTcwpEr4kckK8fNu61jm1H51,ser_5485112242298936,11,4,7
+69,הרב ראובן ששון,שיעורים סביב המלחמה | הרב ראובן ששון,PLECdOafnlUTcHjC2yRUuZCZNOTTZdo1IL,ser_4933937756655789,38,15,23
+69,הרב ראובן ששון,"חג הסוכות תשפ""א | האושפיזין היומי | הרב ראובן ששון",PLECdOafnlUTfYZnAyhqIvwC-kfSs33_wN,ser_5725583053262716,7,1,6
+69,הרב ראובן ששון,פרשות השבוע | ספר ויקרא | הרב ראובן ששון,PLECdOafnlUTe8qRwtVGnX_ZvIm8tbiXvG,ser_1734182336411434,53,7,46
+69,הרב ראובן ששון,ניצוצות אור | פסח | רעיונות קצרים ומתוקים משיעוריו של הרב ראובן ששון,PLECdOafnlUTdxBrpCjc0ybNawDXAMzAxX,ser_7111625927261367,10,2,8
+69,הרב ראובן ששון,שיעורים לפסח | הרב ראובן ששון,PLECdOafnlUTf_5j2F33zi_yb0yEJ72yW9,ser_8303636940617632,93,69,24
+69,הרב ראובן ששון,שיעורים לפורים | הרב ראובן ששון,PLECdOafnlUTc20OKmYX_7XOSv4q1NSfpV,ser_9663360956556817,45,27,18
+69,הרב ראובן ששון,השיעור השבועי | שיעורים לפרשת השבוע | הרב ראובן ששון,PLECdOafnlUTfddqn2aowJt1p_EMRf1Iti,ser_2544351045784836,354,333,21
+70,הרב אשר וייס,מסכת בבא קמא,PLxDtMsBFG3HOIM4awGVQf9t4J2kJ47h9d,ser_1573577592324680,10,0,10
+70,הרב אשר וייס,חושן משפט - שכירות בתים,PLxDtMsBFG3HPoibEYfJGDBD9fy6GQKiv-,ser_9239881976307866,8,0,8
+70,הרב אשר וייס,"Rav Asher Weiss - מרן בעל המנחת אשר, הרב אשר וייס שליט""א",PLxDtMsBFG3HODYicOsp75DDhY_avYIZBi,ser_6558801688602884,59,52,7
+72,מכינת עצמונה,הרב נפתלי שיינפלד - הכנה לפסח,PL4q_7DdPTFPvLM409qZMs4NwGpLSP_lpU,ser_1608314246807864,10,0,10
+72,מכינת עצמונה,להיות מחנך - הרב נפתלי,PL4q_7DdPTFPu5Ej8UNG6zZ3lzNrN8qk3s,ser_3820872631732864,7,0,7
+72,מכינת עצמונה,הכנה לחנוכה - הרב נפתלי שיינפלד,PL4q_7DdPTFPvILwxiha2qj1Y_ITthl4xA,ser_5927261894625949,9,0,9
+72,מכינת עצמונה,"מלחמת ""עם כלביא יקום""",PL4q_7DdPTFPtCt_wbE9EMm06y63Za1Qq9,ser_9429841920819057,7,0,7
+72,מכינת עצמונה,הרב קובי וולק - בניין הבית היהודי,PL4q_7DdPTFPs-sPPX3JMuiBfZnwfZSis6,ser_9372969597631857,17,0,17
+72,מכינת עצמונה,אבן ישראל ג - הרב ישראל סלוטקי,PL4q_7DdPTFPtNIxxARPkZ3vGelHIaGZEv,ser_3739487134032756,9,1,8
+72,מכינת עצמונה,חג שבועות,PL4q_7DdPTFPsVDrNjXblIokgK7MMlv8IP,ser_4997646582183050,10,1,9
+72,מכינת עצמונה,הרב יהודה טיבי,PL4q_7DdPTFPvtjlr5hJSFpdZOBTUYfvwu,ser_5780596573314723,17,1,16
+72,מכינת עצמונה,הרב קובי וולק הבית היהודי תשפ''ד,PL4q_7DdPTFPvBMGO1h5TXUHqrmUsbQ6KQ,ser_9064712075328831,13,0,13
+72,מכינת עצמונה,פרשת שבוע,PL4q_7DdPTFPvswzgRLSkEXUsJuJZSnkB0,ser_8503242409176276,7,0,7
+72,מכינת עצמונה,סליחות,PL4q_7DdPTFPv_qLiiEmYpf0F9zsE-OTCi,ser_9457523255661905,21,0,21
+72,מכינת עצמונה,הרב יובל פרלשטיין - מידת הגבורה,PL4q_7DdPTFPucQnFsNs9CbsBUZaW_2YeP,ser_9856340624735285,11,0,11
+72,מכינת עצמונה,חפץ חיים,PL4q_7DdPTFPv6Zr-VYzX1u_6k7tF9UVzU,ser_5336921443153688,10,0,10
+72,מכינת עצמונה,"אורחים תשפ""ד",PL4q_7DdPTFPv9Syk8y-QA7KSgtpE_sWxq,ser_2259374909651971,23,2,21
+72,מכינת עצמונה,אש של תפילה- הרב יונתן,PL4q_7DdPTFPuSOasHi-jYrxSM3mCpf8qG,ser_8360996048941769,13,0,13
+72,מכינת עצמונה,שאלות לרב יובל,PL4q_7DdPTFPsDXaT3eJ0VQFe3Qxn1gfG6,ser_5166494679535140,24,0,24
+72,מכינת עצמונה,הרב נועם לנדאו - אמונת עתנו,PL4q_7DdPTFPvReBNLFxmKC-WQoQ40PNQ1,ser_6717407740611203,10,0,10
+72,מכינת עצמונה,הרב יונתן - מידות הנפש,PL4q_7DdPTFPvOPAjVJvTat4rlW8dh38PX,ser_4129835613039025,12,1,11
+72,מכינת עצמונה,הרב פנחס בר קשת,PL4q_7DdPTFPsEdc6laQgmhCWNZzMOQJl0,ser_1102145521485948,36,6,30
+72,מכינת עצמונה,"אורחים תשפ""ג",PL4q_7DdPTFPt05JWd7sy6iv7pEnuvDtpF,ser_1998286920674778,10,1,9
+72,מכינת עצמונה,Rabi Yaron Levy - Relationships In The Parsha,PL4q_7DdPTFPtyNKFdwezTBS4MOyQhsXrH,ser_5022680308986989,27,2,25
+72,מכינת עצמונה,"הרב יובל פרלשטיין - בית בישראל התשפ""ג",PL4q_7DdPTFPt6Sx8E5KoVres8FZXsAAKh,ser_2138884909785353,12,0,12
+72,מכינת עצמונה,הרב אריאל כהן - הלכות בין הזמנים,PL4q_7DdPTFPvoyxDmWq8pna1Q_G86yzcU,ser_1067693163100348,11,0,11
+72,מכינת עצמונה,הרב אריאל כהן,PL4q_7DdPTFPu3-DQ5zaiPO5BMrn9rfucO,ser_4168300673612920,11,0,11
+72,מכינת עצמונה,הלכות בין הזמנים,PL4q_7DdPTFPuxOOADaai1sRznMGw4LVsO,ser_9935495856060690,11,0,11
+72,מכינת עצמונה,החיזוק היומי,PL4q_7DdPTFPvKT4hcc5wRLlc2fqy3Bb5K,ser_7520153802717980,85,11,74
+72,מכינת עצמונה,הרב יקי וייס,PL4q_7DdPTFPvFWngMqZ7RJXPwYvfEUQS5,ser_8092184996348665,30,19,11
+72,מכינת עצמונה,יום העצמאות,PL4q_7DdPTFPtewmRuz3NKIwLdJmPaJG4K,ser_932565666351614,7,0,7
+72,מכינת עצמונה,הלכות שבת - הרב יובל פרלשטיין,PL4q_7DdPTFPvskIc4Yw1tkPEiVQtL4fGt,ser_8888241060657341,22,0,22
+72,מכינת עצמונה,מגילת אסתר,PL4q_7DdPTFPvni_bUx9KXk6DgZR1vpcOe,ser_1737580720899725,36,0,36
+72,מכינת עצמונה,הרב ירון לוי,PL4q_7DdPTFPuV3d6y1cKSJ9sFsrg7dN4a,ser_4934604358777044,54,26,28
+72,מכינת עצמונה,"ט""ו בשבט",PL4q_7DdPTFPsyYbvVp7NWDQpuspHIuBZ_,ser_9904376764732566,6,0,6
+72,מכינת עצמונה,נתיבות שלום על הפרשה - הרב רפי פרץ,PL4q_7DdPTFPvHI6KLnhMv-Z2uddJH37fV,ser_2823061335889320,25,0,25
+72,מכינת עצמונה,הרב יובל פרלשטיין - חיזוקים בעבודת ה',PL4q_7DdPTFPsF4YoSkalDvUKmMhA6Eoxd,ser_6987147659416786,10,0,10
+72,מכינת עצמונה,"הרב קובי וולק - הבית היהודי תשפ""ב",PL4q_7DdPTFPvB1FNfX9El5_c2mYKoh6yP,ser_3319849792182814,23,0,23
+72,מכינת עצמונה,"עין בעין התשפ""ב",PL4q_7DdPTFPtsgq7Klu5N8rmHcZ2QgMMi,ser_9115164651786701,13,0,13
+72,מכינת עצמונה,הרב פרץ איינהורן - אורות התשובה,PL4q_7DdPTFPsE5jME3m5wmUSeiotI2Vz_,ser_7270944594025202,6,0,6
+72,מכינת עצמונה,"הרב רפי פרץ - הכוזרי התשפ""ב",PL4q_7DdPTFPvlo0JkW6iT6fTsm0qqOFXm,ser_7566234240687192,8,0,8
+72,מכינת עצמונה,"הרב רפי פרץ: מנהיגים ומנהיגות תשפ""ב",PL4q_7DdPTFPuw4ezxpeq6ZcDolX7u6blS,ser_3966332678351042,8,0,8
+72,מכינת עצמונה,"הרב פרץ איינהורן - עין טובה תשפ""ב",PL4q_7DdPTFPv89IOhFrBwZ1RL2JIX5Xwx,ser_3640786532038185,6,0,6
+72,מכינת עצמונה,"הרב קובי וולק - בניין הבית עפ""י עין איה התשפ""ב",PL4q_7DdPTFPso_6HOLM2SY2_rx7h3b_n9,ser_6724001066822509,16,1,15
+72,מכינת עצמונה,הרב רעי פרץ - דילמות במוסר ומלחמה,PL4q_7DdPTFPsxpQvQLvES99hsRQ6U-8_A,ser_7769178427644829,11,0,11
+72,מכינת עצמונה,הרב ישראל סלוטקי - הכוזרי,PL4q_7DdPTFPurIwiQulhio867zzCbMNtx,ser_2823158377300416,12,0,12
+72,מכינת עצמונה,הרב אהרון צוהר - מודעות עצמית,PL4q_7DdPTFPvETEi4uGIgbH2KBYeWjkqv,ser_3157030673252900,7,0,7
+72,מכינת עצמונה,הרב רפי פרץ - אורות המלחמה,PL4q_7DdPTFPv97R7Xe1PVFJlnjHfdFtfg,ser_1875516064336670,12,0,12
+72,מכינת עצמונה,הרב רפי פרץ - חבורה לתפילה,PL4q_7DdPTFPuPicjBsKNRMNq9azFotjTo,ser_3948209755602605,68,9,59
+72,מכינת עצמונה,"אורחים התשפ""ב",PL4q_7DdPTFPtjObkWTLOTUyT5EspbVwDH,ser_9392568621069763,15,4,11
+72,מכינת עצמונה,"הרב ישראל סלוטקי - יסודות האמונה התשפ""ב",PL4q_7DdPTFPshqLlqS6BZGUFiUvHUVlrH,ser_8819294956617346,16,0,16
+72,מכינת עצמונה,הרב ישראל סלוטקי,PL4q_7DdPTFPtmiUs6CiEV3NFlPhpgUqJI,ser_3761166552815420,67,59,8
+72,מכינת עצמונה,הרב אלי אדלר - מהלך תפילת שמונה עשרה,PL4q_7DdPTFPv7jlpD76yXCyuOG46_-HiJ,ser_6666234724815779,7,0,7
+72,מכינת עצמונה,הרב רפי פרץ - מנהיגות ישראלית,PL4q_7DdPTFPt6R_Y1Bhdba3GJw_CyqZN7,ser_2976598953425200,6,0,6
+72,מכינת עצמונה,"הרב רפי פרץ - בניין האמונה התשפ""ב",PL4q_7DdPTFPteq5Wh2ytk-jid3uivRrpq,ser_9709931148081430,8,0,8
+72,מכינת עצמונה,"הרב קובי וולק - נושאים באמונה התשפ""ב",PL4q_7DdPTFPvBd9opvLVb0akNZOTKCqYu,ser_6455672408268383,15,1,14
+72,מכינת עצמונה,הרב עמיצור ראפ,PL4q_7DdPTFPtM9k93XaQfzGrnGj-aH4GX,ser_1592848689318305,34,28,6
+72,מכינת עצמונה,הרב נפתלי שיינפלד- שמירת הלשון,PL4q_7DdPTFPuUnxyexA-qMt0RhTJkWDXC,ser_7762535764266896,59,0,59
+72,מכינת עצמונה,"מסילת ישרים- הרב נתנאל טחובר תשפ""ב",PL4q_7DdPTFPvvP2SKjkaL2pNaJB9oG8oq,ser_1043421090279638,6,0,6
+72,מכינת עצמונה,"הרב רפי פרץ - תפילה תשע""ח",PL4q_7DdPTFPuXHgvM7Dni4kzFrZJXqfaQ,ser_7992980112306661,10,0,10
+72,מכינת עצמונה,הרב רעי פרץ - הלכה יומית,PL4q_7DdPTFPszVkPb2e_2DpwDsIncm0uz,ser_8791907677372609,289,42,247
+72,מכינת עצמונה,הרב רעי פרץ - עין בעין,PL4q_7DdPTFPvXIM4ctzP7K9T2awFmZd05,ser_1851076613594190,68,1,67
+72,מכינת עצמונה,"הרב רפי פרץ - כוזרי התשע""ח",PL4q_7DdPTFPuLW4edXB5x5q7O7A7IiRDQ,ser_7752101335010914,20,0,20
+72,מכינת עצמונה,"הרב קובי וולק - סוגיות באמונה התשע""ח",PL4q_7DdPTFPuT5io2tPSNzRAz7pay2b3c,ser_7986289851380771,6,0,6
+72,מכינת עצמונה,"הרב רפי פרץ - מסכת אבות התשע""ח",PL4q_7DdPTFPt1rrdnA7Keov200wkuh9cw,ser_3828544149175342,77,0,77
+72,מכינת עצמונה,עין בעין - הרב חיים ברוך,PL4q_7DdPTFPuKbrimGA0jpc66-HKHa2L5,ser_9832237641374489,62,0,62
+72,מכינת עצמונה,עין בעין - הרב רפי פרץ,PL4q_7DdPTFPuAWmA7pyUAdFEo9GZCu2ke,ser_7953672862129764,144,0,144
+72,מכינת עצמונה,הרב ישראל וינגוט - שיחות הרב צבי יהודה - קנין תורה,PL4q_7DdPTFPtQtfwZA1Qph709y_L0wk0n,ser_5069539748590597,14,0,14
+72,מכינת עצמונה,הרב ישראל וינגוט - שיחות הרב צבי יהודה - תלמוד תורה,PL4q_7DdPTFPsZIRX7YKPspwMHqrQlWiS7,ser_2764622005174518,11,0,11
+72,מכינת עצמונה,הרב יובל פרלשטיין,PL4q_7DdPTFPu3Ib3XM04L-v0jNHG6gJC5,ser_8934368266152932,209,101,108
+72,מכינת עצמונה,הרב פרץ איינהורן - פרשת שבוע,PL4q_7DdPTFPt0ksEv4uJ5sQW1gpvw4I-j,ser_4232531732570066,25,0,25
+72,מכינת עצמונה,הרב אלי אדלר - פסח - למהלך סיפור יציאת מצרים,PL4q_7DdPTFPvtXYbB22dfVd6WcZeMVLK9,ser_6320718259209355,11,0,11
+72,מכינת עצמונה,פסח,PL4q_7DdPTFPu7pqhjkCy1IqZDkQje2ouw,ser_3456983745274524,62,16,46
+72,מכינת עצמונה,הרב פרץ איינהורן,PL4q_7DdPTFPuALPspRFp6AitI6t9Y0NvF,ser_6340452749506049,74,61,13
+72,מכינת עצמונה,"הרב אלי אדלר - למהלכם ההיסטורי-אמוני של אירועי פורים התשע""ז",PL4q_7DdPTFPs3AfMnEO3uojNVgb9OCQXJ,ser_8059301442535065,11,0,11
+72,מכינת עצמונה,"הרב אסף נאמבורג - משנת הציונות הדתית התשע""ז",PL4q_7DdPTFPvIb1hhnTpas3xqOvHyzn6l,ser_7468397866792133,12,0,12
+72,מכינת עצמונה,"הרב קובי וולק - סוגיות באמונה התשע""ז",PL4q_7DdPTFPvnK-bjPutjnVYnyIZ99Ku0,ser_5256480428651457,25,0,25
+72,מכינת עצמונה,"הרב קובי וולק - בניין בית יהודי התשע""ז",PL4q_7DdPTFPvbzzBpflCs87tKgc_Wecl-,ser_8722251603524588,13,0,13
+72,מכינת עצמונה,"הרב חיים ברוך - בניין אישיות התשע""ז",PL4q_7DdPTFPtmI1ZW2cWIoHxOwXDMVBkL,ser_4400662261776182,22,0,22
+72,מכינת עצמונה,"אמונה (כוזרי) התשע""ז",PL4q_7DdPTFPvhW_6FD8E5OrkAir0ayPcb,ser_8017568263821040,25,0,25
+72,מכינת עצמונה,"הרב קובי וולק - חיים של משמעות - התשע""ז",PL4q_7DdPTFPvyAZivh5q9e8gfphZHf7wU,ser_2596840647840431,9,0,9
+72,מכינת עצמונה,"הרב חיים ברוך - פרשת שבוע התשע""ז",PL4q_7DdPTFPuPaB0hL0G5ve1Vzj3N2NJw,ser_7921328793295571,18,0,18
+72,מכינת עצמונה,"הרב אלי אדלר - פורים תשע""ו",PL4q_7DdPTFPvoh9FuzIa-e5Oxq-gbqzci,ser_6489250466521523,9,0,9
+72,מכינת עצמונה,הרב עוזי חובב: מסילת ישרים,PL4q_7DdPTFPtH-fC92xP6ax-omyiZqxSB,ser_5156526592790908,17,0,17
+72,מכינת עצמונה,הרב עוזי חובב: בניין אמונה,PL4q_7DdPTFPtIfhEZ5SygI9akuqKAlUyG,ser_4989660189504972,9,0,9
+72,מכינת עצמונה,הרב עוזי חובב,PL4q_7DdPTFPskh7bTDWYR3ogQakON_0xI,ser_1286928394286412,34,5,29
+72,מכינת עצמונה,הרב אהרון צוהר: מודעות עצמית,PL4q_7DdPTFPtA2UJJqJvMzAiiRRuBjSm6,ser_5372754487763660,18,0,18
+72,מכינת עצמונה,הרב יעקב וייס - ענוותנותו של הלל,PL4q_7DdPTFPuqOVJzrXGnVMDRslKQQEwj,ser_4272199889720971,6,0,6
+72,מכינת עצמונה,הרב יעקב וייס - תהליך הגאולה,PL4q_7DdPTFPu9MDkQlw9N72XrNOuVme2C,ser_6761138672068441,6,0,6
+72,מכינת עצמונה,הרב מוטי הס: לימוד התורה,PL4q_7DdPTFPvdqex1hFC5BSkBbC2oJWw4,ser_8310459742337202,20,0,20
+72,מכינת עצמונה,הרב מוטי הס - ערכה של תורה,PL4q_7DdPTFPsCZWYVkGQ4KVBXESpU78AT,ser_5828228266981832,8,0,8
+72,מכינת עצמונה,הרב מאיר כהן - תרבות המערב,PL4q_7DdPTFPtPz1BGe6W7_qle667ctn3u,ser_2032595229045159,7,0,7
+72,מכינת עצמונה,הרב מאיר כהן - כלל ופרט,PL4q_7DdPTFPukuNS7T_vBRFvgdsHJkMAu,ser_7319757274869722,23,0,23
+72,מכינת עצמונה,הרב אלי אדלר: בנין הבית,PL4q_7DdPTFPtSF5Zjqi5rU3PA1c11jcHP,ser_7137060185283067,10,0,10
+72,מכינת עצמונה,הרב אלי אדלר: מוסר אנושי ותורה,PL4q_7DdPTFPvXZjOBvRQXWehhXHuylt2e,ser_8709376972777113,14,0,14
+72,מכינת עצמונה,הרב אלי אדלר: פסח,PL4q_7DdPTFPv-waYMghGdDT32Wf7moy7Z,ser_5646528838603063,16,0,16
+72,מכינת עצמונה,הרב אלי אדלר: העמל בתורה,PL4q_7DdPTFPtikD480MiiMuznaqMPxFDk,ser_3520372467444149,7,0,7
+72,מכינת עצמונה,הרב רפי פרץ - תפילה מהי,PL4q_7DdPTFPtj6_s5gdcjFx2VoQaMAz0G,ser_4352308378077170,19,0,19
+72,מכינת עצמונה,הרב רפי פרץ - אורות המלחמה,PL4q_7DdPTFPtQSvynmSpaLRWJEk1QcBG4,ser_5936351755247589,6,0,6
+72,מכינת עצמונה,הרב רפי פרץ: חנוכה,PL4q_7DdPTFPssy5H3e32oMIAdbeImbd3M,ser_2582169560301641,7,0,7
+72,מכינת עצמונה,הרב רפי פרץ - הלכות,PL4q_7DdPTFPsL4ezYBOnnJggNiOCe_QaP,ser_1143520002102985,15,0,15
+72,מכינת עצמונה,הרב רפי פרץ: דילמות ומוסר בהלכה,PL4q_7DdPTFPv7Ax1SJ33-BbURlAof0WlA,ser_1045960229933700,10,0,10
+72,מכינת עצמונה,הרב רפי פרץ - אורות התשובה,PL4q_7DdPTFPs5TP_ixmXoT1RPcZV-VCem,ser_9511856035975792,28,0,28
+72,מכינת עצמונה,הרב רפי פרץ - פרקי אבות,PL4q_7DdPTFPu5atxHElsY2Wb80SttGUSG,ser_4889228132806171,48,0,48
+72,מכינת עצמונה,הרב רפי פרץ - עולת ראיה,PL4q_7DdPTFPsT1HX05uNtddoK-P-NBEEE,ser_1352116513173998,27,0,27
+72,מכינת עצמונה,הרב אלי אדלר,PL4q_7DdPTFPs7pZkKoHCcMqJ_ItcXNWnc,ser_5847906108850130,200,52,148
+72,מכינת עצמונה,"הרב קובי וולק: חיים של משמעות - תשע""ו",PL4q_7DdPTFPtTceJKp4v7TynNl6MmB8e2,ser_5569014580897976,6,0,6
+72,מכינת עצמונה,"הרב חיים ברוך: תפילה (מי מרום) - תשע""ו",PL4q_7DdPTFPvqL6mv-gr_OXfb8A-WbYCr,ser_6120961554599620,7,0,7
+72,מכינת עצמונה,"הרב אסף נאמבורג: משנת הציונות הדתית - תשע""ו",PL4q_7DdPTFPu8H-NGTKBbT6NPSDOdRX-P,ser_6279464536645118,6,0,6
+72,מכינת עצמונה,"הרב חיים ברוך: אמונה (כוזרי) - תשע""ו",PL4q_7DdPTFPvn1LpNALPX4Phj6qSb8Yy7,ser_3147401611955250,12,1,11
+72,מכינת עצמונה,"הרב חיים ברוך: בניין אישיות - תשע""ו",PL4q_7DdPTFPssTRDDy-4v_39OsODp0SR4,ser_6488333005583959,11,0,11
+72,מכינת עצמונה,"הרב אלי אדלר: פורים - תשע""ה",PL4q_7DdPTFPu-BqXRhy_nk4JgTxpJ1Xua,ser_1627925123272431,9,0,9
+72,מכינת עצמונה,"הרב חיים ברוך: בניין אישיות - תשע""ה",PL4q_7DdPTFPvMstnGLEDVHWtIIgZgYyUU,ser_1760618603175910,14,0,14
+72,מכינת עצמונה,"הרב חיים ברוך: כוזרי - תשע""ה",PL4q_7DdPTFPsiMkkTAYxenbsbaHh81UpY,ser_6017023915919154,10,0,10
+72,מכינת עצמונה,"הרב אסף נאמבורג: משנת הציונות הדתית - תשע""ה",PL4q_7DdPTFPsdLoLcbNOc8r9aAC-GP82M,ser_1071711883976551,11,0,11
+72,מכינת עצמונה,"הרב חיים ברוך: תפילה - תשע""ה",PL4q_7DdPTFPs9FZFMYYQ0p0lsNqLnKPbx,ser_6610343447331043,6,0,6
+72,מכינת עצמונה,"שיעורי חוץ - תשע""ה",PL4q_7DdPTFPvJFH-ghnnbGs73xSSlq6YE,ser_3312910724260715,12,0,12
+72,מכינת עצמונה,"""עין בעין"" מבט אמוני על המציאות העכשוית",PL4q_7DdPTFPuCz9piqRSJXc-neu59-GHu,ser_5543809950280286,174,47,127
+72,מכינת עצמונה,הרב חיים ברוך: תרבות המערב,PL4q_7DdPTFPuGKnireSdrsApjGTngdv5H,ser_1706998246441439,6,0,6
+72,מכינת עצמונה,אורחים,PL4q_7DdPTFPsmIiAjiZZmEcppd-gsiCqE,ser_6153210419674509,120,111,9
+72,מכינת עצמונה,הרב רפי פרץ: מנהיגים ומנהיגות,PL4q_7DdPTFPvUHSWOVCQZGp0tlwnkmleT,ser_4066688716700311,99,0,99
+72,מכינת עצמונה,הרב אלי אדלר: חנוכה,PL4q_7DdPTFPtvfdKufDOy8yY2A9QTvX1P,ser_4228400191770617,6,0,6
+72,מכינת עצמונה,הרב חיים ברוך: הכוזרי,PL4q_7DdPTFPs5vqwUmaOMKEEC_xK3VyYK,ser_8150347772020169,12,0,12
+72,מכינת עצמונה,הרב חיים ברוך: בניין האישיות,PL4q_7DdPTFPsIpkty_g0PRc6zyZ1fAYUF,ser_2584264837795881,17,0,17
+72,מכינת עצמונה,הרב חיים ברוך: תפילה,PL4q_7DdPTFPuUinhtMsBF1yawGH08u4xk,ser_4219873414375630,15,0,15
+72,מכינת עצמונה,הרב חיים ברוך: אמונה,PL4q_7DdPTFPt4L3b1GG5B7TWLt8t1IKFb,ser_6435135236782098,15,0,15
+72,מכינת עצמונה,ירושלים,PL4q_7DdPTFPvAwT4ErKw0HXSpuiYmt19b,ser_8679030804555325,7,1,6
+72,מכינת עצמונה,עולת ראיה,PL4q_7DdPTFPu4uPt7FFjNSpgjNA_-nw1P,ser_8990580086463024,27,0,27
+72,מכינת עצמונה,ערכה של תורה,PL4q_7DdPTFPsEaODEHtBrPJjRfziogmSZ,ser_5892151767968144,9,0,9
+72,מכינת עצמונה,קביעת מטרות,PL4q_7DdPTFPuiKMVKAG4Oi8iDH1aBTbud,ser_7444664421794517,7,0,7
+72,מכינת עצמונה,"הרבצ""ר רפי פרץ פרשת שבוע",PL4q_7DdPTFPvgfrvPWQRyIE22YLSxUqcv,ser_8237067749428797,27,0,27
+72,מכינת עצמונה,עם ישראל,PL4q_7DdPTFPs6oW_H7Ng5TTIyFHII0Nkc,ser_7475398115066781,12,0,12
+72,מכינת עצמונה,מועדים כלליים,PL4q_7DdPTFPu-xApQYILa7K0K5SURBUQr,ser_8568014907796742,30,1,29
+72,מכינת עצמונה,רבנים- כללי,PL4q_7DdPTFPswpyyYr6wXz0IBcuEV55t7,ser_4003797452338219,49,9,40
+72,מכינת עצמונה,שיעורים במשמר,PL4q_7DdPTFPvtnm69_YO_alFSEtW-WCEy,ser_6459699065017242,81,1,80
+72,מכינת עצמונה,עין אי'ה,PL4q_7DdPTFPtCAaW3nZwA3L4XBzghjWXP,ser_3602756600078173,16,2,14
+72,מכינת עצמונה,גאולה,PL4q_7DdPTFPvYe-Fz3kckljt9o423uxqm,ser_9701414785554489,7,0,7
+72,מכינת עצמונה,תהליך הגאולה,PL4q_7DdPTFPtSLm83T5TrWYex6YvXPKrb,ser_2169272736488236,7,0,7
+72,מכינת עצמונה,חינוך,PL4q_7DdPTFPvkO0ZevzvtAfm79K6w1TtL,ser_5463318746859956,8,1,7
+72,מכינת עצמונה,הלכה,PL4q_7DdPTFPs2fpeQuo-_0zJpZ96kB-Sm,ser_7100680242085251,84,6,78
+72,מכינת עצמונה,אורות התשובה,PL4q_7DdPTFPufWG53nA3iG-itMjuanQoS,ser_3873959872056222,39,1,38
+72,מכינת עצמונה,תרבות המדיה,PL4q_7DdPTFPvw6mbZLngEoJWrteXiXL8b,ser_5865015155260640,18,0,18
+72,מכינת עצמונה,אורות,PL4q_7DdPTFPsmchODwdI5y_HzG4_0860a,ser_8253348518826135,12,0,12
+72,מכינת עצמונה,מנהיגים ומנהיגות,PL4q_7DdPTFPsGhpibRSLB07D6pLGtbFin,ser_7860829284602653,76,2,74
+72,מכינת עצמונה,ימי בין המצרים,PL4q_7DdPTFPs1_9ZTVqEOeLtGXVdYYS2q,ser_8038299986834176,14,7,7
+72,מכינת עצמונה,מידות,PL4q_7DdPTFPvJUaXkdvk8CFEeVxAq_i0e,ser_1176148444100715,15,3,12
+72,מכינת עצמונה,מודעות עצמית,PL4q_7DdPTFPtTcTxPPDSy-z7f1RzXdWDW,ser_3348761024857347,9,0,9
+72,מכינת עצמונה,כלל ופרט,PL4q_7DdPTFPuN--mpzdEUiBjS1lP8pwKD,ser_9898817636990667,22,0,22
+72,מכינת עצמונה,תרבות המערב,PL4q_7DdPTFPsr171YP9aRvpOSa2ovyB_y,ser_9776724538457478,12,0,12
+72,מכינת עצמונה,תפילה,PL4q_7DdPTFPsDequHfyQzoygeD0S5Sv2A,ser_3992794981381558,62,4,58
+72,מכינת עצמונה,כוזרי,PL4q_7DdPTFPu4yFIB5Gso0d-HP2M_in_a,ser_5714377503664298,102,18,84
+72,מכינת עצמונה,אמונה,PL4q_7DdPTFPsgwPNfqxgmzCtgpV_iciJb,ser_7385808367437653,46,10,36
+72,מכינת עצמונה,פרקי אבות,PL4q_7DdPTFPsGKIpR6LCrXnWs_xqht-LB,ser_8293210603661153,48,0,48
+72,מכינת עצמונה,בניין אישיות,PL4q_7DdPTFPuiId3l8t9iW0o32_oyIvmx,ser_5205410013711012,24,0,24
+72,מכינת עצמונה,פרשת השבוע,PL4q_7DdPTFPvr5A5SKk9NfPkehkeGhOGj,ser_2470804828397736,108,36,72
+72,מכינת עצמונה,יום כיפור,PL4q_7DdPTFPvf3Y3kntbKXJlayIfX8Ne0,ser_7390155517329115,15,0,15
+72,מכינת עצמונה,ראש השנה,PL4q_7DdPTFPsWP5GpkceHM86nySyC7kfP,ser_1393168540263206,28,14,14
+72,מכינת עצמונה,עשרת ימי תשובה,PL4q_7DdPTFPuPKEUt9JVnaBaRrhgz2QoY,ser_6765609976741498,20,10,10
+72,מכינת עצמונה,חודש אלול,PL4q_7DdPTFPvpsiIAOFgNwm7osSaAxCpL,ser_5992980648101045,33,23,10
+72,מכינת עצמונה,צומות ותעניות,PL4q_7DdPTFPt_hCuj3HwMnX8uSMYZ8Acr,ser_7131945121255445,37,17,20
+72,מכינת עצמונה,סוכות,PL4q_7DdPTFPs5WyaA7OSzcGT3ZpxrquJs,ser_5455870127250494,8,2,6
+72,מכינת עצמונה,חנוכה,PL4q_7DdPTFPvqjsh5Lq-4O-07QolKXR62,ser_2214374242742436,55,24,31
+72,מכינת עצמונה,ט'ו בשבט,PL4q_7DdPTFPt001Qt0xIEO3nWiiA9ioJd,ser_7294978745597609,6,0,6
+72,מכינת עצמונה,פורים,PL4q_7DdPTFPuxsUTzm9EkICn9rnUrwvqU,ser_9944124187740269,131,87,44
+72,מכינת עצמונה,ימי ספירת העומר,PL4q_7DdPTFPvle3mYwcxeFcQhw5iz7Ibg,ser_8042638753937646,42,15,27
+72,מכינת עצמונה,שבועות,PL4q_7DdPTFPsz0hHA4mo7n4g-JtwkcwsK,ser_4255735831960027,45,23,22
+72,מכינת עצמונה,הרב אסף נאמבורג,PL4q_7DdPTFPuo_X5hYBTYxkdbMfOtLFJL,ser_8134887258777731,60,45,15
+72,מכינת עצמונה,שיעורים- כללי,PL4q_7DdPTFPsFE10qiyDF3JR4osnSAqd7,ser_7999476246434489,55,31,24
+72,מכינת עצמונה,הרב קובי וולק,PL4q_7DdPTFPsgWGSZMAMzkj9bguSfz-JL,ser_6430670060450446,276,263,13
+72,מכינת עצמונה,הרב רפי פרץ,PL4q_7DdPTFPu_K-z-3s7qaduJRC839WfY,ser_8254847140889347,760,739,21
+72,מכינת עצמונה,הרב יעקב וייס,PL4q_7DdPTFPuLbzf-NGVcwjV1U0RLmBEG,ser_6454943159590436,64,16,48
+72,מכינת עצמונה,הרב זאב פרידמן,PL4q_7DdPTFPsW_4SM7m3nBeH6kYBlBs-i,ser_8309788618097054,28,22,6
+72,מכינת עצמונה,הרב אמיר גת,PL4q_7DdPTFPts_BVmMUHk7uo6za9982DO,ser_2987850170219669,58,39,19
+73,הרב מאיר אליהו,מרכבות קדש - משיכת נשמות קדושות לבניו,PL_NP94USLF7-6rblLR_Uw4D64-tztBNpt,ser_8591012173636121,8,2,6
+73,הרב מאיר אליהו,דיסק 18 | הרב מאיר אליהו l שובע שמחות,PL_NP94USLF7_mTO3LDN-FFKSNEZpvzeDU,ser_1432742015737253,16,4,12
+73,הרב מאיר אליהו,דיסק 4 | הרב מאיר אליהו l חגים ומועדי השנה,PL_NP94USLF79qXQaIrgxc5LsBXuJAOUNX,ser_1363251550999016,22,14,8
+73,הרב מאיר אליהו,דיסק 12 | הרב מאיר אליהו l בואי כלה שבת מלכתא,PL_NP94USLF782BM4N8KBJEZ9jE0Rlgk54,ser_3819622328944299,17,3,14
+73,הרב מאיר אליהו,דרשות שנת התשע''ו - הרב מאיר אליהו,PL_NP94USLF7_0UAx76Lg-_QlGJg03pdES,ser_9873891399622465,16,5,11
+74,ישיבת המקובלים בית אל,גמרא הרב שי גמליאל,PL4pyb2SKI_3fZ7QN1nzKSmvD4d2SixpK5,ser_1565859485838335,51,36,15
+74,ישיבת המקובלים בית אל,מתחילים יום ג קבוצה 1,PL4pyb2SKI_3fU6XdvpaxSxQIHJXqt5BYh,ser_6830930335644176,517,3,514

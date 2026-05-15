@@ -1,145 +1,145 @@
 {
   "50": {
     "done": true,
-    "completedAt": "2026-05-14T14:00:35.771262",
-    "updated": 580,
-    "skipped": 222,
+    "completedAt": "2026-05-14T16:16:36.278902",
+    "updated": 0,
+    "skipped": 456,
     "no_playlist": 0,
     "errors": 0
   },
   "51": {
     "done": true,
-    "completedAt": "2026-05-14T14:00:35.863890",
+    "completedAt": "2026-05-14T16:16:44.278356",
     "updated": 0,
-    "skipped": 0,
+    "skipped": 435,
     "no_playlist": 0,
     "errors": 0
   },
   "52": {
     "done": true,
-    "completedAt": "2026-05-14T14:01:20.233754",
-    "updated": 2094,
-    "skipped": 731,
+    "completedAt": "2026-05-14T16:17:16.540027",
+    "updated": 0,
+    "skipped": 1411,
     "no_playlist": 0,
     "errors": 0
   },
   "60": {
     "done": true,
-    "completedAt": "2026-05-14T14:04:01.979784",
-    "updated": 8398,
-    "skipped": 517,
+    "completedAt": "2026-05-14T16:19:18.752211",
+    "updated": 0,
+    "skipped": 4509,
     "no_playlist": 0,
     "errors": 0
   },
   "61": {
     "done": true,
-    "completedAt": "2026-05-14T14:05:12.562721",
-    "updated": 4875,
-    "skipped": 3117,
+    "completedAt": "2026-05-14T16:20:09.579378",
+    "updated": 0,
+    "skipped": 4028,
     "no_playlist": 0,
     "errors": 0
   },
   "62": {
     "done": true,
-    "completedAt": "2026-05-14T14:06:18.552594",
-    "updated": 4922,
-    "skipped": 1737,
+    "completedAt": "2026-05-14T16:21:00.778252",
+    "updated": 0,
+    "skipped": 3353,
     "no_playlist": 0,
     "errors": 0
   },
   "63": {
     "done": true,
-    "completedAt": "2026-05-14T14:09:43.976779",
-    "updated": 14265,
-    "skipped": 1464,
+    "completedAt": "2026-05-14T16:24:39.405548",
+    "updated": 0,
+    "skipped": 8098,
     "no_playlist": 0,
     "errors": 0
   },
   "64": {
     "done": true,
-    "completedAt": "2026-05-14T14:11:22.248312",
-    "updated": 7304,
-    "skipped": 843,
+    "completedAt": "2026-05-15T10:23:53.620955",
+    "updated": 0,
+    "skipped": 4110,
     "no_playlist": 0,
     "errors": 0
   },
   "65": {
     "done": true,
-    "completedAt": "2026-05-14T14:11:58.982192",
-    "updated": 2601,
-    "skipped": 1422,
+    "completedAt": "2026-05-15T10:24:24.655229",
+    "updated": 0,
+    "skipped": 2047,
     "no_playlist": 0,
     "errors": 0
   },
   "66": {
     "done": true,
-    "completedAt": "2026-05-14T14:12:59.546464",
-    "updated": 2687,
-    "skipped": 251,
+    "completedAt": "2026-05-15T10:25:25.986838",
+    "updated": 11,
+    "skipped": 1899,
     "no_playlist": 0,
     "errors": 0
   },
   "67": {
     "done": true,
-    "completedAt": "2026-05-14T14:13:17.239333",
-    "updated": 681,
-    "skipped": 356,
+    "completedAt": "2026-05-15T10:25:44.570490",
+    "updated": 0,
+    "skipped": 568,
     "no_playlist": 0,
     "errors": 0
   },
   "68": {
     "done": true,
-    "completedAt": "2026-05-14T14:13:56.884887",
-    "updated": 3727,
-    "skipped": 247,
+    "completedAt": "2026-05-15T10:26:19.800282",
+    "updated": 0,
+    "skipped": 1992,
     "no_playlist": 0,
     "errors": 0
   },
   "69": {
     "done": true,
-    "completedAt": "2026-05-14T14:14:18.344058",
-    "updated": 1367,
-    "skipped": 664,
+    "completedAt": "2026-05-15T10:27:41.146182",
+    "updated": 0,
+    "skipped": 1019,
     "no_playlist": 0,
     "errors": 0
   },
   "70": {
     "done": true,
-    "completedAt": "2026-05-14T14:14:26.850226",
-    "updated": 278,
-    "skipped": 3359,
+    "completedAt": "2026-05-15T10:27:50.685210",
+    "updated": 0,
+    "skipped": 1825,
     "no_playlist": 0,
     "errors": 0
   },
   "71": {
     "done": true,
-    "completedAt": "2026-05-14T14:15:11.177466",
-    "updated": 2116,
-    "skipped": 348,
+    "completedAt": "2026-05-15T10:28:39.256131",
+    "updated": 0,
+    "skipped": 1270,
     "no_playlist": 0,
     "errors": 0
   },
   "72": {
     "done": true,
-    "completedAt": "2026-05-14T14:18:11.378342",
-    "updated": 6819,
-    "skipped": 1053,
+    "completedAt": "2026-05-15T10:31:26.932192",
+    "updated": 0,
+    "skipped": 3986,
     "no_playlist": 0,
     "errors": 0
   },
   "73": {
     "done": true,
-    "completedAt": "2026-05-14T14:18:34.429545",
-    "updated": 1427,
-    "skipped": 5651,
+    "completedAt": "2026-05-15T10:31:48.853607",
+    "updated": 0,
+    "skipped": 3570,
     "no_playlist": 0,
     "errors": 0
   },
   "74": {
     "done": true,
-    "completedAt": "2026-05-14T14:18:50.475074",
-    "updated": 234,
-    "skipped": 440,
+    "completedAt": "2026-05-15T10:32:02.917606",
+    "updated": 0,
+    "skipped": 355,
     "no_playlist": 0,
     "errors": 0
   }
