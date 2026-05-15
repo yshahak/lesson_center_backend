@@ -482,6 +482,7 @@ class TestTitleMatchUpdatesInsteadOfCreates(unittest.TestCase):
             "audioUrl": None,
             "videoUrl": None,
             "title": "שיעור לדוגמה",
+            "dateStr": "2026-05-14",  # must match WP lesson date for dedup to trigger
         }
         db, lessons_col = _make_db_with_title_fallback(
             originalid_docs=[],           # not found by WP post_id
@@ -502,6 +503,35 @@ class TestTitleMatchUpdatesInsteadOfCreates(unittest.TestCase):
 
         # set() must NOT have been called (no new doc created)
         lessons_col.document.assert_not_called()
+
+
+class TestTitleMatchDifferentDateCreatesNew(unittest.TestCase):
+
+    def test_same_title_different_date_creates_new(self):
+        """Daily recurring series (e.g. הלכה יומית) must not collapse onto one doc."""
+        existing_by_title = {
+            "originalId": 10915,
+            "sourceId": SOURCE_ID,
+            "title": "הלכה יומית | הרב דב ביגון",
+            "dateStr": "2026-05-10",  # old episode date
+        }
+        db, lessons_col = _make_db_with_title_fallback(
+            originalid_docs=[],
+            title_docs=[existing_by_title],
+        )
+        stats = {"created": 0, "updated": 0, "broken_audio_nulled": 0}
+
+        with patch("scrapers.arutz_meir_scraper.get_hash_for_id", return_value=99999):
+            _upsert_lesson(
+                _make_lesson_data(originalId=388996, overrides={"dateStr": "2026-05-14"}),
+                db, "", dry_run=False, stats=stats,
+                is_slug_fallback=True,
+            )
+
+        # Different date → must CREATE new, not update old episode
+        self.assertEqual(stats["created"], 1)
+        self.assertEqual(stats["updated"], 0)
+        self.assertEqual(stats.get("title_fallback_hit", 0), 0)
 
 
 class TestNoTitleMatchCreatesNew(unittest.TestCase):

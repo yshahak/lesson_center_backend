@@ -208,14 +208,26 @@ def _upsert_lesson(
         doc_ref = existing[0].reference
         existing_data = existing[0].to_dict()
     elif is_slug_fallback and title:
-        # Slug fallback was used — try to find an existing doc by title to avoid duplicates
+        # Slug fallback was used — try to find an existing doc by title to avoid duplicates.
+        # Only treat as the same lesson if the date also matches — daily/recurring series
+        # (e.g. "הלכה יומית") have the same title every episode but different dates.
         doc_ref, existing_data = _find_existing_by_title(db, title, collection_prefix)
-        if doc_ref:
-            stats["title_fallback_hit"] = stats.get("title_fallback_hit", 0) + 1
-            logger.info(
-                f"[TITLE DEDUP] Found existing doc via title match for "
-                f"originalId={original_id} title='{title[:50]}'"
-            )
+        if doc_ref and existing_data:
+            existing_date = existing_data.get("dateStr", "")
+            new_date = lesson_data.get("dateStr", "")
+            if existing_date != new_date:
+                # Different date → different episode of a recurring series → create new
+                logger.info(
+                    f"[TITLE DEDUP] Skipped — same title but different date "
+                    f"(existing={existing_date}, new={new_date}) title='{title[:50]}'"
+                )
+                doc_ref, existing_data = None, None
+            else:
+                stats["title_fallback_hit"] = stats.get("title_fallback_hit", 0) + 1
+                logger.info(
+                    f"[TITLE DEDUP] Found existing doc via title+date match for "
+                    f"originalId={original_id} title='{title[:50]}' date={new_date}"
+                )
 
     if doc_ref is not None and existing_data is not None:
         # UPDATE path
