@@ -154,25 +154,45 @@ def _extract_vimeo_id(html: str) -> str | None:
 # Firestore upsert
 # ---------------------------------------------------------------------------
 
+def _find_existing_by_title(db, title: str, collection_prefix: str):
+    """Fallback dedup: search by exact title for sourceId=2 lessons.
+    Used only when slug-based originalId lookup fails.
+    Returns (doc_ref, doc_data) or (None, None).
+    """
+    results = list(
+        db.collection(f"{collection_prefix}lessons")
+        .where("sourceId", "==", SOURCE_ID)
+        .where("title", "==", title)
+        .limit(1)
+        .stream()
+    )
+    if results:
+        return results[0].reference, results[0].to_dict()
+    return None, None
+
+
 def _upsert_lesson(
     lesson_data: dict,
     db,
     collection_prefix: str,
     dry_run: bool,
     stats: dict,
+    is_slug_fallback: bool = False,
 ) -> str:
     """
     Check if lesson exists (sourceId=2, originalId).
     If exists: UPDATE siteAudioUrl, vimeoId, scrapeSource, null broken audioUrl,
                and any currently-null taxonomy fields. NEVER touch videoUrl.
+    If not (and is_slug_fallback=True): try title-based dedup before creating.
     If not: CREATE full lesson doc.
 
     Returns 'created' or 'updated'.
     """
     original_id = lesson_data["originalId"]
+    title = lesson_data.get("title", "")
     lessons_ref = db.collection(f"{collection_prefix}lessons")
 
-    # Query for existing doc
+    # Query for existing doc by originalId
     existing = (
         lessons_ref
         .where("sourceId", "==", SOURCE_ID)
@@ -181,11 +201,24 @@ def _upsert_lesson(
         .get()
     )
 
+    doc_ref = None
+    existing_data = None
+
     if existing:
-        # UPDATE path
         doc_ref = existing[0].reference
         existing_data = existing[0].to_dict()
+    elif is_slug_fallback and title:
+        # Slug fallback was used — try to find an existing doc by title to avoid duplicates
+        doc_ref, existing_data = _find_existing_by_title(db, title, collection_prefix)
+        if doc_ref:
+            stats["title_fallback_hit"] = stats.get("title_fallback_hit", 0) + 1
+            logger.info(
+                f"[TITLE DEDUP] Found existing doc via title match for "
+                f"originalId={original_id} title='{title[:50]}'"
+            )
 
+    if doc_ref is not None and existing_data is not None:
+        # UPDATE path
         update_payload = {
             "siteAudioUrl": lesson_data.get("siteAudioUrl"),
             "vimeoId": lesson_data.get("vimeoId"),
@@ -209,7 +242,7 @@ def _upsert_lesson(
         else:
             logger.info(
                 f"[DRY RUN] UPDATE originalId={original_id} "
-                f"title='{lesson_data.get('title', '')[:50]}' "
+                f"title='{title[:50]}' "
                 f"siteAudioUrl={lesson_data.get('siteAudioUrl')} "
                 f"vimeoId={lesson_data.get('vimeoId')} "
                 f"audioUrl_nulled={'audioUrl' in update_payload}"
@@ -225,7 +258,7 @@ def _upsert_lesson(
             "id": lesson_id,
             "originalId": original_id,
             "sourceId": SOURCE_ID,
-            "title": lesson_data["title"],
+            "title": title,
             "siteAudioUrl": lesson_data.get("siteAudioUrl"),
             "audioUrl": None,
             "vimeoId": lesson_data.get("vimeoId"),
@@ -246,7 +279,7 @@ def _upsert_lesson(
         else:
             logger.info(
                 f"[DRY RUN] CREATE originalId={original_id} "
-                f"title='{lesson_data.get('title', '')[:50]}' "
+                f"title='{title[:50]}' "
                 f"siteAudioUrl={lesson_data.get('siteAudioUrl')} "
                 f"vimeoId={lesson_data.get('vimeoId')} "
                 f"ravId={lesson_data.get('ravId')} "
@@ -262,7 +295,12 @@ def _upsert_lesson(
 # Main scraper
 # ---------------------------------------------------------------------------
 
-def scrape_arutz_meir(collection_prefix: str = "", dry_run: bool = False, max_pages: int | None = None) -> dict:
+def scrape_arutz_meir(
+    collection_prefix: str = "",
+    dry_run: bool = False,
+    max_pages: int | None = None,
+    oldest_first: bool = False,
+) -> dict:
     """
     Main entry point for the Arutz Meir WordPress scraper.
 
@@ -270,6 +308,8 @@ def scrape_arutz_meir(collection_prefix: str = "", dry_run: bool = False, max_pa
         collection_prefix: Firestore collection prefix (e.g. "test_").
         dry_run: If True, log what would be written but make no Firestore writes.
         max_pages: Limit number of WP API pages to fetch (None = all).
+        oldest_first: If True, fetch lessons in ascending ID order (oldest first).
+                      Useful for verifying the update path on old content already in Firestore.
 
     Returns:
         dict with scraping statistics.
@@ -301,7 +341,14 @@ def scrape_arutz_meir(collection_prefix: str = "", dry_run: bool = False, max_pa
         logger.info("No source doc for sourceId=2 found — will do full scrape")
 
     # Build pagination parameters
-    if last_scraped_at:
+    if oldest_first:
+        params = {
+            "per_page": 100,
+            "orderby": "id",
+            "order": "asc",
+        }
+        logger.info("Oldest-first mode: fetching lessons in ascending ID order")
+    elif last_scraped_at:
         params = {
             "per_page": 100,
             "orderby": "date",
@@ -322,11 +369,12 @@ def scrape_arutz_meir(collection_prefix: str = "", dry_run: bool = False, max_pa
         "updated": 0,
         "broken_audio_nulled": 0,
         "skipped_no_media": 0,
-        "slug_fallback": 0,      # lessons where slug didn't match shiur-{id}
+        "slug_fallback": 0,       # lessons where slug didn't match shiur-{id}
+        "title_fallback_hit": 0,  # slug fallback + title match found existing doc
         "errors": 0,
         "pages_fetched": 0,
         "lessons_examined": 0,
-        "sample_lessons": [],    # up to 3 detailed samples
+        "sample_lessons": [],     # up to 3 detailed samples
     }
 
     page = 1
@@ -366,9 +414,11 @@ def scrape_arutz_meir(collection_prefix: str = "", dry_run: bool = False, max_pa
             # Extract originalId from slug (e.g. "shiur-10915" → 10915)
             slug = lesson_api.get("slug", "")
             original_id = _extract_original_id_from_slug(slug)
+            is_slug_fallback = False
             if original_id is None:
                 # Fallback: use WP post ID as originalId
                 original_id = wp_post_id
+                is_slug_fallback = True
                 stats["slug_fallback"] += 1
                 logger.debug(f"Slug '{slug}' did not match shiur-{{id}} — using wp_post_id={wp_post_id} as originalId")
 
@@ -426,7 +476,7 @@ def scrape_arutz_meir(collection_prefix: str = "", dry_run: bool = False, max_pa
             }
 
             try:
-                action = _upsert_lesson(lesson_data, db, collection_prefix, dry_run, stats)
+                action = _upsert_lesson(lesson_data, db, collection_prefix, dry_run, stats, is_slug_fallback=is_slug_fallback)
 
                 # Collect sample lessons for reporting
                 if len(stats["sample_lessons"]) < 3:
@@ -468,6 +518,7 @@ def scrape_arutz_meir(collection_prefix: str = "", dry_run: bool = False, max_pa
         f"broken_audio_nulled={stats['broken_audio_nulled']} "
         f"skipped_no_media={stats['skipped_no_media']} "
         f"slug_fallback={stats['slug_fallback']} "
+        f"title_fallback_hit={stats.get('title_fallback_hit', 0)} "
         f"errors={stats['errors']} pages={stats['pages_fetched']}"
     )
     return stats

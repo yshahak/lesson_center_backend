@@ -47,15 +47,10 @@ SOURCE_ID = 1
 BASE_URL = "https://bneidavid.org/wp-json/wp/v2"
 LESSONS_ENDPOINT = f"{BASE_URL}/lessons"
 
-# Paths to the approved mapping files.
-# Layout: lesson_center_backend/
-#           data/
-#           functions/
-#             scrapers/     ← this file lives here
-# So we go up two levels from this file to reach lesson_center_backend/.
-_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-_RAV_MAP_PATH = os.path.join(_REPO_ROOT, "data", "bnei_david_ravs_mapping.json")
-_SERIES_MAP_PATH = os.path.join(_REPO_ROOT, "data", "bnei_david_series_mapping.json")
+# Mapping files are in functions/data/ so they deploy with the Cloud Function.
+_FUNCTIONS_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+_RAV_MAP_PATH = os.path.join(_FUNCTIONS_ROOT, "data", "bnei_david_ravs_mapping.json")
+_SERIES_MAP_PATH = os.path.join(_FUNCTIONS_ROOT, "data", "bnei_david_series_mapping.json")
 
 # Rate limits (seconds) — increased to be polite to bneidavid.org
 _PAGE_SLEEP = 0.5

@@ -1,0 +1,4889 @@
+[
+  {
+    "wp_id": 285,
+    "wp_name": "'בואי הרוח' | הרב יגאל",
+    "firestore_doc_id": "ser_0339b4859f1a4e6cb637",
+    "firestore_name": "'בואי הרוח' | הרב יגאל",
+    "firestore_original_id": 298906438055658822,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 286,
+    "wp_name": "אגרות הראי\"ה - הרב קלנר",
+    "firestore_doc_id": "ser_bb691bdab72d4f919176",
+    "firestore_name": "אגרות הראי\"ה - הרב קלנר",
+    "firestore_original_id": 827711706471221992,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 287,
+    "wp_name": "אגרות הראי\"ה - הרב קשתיאל",
+    "firestore_doc_id": "ser_1a2c7b492b394685afda",
+    "firestore_name": "אגרות הראי\"ה - הרב קשתיאל",
+    "firestore_original_id": 308932522970326772,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 288,
+    "wp_name": "אגרת הרמב\"ן - הרב קשתיאל",
+    "firestore_doc_id": "ser_41fbda21c0484a0ebfac",
+    "firestore_name": "אגרת הרמב\"ן - הרב קשתיאל",
+    "firestore_original_id": 687510202395565094,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 289,
+    "wp_name": "אדר היקר - הרב קשתיאל",
+    "firestore_doc_id": "ser_6cb5bf835d25426bb845",
+    "firestore_name": "אדר היקר - הרב קשתיאל",
+    "firestore_original_id": 579194994116634695,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 290,
+    "wp_name": "אור חדש למהר\"ל [תשע'ו] - הרב קשתיאל",
+    "firestore_doc_id": "ser_4255597e30604cadbc3f",
+    "firestore_name": "אור חדש למהר\"ל - הרב קשתיאל תשע'ו",
+    "firestore_original_id": 723475587235359954,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year/separator placement differs"
+  },
+  {
+    "wp_id": 291,
+    "wp_name": "אור לנתיבתי - הרב קלנר",
+    "firestore_doc_id": "ser_4180c307700d46a59506",
+    "firestore_name": "אור לנתיבתי - הרב קלנר",
+    "firestore_original_id": 547275345063661121,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 292,
+    "wp_name": "אור לנתיבתי [תשע'ו] - הרב קשתיאל",
+    "firestore_doc_id": "ser_98cd62b867044d20b2ca",
+    "firestore_name": "אור לנתיבתי - הרב קשתיאל [תשע'ו]",
+    "firestore_original_id": 878398987532944358,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — rav/year ordering differs"
+  },
+  {
+    "wp_id": 293,
+    "wp_name": "אורות - הרב אלי",
+    "firestore_doc_id": "ser_1db2a69b924c4174979b",
+    "firestore_name": "אורות - הרב אלי",
+    "firestore_original_id": 513730993551441822,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 294,
+    "wp_name": "אורות [תשע\"ב] - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 295,
+    "wp_name": "אורות [תשע\"ח] - הרב קשתיאל",
+    "firestore_doc_id": "ser_42af83f8d4c54a6d962e",
+    "firestore_name": "אורות - הרב קשתיאל [תשע\"ח]",
+    "firestore_original_id": 163576378159181198,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — rav/year ordering differs"
+  },
+  {
+    "wp_id": 296,
+    "wp_name": "אורות [תשפ\"ג] - הרב יהודה",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 140,
+    "wp_name": "אורות [תשפ\"ו] | הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 297,
+    "wp_name": "אורות ארץ ישראל [תשס\"ד] - הרב קלנר",
+    "firestore_doc_id": "ser_1cc96f26eabb4693a635",
+    "firestore_name": "אורות ארץ ישראל [תשס\"ד] - הרב קלנר",
+    "firestore_original_id": 442231849292939212,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 298,
+    "wp_name": "אורות ארץ ישראל [תשע\"ב] - הרב קשתיאל",
+    "firestore_doc_id": "ser_dc20f5da61a042338538",
+    "firestore_name": "אורות ארץ ישראל [תשע\"ב] - הרב קשתיאל",
+    "firestore_original_id": 657791194606610285,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 299,
+    "wp_name": "אורות ארץ ישראל [תשע\"ד] - הרב קלנר",
+    "firestore_doc_id": "ser_a6c73c68a0c74e16be07",
+    "firestore_name": "אורות ארץ ישראל [תשע\"ד] - הרב קלנר",
+    "firestore_original_id": 923539121174436232,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 300,
+    "wp_name": "אורות ארץ ישראל [תשפ\"ב] - הרב טורנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 301,
+    "wp_name": "אורות האמונה [תשפ\"א] - הרב קלנר",
+    "firestore_doc_id": "ser_37bdc517edd34811b0c0",
+    "firestore_name": "אורות האמונה - הרב קלנר [תשפ\"א]",
+    "firestore_original_id": 209798845199196512,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — rav/year ordering differs"
+  },
+  {
+    "wp_id": 302,
+    "wp_name": "אורות המלחמה - הרב אלי סדן",
+    "firestore_doc_id": "ser_436fb62f76da4354a41b",
+    "firestore_name": "אורות המלחמה - הרב אלי סדן",
+    "firestore_original_id": 10336390162235988,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 303,
+    "wp_name": "אורות המלחמה [תשע\"ב] - הרב קשתיאל",
+    "firestore_doc_id": "ser_b61d0fd541bf48d59962",
+    "firestore_name": "אורות המלחמה [תשע\"ב] - הרב קשתיאל",
+    "firestore_original_id": 284308653972387824,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 304,
+    "wp_name": "אורות המלחמה [תשע\"ד] - הרב קלנר",
+    "firestore_doc_id": "ser_6291b9c2386b4cc1aa46",
+    "firestore_name": "אורות המלחמה [תשע\"ד] - הרב קלנר",
+    "firestore_original_id": 852160914788581982,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 305,
+    "wp_name": "אורות הקודש א' [תשפ'] - הרב קשתיאל",
+    "firestore_doc_id": "ser_25634bd6f7ee447191bf",
+    "firestore_name": "אורות הקודש א' - הרב קשתיאל [תשפ']",
+    "firestore_original_id": 538947811960906463,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — rav/year ordering differs"
+  },
+  {
+    "wp_id": 306,
+    "wp_name": "אורות הקודש ב - הרב טורנר",
+    "firestore_doc_id": "ser_3202897a201e449182ab",
+    "firestore_name": "אורות הקודש ב - הרב טורנר",
+    "firestore_original_id": 257086320829648160,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 307,
+    "wp_name": "אורות הקודש ב' [תשע\"ו] - הרב קשתיאל",
+    "firestore_doc_id": "ser_1b897ce639044b17b695",
+    "firestore_name": "אורות הקודש ב' - הרב קשתיאל",
+    "firestore_original_id": 162080423895258529,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — WP has year [תשע\"ו], FS entry has no year"
+  },
+  {
+    "wp_id": 308,
+    "wp_name": "אורות הקודש ג [תשפ\"ד] - הרב דוד טורנר",
+    "firestore_doc_id": "ser_442616cb02bf41bf8393",
+    "firestore_name": "אורות הקודש ג [תשפ\"ד] הרב דוד טורנר",
+    "firestore_original_id": 596545638465612280,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Format differs after normalisation: 'אורות הקודש ג [תשפ\"ד] - הרב דוד טורנר' vs 'אורות הקודש ג [תשפ\"ד] הרב דוד טורנר'"
+  },
+  {
+    "wp_id": 309,
+    "wp_name": "אורות הקודש ג' - הרב קשתיאל",
+    "firestore_doc_id": "ser_18fd232729294a6bbff5",
+    "firestore_name": "אורות הקודש ג' - הרב קשתיאל",
+    "firestore_original_id": 993329627984936416,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 310,
+    "wp_name": "אורות הקודש ג' [תשפ\"ד] - הרב קשתיאל",
+    "firestore_doc_id": "ser_0121f324f9bb4f7b9bdf",
+    "firestore_name": "אורות הקודש ג' - הרב קשתיאל [תשפ\"ד]",
+    "firestore_original_id": 269115096984546660,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — rav/year ordering differs"
+  },
+  {
+    "wp_id": 311,
+    "wp_name": "אורות הקודש לחי רועי [תשע\"ח] - הרב קשתיאל",
+    "firestore_doc_id": "ser_6eb3d5c8d4414a50b3a5",
+    "firestore_name": "אורות ישראל- הרב עקיבא [תשפ\"ד]",
+    "firestore_original_id": 21156800754493346,
+    "confidence": "fuzzy",
+    "status": "needs_review",
+    "note": "BAD MATCH — do not use Firestore entry"
+  },
+  {
+    "wp_id": 2517,
+    "wp_name": "אורות התורה",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "אורות התורה (no year) — FS has year-specific versions; needs human disambiguation",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 312,
+    "wp_name": "אורות התורה - הרב אלי סדן",
+    "firestore_doc_id": "ser_69e71be60ceb4274bb36",
+    "firestore_name": "אורות התורה - הרב אלי סדן",
+    "firestore_original_id": 845258562630579704,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 313,
+    "wp_name": "אורות התורה - הרב קשתיאל",
+    "firestore_doc_id": "ser_1dc03976e2de4dae893e",
+    "firestore_name": "אורות התורה - הרב קשתיאל",
+    "firestore_original_id": 499615599049365366,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 314,
+    "wp_name": "אורות התורה [תשפ\"ג] - הרב ישי רז",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "אורות התורה [תשפ\"ג] for הרב ישי רז — FS has same year but for הרב קשתיאל (different rav)",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 315,
+    "wp_name": "אורות התורה [תשפ\"ג] | הרב קשתיאל",
+    "firestore_doc_id": "ser_3432a9f93a7d4c47825d",
+    "firestore_name": "אורות התורה [תשפ\"ג] | הרב קשתיאל",
+    "firestore_original_id": 970354164107053205,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2502,
+    "wp_name": "אורות התורה [תשפ\"ו] | הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "אורות התורה [תשפ\"ו] — year-specific; FS only has [תשפ\"ג] which is a different year",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 316,
+    "wp_name": "אורות התחיה [תשס\"ז] - הרב קלנר",
+    "firestore_doc_id": "ser_375a6e8b557e4ff2a36b",
+    "firestore_name": "אורות התחיה [תשס\"ז] - הרב קלנר",
+    "firestore_original_id": 618065634619041908,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 317,
+    "wp_name": "אורות התחיה [תשע\"ג] - הרב קשתיאל",
+    "firestore_doc_id": "ser_059e212971eb4745ae63",
+    "firestore_name": "אורות התחיה [תשע\"ג] - הרב קשתיאל",
+    "firestore_original_id": 686644127337696678,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 318,
+    "wp_name": "אורות התחיה [תשע\"ו] - הרב קלנר",
+    "firestore_doc_id": "ser_37d74fa430ad4be7bfb0",
+    "firestore_name": "גבורות ה' הרב קשתיאל [תשפ\"ג]",
+    "firestore_original_id": 255173272381767295,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — separator format differs"
+  },
+  {
+    "wp_id": 319,
+    "wp_name": "אורות התחיה [תשע'ז] - הרב דוד בן מאיר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 320,
+    "wp_name": "אורות התחיה [תשפ\"ג] - הרב עקיבא",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 321,
+    "wp_name": "אורות התשובה - הרב קשתיאל",
+    "firestore_doc_id": "ser_6865cb11e6a045cea15c",
+    "firestore_name": "אורות התשובה - הרב קשתיאל",
+    "firestore_original_id": 78269548184070980,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 322,
+    "wp_name": "אורות התשובה [תש\"פ] | הרב קלנר",
+    "firestore_doc_id": "ser_4e3383ba282949d0a5e8",
+    "firestore_name": "אורות התשובה [תש\"פ] | הרב קלנר",
+    "firestore_original_id": 240044401101748431,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 323,
+    "wp_name": "אורות התשובה [תשע\"ג] - הרב אוהד",
+    "firestore_doc_id": "ser_00166ed486444701a4d0",
+    "firestore_name": "אורות התשובה [תשע\"ג] - הרב אוהד",
+    "firestore_original_id": 173999589993457785,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 324,
+    "wp_name": "אורות התשובה [תשע\"ה] - הרב אוהד",
+    "firestore_doc_id": "ser_6f88784973b94619b303",
+    "firestore_name": "אורות התשובה [תשע\"ה] - הרב אוהד",
+    "firestore_original_id": 778247682185845754,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 325,
+    "wp_name": "אורות זרעונים [תשפ''ה] - הרב אליעזר קשתיאל",
+    "firestore_doc_id": "ser_82bdc8d6a60f4007a7bc",
+    "firestore_name": "אורות זרעונים [תשפ''ה] - הרב אליעזר קשתיאל",
+    "firestore_original_id": 414837926042209184,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 326,
+    "wp_name": "אורות ישראל - הרב קשתיאל",
+    "firestore_doc_id": "ser_a5b93179ff004377bd28",
+    "firestore_name": "אורות ישראל - הרב קשתיאל",
+    "firestore_original_id": 79365135871924158,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 327,
+    "wp_name": "אורות ישראל [תש\"ע] - הרב קלנר",
+    "firestore_doc_id": "ser_0684856cac194166a6e9",
+    "firestore_name": "אורות ישראל [תש\"ע] - הרב קלנר",
+    "firestore_original_id": 25207702470947364,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 328,
+    "wp_name": "אורות ישראל [תשע'ט] - הרב קלנר",
+    "firestore_doc_id": "ser_892912f7bcb5402cb14d",
+    "firestore_name": "אורות ישראל - הרב קלנר [תשע'ט]",
+    "firestore_original_id": 788741173028864628,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — rav name placement differs"
+  },
+  {
+    "wp_id": 329,
+    "wp_name": "אורות ישראל [תשעו] - הרב קשתיאל",
+    "firestore_doc_id": "ser_0aa49e1ce6694be9bcf1",
+    "firestore_name": "אורות ישראל [תשעו] - הרב קשתיאל",
+    "firestore_original_id": 352107559991139285,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 330,
+    "wp_name": "אורות ישראל [תשפ\"ב] - הרב קלנר",
+    "firestore_doc_id": "ser_28c220573f0148df9aa9",
+    "firestore_name": "אורות ישראל - הרב קלנר [תשפ\"ב]",
+    "firestore_original_id": 724163582403083022,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — rav name placement differs"
+  },
+  {
+    "wp_id": 331,
+    "wp_name": "אורות ישראל [תשפ\"ד]- הרב עקיבא",
+    "firestore_doc_id": "ser_6eb3d5c8d4414a50b3a5",
+    "firestore_name": "אורות ישראל- הרב עקיבא [תשפ\"ד]",
+    "firestore_original_id": 21156800754493346,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 332,
+    "wp_name": "אורות ישראל ותחיתו [תשס\"ה] - הרב קלנר",
+    "firestore_doc_id": "ser_7b048f9739de44f5a300",
+    "firestore_name": "אורות ישראל ותחיתו [תשס\"ה] - הרב קלנר",
+    "firestore_original_id": 749055382369905048,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 333,
+    "wp_name": "אורות ישראל ותחיתו [תשע\"ב] - הרב קשתיאל",
+    "firestore_doc_id": "ser_6a3210c8101a481d8c8a",
+    "firestore_name": "אורות ישראל ותחיתו [תשע\"ב] - הרב קשתיאל",
+    "firestore_original_id": 375807276312289158,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 334,
+    "wp_name": "אורות ישראל ותחיתו [תשע\"ד] - הרב קלנר",
+    "firestore_doc_id": "ser_69c7ee6423344555a58e",
+    "firestore_name": "אורות ישראל ותחיתו [תשע\"ד] - הרב קלנר",
+    "firestore_original_id": 599089280074311591,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 335,
+    "wp_name": "אמונה וביטחון [תשע\"ח] - הרב עקיבא קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 336,
+    "wp_name": "אמונות ודעות לרס\"ג [תשע\"ז] - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 337,
+    "wp_name": "אקטואליה הרב יהודה סדן - קצרים לבוגרים [ישיבה גבוהה]",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 823,
+    "wp_name": "ב' - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 338,
+    "wp_name": "בהלכה ובאגדה [תשפ\"ד] - הרב נריה",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 339,
+    "wp_name": "ביאור אגדות חז\"ל- הרב דוד בן מאיר",
+    "firestore_doc_id": "ser_1810dd4e3a4846acaca5",
+    "firestore_name": "ביאור אגדות חז\"ל- הרב דוד בן מאיר",
+    "firestore_original_id": 395094219636787069,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 340,
+    "wp_name": "ביאורי אגדות בש\"ס - הרב בן מאיר",
+    "firestore_doc_id": "ser_2bec7bd6154246fc8b10",
+    "firestore_name": "ביאורי אגדות בש\"ס - הרב בן מאיר",
+    "firestore_original_id": 409864590677597995,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 341,
+    "wp_name": "בניין אמונה - הרב אלי סדן",
+    "firestore_doc_id": "ser_1631c2f1144b4034aaf3",
+    "firestore_name": "בניין אמונה - הרב אלי סדן",
+    "firestore_original_id": 709595692739796735,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 342,
+    "wp_name": "בניית המשכן והבית הישראלי {הרב עקיבא- בית מדרש אהבת מרדכי}",
+    "firestore_doc_id": "ser_82ed4a25912d49f99788",
+    "firestore_name": "בניית המשכן והבית הישראלי {הרב עקיבא- בית מדרש אהבת מרדכי}",
+    "firestore_original_id": 190887540818899609,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 343,
+    "wp_name": "בנין אמונה תשע\"ו - הרב אלי",
+    "firestore_doc_id": "ser_13fce65d42ab49afbb19",
+    "firestore_name": "בנין אמונה תשע\"ו - הרב אלי",
+    "firestore_original_id": 13956521114777601,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 344,
+    "wp_name": "בנין כוחות הנפש - הרב רביד",
+    "firestore_doc_id": "ser_1b7fc88515bf49df98b1",
+    "firestore_name": "בנין כוחות הנפש - הרב רביד",
+    "firestore_original_id": 396714372339686872,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 345,
+    "wp_name": "בנין עדי עד [תשע\"ז] - הרב קלנר",
+    "firestore_doc_id": "ser_cd32a999642247439309",
+    "firestore_name": "בנין עדי עד [תשע\"ז] - הרב קלנר",
+    "firestore_original_id": 148688079037420400,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 347,
+    "wp_name": "גבורות ה' - הרב אוהד",
+    "firestore_doc_id": "ser_08af36e2c8cc4a83b893",
+    "firestore_name": "גבורות ה' - הרב אוהד",
+    "firestore_original_id": 528687148189613470,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 348,
+    "wp_name": "גבורות ה' - הרב קשתיאל",
+    "firestore_doc_id": "ser_10f2afbacc714a3ebb45",
+    "firestore_name": "גבורות ה' - הרב קשתיאל",
+    "firestore_original_id": 984050695136245241,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 349,
+    "wp_name": "גבורות ה' [תשע''ח] - הרב אלי",
+    "firestore_doc_id": "ser_ced19bd179b64af89c52",
+    "firestore_name": "גבורות ה' - הרב אלי [תשע''ח]",
+    "firestore_original_id": 738501950155378372,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 346,
+    "wp_name": "גבורות ה' [תשפ\"א] - הרב אלי",
+    "firestore_doc_id": "ser_b4e2004454e1494497c3",
+    "firestore_name": "גבורות ה' [תשפ\"א] - הרב אלי",
+    "firestore_original_id": 884774228650452257,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 350,
+    "wp_name": "גבורות ה' [תשפ\"ג] - הרב קשתיאל",
+    "firestore_doc_id": "ser_37d74fa430ad4be7bfb0",
+    "firestore_name": "גבורות ה' הרב קשתיאל [תשפ\"ג]",
+    "firestore_original_id": 255173272381767295,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — separator format differs"
+  },
+  {
+    "wp_id": 351,
+    "wp_name": "דמותם של רשב\"י ובנו [תשפ\"א] - הרב אוהד",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 352,
+    "wp_name": "דמיון - הרב קשתיאל",
+    "firestore_doc_id": "ser_38b6fa150f124e7db9f5",
+    "firestore_name": "דמיון - הרב קשתיאל",
+    "firestore_original_id": 467609987721731849,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 353,
+    "wp_name": "דעת אלוקים [תשס\"ט] - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 354,
+    "wp_name": "דעת אלוקים [תשע\"ח] - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 355,
+    "wp_name": "דעת אלוקים [תשפ\"ב] - הרב טורנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 356,
+    "wp_name": "דעת אלוקים [תשפ\"ד] - הרב יהודה",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 357,
+    "wp_name": "דעת אלוקים [תשפ''ה] - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 358,
+    "wp_name": "דעת תבונות [תשע''ז] - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 359,
+    "wp_name": "דף יומי - הרב קשתיאל",
+    "firestore_doc_id": "ser_19973bdda05d48e1bda5",
+    "firestore_name": "דף יומי - הרב קשתיאל",
+    "firestore_original_id": 416415243070702741,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 360,
+    "wp_name": "דרוש המהר\"ל לשבת הגדול [תשע\"ז] - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 361,
+    "wp_name": "דרוש מהר\"ל לשבת תשובה [תשע'ז] - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 362,
+    "wp_name": "דרוש תורה למהר\"ל [תשע\"ז] - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 363,
+    "wp_name": "דרך ה' [תשפ'] - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 364,
+    "wp_name": "דרך החיים [תשע\"ג] - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 365,
+    "wp_name": "דרך החיים [תשפ'] - הרב רביד",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 366,
+    "wp_name": "דרכי האמורי - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 367,
+    "wp_name": "הארות מנתיבות עולם למהר\"ל - הרב פנחס",
+    "firestore_doc_id": "ser_dabb6ad8036b4e6e923e",
+    "firestore_name": "הארות מנתיבות עולם למהר\"ל - הרב פנחס",
+    "firestore_original_id": 915393617252131841,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 368,
+    "wp_name": "הוד הקרח הנורא [תשע'ו] - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 369,
+    "wp_name": "החיים כניסיון [תשפ\"ב]- הרב שלום היימן",
+    "firestore_doc_id": "ser_cc88ba2d719246b388ca",
+    "firestore_name": "החיים כניסיון [תשפ\"ב]- הרב שלום היימן",
+    "firestore_original_id": 643396346537273671,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 370,
+    "wp_name": "החיים על פי עין איה [תש'פ] - הרב נתנאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 371,
+    "wp_name": "היחס למושג האלוקי [תשע\"ח] - הרב גיורא",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 372,
+    "wp_name": "היחס למצוות [תשפ\"ד] - הרב איתן קופמן",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 373,
+    "wp_name": "הכנה לצבא - הרב חנניה",
+    "firestore_doc_id": "ser_0cbc1c22face45ffa7f5",
+    "firestore_name": "הכנה לצבא - הרב חנניה",
+    "firestore_original_id": 543495152537790993,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 374,
+    "wp_name": "הלכה - הרב אוהד",
+    "firestore_doc_id": "ser_4fd1bc65d294429b93d2",
+    "firestore_name": "הלכה - הרב אוהד",
+    "firestore_original_id": 260270587254959833,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 375,
+    "wp_name": "הלכה - הרב אופיר",
+    "firestore_doc_id": "ser_86eed08478a14765aa60",
+    "firestore_name": "הלכה - הרב אופיר",
+    "firestore_original_id": 415727041229522228,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 376,
+    "wp_name": "הלכה - הרב אופיר שוקרון",
+    "firestore_doc_id": "ser_2ac533c5710f487d9a88",
+    "firestore_name": "הלכה - הרב אופיר שוקרון",
+    "firestore_original_id": 582996968967848404,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 377,
+    "wp_name": "הלכה - הרב איתי הלוי",
+    "firestore_doc_id": "ser_3719f1dbc5884f7285dd",
+    "firestore_name": "הלכה - הרב איתי הלוי",
+    "firestore_original_id": 263422512753929769,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 378,
+    "wp_name": "הלכה - הרב הרשלר",
+    "firestore_doc_id": "ser_7eb8cfcb927245d4819b",
+    "firestore_name": "הלכה - הרב הרשלר",
+    "firestore_original_id": 969024643896906669,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 379,
+    "wp_name": "הלכה - הרב יהודה סדן",
+    "firestore_doc_id": "ser_7cd3301d0e4045dba908",
+    "firestore_name": "הלכה - הרב יהודה סדן",
+    "firestore_original_id": 817137012996087086,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 380,
+    "wp_name": "הלכה - הרב נריה",
+    "firestore_doc_id": "ser_177f0856323a4315bd38",
+    "firestore_name": "הלכה - הרב נריה",
+    "firestore_original_id": 845964876875533933,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 381,
+    "wp_name": "הלכה - הרב קשתיאל",
+    "firestore_doc_id": "ser_903f56c2d10e410297f9",
+    "firestore_name": "הלכה - הרב קשתיאל",
+    "firestore_original_id": 774397117011585651,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 382,
+    "wp_name": "הלכה - הרב שילר",
+    "firestore_doc_id": "ser_0244fefdc2294399b671",
+    "firestore_name": "הלכה - הרב שילר",
+    "firestore_original_id": 427364950995317649,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2515,
+    "wp_name": "הלכה בבא קמא [תשפ\"ו] | הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 383,
+    "wp_name": "הלכה חושן משפט - הרב קשתיאל",
+    "firestore_doc_id": "ser_47634bc6c4f74679ab57",
+    "firestore_name": "הלכה חושן משפט - הרב קשתיאל",
+    "firestore_original_id": 652658469143982054,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 384,
+    "wp_name": "הלכה- הרב ישי רז",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "הלכה - הרב ישי רז: matched to הרב שילר by mistake (different rav)",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 385,
+    "wp_name": "הלכות ברכות - הרב יהודה",
+    "firestore_doc_id": "ser_645ee9a6b6b44862a9b0",
+    "firestore_name": "הלכות ברכות - הרב יהודה",
+    "firestore_original_id": 347397736771613562,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 386,
+    "wp_name": "הלכות צבא-הרב רונצקי",
+    "firestore_doc_id": "ser_aaceba2bb74b4b7692d0",
+    "firestore_name": "הלכות צבא-הרב רונצקי",
+    "firestore_original_id": 164968873961661235,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 387,
+    "wp_name": "הלכות קדשים - הרב קשתיאל",
+    "firestore_doc_id": "ser_709f13aba44f4fcea95d",
+    "firestore_name": "הלכות קדשים - הרב קשתיאל",
+    "firestore_original_id": 725890448667918379,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2504,
+    "wp_name": "הלכות שבת [תשפ\"ו] הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 388,
+    "wp_name": "הענווה - הרב בראון [מתחברים]",
+    "firestore_doc_id": "ser_293cccc973fb49c2aebb",
+    "firestore_name": "הענווה - הרב בראון [מתחברים]",
+    "firestore_original_id": 292735087896852140,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 389,
+    "wp_name": "הקדמה לעין אי\"ה [תשס\"ה] - הרב קלנר",
+    "firestore_doc_id": "ser_6a190970671c4b2eaf85",
+    "firestore_name": "הקדמה לעין אי\"ה [תשס\"ה]-הרב קלנר",
+    "firestore_original_id": 710110961115191904,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Format differs after normalisation: 'הקדמה לעין אי\"ה [תשס\"ה] - הרב קלנר' vs 'הקדמה לעין אי\"ה [תשס\"ה]-הרב קלנר'"
+  },
+  {
+    "wp_id": 390,
+    "wp_name": "הקדמה לעין אי\"ה [תשע\"ד] - הרב קלנר",
+    "firestore_doc_id": "ser_bb547d74aa5d4b08bc0c",
+    "firestore_name": "הקדמה לעין אי\"ה [תשע\"ד] -הרב קלנר",
+    "firestore_original_id": 822539780983225947,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Format differs after normalisation: 'הקדמה לעין אי\"ה [תשע\"ד] - הרב קלנר' vs 'הקדמה לעין אי\"ה [תשע\"ד] -הרב קלנר'"
+  },
+  {
+    "wp_id": 391,
+    "wp_name": "הקדמה לעין אי''ה - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "הקדמה לעין אי''ה - הרב קלנר (no year) — FS has year-specific versions; needs human disambiguation",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 392,
+    "wp_name": "הקדמה לעין אי''ה - הרב קשתיאל",
+    "firestore_doc_id": "ser_26b6e37cb3b242fd94d3",
+    "firestore_name": "הקדמה לעין אי''ה - הרב קשתיאל",
+    "firestore_original_id": 632878775467302562,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 393,
+    "wp_name": "הקדמה לפרק חלק - הרב קשתיאל",
+    "firestore_doc_id": "ser_1c9238c3f947461182fc",
+    "firestore_name": "הקדמה לפרק חלק - הרב קשתיאל",
+    "firestore_original_id": 124283598518413470,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 394,
+    "wp_name": "הקדמה לשבת הארץ - הרב הס",
+    "firestore_doc_id": "ser_3d4d9e57beef44e5b7e0",
+    "firestore_name": "הקדמה לשבת הארץ - הרב הס",
+    "firestore_original_id": 343158800984422898,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 395,
+    "wp_name": "הקדמה לשבת הארץ - הרב קשתיאל",
+    "firestore_doc_id": "ser_5c1e7d5c3f84405ab0d6",
+    "firestore_name": "הקדמה לשבת הארץ - הרב קשתיאל",
+    "firestore_original_id": 530200201554730110,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 396,
+    "wp_name": "הקדמה לשבת הארץ- הרב קלנר",
+    "firestore_doc_id": "ser_2c8e2022cbfc4edfb48f",
+    "firestore_name": "הקדמה לשבת הארץ- הרב קלנר",
+    "firestore_original_id": 347244612131391071,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 397,
+    "wp_name": "הרב אלי [תשס\"ח] - למהלך האידיאות בישראל",
+    "firestore_doc_id": "ser_19ebd129c43d4222a70a",
+    "firestore_name": "הרב אלי - למהלך האידיאות בישראל [תשס\"ח]",
+    "firestore_original_id": 135517904965672269,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — name order inverted"
+  },
+  {
+    "wp_id": 398,
+    "wp_name": "הרצאות חול",
+    "firestore_doc_id": "ser_dee9f043305c499bb213",
+    "firestore_name": "הרצאות חול",
+    "firestore_original_id": 885367671663893585,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 399,
+    "wp_name": "התפילה (לע\"נ יגאל נוה ז\"ל) - הרב קשתיאל",
+    "firestore_doc_id": "ser_30e980b1743f4fc39916",
+    "firestore_name": "התפילה (לע\"נ יגאל נוה ז\"ל) - הרב קשתיאל",
+    "firestore_original_id": 23691525437452168,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 400,
+    "wp_name": "ויהי ידיו אמונה - הרב אלי סדן (קבצי קריאה)",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 401,
+    "wp_name": "זוגיות - הרב שילר",
+    "firestore_doc_id": "ser_3db7503e97444de3b02c",
+    "firestore_name": "זוגיות - הרב שילר",
+    "firestore_original_id": 157439123231756931,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 402,
+    "wp_name": "זרעונים [תש\"ע] - הרב קלנר",
+    "firestore_doc_id": "ser_bbf1f5fc9dab4e188ea1",
+    "firestore_name": "זרעונים [תש\"ע] - הרב קלנר",
+    "firestore_original_id": 218112148850203042,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 403,
+    "wp_name": "זרעונים [תשע\"ה - תשע\"ו]",
+    "firestore_doc_id": "ser_1ab66aefa10a481b9ef9",
+    "firestore_name": "זרעונים [תשע\"ה - תשע\"ו]",
+    "firestore_original_id": 433604539050085201,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 404,
+    "wp_name": "זרעונים [תשע\"ה]",
+    "firestore_doc_id": "ser_9305bbddfd3c4bc09409",
+    "firestore_name": "זרעונים [תשע\"ה]",
+    "firestore_original_id": 50493539227948496,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 405,
+    "wp_name": "זרעונים [תשע\"ט] - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "זרעונים [תשע\"ט] — year-specific; no FS equivalent with matching year",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 406,
+    "wp_name": "זרעונים [תשפ\"ב] - הרב יהודה",
+    "firestore_doc_id": "ser_82c9efd6dad34d358b7c",
+    "firestore_name": "זרעונים [תשפ\"ב] - הרב יהודה",
+    "firestore_original_id": 851024737063396939,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 407,
+    "wp_name": "זרעונים [תשפ\"ד] - הרב יהודה",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "זרעונים [תשפ\"ד] - הרב יהודה — no FS equivalent (FS has [תשפ\"ב])",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 408,
+    "wp_name": "חגים - הרב אוהד",
+    "firestore_doc_id": "ser_6c07b0c5d7f24edfa110",
+    "firestore_name": "חגים - הרב אוהד",
+    "firestore_original_id": 266100259382857300,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 409,
+    "wp_name": "חגים - הרב איתי",
+    "firestore_doc_id": "ser_3a4e49147bbd4f9b88af",
+    "firestore_name": "חגים - הרב איתי",
+    "firestore_original_id": 18380263693037578,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 410,
+    "wp_name": "חגים - הרב איתן קופמן",
+    "firestore_doc_id": "ser_31eaca33266d412cbfe2",
+    "firestore_name": "חגים - הרב איתן קופמן",
+    "firestore_original_id": 187736921853548731,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 411,
+    "wp_name": "חגים - הרב אלי",
+    "firestore_doc_id": "ser_11bae41cfc934dbb90b8",
+    "firestore_name": "חגים - הרב אלי",
+    "firestore_original_id": 290233933248460644,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 412,
+    "wp_name": "חגים - הרב בן מאיר",
+    "firestore_doc_id": "ser_acd4e49812ff404eadee",
+    "firestore_name": "חגים - הרב בן מאיר",
+    "firestore_original_id": 107143888433547778,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 413,
+    "wp_name": "חגים - הרב הס",
+    "firestore_doc_id": "ser_236991ce3e9146bc9d8b",
+    "firestore_name": "חגים - הרב הס",
+    "firestore_original_id": 369573111577277214,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 414,
+    "wp_name": "חגים - הרב הרשלר",
+    "firestore_doc_id": "ser_6fffc3928b9c4b959196",
+    "firestore_name": "חגים - הרב הרשלר",
+    "firestore_original_id": 796913405293169797,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 415,
+    "wp_name": "חגים - הרב חיים",
+    "firestore_doc_id": "ser_343ed0e3b82345c39477",
+    "firestore_name": "חגים - הרב חיים",
+    "firestore_original_id": 655368837016333276,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 416,
+    "wp_name": "חגים - הרב יאיר אטון",
+    "firestore_doc_id": "ser_04ebaa98812d4e549850",
+    "firestore_name": "חגים - הרב יאיר אטון",
+    "firestore_original_id": 572737072397411554,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 417,
+    "wp_name": "חגים - הרב יאיר גלושטיין",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 418,
+    "wp_name": "חגים - הרב יגאל",
+    "firestore_doc_id": "ser_759e1b50b3e343b1ac8a",
+    "firestore_name": "חגים - הרב יגאל",
+    "firestore_original_id": 631728870195561739,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 419,
+    "wp_name": "חגים - הרב יהודה סדן",
+    "firestore_doc_id": "ser_4c199ab5ce774cc58e93",
+    "firestore_name": "חגים - הרב יהודה סדן",
+    "firestore_original_id": 220189664304623277,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 420,
+    "wp_name": "חגים - הרב נריה",
+    "firestore_doc_id": "ser_96e5233123914ee98623",
+    "firestore_name": "חגים - הרב נריה",
+    "firestore_original_id": 844958366716202505,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 421,
+    "wp_name": "חגים - הרב עקיבא",
+    "firestore_doc_id": "ser_a62b211daea84257b36a",
+    "firestore_name": "חגים - הרב עקיבא",
+    "firestore_original_id": 100503433582229494,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 422,
+    "wp_name": "חגים - הרב פנחס",
+    "firestore_doc_id": "ser_546d24a314b5464484cc",
+    "firestore_name": "חגים - הרב פנחס",
+    "firestore_original_id": 779679008344287970,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 423,
+    "wp_name": "חגים - הרב קלנר",
+    "firestore_doc_id": "ser_06d2a8576e01470989a1",
+    "firestore_name": "חגים - הרב קלנר",
+    "firestore_original_id": 558078921656280650,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 424,
+    "wp_name": "חגים - הרב רביד",
+    "firestore_doc_id": "ser_f2c9b7a964114507a859",
+    "firestore_name": "חגים - הרב רביד",
+    "firestore_original_id": 293386224884445451,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 425,
+    "wp_name": "חגים - הרב שילר",
+    "firestore_doc_id": "ser_1c030f13e2fb4991acf0",
+    "firestore_name": "חגים - הרב שילר",
+    "firestore_original_id": 529656193458621514,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 426,
+    "wp_name": "חגים - הרב שלום הימן",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 136,
+    "wp_name": "חגים | הרב קשתיאל",
+    "firestore_doc_id": "ser_3876c5e2093443e4a0e5",
+    "firestore_name": "חגים - הרב קשתיאל",
+    "firestore_original_id": 371436286985438600,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Format differs after normalisation: 'חגים | הרב קשתיאל' vs 'חגים - הרב קשתיאל'"
+  },
+  {
+    "wp_id": 427,
+    "wp_name": "חגים- הרב טורנר",
+    "firestore_doc_id": "ser_2cd66600c0c8465d8d28",
+    "firestore_name": "חגים- הרב טורנר",
+    "firestore_original_id": 501919306564384976,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 428,
+    "wp_name": "חגים- הרב ישי רז",
+    "firestore_doc_id": "ser_3fb9960c456f4b4981fd",
+    "firestore_name": "חגים- הרב ישי רז",
+    "firestore_original_id": 643884166304760544,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 429,
+    "wp_name": "חגים- הרב שי אליאס",
+    "firestore_doc_id": "ser_65b32a50db224f7cbc8f",
+    "firestore_name": "חגים- הרב שי אליאס",
+    "firestore_original_id": 652900266977401668,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 430,
+    "wp_name": "חודשים - הרב קשתיאל",
+    "firestore_doc_id": "ser_2327a96d37bc467eb0ce",
+    "firestore_name": "חודשים - הרב קשתיאל",
+    "firestore_original_id": 740169682735728193,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 431,
+    "wp_name": "חומש [תשע'ט] - הרב קלנר",
+    "firestore_doc_id": "ser_04f871bb4baf4686835a",
+    "firestore_name": "חומש - הרב קלנר [תשע'ט]",
+    "firestore_original_id": 597202188405313505,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — rav/year ordering differs"
+  },
+  {
+    "wp_id": 432,
+    "wp_name": "חינוך ילדים - הרב עמוס נתנאל",
+    "firestore_doc_id": "ser_297cb9ee01c740dc9615",
+    "firestore_name": "חינוך ילדים - הרב עמוס נתנאל",
+    "firestore_original_id": 364111561277513434,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 433,
+    "wp_name": "חינוך ילדים - הרב רביד",
+    "firestore_doc_id": "ser_94de785c7e084463aa66",
+    "firestore_name": "חינוך ילדים - הרב רביד",
+    "firestore_original_id": 534127258297039767,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 434,
+    "wp_name": "חינוך ילדים - הרב רביד [מחוברים]",
+    "firestore_doc_id": "ser_779527380ce94c4e9faa",
+    "firestore_name": "חינוך ילדים - הרב רביד [מחוברים]",
+    "firestore_original_id": 901146362319907547,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 435,
+    "wp_name": "חינוך לגיל הרך - דר' אבולעפיה",
+    "firestore_doc_id": "ser_37b83f7b782a41fd9fe5",
+    "firestore_name": "חינוך לגיל הרך - דר' אבולעפיה",
+    "firestore_original_id": 79956891328853020,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 436,
+    "wp_name": "חירות עולם - יום עיון מאורו של עמישר בן דוד הי''ד",
+    "firestore_doc_id": "ser_8d7e1da7b8a8489b8d4a",
+    "firestore_name": "חירות עולם - יום עיון מאורו של עמישר בן דוד הי''ד",
+    "firestore_original_id": 272413275610375511,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 437,
+    "wp_name": "חסידים בצבא [תשע'ו] - הרב אוהד",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 438,
+    "wp_name": "חפץ חיים - הרב קשתיאל",
+    "firestore_doc_id": "ser_b4900b9ab4ba4c2b9c12",
+    "firestore_name": "חפץ חיים - הרב קשתיאל",
+    "firestore_original_id": 827797692981541299,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 439,
+    "wp_name": "חצי יובל ל'בני דוד'",
+    "firestore_doc_id": "ser_0a2011f68b924777b77a",
+    "firestore_name": "חצי יובל ל'בני דוד'",
+    "firestore_original_id": 507116827661079254,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 440,
+    "wp_name": "טועמיה - דבר תורה לשבת | הרב עקיבא",
+    "firestore_doc_id": "ser_14b2deb3081d4bdd8caa",
+    "firestore_name": "טועמיה - דבר תורה לשבת | הרב עקיבא",
+    "firestore_original_id": 202965696103389385,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 441,
+    "wp_name": "טללי אורות - הרב קלנר",
+    "firestore_doc_id": "ser_b6c6d89d168f42ffb4f0",
+    "firestore_name": "טללי אורות - הרב קלנר",
+    "firestore_original_id": 530119910469217160,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 442,
+    "wp_name": "יב' השבטים - הרב קשתיאל",
+    "firestore_doc_id": "ser_772682e093f14a18930d",
+    "firestore_name": "יב' השבטים - הרב קשתיאל",
+    "firestore_original_id": 689563819901166841,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 443,
+    "wp_name": "יג' מידות - הרב וידאל",
+    "firestore_doc_id": "ser_763cd4f6b2d2471e966b",
+    "firestore_name": "יג' מידות - הרב וידאל",
+    "firestore_original_id": 558191452349494016,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 134,
+    "wp_name": "יום העצמאות",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 444,
+    "wp_name": "יום מהות",
+    "firestore_doc_id": "ser_0f17dd0feb0946c18c2b",
+    "firestore_name": "יום מהות",
+    "firestore_original_id": 847821136672656007,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 445,
+    "wp_name": "יחסי הורים וילדים - הרב אוהד",
+    "firestore_doc_id": "ser_55dbfa3164354140b5d2",
+    "firestore_name": "יחסי הורים וילדים - הרב אוהד",
+    "firestore_original_id": 639194602015983427,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 446,
+    "wp_name": "יחסים במשפחה [תשע\"ב] - הרב אוהד",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 447,
+    "wp_name": "יסודות אמונה בספר בראשית - הרב אלי סדן",
+    "firestore_doc_id": "ser_90088b4ec8d4497e938f",
+    "firestore_name": "יסודות אמונה בספר בראשית - הרב אלי סדן",
+    "firestore_original_id": 815407954633404731,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 448,
+    "wp_name": "יסודות בהבנת הדור - הרב אלי",
+    "firestore_doc_id": "ser_6b1f23ff1a2644bc8f5d",
+    "firestore_name": "יסודות בהבנת הדור - הרב אלי",
+    "firestore_original_id": 870637201434423284,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 449,
+    "wp_name": "יסודות בית מדרשינו [תשע\"ח] - הרב אלי",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 450,
+    "wp_name": "יסודות בית מדרשנו [תשע\"ב]- הרב אלי סדן",
+    "firestore_doc_id": "ser_87b6c34940824796aa12",
+    "firestore_name": "יסודות בית מדרשנו [תשע\"ב]- הרב אלי סדן",
+    "firestore_original_id": 239628984851672174,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 451,
+    "wp_name": "יסודות בית מדרשנו [תשע\"ה]- הרב אלי סדן",
+    "firestore_doc_id": "ser_a7ea5496ce1c456d81bf",
+    "firestore_name": "יסודות בית מדרשנו [תשע\"ה]- הרב אלי סדן",
+    "firestore_original_id": 181190105477688803,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 452,
+    "wp_name": "יסודות האמונה בספר שמות - הרב אלי",
+    "firestore_doc_id": "ser_7cc29283d0944e4abfa5",
+    "firestore_name": "יסודות האמונה בספר שמות - הרב אלי",
+    "firestore_original_id": 573734487565760033,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 453,
+    "wp_name": "יסודות האמונה עפ''י ספר בראשית-שמות [תשפ''ה] - הרב אלי סדן",
+    "firestore_doc_id": "ser_9f5ed5aabbff4707932a",
+    "firestore_name": "יסודות האמונה עפ''י ספר בראשית-שמות [תשפ''ה] - הרב אלי סדן",
+    "firestore_original_id": 434671048349801474,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 454,
+    "wp_name": "יסורים ממרקים (הוד הקרח הנורא) [תשפ\"ג] - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 455,
+    "wp_name": "יסורים ממרקים [תשס\"ד] - הרב קלנר",
+    "firestore_doc_id": "ser_0cf5aab6047046ef926b",
+    "firestore_name": "יסורים ממרקים [תשס\"ד] - הרב קלנר",
+    "firestore_original_id": 335152092211681551,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 456,
+    "wp_name": "יסורים ממרקים [תשס''ט-ע'] - הרב קלנר",
+    "firestore_doc_id": "ser_482180f6f77945a28055",
+    "firestore_name": "יסורים ממרקים [תשס''ט-ע'] - הרב קלנר",
+    "firestore_original_id": 249817355646464827,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 457,
+    "wp_name": "ישראל ותחיתו - הרב אלי",
+    "firestore_doc_id": "ser_5cfe3d834b46453a9b15",
+    "firestore_name": "ישראל ותחיתו - הרב אלי",
+    "firestore_original_id": 184486394483899618,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 458,
+    "wp_name": "כארי יתנשא [תשע''ד] - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 459,
+    "wp_name": "כוונות התפילה בשבת - הרב וידאל",
+    "firestore_doc_id": "ser_cfb554c4608644949e5f",
+    "firestore_name": "כוונות התפילה בשבת - הרב וידאל",
+    "firestore_original_id": 994952335245824643,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 460,
+    "wp_name": "כוזרי - הרב אוהד",
+    "firestore_doc_id": "ser_b7f87a965bd241e88a15",
+    "firestore_name": "כוזרי - הרב אוהד",
+    "firestore_original_id": 202175863378276203,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 461,
+    "wp_name": "כוזרי - הרב יאיר אטון",
+    "firestore_doc_id": "ser_13950d24777746b7b0c4",
+    "firestore_name": "כוזרי | הרב אטון",
+    "firestore_original_id": 203703881026964109,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — WP has full name יאיר אטון, FS has just אטון"
+  },
+  {
+    "wp_id": 462,
+    "wp_name": "כוזרי - הרב קשתיאל",
+    "firestore_doc_id": "ser_95312272514345a5a9bc",
+    "firestore_name": "כוזרי - הרב קשתיאל",
+    "firestore_original_id": 903172185921027060,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 463,
+    "wp_name": "כוזרי [תש'פ] - הרב קשתיאל",
+    "firestore_doc_id": "ser_022521a57d4d4b8bb999",
+    "firestore_name": "כוזרי - הרב קשתיאל [תש'פ]",
+    "firestore_original_id": 70247476910331327,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 464,
+    "wp_name": "כוזרי [תשס\"ו-תש\"ע] - הרב יוסף קלנר (כל הספר)",
+    "firestore_doc_id": "ser_15993be867194c8c8715",
+    "firestore_name": "כוזרי [תשס\"ו-תש\"ע] - הרב יוסף קלנר (כל הספר)",
+    "firestore_original_id": 844267811388191665,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 465,
+    "wp_name": "כוזרי [תשע\"ז] מאמר שני - חמישי | הרב אוהד",
+    "firestore_doc_id": "ser_084f43a18bc8460aadff",
+    "firestore_name": "כוזרי [תשע\"ז] מאמר שני - חמישי | הרב אוהד",
+    "firestore_original_id": 855923206099334642,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 466,
+    "wp_name": "כוזרי [תשע''ז] - הרב קלנר",
+    "firestore_doc_id": "ser_1211a1a37f0044819c8b",
+    "firestore_name": "כוזרי - הרב קלנר [תשע''ז]",
+    "firestore_original_id": 847639609618028616,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 467,
+    "wp_name": "כוזרי [תשפ\"ג] - הרב אוהד",
+    "firestore_doc_id": "ser_31706c4aaaea40458ec2",
+    "firestore_name": "כוזרי -הרב אוהד [תשפ\"ג]",
+    "firestore_original_id": 738590341829438137,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position and separator differ"
+  },
+  {
+    "wp_id": 468,
+    "wp_name": "כוזרי [תשפ\"ג] - הרב קלנר",
+    "firestore_doc_id": "ser_3a026dd7ac5e4ad8b5ff",
+    "firestore_name": "כוזרי הרב קלנר [תשפ\"ג]",
+    "firestore_original_id": 213971155172845883,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 469,
+    "wp_name": "כוזרי [תשפ\"ד] הרב יהודה סדן",
+    "firestore_doc_id": "ser_a965bd1bca734b80a121",
+    "firestore_name": "כוזרי [תשפ\"ד] הרב יהודה סדן",
+    "firestore_original_id": 612663949675125026,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 470,
+    "wp_name": "כוזרי מאמר ראשון [תשע\"ד] - הרב יוסף קלנר",
+    "firestore_doc_id": "ser_3cc2854222924e7494b6",
+    "firestore_name": "כוזרי מאמר ראשון [תשע\"ד] - הרב יוסף קלנר",
+    "firestore_original_id": 539517453577911362,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 471,
+    "wp_name": "כללי - הרב אוהד",
+    "firestore_doc_id": "ser_ca6c7c95f46b44e087f2",
+    "firestore_name": "כללי - הרב אוהד",
+    "firestore_original_id": 130523415036132262,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 472,
+    "wp_name": "כללי - הרב אופיר",
+    "firestore_doc_id": "ser_c4a74eb15a2847baab2e",
+    "firestore_name": "כללי - הרב אופיר",
+    "firestore_original_id": 101699234913934858,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 473,
+    "wp_name": "כללי - הרב אופיר שוקרון",
+    "firestore_doc_id": "ser_12f66526b7d144e9877c",
+    "firestore_name": "כללי - הרב אופיר שוקרון",
+    "firestore_original_id": 127043962002537965,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 474,
+    "wp_name": "כללי - הרב איתן",
+    "firestore_doc_id": "ser_5e3150a403a54e0bae07",
+    "firestore_name": "כללי - הרב איתן",
+    "firestore_original_id": 24624220456917228,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 475,
+    "wp_name": "כללי - הרב אלי",
+    "firestore_doc_id": "ser_045f3865a48c4ce9af56",
+    "firestore_name": "כללי - הרב אלי",
+    "firestore_original_id": 705764296545596779,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 476,
+    "wp_name": "כללי - הרב בראון",
+    "firestore_doc_id": "ser_1e6255d19b42480e9370",
+    "firestore_name": "כללי - הרב בראון",
+    "firestore_original_id": 501619877098707378,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 477,
+    "wp_name": "כללי - הרב גיורא",
+    "firestore_doc_id": "ser_3b242b00225440eb9a4f",
+    "firestore_name": "כללי - הרב גיורא",
+    "firestore_original_id": 560276839772625198,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 478,
+    "wp_name": "כללי - הרב דוד אמיתי",
+    "firestore_doc_id": "ser_26517824a1134e528606",
+    "firestore_name": "כללי - הרב דוד אמיתי",
+    "firestore_original_id": 192247533564668410,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 479,
+    "wp_name": "כללי - הרב דוד בן מאיר",
+    "firestore_doc_id": "ser_3a5c6091a692486eae42",
+    "firestore_name": "כללי - הרב דוד בן מאיר",
+    "firestore_original_id": 858198165381294849,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 480,
+    "wp_name": "כללי - הרב הס",
+    "firestore_doc_id": "ser_09596079b2154f248cdf",
+    "firestore_name": "כללי - הרב הס",
+    "firestore_original_id": 471157141716880078,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 481,
+    "wp_name": "כללי - הרב וולס",
+    "firestore_doc_id": "ser_81c6901373fc46c287fd",
+    "firestore_name": "כללי - הרב וולס",
+    "firestore_original_id": 265921158505667000,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 482,
+    "wp_name": "כללי - הרב טורנר",
+    "firestore_doc_id": "ser_9d2c54f8e4a34d758d6f",
+    "firestore_name": "כללי - הרב טורנר",
+    "firestore_original_id": 191716824913052580,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 483,
+    "wp_name": "כללי - הרב יגאל",
+    "firestore_doc_id": "ser_d436a41eabd0469e9380",
+    "firestore_name": "כללי - הרב יגאל",
+    "firestore_original_id": 408908767820664430,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 484,
+    "wp_name": "כללי - הרב יהודה",
+    "firestore_doc_id": "ser_8dac0393f24e41c5980c",
+    "firestore_name": "כללי - הרב יהודה",
+    "firestore_original_id": 306744081631056654,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 485,
+    "wp_name": "כללי - הרב כפיר",
+    "firestore_doc_id": "ser_dd06424f91f34f7cabe0",
+    "firestore_name": "כללי - הרב כפיר",
+    "firestore_original_id": 602037197580931725,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 486,
+    "wp_name": "כללי - הרב נריה בולאק",
+    "firestore_doc_id": "ser_4d7f98f40ddf41438abe",
+    "firestore_name": "כללי - הרב נריה בולאק",
+    "firestore_original_id": 11273052811442443,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 487,
+    "wp_name": "כללי - הרב נתנאל",
+    "firestore_doc_id": "ser_ac0304501ac541d781f5",
+    "firestore_name": "כללי - הרב נתנאל",
+    "firestore_original_id": 562524474346278365,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 488,
+    "wp_name": "כללי - הרב עקיבא",
+    "firestore_doc_id": "ser_7ebf873c83894f75898a",
+    "firestore_name": "כללי - הרב עקיבא",
+    "firestore_original_id": 97198525400108166,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 489,
+    "wp_name": "כללי - הרב פנחס",
+    "firestore_doc_id": "ser_7d37c1c316ff4049a67e",
+    "firestore_name": "כללי - הרב פנחס",
+    "firestore_original_id": 278870368558839461,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 490,
+    "wp_name": "כללי - הרב פנירי",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "כללי - הרב פנירי: matched to הרב פנחס by mistake (different rav)",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 491,
+    "wp_name": "כללי - הרב קלנר",
+    "firestore_doc_id": "ser_7096c4e00ac44dcb8433",
+    "firestore_name": "כללי - הרב קלנר",
+    "firestore_original_id": 31681396771575752,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 492,
+    "wp_name": "כללי - הרב קשתיאל",
+    "firestore_doc_id": "ser_6665672c66ec451998b6",
+    "firestore_name": "כללי - הרב קשתיאל",
+    "firestore_original_id": 789109112829935684,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 493,
+    "wp_name": "כללי - הרב רביד",
+    "firestore_doc_id": "ser_a63d4f891c7b422b8e1d",
+    "firestore_name": "כללי - הרב רביד",
+    "firestore_original_id": 966360440042908407,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 494,
+    "wp_name": "כללי - הרב רפי",
+    "firestore_doc_id": "ser_9f2b91cf7ad44d638771",
+    "firestore_name": "כללי - הרב רפי",
+    "firestore_original_id": 615028836343867272,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 495,
+    "wp_name": "כללי - הרב שחר",
+    "firestore_doc_id": "ser_63264ac8b6af48deba4f",
+    "firestore_name": "כללי - הרב שחר",
+    "firestore_original_id": 215090420055445273,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 496,
+    "wp_name": "כללי - הרב שי אליאס",
+    "firestore_doc_id": "ser_3c7851be436b46208206",
+    "firestore_name": "כללי - הרב שי אליאס",
+    "firestore_original_id": 707057267107968762,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 497,
+    "wp_name": "כללי - הרב שילר",
+    "firestore_doc_id": "ser_c3a2d5b087c44638abfe",
+    "firestore_name": "כללי - הרב שילר",
+    "firestore_original_id": 264461899629174838,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 498,
+    "wp_name": "כללי - הרב שלום",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "כללי - הרב שלום: matched to הרב אלי by mistake (different rav)",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 499,
+    "wp_name": "כללי - הרב שמואל",
+    "firestore_doc_id": "ser_1b2e26320deb4ba8a16e",
+    "firestore_name": "כללי - הרב שמואל",
+    "firestore_original_id": 441440751334604230,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 500,
+    "wp_name": "כללי | הרב ברינבאום",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 114,
+    "wp_name": "כללי | הרב יגאל לוינשטיין",
+    "firestore_doc_id": "ser_c0cf4150f1224910bf22",
+    "firestore_name": "כללי - הרב יגאל לוינשטיין",
+    "firestore_original_id": 960685384611797466,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Format differs after normalisation: 'כללי | הרב יגאל לוינשטיין' vs 'כללי - הרב יגאל לוינשטיין'"
+  },
+  {
+    "wp_id": 113,
+    "wp_name": "כללי | הרב קשתיאל",
+    "firestore_doc_id": "ser_6665672c66ec451998b6",
+    "firestore_name": "כללי - הרב קשתיאל",
+    "firestore_original_id": 789109112829935684,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Format differs after normalisation: 'כללי | הרב קשתיאל' vs 'כללי - הרב קשתיאל'"
+  },
+  {
+    "wp_id": 501,
+    "wp_name": "כללי- הרב ישי צור",
+    "firestore_doc_id": "ser_0e9e65fe98564f77b984",
+    "firestore_name": "כללי- הרב ישי צור",
+    "firestore_original_id": 595793246515030833,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 502,
+    "wp_name": "כנסי מכינות",
+    "firestore_doc_id": "ser_7bad47e290ff43e0a747",
+    "firestore_name": "כנסי מכינות",
+    "firestore_original_id": 260151488324171438,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 503,
+    "wp_name": "לאמונת עתנו - הרב אלי",
+    "firestore_doc_id": "ser_9796051ff7134c59b7cd",
+    "firestore_name": "לאמונת עתנו - הרב אלי",
+    "firestore_original_id": 421555726798546944,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 504,
+    "wp_name": "ליל הסדר - הרב אלי",
+    "firestore_doc_id": "ser_7cb9a4921fbf4b9da9e5",
+    "firestore_name": "ליל הסדר - הרב אלי",
+    "firestore_original_id": 705809124179091056,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 505,
+    "wp_name": "ליקוטי מוהר\"ן [תשפ\"א] - הרב קשתיאל",
+    "firestore_doc_id": "ser_19d29682da1440a9a8da",
+    "firestore_name": "ליקוטי מוהר\"ן [תשפ\"א] - הרב קשתיאל",
+    "firestore_original_id": 4681105847742466,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 506,
+    "wp_name": "ללא",
+    "firestore_doc_id": "ser_86bf4f2753774299aceb",
+    "firestore_name": "ללא",
+    "firestore_original_id": 929956521225384501,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 507,
+    "wp_name": "למהלך האידאות - הרב עקיבא",
+    "firestore_doc_id": "ser_33d9d52dd642409f8aa3",
+    "firestore_name": "למהלך האידאות - הרב עקיבא",
+    "firestore_original_id": 927177281889175887,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 508,
+    "wp_name": "למהלך האידאות [תשס\"ט-תש\"ע]",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 509,
+    "wp_name": "למהלך האידאות [תשע\"ח] - הרב קלנר",
+    "firestore_doc_id": "ser_5cd673e940b6494dbb39",
+    "firestore_name": "למהלך האידאות - הרב קלנר [תשע\"ח]",
+    "firestore_original_id": 22807161644142687,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 510,
+    "wp_name": "למהלך האידאות [תשפ''ד] - הרב אליעזר קשתיאל",
+    "firestore_doc_id": "ser_03d0af6708bc4f0fbefb",
+    "firestore_name": "למהלך האידאות - הרב אליעזר קשתיאל {תשפ''ד}",
+    "firestore_original_id": 636982590020206245,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket style differs"
+  },
+  {
+    "wp_id": 511,
+    "wp_name": "למהלך האידאות [תשפ''ה] - הרב עקיבא קשתיאל",
+    "firestore_doc_id": "ser_46d4df9480734b2ba55d",
+    "firestore_name": "למהלך האידאות - הרב עקיבא קשתיאל [תשפ''ה]",
+    "firestore_original_id": 924463984422350425,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 512,
+    "wp_name": "למהלך האידיאות [תשס\"ו]",
+    "firestore_doc_id": "ser_3e8b4130766d4f7496f7",
+    "firestore_name": "למהלך האידיאות [תשס\"ו]",
+    "firestore_original_id": 747101964826434806,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 513,
+    "wp_name": "למהלך האידיאות [תשע\"ה]",
+    "firestore_doc_id": "ser_5a8c0d869137490caf00",
+    "firestore_name": "למהלך האידיאות [תשע\"ה]",
+    "firestore_original_id": 891075449089194421,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 514,
+    "wp_name": "לנתיבות ישראל - הרב קלנר",
+    "firestore_doc_id": "ser_29a6a62ae0154b21b3fb",
+    "firestore_name": "לנתיבות ישראל - הרב קלנר",
+    "firestore_original_id": 957892392634042067,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 515,
+    "wp_name": "לנתיבות ישראל א' [תשפ\"ב] - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 516,
+    "wp_name": "לפעמים לא מתחשק לי להיות דתי [תשע''ז] - הרב איתן",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 517,
+    "wp_name": "מאמינים בחיים - קצרים לבוגרים [ישיבה גבוהה]",
+    "firestore_doc_id": "ser_777756f31868427b8303",
+    "firestore_name": "מאמינים בחיים - קצרים לבוגרים [ישיבה גבוהה]",
+    "firestore_original_id": 126568062398679994,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 518,
+    "wp_name": "מאמר הדור - הרב אוהד",
+    "firestore_doc_id": "ser_3396b670274547bd9d4d",
+    "firestore_name": "מאמר הדור - הרב אוהד",
+    "firestore_original_id": 81638884350840801,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 519,
+    "wp_name": "מאמר הדור - הרב אלי",
+    "firestore_doc_id": "ser_0a5242f82241479d9d52",
+    "firestore_name": "מאמר הדור - הרב אלי",
+    "firestore_original_id": 397762786996866962,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 520,
+    "wp_name": "מאמר הדור - הרב וידאל",
+    "firestore_doc_id": "ser_5f449390711b4b35a231",
+    "firestore_name": "מאמר הדור - הרב וידאל",
+    "firestore_original_id": 504076920858137793,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 521,
+    "wp_name": "מאמר הדור - הרב נתנאל אלישיב",
+    "firestore_doc_id": "ser_41f4b0c481e9435d9b3a",
+    "firestore_name": "מאמר הדור - הרב נתנאל אלישיב",
+    "firestore_original_id": 380804159820561570,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 522,
+    "wp_name": "מאמר הדור - הרב קלנר",
+    "firestore_doc_id": "ser_d75d9982d28f47b597a2",
+    "firestore_name": "מאמר הדור - הרב קלנר",
+    "firestore_original_id": 419232543039920325,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 523,
+    "wp_name": "מאמר הדור [תשע\"ח] - הרב קלנר",
+    "firestore_doc_id": "ser_7f9d09f7a0aa4c2f8b83",
+    "firestore_name": "מאמר הדור - הרב קלנר [תשע\"ח]",
+    "firestore_original_id": 882614870284252446,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 524,
+    "wp_name": "מאמר הדור [תשע'ו] - הרב אלי",
+    "firestore_doc_id": "ser_0a5242f82241479d9d52",
+    "firestore_name": "מאמר הדור - הרב אלי",
+    "firestore_original_id": 397762786996866962,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — WP has year [תשע'ו], FS entry has no year"
+  },
+  {
+    "wp_id": 525,
+    "wp_name": "מאמר הדור [תשפ\"ד] - הרב קלנר",
+    "firestore_doc_id": "ser_78adc7f5cc1d4dc0a91a",
+    "firestore_name": "מאמר הדור - הרב קלנר [תשפ\"ד]",
+    "firestore_original_id": 97795138332533991,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 526,
+    "wp_name": "מאמר נחמת ישראל [תשפ\"א] - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 527,
+    "wp_name": "מאמר עבודת אלוקים [תשפ'] - הרב קלנר",
+    "firestore_doc_id": "ser_24d8a56095b54912a8b6",
+    "firestore_name": "מאמר עבודת אלוקים - הרב קלנר [תשפ']",
+    "firestore_original_id": 312795556423679478,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 528,
+    "wp_name": "מאמר ערך התחיה וקריאה גדולה [תשע\"ד]",
+    "firestore_doc_id": "ser_8e5db81e4971489abe00",
+    "firestore_name": "מאמר ערך התחיה וקריאה גדולה [תשע\"ד]",
+    "firestore_original_id": 102193215638085070,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 529,
+    "wp_name": "מאמרי הראי\"ה - הרב קשתיאל",
+    "firestore_doc_id": "ser_5a75c36e2c2c4d508936",
+    "firestore_name": "מאמרי הראי\"ה - הרב קשתיאל",
+    "firestore_original_id": 911690022995098598,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 530,
+    "wp_name": "מאמרי הראי\"ה [חגים ומועדים] - הרב קשתיאל",
+    "firestore_doc_id": "ser_270925c3380543db882f",
+    "firestore_name": "מאמרי הראי\"ה [חגים ומועדים] - הרב קשתיאל",
+    "firestore_original_id": 655457277630628701,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 531,
+    "wp_name": "מאמרי ראי\"ה - הרב קלנר",
+    "firestore_doc_id": "ser_15cc9e755361425b800e",
+    "firestore_name": "מאמרי ראי\"ה - הרב קלנר [תשפ']",
+    "firestore_original_id": 951634179423159506,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — spelling variant: מאמרי ראי\"ה - הרב קלנר [תשפ']"
+  },
+  {
+    "wp_id": 532,
+    "wp_name": "מאמרי ראי\"ה [ביאורי אגדות] - הרב קשתיאל",
+    "firestore_doc_id": "ser_ad69015d3f954320a5c8",
+    "firestore_name": "מאמרי ראי\"ה [ביאורי אגדות] - הרב קשתיאל",
+    "firestore_original_id": 992327451388701271,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 533,
+    "wp_name": "מאמרי ראי\"ה [הקודש והחול] - הרב קשתיאל",
+    "firestore_doc_id": "ser_640ecb71ccb748bf9a6d",
+    "firestore_name": "מאמרי ראי\"ה [הקודש והחול] - הרב קשתיאל",
+    "firestore_original_id": 415160054781543572,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 534,
+    "wp_name": "מאמרי ראי\"ה [כוזרי] - הרב קשתיאל",
+    "firestore_doc_id": "ser_0c238d033c0f445b96ce",
+    "firestore_name": "מאמרי ראי\"ה [כוזרי] - הרב קשתיאל",
+    "firestore_original_id": 604369135411447317,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 824,
+    "wp_name": "מאמרי ראיה",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 535,
+    "wp_name": "מאמרי ראיה, קרבת אלוקים - הרב יהודה סדן",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 536,
+    "wp_name": "מבוא להתמודדות בתרבות המערב - הרב יוסף קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 537,
+    "wp_name": "מבוא למשנת הרב קוק [תשע\"ז] - הרב נתנאל",
+    "firestore_doc_id": "ser_09a6b52373a74fd1a062",
+    "firestore_name": "מבוא למשנת הרב קוק - הרב נתנאל [תשע\"ז]",
+    "firestore_original_id": 590144078124928435,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 538,
+    "wp_name": "מבוא למשנת הרב קוק [תשע\"ח] - הרב נתנאל",
+    "firestore_doc_id": "ser_06af6b622ebc43fbb0b5",
+    "firestore_name": "מבוא למשנת הרב קוק - הרב נתנאל [תשע\"ח]",
+    "firestore_original_id": 121271345371563498,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 539,
+    "wp_name": "מבוא לתורה שבע\"פ [תשע'ט] - הרב קשתיאל",
+    "firestore_doc_id": "ser_525d4c3a1d964d68a7c8",
+    "firestore_name": "מבוא לתורה שבע\"פ - הרב קשתיאל [תשע'ט]",
+    "firestore_original_id": 343972334202252566,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — rav/year ordering differs"
+  },
+  {
+    "wp_id": 540,
+    "wp_name": "מבוא לתרבות המערב - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 541,
+    "wp_name": "מגילת איכה - הרב קשתיאל",
+    "firestore_doc_id": "ser_af8385a4390142a7ab42",
+    "firestore_name": "מגילת איכה - הרב קשתיאל",
+    "firestore_original_id": 482301767981231392,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 542,
+    "wp_name": "מגילת אסתר - הרב קשתיאל",
+    "firestore_doc_id": "ser_498cb49db1cf41eaa041",
+    "firestore_name": "מגילת אסתר - הרב קשתיאל",
+    "firestore_original_id": 414103905288730889,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 543,
+    "wp_name": "מגילת רות - הרב קשתיאל",
+    "firestore_doc_id": "ser_89338792b84946749382",
+    "firestore_name": "מגילת רות - הרב קשתיאל",
+    "firestore_original_id": 735632478893199874,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2519,
+    "wp_name": "מגילת רות [תשפ\"ו] - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 544,
+    "wp_name": "מגילת שיר השירים [תשע''ו] - הרב קשתיאל",
+    "firestore_doc_id": "ser_2fb6f1fb009a4f7cb34b",
+    "firestore_name": "שיר השירים - הרב קשתיאל [תשע''ו]",
+    "firestore_original_id": 149795505737768283,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — WP says 'מגילת שיר השירים', FS says 'שיר השירים'"
+  },
+  {
+    "wp_id": 545,
+    "wp_name": "מגילת שיר השירים [תשפ\"ד] - הרב קשתיאל",
+    "firestore_doc_id": "ser_769a87a820b84bcfb20d",
+    "firestore_name": "מגילת שיר השירים - הרב קשתיאל [תשפ\"ד]",
+    "firestore_original_id": 434615869728417073,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 2501,
+    "wp_name": "מגלות לתקומה",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 2505,
+    "wp_name": "מגלות לתקומה - הרב יהודה סדן",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 546,
+    "wp_name": "מדברים אמונה",
+    "firestore_doc_id": "ser_1acc72f2d73c4b9faaa2",
+    "firestore_name": "מדברים אמונה",
+    "firestore_original_id": 44172866798646987,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 547,
+    "wp_name": "מדרשת הלל",
+    "firestore_doc_id": "ser_08fa833f693040c5b9d2",
+    "firestore_name": "מדרשת הלל",
+    "firestore_original_id": 978094894457107322,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 548,
+    "wp_name": "מהות הכהונה בישראל - הרב קשתיאל",
+    "firestore_doc_id": "ser_8e8a6063c0934be7be99",
+    "firestore_name": "מהות הכהונה בישראל - הרב קשתיאל",
+    "firestore_original_id": 927505343009879721,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 549,
+    "wp_name": "מהר\"ל לפסח | הרב קשתיאל",
+    "firestore_doc_id": "ser_298135edbaca48689241",
+    "firestore_name": "מהר\"ל לפסח | הרב קשתיאל",
+    "firestore_original_id": 11154054924790674,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 550,
+    "wp_name": "מוסר אביך - הרב קלנר",
+    "firestore_doc_id": "ser_1f624599021644928d4c",
+    "firestore_name": "מוסר אביך - הרב קלנר",
+    "firestore_original_id": 81011198951529263,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 551,
+    "wp_name": "מוסר אביך [תשע\"ט] - הרב רביד",
+    "firestore_doc_id": "ser_9a718071bb73484d9de3",
+    "firestore_name": "מוסר אביך - הרב רביד [תשע\"ט]",
+    "firestore_original_id": 195261759814476064,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 552,
+    "wp_name": "מוסר אביך [תשפ''ד] - הרב אליעזר קשתיאל",
+    "firestore_doc_id": "ser_7a0f69e8c35648a98c2f",
+    "firestore_name": "מוסר אביך - הרב אליעזר קשתיאל [תשפ''ד]",
+    "firestore_original_id": 222536055574950264,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 2503,
+    "wp_name": "מוסר בתורת הרב קוק - הרב עקיבא",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 553,
+    "wp_name": "מוסר הקודש [תשע\"ח] - הרב טורנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 554,
+    "wp_name": "מוסר מהפרשה - הרב עקיבא קשתיאל",
+    "firestore_doc_id": "ser_30c6048817e046d28a6d",
+    "firestore_name": "מוסר מהפרשה - הרב עקיבא קשתיאל",
+    "firestore_original_id": 983255641382370053,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 130,
+    "wp_name": "מועדים",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 555,
+    "wp_name": "מורה נבוכים - הרב קשתיאל",
+    "firestore_doc_id": "ser_17618c008c4e47688f39",
+    "firestore_name": "מורה נבוכים - הרב קשתיאל",
+    "firestore_original_id": 7209695695185120,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 556,
+    "wp_name": "מורה נבוכים [תשפ\"א] - הרב נתנאל",
+    "firestore_doc_id": "ser_cc98878c588942259113",
+    "firestore_name": "מורה נבוכים [תשפ\"א] - הרב נתנאל",
+    "firestore_original_id": 494303886536653590,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 557,
+    "wp_name": "מושגים ביהדות - הרב קלנר",
+    "firestore_doc_id": "ser_3686cffcdde14ee4aff6",
+    "firestore_name": "מושגים ביהדות - הרב קלנר",
+    "firestore_original_id": 789291109746999429,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 558,
+    "wp_name": "מי מרום ממעייני הישועה [תשפ'] - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 559,
+    "wp_name": "מידות - הרב קשתיאל",
+    "firestore_doc_id": "ser_4f82b4be18184210be4a",
+    "firestore_name": "מידות - הרב קשתיאל",
+    "firestore_original_id": 169102815980859430,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 560,
+    "wp_name": "מידות [תשע\"ח] - הרב שילר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 561,
+    "wp_name": "מידות [תשפ\"ד] - הרב קשתיאל",
+    "firestore_doc_id": "ser_2492efca8ee04bf6a9f6",
+    "firestore_name": "מידות - הרב קשתיאל [תשפ\"ד]",
+    "firestore_original_id": 292239981187821041,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 562,
+    "wp_name": "מידות הראי\"ה - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "מידות הראי\"ה — matched to אגרות הראי\"ה by mistake (completely different book)",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 563,
+    "wp_name": "מידות הראי\"ה [תשע\"ט] - הרב קשתיאל",
+    "firestore_doc_id": "ser_611af10d5ea84bbcac8b",
+    "firestore_name": "מידות הראי\"ה - הרב קשתיאל [תשע\"ט]",
+    "firestore_original_id": 890027137628264270,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 564,
+    "wp_name": "מידות הראי''ה - הרב קלנר",
+    "firestore_doc_id": "ser_750a4622ea4042a0a560",
+    "firestore_name": "מידות הראי''ה - הרב קלנר",
+    "firestore_original_id": 77054779329880108,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 565,
+    "wp_name": "מידות ע\"פ התנ\"ך - הרב אוהד",
+    "firestore_doc_id": "ser_04fc239121f44b09bd44",
+    "firestore_name": "מידות ע\"פ התנ\"ך - הרב אוהד",
+    "firestore_original_id": 896727034449170919,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 566,
+    "wp_name": "מידות ע\"פ נתיבות עולם למהר\"ל",
+    "firestore_doc_id": "ser_46530fca5ec5498cb8b1",
+    "firestore_name": "מידות ע\"פ נתיבות עולם למהר\"ל",
+    "firestore_original_id": 772447260033473230,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 567,
+    "wp_name": "מלחמת 'משיב הרוח' [חרבות ברזל]",
+    "firestore_doc_id": "ser_38cf352436db4a1ead40",
+    "firestore_name": "מלחמת 'משיב הרוח' [חרבות ברזל]",
+    "firestore_original_id": 360771262714854748,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 568,
+    "wp_name": "מנהיגות (סדרה לאנשי קבע) - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 570,
+    "wp_name": "מסילת ישרים [תשס\"ח] - הרב קשתיאל",
+    "firestore_doc_id": "ser_0c33aa6a2d6a48f9bda9",
+    "firestore_name": "מסילת ישרים תשס\"ח - הרב קשתיאל",
+    "firestore_original_id": 604437095620131543,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Close but imperfect series-key match (edit distance 3): 'מסילת ישרים [תשס\"ח] - הרב קשתיאל' vs 'מסילת ישרים תשס\"ח - הרב קשתיאל'"
+  },
+  {
+    "wp_id": 571,
+    "wp_name": "מסילת ישרים [תשע\"ג] - הרב קשתיאל",
+    "firestore_doc_id": "ser_2e9e7e8838ce4a0a87bd",
+    "firestore_name": "מסילת ישרים תשע\"ג - הרב קשתיאל",
+    "firestore_original_id": 267862183600862013,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Close but imperfect series-key match (edit distance 3): 'מסילת ישרים [תשע\"ג] - הרב קשתיאל' vs 'מסילת ישרים תשע\"ג - הרב קשתיאל'"
+  },
+  {
+    "wp_id": 572,
+    "wp_name": "מסילת ישרים [תשע\"ד] - הרב קשתיאל",
+    "firestore_doc_id": "ser_998d651e89ca471ea5a3",
+    "firestore_name": "מסילת ישרים תשע\"ד - הרב קשתיאל",
+    "firestore_original_id": 696166149604803333,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — WP uses brackets around year, FS does not"
+  },
+  {
+    "wp_id": 573,
+    "wp_name": "מסילת ישרים [תשע\"ט] - הרב אוהד",
+    "firestore_doc_id": "ser_0e8df318ab0e49b1ac03",
+    "firestore_name": "מסילת ישרים - הרב אוהד [תשע\"ט]",
+    "firestore_original_id": 375621134356152385,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 574,
+    "wp_name": "מסילת ישרים [תשע\"ט] - הרב קשתיאל",
+    "firestore_doc_id": "ser_4566d3e6a1b0441fb1a0",
+    "firestore_name": "מסילת ישרים - הרב קשתיאל [תשע\"ט]",
+    "firestore_original_id": 894504562738603702,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position and formatting differ"
+  },
+  {
+    "wp_id": 575,
+    "wp_name": "מסילת ישרים [תשפ\"ב] - הרב קשתיאל",
+    "firestore_doc_id": "ser_5e583106707e4b24b09e",
+    "firestore_name": "מסילת ישרים - הרב קשתיאל [תשפ\"ב]",
+    "firestore_original_id": 842368423335075452,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 569,
+    "wp_name": "מסילת ישרים [תשפ\"ד] - הרב עקיבא",
+    "firestore_doc_id": "ser_4ea5eba8cd7842029719",
+    "firestore_name": "מסילת ישרים - הרב עקיבא [תשפ\"ד]",
+    "firestore_original_id": 396861272136571567,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 576,
+    "wp_name": "מסכת אבות [תשע\"ז] - הרב קשתיאל",
+    "firestore_doc_id": "ser_b3904a8eb2a04eca83ba",
+    "firestore_name": "מסכת אבות - הרב קשתיאל [תשע\"ז]",
+    "firestore_original_id": 776567978001378376,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 577,
+    "wp_name": "מעוז צור | רבני בני דוד",
+    "firestore_doc_id": "ser_5cf548328edf4a3f8c17",
+    "firestore_name": "מעוז צור | רבני בני דוד",
+    "firestore_original_id": 929375329374603581,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 578,
+    "wp_name": "מעט מהאור של בית מדרשנו [תש\"פ]",
+    "firestore_doc_id": "ser_818516488a4343a3884f",
+    "firestore_name": "מעט מהאור של בית מדרשנו תש\"פ",
+    "firestore_original_id": 857775652109559329,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — WP uses brackets around year, FS does not: [תש\"פ] vs תש\"פ"
+  },
+  {
+    "wp_id": 579,
+    "wp_name": "מצווה בפרשה - הרב קשתיאל",
+    "firestore_doc_id": "ser_4c97c903d1d54269a2d7",
+    "firestore_name": "מצווה בפרשה - הרב קשתיאל",
+    "firestore_original_id": 122408507314429306,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 580,
+    "wp_name": "משנה ברורה על הסדר - הרב אופיר",
+    "firestore_doc_id": "ser_0a5e6aee4d7449adab5e",
+    "firestore_name": "משנה ברורה על הסדר - הרב אופיר",
+    "firestore_original_id": 603980351490620168,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 581,
+    "wp_name": "משנתו של הרצי\"ה - הרב אלי",
+    "firestore_doc_id": "ser_7dabcf6fcba34939a903",
+    "firestore_name": "משנתו של הרצי\"ה - הרב אלי",
+    "firestore_original_id": 137253835900974521,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 582,
+    "wp_name": "ניסוי וטעייה",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 583,
+    "wp_name": "נפש החיים - הרב שלום הימן",
+    "firestore_doc_id": "ser_1e5e2cfad27a4488afe2",
+    "firestore_name": "נפש החיים - הרב שלום הימן",
+    "firestore_original_id": 121140933178336595,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 584,
+    "wp_name": "נפש החיים - מכינה [תשפ\"ב] - הרב קשתיאל",
+    "firestore_doc_id": "ser_643f896329cc48a3b5f0",
+    "firestore_name": "נפש החיים - מכינה [תשפ\"ב] - הרב קשתיאל",
+    "firestore_original_id": 565058904528441365,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 585,
+    "wp_name": "נפש החיים [תשפ\"א] - הרב קשתיאל",
+    "firestore_doc_id": "ser_683524f22d0547278874",
+    "firestore_name": "נפש החיים [תשפ\"א] - הרב קשתיאל",
+    "firestore_original_id": 318405721809287959,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2512,
+    "wp_name": "נפש החיים [תשפ\"ו] - הרב יהודה",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 586,
+    "wp_name": "נצח ישראל - הרב אלי",
+    "firestore_doc_id": "ser_bee1d619e6e647dea174",
+    "firestore_name": "נצח ישראל - הרב אלי",
+    "firestore_original_id": 46156466582384679,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 587,
+    "wp_name": "נצח ישראל - הרב חיים וידאל",
+    "firestore_doc_id": "ser_1586a79b55804d90a802",
+    "firestore_name": "נצח ישראל - הרב חיים וידאל",
+    "firestore_original_id": 392327450919163156,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 588,
+    "wp_name": "נצח ישראל - הרב קלנר",
+    "firestore_doc_id": "ser_428fffd615d34e0f909c",
+    "firestore_name": "נצח ישראל - הרב קלנר",
+    "firestore_original_id": 784639435506537151,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 589,
+    "wp_name": "נצח ישראל - הרב קשתיאל",
+    "firestore_doc_id": "ser_b79b92205ad845d791b4",
+    "firestore_name": "נצח ישראל - הרב קשתיאל",
+    "firestore_original_id": 787422527679232015,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 590,
+    "wp_name": "נצח ישראל [תשע''ז] - הרב דוד בן מאיר",
+    "firestore_doc_id": "ser_57bdd27758b74e85b9ef",
+    "firestore_name": "נצח ישראל | הרב דוד בן מאיר [תשע''ז]",
+    "firestore_original_id": 698428879756841763,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — separator style differs"
+  },
+  {
+    "wp_id": 2514,
+    "wp_name": "נצח ישראל [תשפ\"ו] | הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 591,
+    "wp_name": "נתיב העבודה [תשע\"ה] - הרב קשתיאל",
+    "firestore_doc_id": "ser_9ce560e3d3ff4a7c9a73",
+    "firestore_name": "נתיב העבודה [תשע\"ה] - הרב קשתיאל",
+    "firestore_original_id": 803350755684396433,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 592,
+    "wp_name": "נתיב העבודה [תשע\"ח] - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "נתיב העבודה [תשע\"ח] — no FS equivalent (FS has [תשע'א])",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 593,
+    "wp_name": "נתיב העבודה [תשע'א] - הרב קשתיאל",
+    "firestore_doc_id": "ser_221f872b1ec34442a543",
+    "firestore_name": "נתיב העבודה [תשע'א] - הרב קשתיאל",
+    "firestore_original_id": 225593293782151694,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 594,
+    "wp_name": "נתיב התורה - תשס\"ה - הרב קשתיאל",
+    "firestore_doc_id": "ser_049277ddc89143b8a004",
+    "firestore_name": "נתיב התורה - תשס\"ה - הרב קשתיאל",
+    "firestore_original_id": 264776800857981392,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 595,
+    "wp_name": "נתיב התורה תשע\"ה - הרב קשתיאל",
+    "firestore_doc_id": "ser_5e402938fa65409083f8",
+    "firestore_name": "נתיב התורה תשע\"ה - הרב קשתיאל",
+    "firestore_original_id": 427382080290427964,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 596,
+    "wp_name": "נתיב התשובה - הרב אוהד",
+    "firestore_doc_id": "ser_5c38def9810441f0adc6",
+    "firestore_name": "נתיב התשובה - הרב אוהד",
+    "firestore_original_id": 648513182628852602,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 597,
+    "wp_name": "נתיבות עולם - הרב קשתיאל",
+    "firestore_doc_id": "ser_130155a30f3e4a618914",
+    "firestore_name": "נתיבות עולם - הרב קשתיאל",
+    "firestore_original_id": 512285457235692753,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 598,
+    "wp_name": "נתיבות עולם [תשע\"ח] | הרב קשתיאל",
+    "firestore_doc_id": "ser_b2232e6a54ac4ef0b86c",
+    "firestore_name": "נתיבות עולם [תשע\"ח] | הרב קשתיאל",
+    "firestore_original_id": 804900324613431224,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 599,
+    "wp_name": "נתיבות עולם ב' [תשפ''ד] - הרב קשתיאל",
+    "firestore_doc_id": "ser_0d1bb259631c4feba9bf",
+    "firestore_name": "נתיבות עולם ב' [תשפ''ד] - הרב קשתיאל",
+    "firestore_original_id": 889100761847564863,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 600,
+    "wp_name": "סוגיה מהפרשה - הרב יאיר אטון",
+    "firestore_doc_id": "ser_66790225c6054606a3d5",
+    "firestore_name": "סוגיה מהפרשה - הרב יאיר אטון",
+    "firestore_original_id": 418148723239068158,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 601,
+    "wp_name": "סוגיות אקטואליות - הרב שלום היימן",
+    "firestore_doc_id": "ser_979e2c70b20544f5b02b",
+    "firestore_name": "סוגיות אקטואליות - הרב שלום היימן",
+    "firestore_original_id": 773300837787392674,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 602,
+    "wp_name": "סוגיות אקטואליות ע\"פ ההלכה- הרב אופיר",
+    "firestore_doc_id": "ser_5306ba65a23e4dcd9ebe",
+    "firestore_name": "סוגיות אקטואליות ע\"פ ההלכה- הרב אופיר",
+    "firestore_original_id": 821464817234703395,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 603,
+    "wp_name": "סוגיות באורות - הרב אלי",
+    "firestore_doc_id": "ser_088e0ace61614117b204",
+    "firestore_name": "סוגיות באורות - הרב אלי",
+    "firestore_original_id": 74689392010006242,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 604,
+    "wp_name": "סוגיות באורות [תשפ''ה] - הרב אלי",
+    "firestore_doc_id": "ser_4290bba3c2714a358f75",
+    "firestore_name": "סוגיות באורות [תשפ''ה] - הרב אלי",
+    "firestore_original_id": 728644000209663478,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 605,
+    "wp_name": "סוגיות באורות א\"י - הרב אלי",
+    "firestore_doc_id": "ser_1245f45a28be4f8898b4",
+    "firestore_name": "סוגיות באורות א\"י - הרב אלי",
+    "firestore_original_id": 247947685314307639,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 606,
+    "wp_name": "סוגיות באורות התחיה - הרב אלי",
+    "firestore_doc_id": "ser_cdbd73b56a8b44bb99df",
+    "firestore_name": "סוגיות באורות התחיה - הרב אלי",
+    "firestore_original_id": 908093465086626874,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 607,
+    "wp_name": "סוגיות באמונה - הרב איתן",
+    "firestore_doc_id": "ser_1902ea45085b452f9b4f",
+    "firestore_name": "סוגיות באמונה - הרב איתן",
+    "firestore_original_id": 251974984116457808,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 608,
+    "wp_name": "סוגיות בחינוך",
+    "firestore_doc_id": "ser_c17c762c74f043799509",
+    "firestore_name": "סוגיות בחינוך",
+    "firestore_original_id": 595524722355694844,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 609,
+    "wp_name": "סוגיות במידות ומוסר בתנ\"ך - הרב אוהד",
+    "firestore_doc_id": "ser_9af68d8dcaa148d8b2dd",
+    "firestore_name": "סוגיות במידות ומוסר בתנ\"ך - הרב אוהד",
+    "firestore_original_id": 96690740941830675,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 610,
+    "wp_name": "סוגיות בספר אורות - הרב אלי",
+    "firestore_doc_id": "ser_2df2670947c242d881c1",
+    "firestore_name": "סוגיות בספר אורות - הרב אלי",
+    "firestore_original_id": 521795669367413441,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 611,
+    "wp_name": "סוגיות בעין אי\"ה - הרב אוהד",
+    "firestore_doc_id": "ser_0d5ad8a8a2574ecba73b",
+    "firestore_name": "סוגיות בעין אי\"ה - הרב אוהד",
+    "firestore_original_id": 106677476427976721,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 612,
+    "wp_name": "סוגיות בעין אי\"ה | הרב קלנר",
+    "firestore_doc_id": "ser_2a1c24c7ed5345e3a77a",
+    "firestore_name": "סוגיות בעין אי\"ה | הרב קלנר",
+    "firestore_original_id": 50617020100420538,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 613,
+    "wp_name": "סוגיות בעין איה [תשפ\"ד] - הרב יהודה",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 614,
+    "wp_name": "סוגיות בתורה ומדינה - הרב אופיר",
+    "firestore_doc_id": "ser_612dffb2a5ad4c24bbc3",
+    "firestore_name": "סוגיות בתורה ומדינה - הרב אופיר",
+    "firestore_original_id": 601946307208425190,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 615,
+    "wp_name": "סוגיות בתפילה - הרב עקיבא",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 616,
+    "wp_name": "סוגיית ארץ ישראל [תשע'ו] - הרב קלנר",
+    "firestore_doc_id": "ser_4a3a249ad6a44148a04e",
+    "firestore_name": "סוגיית ארץ ישראל - הרב קלנר [תשע'ו]",
+    "firestore_original_id": 875330712312344279,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 617,
+    "wp_name": "סוגיית דרכי האמורי [תשע'ו] - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 618,
+    "wp_name": "סוגיית הבחירה החופשית - הרב דוד בן מאיר",
+    "firestore_doc_id": "ser_bb0e10009ce24dd78e79",
+    "firestore_name": "סוגיית הבחירה החופשית - הרב דוד בן מאיר",
+    "firestore_original_id": 415768819178266781,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 619,
+    "wp_name": "סוגיית הידיעה והבחירה [תשפ''ד] - הרב דוד טרונר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 620,
+    "wp_name": "סוגיית התפילה [תשפ\"ד] - הרב דוד טורנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 621,
+    "wp_name": "סיבות הכפירה בדורנו - הרב קלנר",
+    "firestore_doc_id": "ser_8324a27acc1646bab32b",
+    "firestore_name": "סיבות הכפירה בדורנו - הרב קלנר",
+    "firestore_original_id": 374863501390956352,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 622,
+    "wp_name": "סימני הסדר (קצרים בזמן) - הרב אוהד",
+    "firestore_doc_id": "ser_84556b4d13d24453a1b3",
+    "firestore_name": "סימני הסדר (קצרים בזמן) - הרב אוהד",
+    "firestore_original_id": 18635469545706780,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 623,
+    "wp_name": "סיפורי חסידים [עלון פ\"ש] - הרב בן מאיר",
+    "firestore_doc_id": "ser_0f42346c8c5e4552a136",
+    "firestore_name": "סיפורי חסידים [עלון פ\"ש] - הרב בן מאיר",
+    "firestore_original_id": 291689554085209488,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 624,
+    "wp_name": "ספירת העומר תש\"פ",
+    "firestore_doc_id": "ser_99639352f4774b3b990d",
+    "firestore_name": "ספירת העומר תש\"פ",
+    "firestore_original_id": 239597436029502562,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 625,
+    "wp_name": "ספר איוב [תשע\"ח] - הרב קשתיאל",
+    "firestore_doc_id": "ser_6464948c4fb540b88cfe",
+    "firestore_name": "ספר איוב - הרב קשתיאל [תשע\"ח]",
+    "firestore_original_id": 552565329761211789,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 626,
+    "wp_name": "ספר דברי הימים א' [תשפ\"ג] - הרב קשתיאל",
+    "firestore_doc_id": "ser_0afb42ae83ec4294a789",
+    "firestore_name": "דברי הימים א' - הרב קשתיאל [תשפ\"ג]",
+    "firestore_original_id": 57007448453005736,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — WP says 'ספר', FS omits it"
+  },
+  {
+    "wp_id": 627,
+    "wp_name": "ספר דברי הימים ב' [תשפ\"ג] - הרב קשתיאל",
+    "firestore_doc_id": "ser_1ad2db8097104d81a750",
+    "firestore_name": "ספר דברי הימים ב' - הרב קשתיאל [תשפ\"ג]",
+    "firestore_original_id": 329610248451847319,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 628,
+    "wp_name": "ספר דניאל - הרב קשתיאל",
+    "firestore_doc_id": "ser_6d525b68980c41948cd4",
+    "firestore_name": "ספר דניאל - הרב קשתיאל",
+    "firestore_original_id": 775792863593928719,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 629,
+    "wp_name": "ספר הושע - הרב קשתיאל",
+    "firestore_doc_id": "ser_28491e86f3ce4d4d8ab7",
+    "firestore_name": "ספר הושע - הרב קשתיאל",
+    "firestore_original_id": 174351306940178515,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 630,
+    "wp_name": "ספר העיקרים - הרב קשתיאל",
+    "firestore_doc_id": "ser_6b4fd4b0c5b74e50b9a6",
+    "firestore_name": "ספר העיקרים - הרב קשתיאל",
+    "firestore_original_id": 204143867713223785,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 631,
+    "wp_name": "ספר התניא [תשע\"ט] - הרב קשתיאל",
+    "firestore_doc_id": "ser_a369223b23f0438e86fa",
+    "firestore_name": "ספר התניא - הרב קשתיאל [תשע\"ט]",
+    "firestore_original_id": 614531203088614343,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 632,
+    "wp_name": "ספר זכריה - הרב קשתיאל",
+    "firestore_doc_id": "ser_8a59628932bf40788c61",
+    "firestore_name": "ספר זכריה - הרב קשתיאל",
+    "firestore_original_id": 506879516115148087,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 633,
+    "wp_name": "ספר חבקוק - הרב קשתיאל",
+    "firestore_doc_id": "ser_af3b13d06049440bad7f",
+    "firestore_name": "ספר חבקוק - הרב קשתיאל",
+    "firestore_original_id": 362330407392932412,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 634,
+    "wp_name": "ספר חגי - הרב קשתיאל",
+    "firestore_doc_id": "ser_04f32afcbe85446f9a3b",
+    "firestore_name": "ספר חגי - הרב קשתיאל",
+    "firestore_original_id": 951439783006811425,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 635,
+    "wp_name": "ספר יהושע [תשס\"ז] - הרב קשתיאל",
+    "firestore_doc_id": "ser_9b87884a72644facaec6",
+    "firestore_name": "ספר יהושע [תשס\"ז] - הרב קשתיאל",
+    "firestore_original_id": 392671269361085319,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 636,
+    "wp_name": "ספר יהושע [תשע\"ו] - הרב קשתיאל",
+    "firestore_doc_id": "ser_82967613d0c44dc28c14",
+    "firestore_name": "ספר יהושע [תשע\"ו] - הרב קשתיאל",
+    "firestore_original_id": 160974331752120292,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 637,
+    "wp_name": "ספר יואל - הרב קשתיאל",
+    "firestore_doc_id": "ser_13878d4747384c599809",
+    "firestore_name": "ספר יואל - הרב קשתיאל",
+    "firestore_original_id": 319944243704301281,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 638,
+    "wp_name": "ספר יונה - הרב קשתיאל",
+    "firestore_doc_id": "ser_066288dde7de4ec89a6e",
+    "firestore_name": "ספר יונה - הרב קשתיאל",
+    "firestore_original_id": 855237353526056149,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 639,
+    "wp_name": "ספר יחזקאל [תשע'ו] - הרב קשתיאל",
+    "firestore_doc_id": "ser_6ad61dbd3eb64657aaec",
+    "firestore_name": "ספר יחזקאל - הרב קשתיאל [תשע'ו]",
+    "firestore_original_id": 968592460984435940,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 640,
+    "wp_name": "ספר ירמיהו - הרב קשתיאל",
+    "firestore_doc_id": "ser_69582c201dd84e87baa4",
+    "firestore_name": "ספר ירמיהו - הרב קשתיאל",
+    "firestore_original_id": 491503781444757168,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 641,
+    "wp_name": "ספר ישעיהו [תשע\"ח] - הרב קשתיאל",
+    "firestore_doc_id": "ser_db252109b8dd41ffa15c",
+    "firestore_name": "ספר ישעיהו - הרב קשתיאל [תשע\"ח]",
+    "firestore_original_id": 437472611147284116,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 642,
+    "wp_name": "ספר מיכה - הרב קשתיאל",
+    "firestore_doc_id": "ser_86bc5963c78c44deb374",
+    "firestore_name": "ספר מיכה - הרב קשתיאל",
+    "firestore_original_id": 405754702467149191,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 643,
+    "wp_name": "ספר מלאכי - הרב קשתיאל",
+    "firestore_doc_id": "ser_848a6ecebe4e4f09a4d4",
+    "firestore_name": "ספר מלאכי - הרב קשתיאל",
+    "firestore_original_id": 699248820044142506,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 822,
+    "wp_name": "ספר מלכים א'",
+    "firestore_doc_id": "ser_05ee3ac36c6f4192aa60",
+    "firestore_name": "ספר מלכים א', ב' - הרב קשתיאל",
+    "firestore_original_id": 221834864009390800,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "WP has only 'מלכים א', FS entry covers both א' and ב'"
+  },
+  {
+    "wp_id": 644,
+    "wp_name": "ספר מלכים א', ב' - הרב קשתיאל",
+    "firestore_doc_id": "ser_05ee3ac36c6f4192aa60",
+    "firestore_name": "ספר מלכים א', ב' - הרב קשתיאל",
+    "firestore_original_id": 221834864009390800,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 645,
+    "wp_name": "ספר משלי - הרב קשתיאל",
+    "firestore_doc_id": "ser_22cf74f9a45843199695",
+    "firestore_name": "ספר משלי - הרב קשתיאל",
+    "firestore_original_id": 515871044802419216,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 646,
+    "wp_name": "ספר משלי [תשפ\"א] - הרב אוהד",
+    "firestore_doc_id": "ser_64dbb0d405f240bda5cc",
+    "firestore_name": "ספר משלי [תשפ\"א] - הרב אוהד",
+    "firestore_original_id": 21194632429581430,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 647,
+    "wp_name": "ספר משלי [תשפ''ד-תשפ\"ו] - הרב קשתיאל",
+    "firestore_doc_id": "ser_0401bc32fd7a4325b483",
+    "firestore_name": "ספר משלי - הרב קשתיאל [תשפ''ד]",
+    "firestore_original_id": 470838286258528362,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — WP has range [תשפ''ד-תשפ\"ו], FS has single year; same series"
+  },
+  {
+    "wp_id": 648,
+    "wp_name": "ספר משלי לחודש אלול - הרב אוהד תירוש",
+    "firestore_doc_id": "ser_ce7e4757acd84c188d4d",
+    "firestore_name": "ספר משלי לחודש אלול - הרב אוהד תירוש",
+    "firestore_original_id": 854753748205259,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 649,
+    "wp_name": "ספר נחום - הרב קשתיאל",
+    "firestore_doc_id": "ser_025b5bef8dab4a3ca277",
+    "firestore_name": "ספר נחום - הרב קשתיאל",
+    "firestore_original_id": 227867224698257694,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 650,
+    "wp_name": "ספר נחמיה - קשתיאל",
+    "firestore_doc_id": "ser_178fd406801442afb8f0",
+    "firestore_name": "ספר נחמיה - קשתיאל",
+    "firestore_original_id": 17826420436296094,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 651,
+    "wp_name": "ספר עובדיה - הרב קשתיאל",
+    "firestore_doc_id": "ser_5dd1035831d5458ca836",
+    "firestore_name": "ספר עובדיה - הרב קשתיאל",
+    "firestore_original_id": 484190265270986116,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 652,
+    "wp_name": "ספר עזרא - הרב קשתיאל",
+    "firestore_doc_id": "ser_0449eeb5eb0542d4bda1",
+    "firestore_name": "ספר עזרא - הרב קשתיאל",
+    "firestore_original_id": 536859404903902084,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 653,
+    "wp_name": "ספר עמוס - הרב קשתיאל",
+    "firestore_doc_id": "ser_65f73c3ed67a4a58a9b9",
+    "firestore_name": "ספר עמוס - הרב קשתיאל",
+    "firestore_original_id": 643801513640857036,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 654,
+    "wp_name": "ספר צפניה - הרב קשתיאל",
+    "firestore_doc_id": "ser_27d95540a49a4eb29472",
+    "firestore_name": "ספר צפניה - הרב קשתיאל",
+    "firestore_original_id": 892550239400071615,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 655,
+    "wp_name": "ספר שופטים - הרב קשתיאל",
+    "firestore_doc_id": "ser_a5ffd36f8f664a5bb60f",
+    "firestore_name": "ספר שופטים - הרב קשתיאל",
+    "firestore_original_id": 792229431730711126,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 656,
+    "wp_name": "ספר שופטים תשע\"ו - הרב אליעזר קשתיאל",
+    "firestore_doc_id": "ser_2435edb491874f629aed",
+    "firestore_name": "ספר שופטים תשע\"ו - הרב אליעזר קשתיאל",
+    "firestore_original_id": 74404501619107380,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 657,
+    "wp_name": "ספר שמואל א' [תשע\"ג] - הרב קשתיאל",
+    "firestore_doc_id": "ser_4354b4eb44c74cecaf2b",
+    "firestore_name": "ספר שמואל א' - הרב קשתיאל [תשע\"ג]",
+    "firestore_original_id": 285182287319752616,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 658,
+    "wp_name": "ספר שמואל א' תשס\"ח - ט'",
+    "firestore_doc_id": "ser_478a9408a93749dfb26e",
+    "firestore_name": "ספר שמואל א' תשס\"ח - ט'",
+    "firestore_original_id": 661353830370718141,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 659,
+    "wp_name": "ספר שמואל ב' [תש\"ע] - הרב קשתיאל",
+    "firestore_doc_id": "ser_2e2fc6ab1ea84b1eb77b",
+    "firestore_name": "ספר שמואל ב' - הרב קשתיאל [תש\"ע]",
+    "firestore_original_id": 874786576950150720,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 660,
+    "wp_name": "ספר תהילים [תשפ\"א] - הרב קשתיאל",
+    "firestore_doc_id": "ser_12771b997433421eaae4",
+    "firestore_name": "ספר תהילים [תשפ\"א] - הרב קשתיאל",
+    "firestore_original_id": 299329423042298382,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 661,
+    "wp_name": "ספר תהילים ע\"פ פ\"ש - הרב קשתיאל",
+    "firestore_doc_id": "ser_333a5d309c3a4d70a448",
+    "firestore_name": "ספר תהילים ע\"פ פ\"ש - הרב קשתיאל",
+    "firestore_original_id": 681251001547945961,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 662,
+    "wp_name": "עבודת אלוקים - הרב קלנר",
+    "firestore_doc_id": "ser_00ebf705db714b0f8ae6",
+    "firestore_name": "עבודת אלוקים - הרב קלנר",
+    "firestore_original_id": 914941839909948864,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2509,
+    "wp_name": "עבודת אלוקים [תשפו'] | הרב קלנר",
+    "firestore_doc_id": "ser_00ebf705db714b0f8ae6",
+    "firestore_name": "עבודת אלוקים - הרב קלנר",
+    "firestore_original_id": 914941839909948864,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — WP has year [תשפו'] and | separator, FS entry has no year"
+  },
+  {
+    "wp_id": 663,
+    "wp_name": "עולת רא''יה-הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "עולת רא''יה - הרב קלנר: no FS entry found for this rav (FS has entries for הרב אלי סדן and הרב קשתיאל only)",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 664,
+    "wp_name": "עולת ראי\"ה - הרב אלי סדן",
+    "firestore_doc_id": "ser_75aff4318c3343cbad1e",
+    "firestore_name": "עולת ראי\"ה - הרב אלי סדן",
+    "firestore_original_id": 618669010188244481,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 665,
+    "wp_name": "עולת ראי\"ה [תשע\"ח] - הרב רביד",
+    "firestore_doc_id": "ser_a140e414381d4f688bf1",
+    "firestore_name": "עולת ראי\"ה - הרב רביד [תשע\"ח]",
+    "firestore_original_id": 876523511872177434,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — format/separator differs"
+  },
+  {
+    "wp_id": 666,
+    "wp_name": "עולת ראי\"ה ב' - הרב קשתיאל",
+    "firestore_doc_id": "ser_af450400f86a46c88679",
+    "firestore_name": "עולת ראי\"ה ב' - הרב קשתיאל",
+    "firestore_original_id": 676295614743990052,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 667,
+    "wp_name": "עולת ראי''ה א' - הרב קשתיאל",
+    "firestore_doc_id": "ser_360ffc903f474ba8b920",
+    "firestore_name": "עולת ראי''ה א' - הרב קשתיאל",
+    "firestore_original_id": 854746220933292939,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 668,
+    "wp_name": "עולת ראיה [תשע'ב] - הרב קשתיאל",
+    "firestore_doc_id": "ser_87dde69af0a24465970d",
+    "firestore_name": "עולת ראיה - הרב קשתיאל [תשע'ב]",
+    "firestore_original_id": 225099251164255503,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 669,
+    "wp_name": "עולת ראיה [תשפ'] - הרב רביד",
+    "firestore_doc_id": "ser_29557e1162654544a532",
+    "firestore_name": "עולת ראיה [תשפ'] - הרב רביד",
+    "firestore_original_id": 493298795664474414,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 670,
+    "wp_name": "עזרא ונחמיה - הרב אוהד",
+    "firestore_doc_id": "ser_24acce3537414863a2cc",
+    "firestore_name": "עזרא ונחמיה - הרב אוהד",
+    "firestore_original_id": 123676978538259468,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 671,
+    "wp_name": "עיונים במדרש - הרב אוהד",
+    "firestore_doc_id": "ser_0dca2081ba1d4cdfac0a",
+    "firestore_name": "עיונים במדרש - הרב אוהד",
+    "firestore_original_id": 996593702105486966,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 672,
+    "wp_name": "עין אי\"ה - הרב יגאל",
+    "firestore_doc_id": "ser_3a16c798de834530b840",
+    "firestore_name": "עין אי\"ה - הרב יגאל",
+    "firestore_original_id": 896415286043883631,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 673,
+    "wp_name": "עין אי\"ה - הרב יהודה",
+    "firestore_doc_id": "ser_6c2878fc31584d768ae9",
+    "firestore_name": "עין אי\"ה - הרב יהודה",
+    "firestore_original_id": 665743606951588158,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 674,
+    "wp_name": "עין אי\"ה ברכות א' - הרב קשתיאל",
+    "firestore_doc_id": "ser_1ec214975c634041846f",
+    "firestore_name": "עין אי\"ה ברכות א' - הרב קשתיאל",
+    "firestore_original_id": 851248506168907117,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 675,
+    "wp_name": "עין אי\"ה ברכות ב' - הרב קשתיאל",
+    "firestore_doc_id": "ser_2216f88f5e1640798a6f",
+    "firestore_name": "עין אי\"ה ברכות ב' - הרב קשתיאל",
+    "firestore_original_id": 839750464694647396,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 676,
+    "wp_name": "עין אי\"ה על הסדר - הרב קלנר",
+    "firestore_doc_id": "ser_a3c754a86d5847549b3d",
+    "firestore_name": "עין אי\"ה על הסדר - הרב קלנר",
+    "firestore_original_id": 417781823929942990,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 677,
+    "wp_name": "עין אי\"ה שבת א' - הרב קשתיאל",
+    "firestore_doc_id": "ser_096465f244c9456dad5c",
+    "firestore_name": "עין אי\"ה שבת א' - הרב קשתיאל",
+    "firestore_original_id": 455639825539447038,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 678,
+    "wp_name": "עין אי\"ה שבת ב' - הרב אוהד",
+    "firestore_doc_id": "ser_0a5afddfac344556a944",
+    "firestore_name": "עין אי\"ה שבת ב' - הרב אוהד",
+    "firestore_original_id": 120132670670346602,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 679,
+    "wp_name": "עין אי\"ה שבת ב' - הרב קשתיאל",
+    "firestore_doc_id": "ser_4f07d85128ee476c9aee",
+    "firestore_name": "עין אי\"ה שבת ב' - הרב קשתיאל",
+    "firestore_original_id": 656450660334842730,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 680,
+    "wp_name": "עין איה שבת א' [תשפ\"ג] - הרב איתי",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 681,
+    "wp_name": "עיקרי האמונה [תשפ''ה] - הרב אלי",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 682,
+    "wp_name": "על השבת [תשפ\"ג]- הרב אוהד",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 683,
+    "wp_name": "עלון פ\"ש - הרב קשתיאל",
+    "firestore_doc_id": "ser_21a7f565203340d0a093",
+    "firestore_name": "עלון פ\"ש - הרב קשתיאל",
+    "firestore_original_id": 413854659827669515,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 684,
+    "wp_name": "ענייני התפילה - הרב אלי סדן",
+    "firestore_doc_id": "ser_0dd5ac240a924240b70b",
+    "firestore_name": "ענייני התפילה - הרב אלי סדן",
+    "firestore_original_id": 950318743918963610,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 685,
+    "wp_name": "ענייני תשובה - הרב אוהד",
+    "firestore_doc_id": "ser_2ee61c1cc66546c1bd84",
+    "firestore_name": "ענייני תשובה - הרב אוהד",
+    "firestore_original_id": 56175564471060394,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2511,
+    "wp_name": "עקבי הצאן [תשפ\"ו] - הרב יהודה",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 2506,
+    "wp_name": "עקבי הצאן [תשפ\"ו] - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 686,
+    "wp_name": "ערבי לימוד לחגים",
+    "firestore_doc_id": "ser_468e2a6052554482a67a",
+    "firestore_name": "ערבי לימוד לחגים",
+    "firestore_original_id": 598441364391417858,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 687,
+    "wp_name": "ערך התחיה - ח\"י רועי [תשע\"ה]",
+    "firestore_doc_id": "ser_5589b12734564971a6a6",
+    "firestore_name": "ערך התחיה - ח\"י רועי [תשע\"ה]",
+    "firestore_original_id": 312565847535793905,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 688,
+    "wp_name": "פודקאסט 'בני דוד'",
+    "firestore_doc_id": "ser_7bff758040f24e72b0e1",
+    "firestore_name": "פודקאסט 'בני דוד'",
+    "firestore_original_id": 821033167042641927,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 689,
+    "wp_name": "פודקאסט 'חרבות ברזל' לוחמות העורף",
+    "firestore_doc_id": "ser_2436147447624fd082c4",
+    "firestore_name": "פודקאסט 'חרבות ברזל' לוחמות העורף",
+    "firestore_original_id": 48102926365049249,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 690,
+    "wp_name": "פלורליזם פנטיזם וכלליות",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 691,
+    "wp_name": "פסיכולוגיה ויהדות [תשע\"ח] - הרב נתנאל אלישיב",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 692,
+    "wp_name": "פרקי אבות [התשפ''ה] - הרב אליעזר קשתיאל",
+    "firestore_doc_id": "ser_5b278a75fcfc4e289580",
+    "firestore_name": "פרקי אבות [התשפ''ה] - הרב אליעזר קשתיאל",
+    "firestore_original_id": 369988613394737951,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 693,
+    "wp_name": "פרקי גאולה (נצח ישראל) - הרב קשתיאל",
+    "firestore_doc_id": "ser_ca6bde850143412482d8",
+    "firestore_name": "פרקי גאולה (נצח ישראל) - הרב קשתיאל",
+    "firestore_original_id": 239793305410982797,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 694,
+    "wp_name": "פרקי גאולה בתנ\"ך [תשע'ו] - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 695,
+    "wp_name": "פרקי היום בתנ\"ך [תשע'ט] - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 696,
+    "wp_name": "פרשת שבוע (בוגר\"צ) - הרב קשתיאל",
+    "firestore_doc_id": "ser_3055b63a0b8c4d79b578",
+    "firestore_name": "פרשת שבוע (בוגר\"צ) - הרב קשתיאל",
+    "firestore_original_id": 179914854439306430,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 697,
+    "wp_name": "פרשת שבוע (דף יומי) - הרב קשתיאל",
+    "firestore_doc_id": "ser_5344cfe116c449379e6e",
+    "firestore_name": "פרשת שבוע (דף יומי) - הרב קשתיאל",
+    "firestore_original_id": 55660424969496621,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 698,
+    "wp_name": "פרשת שבוע (מכינה) - הרב קשתיאל",
+    "firestore_doc_id": "ser_5d41d9c951d44206b191",
+    "firestore_name": "פרשת שבוע (מכינה) - הרב קשתיאל",
+    "firestore_original_id": 24584239688308338,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 699,
+    "wp_name": "פרשת שבוע - הרב אוהד",
+    "firestore_doc_id": "ser_6f0775408dcd42c2bd45",
+    "firestore_name": "פרשת שבוע - הרב אוהד",
+    "firestore_original_id": 887995388347557576,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 700,
+    "wp_name": "פרשת שבוע - הרב איתן קופמן",
+    "firestore_doc_id": "ser_04b3b98671954a14b04c",
+    "firestore_name": "פרשת שבוע - הרב איתן קופמן",
+    "firestore_original_id": 533834473874230598,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 701,
+    "wp_name": "פרשת שבוע - הרב אלי",
+    "firestore_doc_id": "ser_31d5277a53584b1d97d5",
+    "firestore_name": "פרשת שבוע - הרב אלי",
+    "firestore_original_id": 511306995324956495,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 702,
+    "wp_name": "פרשת שבוע - הרב נריה",
+    "firestore_doc_id": "ser_6307a475e3ec46bea0ab",
+    "firestore_name": "פרשת שבוע - הרב נריה",
+    "firestore_original_id": 323311171977573938,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 703,
+    "wp_name": "פרשת שבוע - הרב פנחס",
+    "firestore_doc_id": "ser_07b6221968614cb19cda",
+    "firestore_name": "פרשת שבוע - הרב פנחס",
+    "firestore_original_id": 862966682882171796,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 704,
+    "wp_name": "פרשת שבוע - הרב שמואל וידל",
+    "firestore_doc_id": "ser_2f403e398f664634ad84",
+    "firestore_name": "פרשת שבוע - הרב שמואל וידל",
+    "firestore_original_id": 723012324958580488,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 705,
+    "wp_name": "פרשת שבוע | הרב דוד אמיתי",
+    "firestore_doc_id": "ser_c091984fd44e441fb20c",
+    "firestore_name": "פרשת שבוע | הרב דוד אמיתי",
+    "firestore_original_id": 86268277639530052,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 706,
+    "wp_name": "פרשת שבוע | הרב עקיבא",
+    "firestore_doc_id": "ser_15ebee17552941a29f7e",
+    "firestore_name": "פרשת שבוע | הרב עקיבא",
+    "firestore_original_id": 437767540111180784,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 707,
+    "wp_name": "פרשת שבוע | הרב שלום",
+    "firestore_doc_id": "ser_3041a53f204d4bbc865a",
+    "firestore_name": "פרשת שבוע | הרב שלום",
+    "firestore_original_id": 296300103735931025,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 708,
+    "wp_name": "פרשת שבוע לחיילים - הרב אלי",
+    "firestore_doc_id": "ser_3fa9c297b0344a24bd33",
+    "firestore_name": "פרשת שבוע לחיילים - הרב אלי",
+    "firestore_original_id": 792819220059520227,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 709,
+    "wp_name": "פרשת שבוע לחיילים | הרב פנחס",
+    "firestore_doc_id": "ser_0e401504b0024497b771",
+    "firestore_name": "פרשת שבוע לחיילים | הרב פנחס",
+    "firestore_original_id": 300449598236785031,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 710,
+    "wp_name": "פרשת שבוע ע\"פ המהר\"ל | הרב קשתיאל",
+    "firestore_doc_id": "ser_cf502dedda264ac597d4",
+    "firestore_name": "פרשת שבוע ע\"פ המהר\"ל | הרב קשתיאל",
+    "firestore_original_id": 171785217881644002,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 711,
+    "wp_name": "פרשת שבוע ע\"פ הרמ\"ד ואלי - הרב קשתיאל",
+    "firestore_doc_id": "ser_09e5dd0c958b44d68c01",
+    "firestore_name": "פרשת שבוע ע\"פ הרמ\"ד ואלי - הרב קשתיאל",
+    "firestore_original_id": 663421259252514297,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 712,
+    "wp_name": "פרשת שבוע ע\"פ הרמב\"ן - הרב קשתיאל",
+    "firestore_doc_id": "ser_a64cf530bec344e9a134",
+    "firestore_name": "פרשת שבוע ע\"פ הרמב\"ן - הרב קשתיאל",
+    "firestore_original_id": 843515022355638339,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 713,
+    "wp_name": "פרשת שבוע ע\"פ משך חכמה - הרב קשתיאל",
+    "firestore_doc_id": "ser_248bb3b1503b4a0d9e57",
+    "firestore_name": "פרשת שבוע ע\"פ משך חכמה - הרב קשתיאל",
+    "firestore_original_id": 960773480467746476,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 714,
+    "wp_name": "פרשת שבוע ע\"פ ר' צדוק - הרב אוהד",
+    "firestore_doc_id": "ser_23dc808bb13e49dea24b",
+    "firestore_name": "פרשת שבוע ע\"פ ר' צדוק - הרב אוהד",
+    "firestore_original_id": 13928710127216572,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 715,
+    "wp_name": "פרשת שבוע ע\"פ שיחות הרצי\"ה - הרב קשתיאל",
+    "firestore_doc_id": "ser_6fa725f2c69646aea11f",
+    "firestore_name": "פרשת שבוע ע\"פ שיחות הרצי\"ה - הרב קשתיאל",
+    "firestore_original_id": 414366078994810274,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 716,
+    "wp_name": "צמח צבי איגרת ע''א [תשע''ה] - הרב קלנר",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 717,
+    "wp_name": "קול התור - הרב אוהד",
+    "firestore_doc_id": "ser_4b3b197f092e46238cd1",
+    "firestore_name": "קול התור - הרב אוהד",
+    "firestore_original_id": 674835408124893224,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 718,
+    "wp_name": "קניין תורה- הרב קשתיאל",
+    "firestore_doc_id": "ser_e4e493d242bb4f40b5d4",
+    "firestore_name": "קניין תורה- הרב קשתיאל",
+    "firestore_original_id": 975841644574822119,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 719,
+    "wp_name": "קצרים בזמן",
+    "firestore_doc_id": "ser_517cde006b34488fae02",
+    "firestore_name": "קצרים בזמן",
+    "firestore_original_id": 254317894552969909,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 720,
+    "wp_name": "קצרים לפ''ש - הרב רביד ניסים",
+    "firestore_doc_id": "ser_4347bd94a29a47b992f6",
+    "firestore_name": "קצרים לפ''ש - הרב רביד ניסים",
+    "firestore_original_id": 975688273776565761,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 825,
+    "wp_name": "קרבת אלוקים - הרב יהודה סדן",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 721,
+    "wp_name": "קרטריון לאמת [תשע\"ד] - הרב קלנר",
+    "firestore_doc_id": "ser_645d12355fb34a43997c",
+    "firestore_name": "קרטריון לאמת [תשע\"ד] הרב קלנר",
+    "firestore_original_id": 825329443683395108,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Format differs after normalisation: 'קרטריון לאמת [תשע\"ד] - הרב קלנר' vs 'קרטריון לאמת [תשע\"ד] הרב קלנר'"
+  },
+  {
+    "wp_id": 722,
+    "wp_name": "קריאה גדולה [תשע\"ה]",
+    "firestore_doc_id": "ser_4dc6d499d66b45fc8329",
+    "firestore_name": "קריאה גדולה [תשע\"ה]",
+    "firestore_original_id": 677747792765776492,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 723,
+    "wp_name": "רבנים-כללי",
+    "firestore_doc_id": "ser_75e5e28e3177421481a9",
+    "firestore_name": "רבנים-כללי",
+    "firestore_original_id": 91628312212816734,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 724,
+    "wp_name": "שבוע הכנה לצבא תשעו'",
+    "firestore_doc_id": "ser_266842a946994693a179",
+    "firestore_name": "שבוע הכנה לצבא תשעו'",
+    "firestore_original_id": 614951789639103744,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 725,
+    "wp_name": "שבת הארץ - הרב ארז",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 726,
+    "wp_name": "שבת הארץ - הרב קשתיאל",
+    "firestore_doc_id": "ser_12577673c3df407792ac",
+    "firestore_name": "שבת הארץ - הרב קשתיאל",
+    "firestore_original_id": 632014784955080889,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 727,
+    "wp_name": "שו\"ת באמונה",
+    "firestore_doc_id": "ser_8b1bfb0c4c894595a156",
+    "firestore_name": "שו\"ת באמונה",
+    "firestore_original_id": 366841467724667341,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 728,
+    "wp_name": "שו\"ת- הרב קשתיאל",
+    "firestore_doc_id": "ser_34a3fb666ed248e99ca7",
+    "firestore_name": "שו\"ת- הרב קשתיאל",
+    "firestore_original_id": 577884928234133773,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 729,
+    "wp_name": "שו''ת - הרב קלנר",
+    "firestore_doc_id": "ser_167a43d2407245339ae6",
+    "firestore_name": "שו''ת - הרב קלנר",
+    "firestore_original_id": 576771780121358638,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 730,
+    "wp_name": "שיחות הרצי\"ה [תש\"ע - תשע\"א] - הרב קלנר",
+    "firestore_doc_id": "ser_070db70ce06e42729e7e",
+    "firestore_name": "שיחות הרצי\"ה - הרב קלנר, תש\"ע - תשע\"א",
+    "firestore_original_id": 406336665154686375,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — FS name has comma, WP has dash"
+  },
+  {
+    "wp_id": 731,
+    "wp_name": "שיחות הרצי\"ה [תשס\"ז - תשס\"ח] - הרב קלנר",
+    "firestore_doc_id": "ser_acf4a428d1a841ccb702",
+    "firestore_name": "שיחות הרצי\"ה - הרב קלנר, תשס\"ז - תשס\"ח",
+    "firestore_original_id": 703800883414383438,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — FS name has comma, WP has dash"
+  },
+  {
+    "wp_id": 732,
+    "wp_name": "שיחות לקראת צבא - הרב אליעזר",
+    "firestore_doc_id": "ser_5b11d508f0c644ec966b",
+    "firestore_name": "שיחות לקראת צבא - הרב אליעזר",
+    "firestore_original_id": 165830975857842513,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 733,
+    "wp_name": "שיעור הרב אוהד לחי רועי [תשע'ו]",
+    "firestore_doc_id": "ser_8d96ac1ffd654723a918",
+    "firestore_name": "שיעור הרב אוהד לחי רועי תשע'ו",
+    "firestore_original_id": 187757092597808486,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Close but imperfect series-key match (edit distance 3): 'שיעור הרב אוהד לחי רועי [תשע'ו]' vs 'שיעור הרב אוהד לחי רועי תשע'ו'"
+  },
+  {
+    "wp_id": 734,
+    "wp_name": "שיעורים נבחרים מתוך סדרות",
+    "firestore_doc_id": "ser_16ac8ed82a0e4b878d77",
+    "firestore_name": "שיעורים נבחרים מתוך סדרות",
+    "firestore_original_id": 870021434281322124,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 735,
+    "wp_name": "שיר השירים (ע''פ הרמ''ד ואלי) [תשע'ו] - הרב קשתיאל",
+    "firestore_doc_id": "ser_2150afdadded4fafac19",
+    "firestore_name": "שיר השירים ע''פ הרמ''ד ואלי - הרב קשתיאל תשע'ו",
+    "firestore_original_id": 368438611870576379,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — separator differs"
+  },
+  {
+    "wp_id": 2500,
+    "wp_name": "שמונה",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 736,
+    "wp_name": "שמונה עשרה - הרב וידאל",
+    "firestore_doc_id": "ser_6ccda3c7f73349658486",
+    "firestore_name": "שמונה עשרה - הרב וידאל",
+    "firestore_original_id": 403644986536751566,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 737,
+    "wp_name": "שמונה עשרה - הרב קשתיאל",
+    "firestore_doc_id": "ser_4da7ee03ed25484c8e84",
+    "firestore_name": "שמונה עשרה - הרב קשתיאל",
+    "firestore_original_id": 363483601331045885,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 738,
+    "wp_name": "שמונה פרקים - הרב קשתיאל",
+    "firestore_doc_id": "ser_31ae6d3b9ffc4f6399a5",
+    "firestore_name": "שמונה פרקים - הרב קשתיאל",
+    "firestore_original_id": 602821067947352881,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 739,
+    "wp_name": "שמונה פרקים [תשע\"ה] - הרב אוהד",
+    "firestore_doc_id": "ser_8fdca179955f40aba4f7",
+    "firestore_name": "שמונה פרקים- הרב אוהד",
+    "firestore_original_id": 99276843147162193,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "WP has year [תשע\"ה], FS entry has no year; same series"
+  },
+  {
+    "wp_id": 740,
+    "wp_name": "שמונה פרקים [תשע'ט] - הרב קשתיאל",
+    "firestore_doc_id": "ser_5dd4e9ac58164fef9904",
+    "firestore_name": "שמונה פרקים - הרב קשתיאל [תשע'ט]",
+    "firestore_original_id": 577532546866271327,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 741,
+    "wp_name": "שמונה פרקים [תשפ\"א] - הרב אוהד",
+    "firestore_doc_id": "ser_8fdca179955f40aba4f7",
+    "firestore_name": "שמונה פרקים- הרב אוהד",
+    "firestore_original_id": 99276843147162193,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "WP [תשפ\"א] vs FS no-year entry; same series, different year edition"
+  },
+  {
+    "wp_id": 742,
+    "wp_name": "שמונה קבצים [תשע\"ח] - הרב אלי",
+    "firestore_doc_id": "ser_811c8013ff834d8cb236",
+    "firestore_name": "שמונה קבצים - הרב אלי",
+    "firestore_original_id": 678497001771036949,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "WP has year [תשע\"ח], FS entry has no year"
+  },
+  {
+    "wp_id": 743,
+    "wp_name": "שמונה קבצים [תשפ\"ב] - הרב אלי",
+    "firestore_doc_id": "ser_811c8013ff834d8cb236",
+    "firestore_name": "שמונה קבצים - הרב אלי",
+    "firestore_original_id": 678497001771036949,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "WP has year [תשפ\"ב], same base series as FS no-year entry"
+  },
+  {
+    "wp_id": 744,
+    "wp_name": "שמירת הלשון - הרב קשתיאל",
+    "firestore_doc_id": "ser_60a8a180db7a4aa2889f",
+    "firestore_name": "שמירת הלשון - הרב קשתיאל",
+    "firestore_original_id": 226621295825349423,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 745,
+    "wp_name": "שמירת הלשון [תשע'ט] - הרב קשתיאל",
+    "firestore_doc_id": "ser_1042d0ad58414cdabca2",
+    "firestore_name": "שמירת הלשון - הרב קשתיאל [תשע'ט]",
+    "firestore_original_id": 987161853822230140,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 746,
+    "wp_name": "שפת אמת אלול [תשפ\"ב]",
+    "firestore_doc_id": "ser_385c7c02c9b142c4b8c3",
+    "firestore_name": "שפת אמת אלול [תשפ\"ב]",
+    "firestore_original_id": 877663050305367100,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 747,
+    "wp_name": "שפת אמת לחודש אלול [תש\"פ] - הרב אוהד",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "שפת אמת לחודש אלול [תש\"פ] — no FS equivalent (FS has [תשפ\"א])",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 748,
+    "wp_name": "שפת אמת לחודש אלול [תשפ\"א] - הרב אוהד",
+    "firestore_doc_id": "ser_1604f13dd3914266910e",
+    "firestore_name": "שפת אמת לחודש אלול [תשפ\"א] - הרב אוהד",
+    "firestore_original_id": 825500806033739765,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 749,
+    "wp_name": "שקידת התורה - הרב אוהד",
+    "firestore_doc_id": "ser_41b8d625344f443b9a36",
+    "firestore_name": "שקידת התורה - הרב אוהד",
+    "firestore_original_id": 237130148855209626,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 750,
+    "wp_name": "תהילים - הרב שמואל הרשלר",
+    "firestore_doc_id": "ser_161538ce34b041e7b48a",
+    "firestore_name": "תהילים - הרב שמואל הרשלר",
+    "firestore_original_id": 189070279793650558,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 751,
+    "wp_name": "תהליך הגאולה [תשפ\"ב]- הרב עקיבא",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 752,
+    "wp_name": "תוכנית קדמא [תשפ\"ד]",
+    "firestore_doc_id": "ser_71afdc50957848059325",
+    "firestore_name": "תוכנית קדמא [תשפ\"ד]",
+    "firestore_original_id": 196957623518226708,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 753,
+    "wp_name": "תומר דבורה - הרב קשתיאל",
+    "firestore_doc_id": "ser_70d27f1a43f8497d91f2",
+    "firestore_name": "תומר דבורה - הרב קשתיאל",
+    "firestore_original_id": 975854501490400671,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 754,
+    "wp_name": "תורה ומדע - הרב איתן קופמן",
+    "firestore_doc_id": "ser_15eee3bf6cf645668b79",
+    "firestore_name": "תורה ומדע - הרב איתן קופמן",
+    "firestore_original_id": 108208294699008314,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 755,
+    "wp_name": "תיקון המידות - הרב רביד",
+    "firestore_doc_id": "ser_0f45293c1e774906b09e",
+    "firestore_name": "תיקון המידות - הרב רביד",
+    "firestore_original_id": 374206934317865606,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 756,
+    "wp_name": "תניא - הרב חיים וידל",
+    "firestore_doc_id": "ser_9a690c0592834659bb78",
+    "firestore_name": "תניא - הרב חיים וידל",
+    "firestore_original_id": 701239584238806529,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 758,
+    "wp_name": "תפארת ישראל (פרק בשיעור) [תשס'ג] - הרב קשתיאל",
+    "firestore_doc_id": "ser_9b5f0a658bb841a19e4a",
+    "firestore_name": "תפארת ישראל - פרק בשיעור - הרב קשתיאל [תשס'ג]",
+    "firestore_original_id": 924381990528493894,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — WP uses parentheses, FS uses dashes"
+  },
+  {
+    "wp_id": 759,
+    "wp_name": "תפארת ישראל - הרב אוהד",
+    "firestore_doc_id": "ser_0a90fc28f4b14d318a7d",
+    "firestore_name": "תפארת ישראל-הרב אוהד",
+    "firestore_original_id": 208947205513220500,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Format differs after normalisation: 'תפארת ישראל - הרב אוהד' vs 'תפארת ישראל-הרב אוהד'"
+  },
+  {
+    "wp_id": 760,
+    "wp_name": "תפארת ישראל - הרב קשתיאל",
+    "firestore_doc_id": "ser_15d1a528cd554c9ba144",
+    "firestore_name": "תפארת ישראל - הרב קשתיאל",
+    "firestore_original_id": 499619465336282020,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 761,
+    "wp_name": "תפארת ישראל [תשע''ז] - הרב קלנר",
+    "firestore_doc_id": "ser_5b4616eba4ed4e5fa783",
+    "firestore_name": "תפארת ישראל - הרב קלנר [תשע''ז]",
+    "firestore_original_id": 138722664276716409,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 762,
+    "wp_name": "תפארת ישראל [תשפ\"א] - הרב קשתיאל",
+    "firestore_doc_id": "ser_338f06b695384abf80f9",
+    "firestore_name": "תפארת ישראל - הרב קשתיאל [תשפ\"א]",
+    "firestore_original_id": 784152978423390750,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — year bracket position differs"
+  },
+  {
+    "wp_id": 763,
+    "wp_name": "תפארת ישראל [תשפ\"ג] - הרב עקיבא",
+    "firestore_doc_id": "ser_2170708d954e46fab8f4",
+    "firestore_name": "תפארת ישראל- הרב עקיבא [תשפ\"ג]",
+    "firestore_original_id": 638704940229028085,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — separator format differs"
+  },
+  {
+    "wp_id": 757,
+    "wp_name": "תפארת ישראל [תשפ\"ד] - הרב דוד טורנר",
+    "firestore_doc_id": "ser_639fea7917aa4e0c9037",
+    "firestore_name": "תפארת ישראל - הרב דוד טורנר [תשפ\"ד]",
+    "firestore_original_id": 896049549425949437,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — separator format differs"
+  },
+  {
+    "wp_id": 765,
+    "wp_name": "תפילה - הרב קובי דנה",
+    "firestore_doc_id": "ser_30361a9511db4dd4a0cc",
+    "firestore_name": "תפילה - הרב קובי דנה",
+    "firestore_original_id": 720917941107670526,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 766,
+    "wp_name": "תפילה - הרב קשתיאל",
+    "firestore_doc_id": "ser_7afe29a8362a4dd099a2",
+    "firestore_name": "תפילה - הרב קשתיאל",
+    "firestore_original_id": 595246224131154830,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 764,
+    "wp_name": "תפילה [תשפ\"ד] - הרב קשתיאל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 767,
+    "wp_name": "תפילות ימים נוראים - הרב יואל",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "No Firestore entry found with similar name",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 768,
+    "wp_name": "תפילות ראש השנה - הרב יואל רכל",
+    "firestore_doc_id": "ser_6be7ce0c7b1646b9ad7e",
+    "firestore_name": "תפילות ראש השנה - הרב יואל רכל",
+    "firestore_original_id": 935584042893292703,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 769,
+    "wp_name": "תרבות המערב [תשע\"ב] - הרב יגאל לוינשטיין",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "תרבות המערב [תשע\"ב] — no FS equivalent (FS has [תשע\"ח])",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 770,
+    "wp_name": "תרבות המערב [תשע\"ג] - הרב יגאל לוינשטיין",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "תרבות המערב [תשע\"ג] — no FS equivalent (FS has [תשע\"ח])",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 771,
+    "wp_name": "תרבות המערב [תשע\"ח] - הרב יגאל",
+    "firestore_doc_id": "ser_0b68dfd01fcc4630ad00",
+    "firestore_name": "תרבות המערב [תשע\"ח] | הרב יגאל לוינשטיין",
+    "firestore_original_id": 428779441072134133,
+    "confidence": "fuzzy",
+    "status": "confirmed",
+    "note": "Same series — same year, separator style differs"
+  },
+  {
+    "wp_id": 772,
+    "wp_name": "תרבות המערב ע'פ ספר ישעיהו",
+    "firestore_doc_id": "ser_9d542ec550e6417ab18c",
+    "firestore_name": "תרבות המערב ע'פ ספר ישעיהו",
+    "firestore_original_id": 806048924535725030,
+    "confidence": "exact",
+    "status": "confirmed"
+  }
+]

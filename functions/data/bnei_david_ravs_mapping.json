@@ -1,0 +1,491 @@
+[
+  {
+    "wp_id": 2322,
+    "wp_name": "דר' מיכאל אבולעפיה",
+    "firestore_doc_id": "65",
+    "firestore_name": "דר' מיכאל אבולעפיה",
+    "firestore_original_id": 65,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2295,
+    "wp_name": "הרב אבי רונצקי",
+    "firestore_doc_id": "11",
+    "firestore_name": "הרב אבי רונצקי",
+    "firestore_original_id": 11,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2298,
+    "wp_name": "הרב אברהם שילר",
+    "firestore_doc_id": "41",
+    "firestore_name": "הרב אברהם שילר",
+    "firestore_original_id": 41,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2290,
+    "wp_name": "הרב אוהד תירוש",
+    "firestore_doc_id": "12",
+    "firestore_name": "הרב אוהד תירוש",
+    "firestore_original_id": 12,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2306,
+    "wp_name": "הרב אופיר וולס",
+    "firestore_doc_id": "53",
+    "firestore_name": "הרב אופיר וולס",
+    "firestore_original_id": 53,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2332,
+    "wp_name": "הרב אופיר שוקרון",
+    "firestore_doc_id": "78",
+    "firestore_name": "הרב אופיר שוקרון",
+    "firestore_original_id": 78,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2321,
+    "wp_name": "הרב אייל קהלני",
+    "firestore_doc_id": null,
+    "firestore_name": null,
+    "firestore_original_id": null,
+    "confidence": "no_match",
+    "status": "confirmed",
+    "note": "New rav — create fresh Firestore doc",
+    "action": "create_new"
+  },
+  {
+    "wp_id": 2309,
+    "wp_name": "הרב איתי הלוי",
+    "firestore_doc_id": "51",
+    "firestore_name": "הרב איתי הלוי",
+    "firestore_original_id": 51,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2307,
+    "wp_name": "הרב איתן קופמן",
+    "firestore_doc_id": "52",
+    "firestore_name": "הרב איתן קופמן",
+    "firestore_original_id": 52,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2286,
+    "wp_name": "הרב אלי סדן",
+    "firestore_doc_id": "14",
+    "firestore_name": "הרב אלי סדן",
+    "firestore_original_id": 14,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2310,
+    "wp_name": "הרב אליעזר בראון",
+    "firestore_doc_id": "56",
+    "firestore_name": "הרב אליעזר בראון",
+    "firestore_original_id": 56,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2292,
+    "wp_name": "הרב אליעזר קשתיאל",
+    "firestore_doc_id": "15",
+    "firestore_name": "הרב אליעזר קשתיאל",
+    "firestore_original_id": 15,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2311,
+    "wp_name": "הרב אלישע וישליצקי",
+    "firestore_doc_id": "57",
+    "firestore_name": "הרב אלישע וישליצקי",
+    "firestore_original_id": 57,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2327,
+    "wp_name": "הרב אמיר בירנבאום",
+    "firestore_doc_id": "72",
+    "firestore_name": "הרב אמיר בירנבאום",
+    "firestore_original_id": 72,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2317,
+    "wp_name": "הרב ארז אשכנזי",
+    "firestore_doc_id": "71",
+    "firestore_name": "הרב ארז אשכנזי",
+    "firestore_original_id": 71,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2285,
+    "wp_name": "הרב בני אייזנר זצ\"ל",
+    "firestore_doc_id": "16",
+    "firestore_name": "הרב בני אייזנר זצ\"ל",
+    "firestore_original_id": 16,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2287,
+    "wp_name": "הרב גיורא רדלר",
+    "firestore_doc_id": "17",
+    "firestore_name": "הרב גיורא רדלר",
+    "firestore_original_id": 17,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2326,
+    "wp_name": "הרב דוד אמתי",
+    "firestore_doc_id": "73",
+    "firestore_name": "הרב דוד אמתי",
+    "firestore_original_id": 73,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2302,
+    "wp_name": "הרב דוד בן מאיר",
+    "firestore_doc_id": "48",
+    "firestore_name": "הרב דוד בן מאיר",
+    "firestore_original_id": 48,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2316,
+    "wp_name": "הרב דוד טורנר",
+    "firestore_doc_id": "63",
+    "firestore_name": "הרב דוד טורנר",
+    "firestore_original_id": 63,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2333,
+    "wp_name": "הרב דוד לאו",
+    "firestore_doc_id": "79",
+    "firestore_name": "הרב דוד לאו",
+    "firestore_original_id": 79,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2293,
+    "wp_name": "הרב חיים וידאל",
+    "firestore_doc_id": "19",
+    "firestore_name": "הרב חיים וידאל",
+    "firestore_original_id": 19,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2313,
+    "wp_name": "הרב יאיר אטון",
+    "firestore_doc_id": "60",
+    "firestore_name": "הרב יאיר אטון",
+    "firestore_original_id": 60,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2334,
+    "wp_name": "הרב יאיר גלושטיין",
+    "firestore_doc_id": "80",
+    "firestore_name": "הרב יאיר גלושטיין",
+    "firestore_original_id": 80,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2299,
+    "wp_name": "הרב יגאל לוינשטיין",
+    "firestore_doc_id": "44",
+    "firestore_name": "הרב יגאל לוינשטיין",
+    "firestore_original_id": 44,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2336,
+    "wp_name": "הרב יהודה ארזוני",
+    "firestore_doc_id": "83",
+    "firestore_name": "הרב יהודה ארזוני",
+    "firestore_original_id": 83,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2304,
+    "wp_name": "הרב יהודה סדן",
+    "firestore_doc_id": "49",
+    "firestore_name": "הרב יהודה סדן",
+    "firestore_original_id": 49,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2296,
+    "wp_name": "הרב יואל רכל",
+    "firestore_doc_id": "22",
+    "firestore_name": "הרב יואל רכל",
+    "firestore_original_id": 22,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2284,
+    "wp_name": "הרב יוסף קלנר",
+    "firestore_doc_id": "23",
+    "firestore_name": "הרב יוסף קלנר",
+    "firestore_original_id": 23,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2323,
+    "wp_name": "הרב יצחק פנירי",
+    "firestore_doc_id": "66",
+    "firestore_name": "הרב יצחק פנירי",
+    "firestore_original_id": 66,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2330,
+    "wp_name": "הרב ישי צור",
+    "firestore_doc_id": "77",
+    "firestore_name": "הרב ישי צור",
+    "firestore_original_id": 77,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2319,
+    "wp_name": "הרב ישי רז",
+    "firestore_doc_id": "76",
+    "firestore_name": "הרב ישי רז",
+    "firestore_original_id": 76,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2320,
+    "wp_name": "הרב כפיר אלון",
+    "firestore_doc_id": "64",
+    "firestore_name": "הרב כפיר אלון",
+    "firestore_original_id": 64,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2288,
+    "wp_name": "הרב מרדכי הס",
+    "firestore_doc_id": "24",
+    "firestore_name": "הרב מרדכי הס",
+    "firestore_original_id": 24,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2331,
+    "wp_name": "הרב נעם מרינבך",
+    "firestore_doc_id": "82",
+    "firestore_name": "הרב נעם מרינבך",
+    "firestore_original_id": 82,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2318,
+    "wp_name": "הרב נריה בולאק",
+    "firestore_doc_id": "70",
+    "firestore_name": "הרב נריה בולאק",
+    "firestore_original_id": 70,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2294,
+    "wp_name": "הרב נתנאל אלישיב",
+    "firestore_doc_id": "26",
+    "firestore_name": "הרב נתנאל אלישיב",
+    "firestore_original_id": 26,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2297,
+    "wp_name": "הרב עידו רוזנטל",
+    "firestore_doc_id": "28",
+    "firestore_name": "הרב עידו רוזנטל",
+    "firestore_original_id": 28,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2328,
+    "wp_name": "הרב עמי שטרנברג",
+    "firestore_doc_id": "75",
+    "firestore_name": "הרב עמי שטרנברג",
+    "firestore_original_id": 75,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2325,
+    "wp_name": "הרב עמית זולדן",
+    "firestore_doc_id": "69",
+    "firestore_name": "הרב עמית זולדן",
+    "firestore_original_id": 69,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2300,
+    "wp_name": "הרב עקיבא קשתיאל",
+    "firestore_doc_id": "46",
+    "firestore_name": "הרב עקיבא קשתיאל",
+    "firestore_original_id": 46,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2312,
+    "wp_name": "הרב פנחס עציון",
+    "firestore_doc_id": "58",
+    "firestore_name": "הרב פנחס עציון",
+    "firestore_original_id": 58,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2303,
+    "wp_name": "הרב קובי דנה",
+    "firestore_doc_id": "45",
+    "firestore_name": "הרב קובי דנה",
+    "firestore_original_id": 45,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2301,
+    "wp_name": "הרב רביד ניסים",
+    "firestore_doc_id": "47",
+    "firestore_name": "הרב רביד ניסים",
+    "firestore_original_id": 47,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2329,
+    "wp_name": "הרב רפי למפרט",
+    "firestore_doc_id": "74",
+    "firestore_name": "הרב רפי למפרט",
+    "firestore_original_id": 74,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2324,
+    "wp_name": "הרב שחר ורטמן",
+    "firestore_doc_id": "68",
+    "firestore_name": "הרב שחר ורטמן",
+    "firestore_original_id": 68,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2314,
+    "wp_name": "הרב שי אליאס",
+    "firestore_doc_id": "61",
+    "firestore_name": "הרב שי אליאס",
+    "firestore_original_id": 61,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2315,
+    "wp_name": "הרב שלום הימן",
+    "firestore_doc_id": "67",
+    "firestore_name": "הרב שלום הימן",
+    "firestore_original_id": 67,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2289,
+    "wp_name": "הרב שלמה אבינר",
+    "firestore_doc_id": "31",
+    "firestore_name": "הרב שלמה אבינר",
+    "firestore_original_id": 31,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2335,
+    "wp_name": "הרב שמואל וידל",
+    "firestore_doc_id": "81",
+    "firestore_name": "הרב שמואל וידל",
+    "firestore_original_id": 81,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2308,
+    "wp_name": "הרצאות חול",
+    "firestore_doc_id": "59",
+    "firestore_name": "הרצאות חול",
+    "firestore_original_id": 59,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2305,
+    "wp_name": "יום מהות",
+    "firestore_doc_id": "50",
+    "firestore_name": "יום מהות",
+    "firestore_original_id": 50,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2291,
+    "wp_name": "כללי",
+    "firestore_doc_id": "37",
+    "firestore_name": "כללי",
+    "firestore_original_id": 37,
+    "confidence": "exact",
+    "status": "confirmed"
+  },
+  {
+    "wp_id": 2513,
+    "wp_name": "עקיבא",
+    "firestore_doc_id": "46",
+    "firestore_name": "הרב עקיבא קשתיאל",
+    "firestore_original_id": 46,
+    "confidence": "exact",
+    "status": "confirmed",
+    "note": "WP duplicate of wp_id=2300 (הרב עקיבא קשתיאל) — merged to same Firestore doc"
+  }
+]

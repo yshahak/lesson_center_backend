@@ -16,6 +16,7 @@ from scrapers.arutz_meir_scraper import (
     _extract_original_id_from_slug,
     _extract_site_audio_url,
     _extract_vimeo_id,
+    _find_existing_by_title,
     _upsert_lesson,
     SOURCE_ID,
 )
@@ -392,6 +393,139 @@ class TestUpsertOnlySetsTaxonomyIfNull(unittest.TestCase):
         update_kwargs = snap.reference.update.call_args[0][0]
         self.assertIn("ravId", update_kwargs)
         self.assertEqual(update_kwargs["ravId"], "new_rav_doc_id")
+
+
+# ---------------------------------------------------------------------------
+# Title-based dedup fallback tests
+# ---------------------------------------------------------------------------
+
+def _make_db_with_title_fallback(originalid_docs=None, title_docs=None):
+    """
+    Build a Firestore mock that handles both:
+    - originalId-based query (.where().where().limit().get())  → originalid_docs
+    - title-based query (.where().where().limit().stream())    → title_docs
+
+    The first .where() call on lessons_col returns a query object.
+    The second .where() is chained. We need separate chains for each query type.
+    We differentiate by inspecting call args on the second .where().
+    """
+    db = MagicMock()
+    lessons_col = MagicMock()
+    db.collection.return_value = lessons_col
+
+    def _make_snapshots(docs):
+        snaps = []
+        if docs:
+            for d in docs:
+                snap = MagicMock()
+                snap.to_dict.return_value = d
+                snap.reference = MagicMock()
+                snaps.append(snap)
+        return snaps
+
+    orig_snaps = _make_snapshots(originalid_docs or [])
+    title_snaps = _make_snapshots(title_docs or [])
+
+    # First .where("sourceId", "==", SOURCE_ID) is shared; second .where distinguishes queries.
+    first_where = MagicMock()
+    lessons_col.where.return_value = first_where
+
+    def second_where_side_effect(field, op, val):
+        chain = MagicMock()
+        limit_chain = MagicMock()
+        chain.limit.return_value = limit_chain
+
+        if field == "originalId":
+            limit_chain.get.return_value = orig_snaps
+        elif field == "title":
+            limit_chain.stream.return_value = iter(title_snaps)
+
+        return chain
+
+    first_where.where.side_effect = second_where_side_effect
+
+    return db, lessons_col
+
+
+class TestSlugFallbackTriggersTitleSearch(unittest.TestCase):
+
+    def test_slug_fallback_triggers_title_search(self):
+        """When is_slug_fallback=True and no doc found by originalId, title query is attempted."""
+        db, lessons_col = _make_db_with_title_fallback(originalid_docs=[], title_docs=[])
+        stats = {"created": 0, "updated": 0, "broken_audio_nulled": 0}
+
+        with patch("scrapers.arutz_meir_scraper.get_hash_for_id", return_value=99):
+            _upsert_lesson(
+                _make_lesson_data(originalId=169176),
+                db, "", dry_run=False, stats=stats,
+                is_slug_fallback=True,
+            )
+
+        # The lessons collection should have been queried twice:
+        # once for originalId lookup (.get) and once for title lookup (.stream)
+        first_where = lessons_col.where.return_value
+        call_fields = [c.args[0] for c in first_where.where.call_args_list]
+        self.assertIn("originalId", call_fields)
+        self.assertIn("title", call_fields)
+
+
+class TestTitleMatchUpdatesInsteadOfCreates(unittest.TestCase):
+
+    def test_title_match_updates_instead_of_creates(self):
+        """When slug fallback is used and title found in Firestore, update() is called not set()."""
+        existing_by_title = {
+            "originalId": 10915,   # old PostgreSQL ID in Firestore
+            "sourceId": SOURCE_ID,
+            "ravId": None,
+            "seriesId": None,
+            "categoryId": None,
+            "audioUrl": None,
+            "videoUrl": None,
+            "title": "שיעור לדוגמה",
+        }
+        db, lessons_col = _make_db_with_title_fallback(
+            originalid_docs=[],           # not found by WP post_id
+            title_docs=[existing_by_title],  # found by title
+        )
+        stats = {"created": 0, "updated": 0, "broken_audio_nulled": 0}
+
+        _upsert_lesson(
+            _make_lesson_data(originalId=169176),  # WP post_id as originalId
+            db, "", dry_run=False, stats=stats,
+            is_slug_fallback=True,
+        )
+
+        # Should update the existing doc, not create a new one
+        self.assertEqual(stats["updated"], 1)
+        self.assertEqual(stats["created"], 0)
+        self.assertEqual(stats.get("title_fallback_hit", 0), 1)
+
+        # set() must NOT have been called (no new doc created)
+        lessons_col.document.assert_not_called()
+
+
+class TestNoTitleMatchCreatesNew(unittest.TestCase):
+
+    def test_no_title_match_creates_new(self):
+        """When slug fallback is used and title NOT found in Firestore, set() is called."""
+        db, lessons_col = _make_db_with_title_fallback(
+            originalid_docs=[],   # not found by originalId
+            title_docs=[],        # not found by title either
+        )
+        stats = {"created": 0, "updated": 0, "broken_audio_nulled": 0}
+
+        with patch("scrapers.arutz_meir_scraper.get_hash_for_id", return_value=77777):
+            _upsert_lesson(
+                _make_lesson_data(originalId=169176),
+                db, "", dry_run=False, stats=stats,
+                is_slug_fallback=True,
+            )
+
+        self.assertEqual(stats["created"], 1)
+        self.assertEqual(stats["updated"], 0)
+        self.assertEqual(stats.get("title_fallback_hit", 0), 0)
+        lessons_col.document.assert_called_once_with("77777")
+        lessons_col.document.return_value.set.assert_called_once()
 
 
 if __name__ == "__main__":
