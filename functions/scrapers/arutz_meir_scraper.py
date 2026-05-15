@@ -60,11 +60,11 @@ _BROKEN_AUDIO_PREFIX = "https://storage.googleapis.com"
 # HTTP session with retry/backoff
 # ---------------------------------------------------------------------------
 
-def _make_session() -> requests.Session:
+def _make_session(max_retries: int = 4) -> requests.Session:
     session = requests.Session()
     retry = Retry(
-        total=4,
-        backoff_factor=1.5,       # waits: 1.5s, 3s, 6s, 12s
+        total=max_retries,
+        backoff_factor=1.5,
         status_forcelist=[429, 500, 502, 503, 504],
         allowed_methods=["GET"],
         raise_on_status=False,
@@ -75,7 +75,8 @@ def _make_session() -> requests.Session:
     return session
 
 
-_session = _make_session()
+_session = _make_session()          # API calls: 4 retries (important, must succeed)
+_html_session = _make_session(1)    # HTML fetches: 1 retry only — fast fail, metadata still saved
 
 
 # ---------------------------------------------------------------------------
@@ -328,16 +329,28 @@ def scrape_arutz_meir(
     """
     from utils.firestore_helper import FirestoreConnection as _FC
 
-    logger.info(f"Starting Arutz Meir scraper (dry_run={dry_run}, max_pages={max_pages})")
+    import sys
+    logging.basicConfig(level=logging.INFO, stream=sys.stdout, force=True)
+
+    def _log(msg):
+        logger.info(msg)
+        print(msg, flush=True)
+
+    _log(f"[ARUTZ MEIR] Starting scraper dry_run={dry_run} max_pages={max_pages}")
 
     # Initialize Firestore
+    _log("[ARUTZ MEIR] Initializing Firestore connection...")
     conn = _FC(collection_prefix=collection_prefix)
     db = conn.db
+    _log("[ARUTZ MEIR] Firestore connected")
 
     # Load taxonomy maps from Firestore
+    _log("[ARUTZ MEIR] Loading taxonomy maps (ravs, series, categories)...")
     _load_taxonomy_maps(db, collection_prefix)
+    _log("[ARUTZ MEIR] Taxonomy maps loaded")
 
     # Determine incremental start: read lastScrapedAt from sourceId=2 source doc
+    _log("[ARUTZ MEIR] Looking up source doc...")
     sources_ref = db.collection(f"{collection_prefix}sources")
     source_query = sources_ref.where("originalId", "==", SOURCE_ID).limit(1).get()
 
@@ -348,9 +361,9 @@ def scrape_arutz_meir(
         source_doc = source_query[0]
         source_doc_ref = source_doc.reference
         last_scraped_at = source_doc.to_dict().get("lastScrapedAt")
-        logger.info(f"Source doc found, lastScrapedAt={last_scraped_at}")
+        _log(f"[ARUTZ MEIR] Source doc found, lastScrapedAt={last_scraped_at}")
     else:
-        logger.info("No source doc for sourceId=2 found — will do full scrape")
+        _log("[ARUTZ MEIR] No source doc found — full scrape mode")
 
     # Build pagination parameters
     if oldest_first:
@@ -417,7 +430,7 @@ def scrape_arutz_meir(
             break
 
         stats["pages_fetched"] += 1
-        logger.info(f"Page {page}/{total_pages}: {len(lessons_page)} lessons")
+        print(f"[ARUTZ MEIR] Page {page}/{total_pages}: {len(lessons_page)} lessons examined={stats['lessons_examined']} created={stats['created']} updated={stats['updated']}", flush=True)
 
         for lesson_api in lessons_page:
             stats["lessons_examined"] += 1
@@ -453,7 +466,7 @@ def scrape_arutz_meir(
             vimeo_id = None
 
             try:
-                html_response = _session.get(lesson_url, timeout=45)
+                html_response = _html_session.get(lesson_url, timeout=10)
                 html = html_response.text
 
                 site_audio_url = _extract_site_audio_url(html)
@@ -533,6 +546,7 @@ def scrape_arutz_meir(
         f"title_fallback_hit={stats.get('title_fallback_hit', 0)} "
         f"errors={stats['errors']} pages={stats['pages_fetched']}"
     )
+    print(f"[ARUTZ MEIR] FINAL: created={stats['created']} updated={stats['updated']} slug_fallback={stats['slug_fallback']} title_fallback_hit={stats.get('title_fallback_hit',0)} errors={stats['errors']} pages={stats['pages_fetched']}", flush=True)
     return stats
 
 
