@@ -368,6 +368,32 @@ def scrape_arutz_meir(
         if resume_from_page > 1:
             _log(f"[ARUTZ MEIR] Resuming from page {resume_from_page} (checkpoint)")
         _log(f"[ARUTZ MEIR] Source doc found, lastScrapedAt={last_scraped_at}")
+
+    # Build in-memory set of existing (originalId, siteAudioUrl, vimeoId) for HTML skip
+    # optimization. One bulk scan at startup is O(N) but avoids N per-lesson Firestore reads.
+    _log("[ARUTZ MEIR] Loading existing lessons index for HTML skip optimization...")
+    lessons_ref_idx = db.collection(f"{collection_prefix}lessons")
+    existing_index = {}  # originalId -> {"siteAudioUrl": ..., "vimeoId": ...}
+    last_idx_doc = None
+    while True:
+        q = lessons_ref_idx.where("sourceId", "==", SOURCE_ID).limit(500)
+        if last_idx_doc:
+            q = q.start_after(last_idx_doc)
+        batch = list(q.stream())
+        if not batch:
+            break
+        for doc in batch:
+            d = doc.to_dict()
+            oid = d.get("originalId")
+            if oid is not None:
+                existing_index[oid] = {
+                    "siteAudioUrl": d.get("siteAudioUrl"),
+                    "vimeoId": d.get("vimeoId"),
+                }
+        last_idx_doc = batch[-1]
+        if len(batch) < 500:
+            break
+    _log(f"[ARUTZ MEIR] Loaded {len(existing_index)} existing lessons into index")
     else:
         _log("[ARUTZ MEIR] No source doc found — full scrape mode")
 
@@ -466,31 +492,19 @@ def scrape_arutz_meir(
                 date_str = date_str_raw[:10] if date_str_raw else ""
                 timestamp = 0
 
-            # Pre-lookup: check if this lesson already exists in Firestore so we can
-            # skip the HTML fetch when both media fields are already populated.
-            lessons_ref_pre = db.collection(f"{collection_prefix}lessons")
-            pre_existing = list(
-                lessons_ref_pre
-                .where("sourceId", "==", SOURCE_ID)
-                .where("originalId", "==", original_id)
-                .limit(1)
-                .get()
-            )
-            pre_existing_data = pre_existing[0].to_dict() if pre_existing else None
-
-            # Fetch lesson page HTML for audio URL and Vimeo ID.
-            # Skip if existing doc already has siteAudioUrl — no need to re-fetch.
+            # HTML skip: check in-memory index (O(1)) instead of Firestore read per lesson
             lesson_url = lesson_api.get("link", f"https://meirtv.com/shiurim/{wp_post_id}/")
             site_audio_url = None
             vimeo_id = None
 
-            already_has_audio = pre_existing_data and pre_existing_data.get("siteAudioUrl")
-            already_has_vimeo = pre_existing_data and pre_existing_data.get("vimeoId")
+            idx_entry = existing_index.get(original_id)
+            already_has_audio = idx_entry and idx_entry.get("siteAudioUrl")
+            already_has_vimeo = idx_entry and idx_entry.get("vimeoId")
 
             if already_has_audio and already_has_vimeo:
                 # Both media fields already populated — skip HTML fetch entirely
-                site_audio_url = pre_existing_data["siteAudioUrl"]
-                vimeo_id = pre_existing_data["vimeoId"]
+                site_audio_url = idx_entry["siteAudioUrl"]
+                vimeo_id = idx_entry["vimeoId"]
                 stats["skipped_html_fetch"] = stats.get("skipped_html_fetch", 0) + 1
             else:
                 try:
