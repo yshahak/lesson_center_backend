@@ -356,11 +356,17 @@ def scrape_arutz_meir(
 
     last_scraped_at = None
     source_doc_ref = None
+    resume_from_page = 1
 
     if source_query:
         source_doc = source_query[0]
         source_doc_ref = source_doc.reference
-        last_scraped_at = source_doc.to_dict().get("lastScrapedAt")
+        source_data = source_doc.to_dict()
+        last_scraped_at = source_data.get("lastScrapedAt")
+        # Page-level checkpoint: resume from last successfully completed page
+        resume_from_page = source_data.get("lastPageProcessed", 1)
+        if resume_from_page > 1:
+            _log(f"[ARUTZ MEIR] Resuming from page {resume_from_page} (checkpoint)")
         _log(f"[ARUTZ MEIR] Source doc found, lastScrapedAt={last_scraped_at}")
     else:
         _log("[ARUTZ MEIR] No source doc found — full scrape mode")
@@ -402,7 +408,7 @@ def scrape_arutz_meir(
         "sample_lessons": [],     # up to 3 detailed samples
     }
 
-    page = 1
+    page = resume_from_page
     total_pages = None
 
     while True:
@@ -526,16 +532,21 @@ def scrape_arutz_meir(
             logger.info(f"Fetched all {total_pages} pages")
             break
 
+        # Save page checkpoint so restarts resume here instead of page 1
+        if not dry_run and source_doc_ref:
+            source_doc_ref.update({"lastPageProcessed": page})
+
         page += 1
         time.sleep(_PAGE_SLEEP)
 
     # Update lastScrapedAt on source doc (skip in dry_run)
-    if not dry_run and source_doc_ref and (stats["created"] + stats["updated"]) > 0:
+    if not dry_run and source_doc_ref:
         source_doc_ref.update({
             "lastScrapedAt": datetime.now().isoformat(),
+            "lastPageProcessed": None,  # clear checkpoint on successful completion
             "updatedAt": datetime.now().isoformat(),
         })
-        logger.info("Updated lastScrapedAt on source doc")
+        logger.info("Updated lastScrapedAt on source doc, cleared page checkpoint")
 
     logger.info(
         f"Arutz Meir scraper done: "
