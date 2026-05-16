@@ -368,9 +368,11 @@ def scrape_arutz_meir(
         if resume_from_page > 1:
             _log(f"[ARUTZ MEIR] Resuming from page {resume_from_page} (checkpoint)")
         _log(f"[ARUTZ MEIR] Source doc found, lastScrapedAt={last_scraped_at}")
+    else:
+        _log("[ARUTZ MEIR] No source doc found — full scrape mode")
 
-    # Build in-memory set of existing (originalId, siteAudioUrl, vimeoId) for HTML skip
-    # optimization. One bulk scan at startup is O(N) but avoids N per-lesson Firestore reads.
+    # Build in-memory index of existing lessons for HTML skip optimization.
+    # One bulk scan at startup avoids N per-lesson Firestore reads during scrape.
     _log("[ARUTZ MEIR] Loading existing lessons index for HTML skip optimization...")
     lessons_ref_idx = db.collection(f"{collection_prefix}lessons")
     existing_index = {}  # originalId -> {"siteAudioUrl": ..., "vimeoId": ...}
@@ -394,8 +396,6 @@ def scrape_arutz_meir(
         if len(batch) < 500:
             break
     _log(f"[ARUTZ MEIR] Loaded {len(existing_index)} existing lessons into index")
-    else:
-        _log("[ARUTZ MEIR] No source doc found — full scrape mode")
 
     # Build pagination parameters
     if oldest_first:
