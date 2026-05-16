@@ -364,7 +364,7 @@ def scrape_arutz_meir(
         source_data = source_doc.to_dict()
         last_scraped_at = source_data.get("lastScrapedAt")
         # Page-level checkpoint: resume from last successfully completed page
-        resume_from_page = source_data.get("lastPageProcessed", 1)
+        resume_from_page = source_data.get("lastPageProcessed") or 1
         if resume_from_page > 1:
             _log(f"[ARUTZ MEIR] Resuming from page {resume_from_page} (checkpoint)")
         _log(f"[ARUTZ MEIR] Source doc found, lastScrapedAt={last_scraped_at}")
