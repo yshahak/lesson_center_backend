@@ -466,21 +466,43 @@ def scrape_arutz_meir(
                 date_str = date_str_raw[:10] if date_str_raw else ""
                 timestamp = 0
 
-            # Fetch lesson page HTML for audio URL and Vimeo ID
+            # Pre-lookup: check if this lesson already exists in Firestore so we can
+            # skip the HTML fetch when both media fields are already populated.
+            lessons_ref_pre = db.collection(f"{collection_prefix}lessons")
+            pre_existing = list(
+                lessons_ref_pre
+                .where("sourceId", "==", SOURCE_ID)
+                .where("originalId", "==", original_id)
+                .limit(1)
+                .get()
+            )
+            pre_existing_data = pre_existing[0].to_dict() if pre_existing else None
+
+            # Fetch lesson page HTML for audio URL and Vimeo ID.
+            # Skip if existing doc already has siteAudioUrl — no need to re-fetch.
             lesson_url = lesson_api.get("link", f"https://meirtv.com/shiurim/{wp_post_id}/")
             site_audio_url = None
             vimeo_id = None
 
-            try:
-                html_response = _html_session.get(lesson_url, timeout=10)
-                html = html_response.text
+            already_has_audio = pre_existing_data and pre_existing_data.get("siteAudioUrl")
+            already_has_vimeo = pre_existing_data and pre_existing_data.get("vimeoId")
 
-                site_audio_url = _extract_site_audio_url(html)
-                vimeo_id = _extract_vimeo_id(html)
+            if already_has_audio and already_has_vimeo:
+                # Both media fields already populated — skip HTML fetch entirely
+                site_audio_url = pre_existing_data["siteAudioUrl"]
+                vimeo_id = pre_existing_data["vimeoId"]
+                stats["skipped_html_fetch"] = stats.get("skipped_html_fetch", 0) + 1
+            else:
+                try:
+                    html_response = _html_session.get(lesson_url, timeout=10)
+                    html = html_response.text
 
-                time.sleep(_LESSON_SLEEP)
-            except Exception as e:
-                logger.warning(f"Failed to fetch HTML for wp_id={wp_post_id}: {e}")
+                    site_audio_url = _extract_site_audio_url(html)
+                    vimeo_id = _extract_vimeo_id(html)
+
+                    time.sleep(_LESSON_SLEEP)
+                except Exception as e:
+                    logger.warning(f"Failed to fetch HTML for wp_id={wp_post_id}: {e}")
 
             if not site_audio_url and not vimeo_id:
                 logger.debug(f"wp_id={wp_post_id} title='{title[:40]}' — no media found in HTML")
