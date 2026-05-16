@@ -539,14 +539,19 @@ def scrape_arutz_meir(
         page += 1
         time.sleep(_PAGE_SLEEP)
 
-    # Update lastScrapedAt on source doc (skip in dry_run)
+    # Update lastScrapedAt only when NOT in oldest_first mode (historical backfill).
+    # In oldest_first mode we clear lastPageProcessed but don't set lastScrapedAt
+    # so subsequent runs continue in oldest_first until all pages are done.
     if not dry_run and source_doc_ref:
-        source_doc_ref.update({
-            "lastScrapedAt": datetime.now().isoformat(),
-            "lastPageProcessed": None,  # clear checkpoint on successful completion
+        update_data: dict = {
+            "lastPageProcessed": None,  # clear page checkpoint on successful completion
             "updatedAt": datetime.now().isoformat(),
-        })
-        logger.info("Updated lastScrapedAt on source doc, cleared page checkpoint")
+        }
+        if not oldest_first:
+            update_data["lastScrapedAt"] = datetime.now().isoformat()
+        source_doc_ref.update(update_data)
+        logger.info("Updated source doc: cleared page checkpoint" +
+                    (", set lastScrapedAt" if not oldest_first else " (oldest_first mode — lastScrapedAt not updated)"))
 
     logger.info(
         f"Arutz Meir scraper done: "
