@@ -9,6 +9,7 @@ from scrapers.youtube_scraper import scrape_youtube_channels
 from scrapers.bnei_david_scraper import scrape_bnei_david  # TODO: Create this
 from scrapers.arutz_meir_scraper import scrape_arutz_meir  # TODO: Create this
 from utils.firestore_helper import get_timestamp
+from utils.parasha_label import update_parasha_label
 import json
 import logging
 import sys
@@ -33,9 +34,9 @@ def scrape_lessons_http(request):
     try:
         request_json = request.get_json(silent=True)
         scraper_type = request_json.get('scraper', 'all') if request_json else 'all'
-        
+
         result = run_scrapers(scraper_type)
-        
+
         return {
             'status': 'success',
             'message': 'Scraping completed',
@@ -87,29 +88,86 @@ def run_scrapers(scraper_type='all'):
             logger.error(f"❌ Bnei David scraping failed: {e}")
             results['bnei_david'] = {'error': str(e)}
     
-    if scraper_type in ['all', 'arutz_meir']:
-        try:
-            logger.info("📻 Running Arutz Meir scraper...")
-            arutz_meir_result = scrape_arutz_meir()
-            results['arutz_meir'] = arutz_meir_result
-            logger.info(f"✅ Arutz Meir scraping complete: {arutz_meir_result}")
-        except Exception as e:
-            logger.error(f"❌ Arutz Meir scraping failed: {e}")
-            results['arutz_meir'] = {'error': str(e)}
+    # Arutz Meir scraper temporarily disabled — meirtv.com blocked our IPs (Cloudflare).
+    # Re-enable once the block lifts (check: curl -s -o /dev/null -w "%{http_code}" https://meirtv.com/)
+    # if scraper_type in ['all', 'arutz_meir']:
+    #     try:
+    #         logger.info("📻 Running Arutz Meir scraper...")
+    #         arutz_meir_result = scrape_arutz_meir()
+    #         results['arutz_meir'] = arutz_meir_result
+    #         logger.info(f"✅ Arutz Meir scraping complete: {arutz_meir_result}")
+    #     except Exception as e:
+    #         logger.error(f"❌ Arutz Meir scraping failed: {e}")
+    #         results['arutz_meir'] = {'error': str(e)}
     
     end_time = get_timestamp()
     duration = end_time - start_time
-    
+
     final_result = {
         'start_time': start_time,
         'end_time': end_time,
         'duration_seconds': duration,
         'scrapers_run': scraper_type,
-        'results': results
+        'results': results,
+        'new_lessons': _collect_new_lessons(results),
+        'new_taxonomy': _collect_new_taxonomy(results),
     }
-    
+
     logger.info(f"🎯 Scraping session complete - Duration: {duration}s")
+
+    try:
+        from utils.telegram_notifier import notify_scrape_results
+        notify_scrape_results(final_result)
+    except Exception as e:
+        logger.warning(f"Telegram notification failed: {e}")
+
     return final_result
+
+
+def _collect_new_lessons(results: dict) -> list:
+    """Gather new lesson details from all scraper results for the Telegram report."""
+    lessons = []
+
+    # YouTube
+    yt = results.get('youtube', {})
+    for item in yt.get('new_lesson_details', []):
+        lessons.append({**item, 'source': item.get('source', 'YouTube')})
+
+    # Bnei David
+    bd = results.get('bnei_david', {})
+    for item in bd.get('sample_lessons', []):
+        if item.get('action') == 'created':
+            lessons.append({
+                'title': item.get('title', ''),
+                'rav': '',
+                'serie': '',
+                'source': 'בני דוד',
+            })
+
+    # Arutz Meir
+    am = results.get('arutz_meir', {})
+    for item in am.get('sample_lessons', []):
+        if item.get('action') == 'created':
+            lessons.append({
+                'title': item.get('title', ''),
+                'rav': '',
+                'serie': '',
+                'source': 'ערוץ מאיר',
+            })
+
+    return lessons
+
+
+def _collect_new_taxonomy(results: dict) -> list:
+    """Gather newly created series/ravs from scraper results."""
+    taxonomy = []
+    for scraper, source_name in [('bnei_david', 'בני דוד'), ('arutz_meir', 'ערוץ מאיר')]:
+        r = results.get(scraper, {})
+        for name in r.get('new_series_created', []):
+            taxonomy.append({'type': 'series', 'name': name, 'source': source_name})
+        for name in r.get('new_ravs_created', []):
+            taxonomy.append({'type': 'rav', 'name': name, 'source': source_name})
+    return taxonomy
 
 ###############################################################################
 # Vimeo URL Resolver — with Firestore cache
@@ -261,19 +319,17 @@ def resolve_vimeo_url(request):
 
 _NIKUD_RE = re.compile(r'[ְ-ׇ]')
 
-# Module-level cache: persists across warm requests, avoiding re-initialization
-_search_embedding_model = None
+# Eager-load at module level so cold starts pay the cost once, not on the
+# first user request (which would cause a visible timeout).
+import vertexai as _vertexai
+from vertexai.language_models import TextEmbeddingModel as _TextEmbeddingModel
+_vertexai.init(project='tora-or', location='us-central1')
+_search_embedding_model = _TextEmbeddingModel.from_pretrained(
+    'text-multilingual-embedding-002'
+)
 
 
 def _get_search_embedding_model():
-    global _search_embedding_model
-    if _search_embedding_model is None:
-        import vertexai
-        from vertexai.language_models import TextEmbeddingModel
-        vertexai.init(project='tora-or', location='us-central1')
-        _search_embedding_model = TextEmbeddingModel.from_pretrained(
-            'text-multilingual-embedding-002'
-        )
     return _search_embedding_model
 
 
@@ -383,10 +439,25 @@ def search_lessons(request):
         if max_duration is not None:
             filters_applied['max_duration'] = max_duration
 
+        result_count = len(lessons)
+
+        # Analytics — fire-and-forget, never block the response
+        try:
+            from datetime import datetime, timezone
+            db.collection('search_analytics').add({
+                'query': query,
+                'results': result_count,
+                'filters': filters_applied,
+                'candidates': len(candidate_docs),
+                'ts': datetime.now(timezone.utc).isoformat(),
+            })
+        except Exception:
+            pass
+
         return (
             json.dumps({
                 'lessons': lessons,
-                'total_found': len(lessons),
+                'total_found': result_count,
                 'filters_applied': filters_applied,
             }, ensure_ascii=False),
             200, cors_headers,
@@ -396,6 +467,60 @@ def search_lessons(request):
         logger.error(f'search_lessons error: {e}', exc_info=True)
         return (json.dumps({'error': str(e)}), 500, cors_headers)
 
+
+
+
+###############################################################################
+# Parasha Weekly Label — updates every Sunday at 8am Israel time
+###############################################################################
+
+@functions_framework.cloud_event
+def update_parasha_label_scheduled(cloud_event):
+    """Scheduled Cloud Function: runs every Sunday at 08:00 Israel time.
+
+    Cloud Scheduler cron: 0 8 * * 0 (Sunday 08:00 UTC+3 = 05:00 UTC)
+    Time zone: Asia/Jerusalem
+    """
+    try:
+        logger.info('Starting scheduled parasha label update...')
+        result = update_parasha_label()
+        logger.info(f'Parasha label update completed: {result}')
+        return result
+    except Exception as e:
+        logger.error(f'Parasha label scheduled function error: {e}', exc_info=True)
+        raise
+
+
+@functions_framework.http
+def update_parasha_label_http(request):
+    """HTTP Cloud Function for manual triggering / testing.
+
+    Optional JSON body:
+      { "parasha": "נשא" }   — override auto-detection (for testing)
+    """
+    cors_headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json; charset=utf-8',
+    }
+    if request.method == 'OPTIONS':
+        return ('', 204, {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+        })
+    try:
+        body = request.get_json(silent=True) or {}
+        override_parasha = body.get('parasha') or None
+
+        result = update_parasha_label(parasha_name=override_parasha)
+        return (
+            json.dumps(result, ensure_ascii=False),
+            200,
+            cors_headers,
+        )
+    except Exception as e:
+        logger.error(f'update_parasha_label_http error: {e}', exc_info=True)
+        return (json.dumps({'error': str(e)}), 500, cors_headers)
 
 if __name__ == '__main__':
     # For local testing
