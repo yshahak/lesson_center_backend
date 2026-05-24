@@ -79,12 +79,12 @@ def scrape_youtube_channels(collection_prefix=""):
         results = {
             'channels_processed': 0,
             'lessons_added': 0,
+            'channel_details': [],
             'errors': []
         }
 
         logger.info(f"📺 Processing {len(channels)} YouTube channels")
 
-        # Process ALL channels
         for channel in channels:
             try:
                 logger.info(f"📺 Processing channel: {channel['label']}")
@@ -95,9 +95,16 @@ def scrape_youtube_channels(collection_prefix=""):
                     channel['label']
                 )
                 results['channels_processed'] += 1
-                results['lessons_added'] += channel_result.get('lessons_added', 0)
+                added = channel_result.get('lessons_added', 0)
+                results['lessons_added'] += added
 
-                logger.info(f"✅ {channel['label']}: {channel_result['lessons_added']} new lessons")
+                if added > 0:
+                    results['channel_details'].append({
+                        'label': channel['label'],
+                        'lessons': channel_result.get('lesson_details', []),
+                    })
+
+                logger.info(f"✅ {channel['label']}: {added} new lessons")
 
             except Exception as e:
                 logger.error(f"❌ Error processing channel {channel['label']}: {e}")
@@ -186,10 +193,9 @@ def extract_lessons_for_channel_id(source_id: int, channel_id: str, category: st
     if new_lesson_ids:
         batch = firestore_db.db.batch()
 
-        # Update source: totalCount + lessonIds + lastScrapedAt
+        # Update source: totalCount + lastScrapedAt (no more lessonIds array)
         batch.update(source_doc_ref, {
             'totalCount': Increment(len(new_lesson_ids)),
-            'lessonIds': list(exists_lesson_ids),  # Updated array with new IDs
             'lastScrapedAt': datetime.now().isoformat(),
             'updatedAt': datetime.now().isoformat()
         })
@@ -225,9 +231,33 @@ def clear_labels_for_source(source_id: int):
     logger.info(f"🧹 Cleared label for source {source_id}")
 
 def add_labels_for_recent_lessons(source_id: int, category_id: str, label: str):
-    """Add one label doc with the 10 most recent lesson IDs for this source+category."""
+    """Add one label doc with the 10 most recent lesson IDs for this source+category.
+
+    For sources shared with a WP scraper (sourceId=1 Bnei David, sourceId=2 Arutz Meir),
+    filter by scrapeSource containing 'youtube' so WP lessons don't crowd out YouTube ones.
+    For YouTube-only sources (50–74), filter by categoryId as before.
+    """
     lessons_ref = firestore_db.db.collection(f'{firestore_db.collection_prefix}lessons')
-    query = lessons_ref.where('sourceId', '==', source_id).where('categoryId', '==', category_id).order_by('timestamp', direction='DESCENDING').limit(10)
+
+    # Sources 1 and 2 are shared with WP scrapers — identify YouTube lessons by scrapeSource
+    SHARED_SOURCES = {1, 2}
+    if source_id in SHARED_SOURCES:
+        query = (
+            lessons_ref
+            .where('sourceId', '==', source_id)
+            .where('scrapeSource', 'array_contains', 'youtube')
+            .order_by('timestamp', direction='DESCENDING')
+            .limit(10)
+        )
+    else:
+        query = (
+            lessons_ref
+            .where('sourceId', '==', source_id)
+            .where('categoryId', '==', category_id)
+            .order_by('timestamp', direction='DESCENDING')
+            .limit(10)
+        )
+
     lesson_docs = query.get()
 
     lesson_ids = [d.to_dict().get('id') for d in lesson_docs if d.to_dict().get('id')]
@@ -423,6 +453,7 @@ def process_channel_videos(channel_id, source_id, category, label,
 
         raw_videos = []  # list of (video_id, snippet, content_details) for new videos only
         next_page_token = ""
+        last_scraped_at = source_data.get('lastScrapedAt')  # ISO string or None
 
         while True:
             playlist_request = youtube.playlistItems().list(
@@ -449,11 +480,22 @@ def process_channel_videos(channel_id, source_id, category, label,
             videos_response = videos_request.execute()
 
             new_in_page = 0
+            stop_pagination = False
             for video in videos_response['items']:
                 video_id = video['id']
+                published_at = video['snippet'].get('publishedAt', '')
+
+                # On incremental runs: stop when we reach content older than last scrape.
+                # YouTube returns newest-first so everything after this is already processed.
+                if last_scraped_at and published_at and published_at <= last_scraped_at:
+                    logger.info(f"🏁 Reached content from {published_at} ≤ lastScrapedAt {last_scraped_at}, stopping")
+                    stop_pagination = True
+                    break
+
                 original_video_id = get_hash_for_string(video_id)
                 lesson_id = get_hash_for_id(source_id, original_video_id)
 
+                # Dedup check — needed for first run against PostgreSQL-migrated lessons
                 if lesson_id in exists_lesson_ids:
                     continue
 
@@ -462,8 +504,7 @@ def process_channel_videos(channel_id, source_id, category, label,
 
             logger.info(f"📊 Scanned page: {new_in_page} new videos")
 
-            if new_in_page == 0:
-                logger.info("🏁 Full page already seen, stopping pagination")
+            if stop_pagination:
                 break
 
             next_page_token = playlist_response.get('nextPageToken')
@@ -521,6 +562,7 @@ def process_channel_videos(channel_id, source_id, category, label,
                 "dateStr": date_str,
                 "duration": duration_seconds,
                 "timestamp": timestamp,
+                "scrapeSource": ["youtube"],
                 "createdAt": datetime.now().isoformat(),
                 "updatedAt": datetime.now().isoformat()
             }
@@ -533,8 +575,38 @@ def process_channel_videos(channel_id, source_id, category, label,
             categories_affected[category_doc_id] += 1
             series_affected[series_doc_id] += 1
 
+        # Embed new lessons for smart search
+        if new_lesson_ids:
+            try:
+                from utils.embedder import embed_lessons_batch
+                embed_lessons_batch(firestore_db.db, [str(lid) for lid in new_lesson_ids])
+            except Exception as e:
+                logger.warning(f"Embedding failed for {len(new_lesson_ids)} lessons: {e}")
+
         logger.info(f"✅ Finished processing, added {len(new_lesson_ids)} new lessons")
-        return {'lessons_added': len(new_lesson_ids)}
+
+        # Build lesson detail list for Telegram notification
+        lesson_details = []
+        for video_id, snippet, content_details, lesson_id, _ in raw_videos:
+            series_doc_id = playlist_map.get(video_id, כללי_series_doc_id)
+            serie_name = ''
+            try:
+                serie_doc = firestore_db.db.collection(f'{collection_prefix}series').document(series_doc_id).get()
+                if serie_doc.exists:
+                    serie_name = serie_doc.to_dict().get('serie', '')
+            except Exception:
+                pass
+            published_at = snippet.get('publishedAt', '')[:10]
+            duration_iso = content_details.get('duration', 'PT0S')
+            lesson_details.append({
+                'title': snippet.get('title', ''),
+                'serie': serie_name,
+                'date': published_at,
+                'duration': get_iso_duration_in_seconds(duration_iso),
+                'url': youtube_base_url % video_id,
+            })
+
+        return {'lessons_added': len(new_lesson_ids), 'lesson_details': lesson_details}
 
     except Exception as e:
         logger.error(f"❌ Error processing channel videos: {e}")
