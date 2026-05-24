@@ -72,6 +72,10 @@ def scrape_youtube_channels(collection_prefix=""):
             {"source_id": 72, "channel_id": "UCoLW4u9Mj9XIMNOlIn2ICKg", "category": "מכינת עצמונה", "label": "מכינת עצמונה - אחרונים"},
             {"source_id": 73, "channel_id": "UCLlBotitx4zAGffm_Wdh7Bg", "category": "הרב מאיר אליהו", "label": "הרב מאיר אליהו - אחרונים"},
             {"source_id": 74, "channel_id": "UCewVpZ62BD241aNxjIMX_Yw", "category": "ישיבת המקובלים בית אל", "label": "ישיבת המקובלים בית אל - אחרונים"},
+            {"source_id": 75, "channel_id": "UCOpMu7Q8T-Y9PrvxRiRCYgg", "category": "ישיבה גבוהה איתמר", "label": "ישיבה גבוהה איתמר"},
+            {"source_id": 76, "channel_id": "UCQ1y3pMsmhtUpfE-cYdaZgg", "category": "בית מדרש קהילתי כפר סבא", "label": "בית מדרש קהילתי כפר סבא"},
+            {"source_id": 77, "channel_id": "UCTZDTOM7lJQia5sqZOZ4tZg", "category": "הרב חגי לונדין", "label": "הרב חגי לונדין"},
+            {"source_id": 78, "channel_id": "UCHOD7ezqUbpV1_AjGzdcT7A", "category": "הרב גיא אללוף", "label": "הרב גיא אללוף"},
             {"source_id": 2, "channel_id": "UCEAZVyOtukIOH4BJ3gHKdng", "category": "ערוץ מאיר", "label": "ערוץ מאיר - יוטיוב"},
             {"source_id": 1, "channel_id": "UC3MjXqiy3SNNSWiixX2Mybw", "category": "בני דוד - כללי", "label": "בני דוד - ערוץ יוטיוב"}
         ]
