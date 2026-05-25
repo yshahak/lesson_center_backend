@@ -68,20 +68,30 @@ def main():
             skipped += 1
             continue
 
-        # Fetch page
+        # Fetch page — retry each URL up to 3 times if we get a partial render
         vimeo_id = site_audio_url = None
         status = 0
         for url in [f'https://meirtv.com/shiurim/shiur-{orig_id}/', f'https://meirtv.com/shiurim/{orig_id}/']:
-            html, status = fs_get(url)
-            if status == 200 and html:
-                if re.search(r'<body[^>]+class="[^"]*error404', html):  # WordPress 404 body class
-                    continue
-                m = VIMEO_RE.search(html)
-                a = AUDIO_RE.search(html)
-                vimeo_id = m.group(1) if m else None
-                site_audio_url = a.group(1) if a else None
+            for attempt in range(3):
+                html, status = fs_get(url)
+                if status == 200 and html:
+                    is_wp404 = bool(re.search(r'<body[^>]+class="[^"]*error404', html))
+                    is_partial = len(html) < 250_000
+                    if is_wp404:
+                        break  # Real WP 404 — try next slug
+                    if is_partial:
+                        print(f'  orig={orig_id}: partial render {len(html)}B attempt {attempt+1}, retrying...')
+                        continue  # Retry same URL
+                    m = VIMEO_RE.search(html)
+                    a = AUDIO_RE.search(html)
+                    vimeo_id = m.group(1) if m else None
+                    site_audio_url = a.group(1) if a else None
+                    break
+                elif status == 404:
+                    break
+            if vimeo_id or site_audio_url:
                 break
-            elif status == 404:
+            if status == 404:
                 break
 
         if not vimeo_id and not site_audio_url:

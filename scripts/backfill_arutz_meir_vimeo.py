@@ -240,24 +240,29 @@ def main():
                 f'https://meirtv.com/shiurim/shiur-{orig_id}/',
                 f'https://meirtv.com/shiurim/{orig_id}/',
             ]:
-                html, status_code = fs_get(url, args.flaresolverr_port)
-                fetch_status = str(status_code)
+                for attempt in range(3):
+                    html, status_code = fs_get(url, args.flaresolverr_port)
+                    fetch_status = str(status_code)
 
-                if status_code == 200 and html:
-                    # FlareSolverr returns HTTP 200 even for WordPress 404 pages
-                    # (Cloudflare passes them through). Detect WP 404 body class
-                    # and fall through to try the next URL slug.
-                    if re.search(r'<body[^>]+class="[^"]*error404', html):
-                        logger.debug(f'  WP-404 on {url}, trying next slug')
-                        continue
-                    vimeo_id, site_audio_url = extract_from_html(html)
-                    consecutive_failures = 0
+                    if status_code == 200 and html:
+                        is_wp404 = bool(re.search(r'<body[^>]+class="[^"]*error404', html))
+                        is_partial = len(html) < 250_000
+                        if is_wp404:
+                            break  # Real WP 404 — try next slug
+                        if is_partial:
+                            logger.debug(f'  partial render {len(html)}B orig={orig_id} attempt {attempt+1}, retrying')
+                            continue  # Retry same URL
+                        vimeo_id, site_audio_url = extract_from_html(html)
+                        consecutive_failures = 0
+                        break
+                    elif status_code == 404:
+                        consecutive_failures = 0
+                        break
+                    else:
+                        consecutive_failures += 1
+                        break
+                if vimeo_id or site_audio_url or fetch_status == '404':
                     break
-                elif status_code == 404:
-                    consecutive_failures = 0
-                    break
-                else:
-                    consecutive_failures += 1
 
             # ── log per-lesson outcome ─────────────────────────────────
             if fetch_status == '200':
