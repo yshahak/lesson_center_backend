@@ -464,30 +464,33 @@ def scrape_arutz_meir(
         resume_from_page = start_page or 1
 
     # Build in-memory index of existing lessons for HTML skip optimization.
-    # One bulk scan at startup avoids N per-lesson Firestore reads during scrape.
-    _log("[ARUTZ MEIR] Loading existing lessons index for HTML skip optimization...")
-    lessons_ref_idx = db.collection(f"{collection_prefix}lessons")
-    existing_index = {}  # originalId -> {"siteAudioUrl": ..., "vimeoId": ...}
-    last_idx_doc = None
-    while True:
-        q = lessons_ref_idx.where("sourceId", "==", SOURCE_ID).limit(500)
-        if last_idx_doc:
-            q = q.start_after(last_idx_doc)
-        batch = list(q.stream())
-        if not batch:
-            break
-        for doc in batch:
-            d = doc.to_dict()
-            oid = d.get("originalId")
-            if oid is not None:
-                existing_index[oid] = {
-                    "siteAudioUrl": d.get("siteAudioUrl"),
-                    "vimeoId": d.get("vimeoId"),
-                }
-        last_idx_doc = batch[-1]
-        if len(batch) < 500:
-            break
-    _log(f"[ARUTZ MEIR] Loaded {len(existing_index)} existing lessons into index")
+    # Skip this expensive 57K-doc scan in incremental mode — new lessons won't be in the index.
+    existing_index = {}
+    if not last_scraped_at and not oldest_first:
+        _log("[ARUTZ MEIR] Full scrape mode — loading existing lessons index...")
+        lessons_ref_idx = db.collection(f"{collection_prefix}lessons")
+        last_idx_doc = None
+        while True:
+            q = lessons_ref_idx.where("sourceId", "==", SOURCE_ID).limit(500)
+            if last_idx_doc:
+                q = q.start_after(last_idx_doc)
+            batch = list(q.stream())
+            if not batch:
+                break
+            for doc in batch:
+                d = doc.to_dict()
+                oid = d.get("originalId")
+                if oid is not None:
+                    existing_index[oid] = {
+                        "siteAudioUrl": d.get("siteAudioUrl"),
+                        "vimeoId": d.get("vimeoId"),
+                    }
+            last_idx_doc = batch[-1]
+            if len(batch) < 500:
+                break
+        _log(f"[ARUTZ MEIR] Loaded {len(existing_index)} existing lessons into index")
+    else:
+        _log("[ARUTZ MEIR] Incremental mode — skipping full index load (new lessons only)")
 
     # Build pagination parameters
     if oldest_first:
