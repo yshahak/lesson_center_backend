@@ -16,11 +16,13 @@ Taxonomy is resolved from Firestore at startup (term slug = originalId).
 No JSON mapping files needed — meirtv.com WP taxonomy slugs are numeric originalIds.
 """
 
+import json
 import logging
 import re
 import time
 from datetime import datetime, timezone
 from html import unescape
+from urllib.parse import urlencode
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -49,34 +51,100 @@ BASE_URL = "https://meirtv.com/wp-json/wp/v2"
 SHIURIM_ENDPOINT = f"{BASE_URL}/shiurim"
 
 # Rate limits (seconds)
-_PAGE_SLEEP = 0.5
-_LESSON_SLEEP = 0.5
+_PAGE_SLEEP = 1.0
+_LESSON_SLEEP = 1.0
 
 # GCS bucket prefix that marks dead audio URLs
 _BROKEN_AUDIO_PREFIX = "https://storage.googleapis.com"
 
+# FlareSolverr session name
+_FS_SESSION = "arutz_meir_scraper"
+_FS_PORT = 8191  # overridden by scrape_arutz_meir(flaresolverr_port=...)
+
 
 # ---------------------------------------------------------------------------
-# HTTP session with retry/backoff
+# FlareSolverr helpers — replaces plain requests (Cloudflare-blocked)
 # ---------------------------------------------------------------------------
 
-def _make_session(max_retries: int = 4) -> requests.Session:
-    session = requests.Session()
-    retry = Retry(
-        total=max_retries,
-        backoff_factor=1.5,
-        status_forcelist=[429, 500, 502, 503, 504],
-        allowed_methods=["GET"],
-        raise_on_status=False,
-    )
-    adapter = HTTPAdapter(max_retries=retry)
-    session.mount("https://", adapter)
-    session.mount("http://", adapter)
-    return session
+def _fs_raw(url: str, port: int = _FS_PORT) -> tuple[str | None, int, dict]:
+    """Fetch URL via FlareSolverr. Returns (body, status_code, headers)."""
+    try:
+        resp = requests.post(
+            f'http://localhost:{port}/v1',
+            json={'cmd': 'request.get', 'url': url, 'session': _FS_SESSION, 'maxTimeout': 60000},
+            timeout=75,
+        )
+        sol = resp.json().get('solution', {})
+        headers = {k.lower(): v for k, v in sol.get('headers', {}).items()}
+        return sol.get('response'), sol.get('status', 0), headers
+    except Exception as e:
+        logger.error(f'FlareSolverr error fetching {url}: {e}')
+        return None, 0, {}
 
 
-_session = _make_session()          # API calls: 4 retries (important, must succeed)
-_html_session = _make_session(1)    # HTML fetches: 1 retry only — fast fail, metadata still saved
+def _fs_json(url: str, port: int = _FS_PORT) -> tuple[dict | list | None, int, dict]:
+    """
+    Fetch a JSON API endpoint via FlareSolverr.
+    Chrome wraps JSON responses in <html><body><pre>...</pre></body></html>,
+    so we extract the content of the <pre> tag.
+    """
+    body, status, headers = _fs_raw(url, port)
+    if status == 200 and body:
+        # Try raw JSON first
+        stripped = body.strip()
+        if stripped.startswith(('{', '[')):
+            try:
+                return json.loads(stripped), status, headers
+            except json.JSONDecodeError:
+                pass
+        # Chrome wraps JSON in <pre> tag
+        pre_match = re.search(r'<pre[^>]*>([\s\S]*?)</pre>', body)
+        if pre_match:
+            try:
+                return json.loads(pre_match.group(1)), status, headers
+            except json.JSONDecodeError as e:
+                logger.error(f'JSON parse error in <pre> for {url}: {e}')
+        else:
+            logger.error(f'No JSON or <pre> found in response for {url}: {body[:100]!r}')
+    return None, status, headers
+
+
+def _fs_html(url: str, port: int = _FS_PORT, min_size: int = 250_000) -> tuple[str | None, int]:
+    """
+    Fetch an HTML page via FlareSolverr.
+    Returns (html, status). Returns (None, status) for partial renders (<min_size bytes)
+    or WP 404 pages (error404 in body class).
+    """
+    for attempt in range(3):
+        body, status, _ = _fs_raw(url, port)
+        if status != 200 or not body:
+            return None, status
+        if re.search(r'<body[^>]+class="[^"]*error404', body):
+            return None, 404  # WP 404 served as HTTP 200 via Cloudflare
+        if len(body) < min_size:
+            logger.debug(f'Partial render {len(body)}B for {url}, attempt {attempt + 1}/3, retrying')
+            continue
+        return body, 200
+    return None, 200  # all retries returned partial render
+
+
+def check_flaresolverr(port: int = _FS_PORT) -> bool:
+    """Return True if FlareSolverr is reachable."""
+    try:
+        r = requests.get(f'http://localhost:{port}/', timeout=5)
+        return r.status_code == 200
+    except Exception:
+        return False
+
+
+def create_fs_session(port: int = _FS_PORT):
+    """Create a persistent FlareSolverr session (reuses CF cookies)."""
+    try:
+        r = requests.post(f'http://localhost:{port}/v1',
+                          json={'cmd': 'sessions.create', 'session': _FS_SESSION}, timeout=30)
+        logger.info(f'FlareSolverr session: {r.json().get("message", "")}')
+    except Exception as e:
+        logger.warning(f'FlareSolverr session create failed (may already exist): {e}')
 
 
 # ---------------------------------------------------------------------------
@@ -142,10 +210,10 @@ def _extract_site_audio_url(html: str) -> str | None:
 
 def _extract_vimeo_id(html: str) -> str | None:
     """
-    Extract Vimeo video ID from the [fwdevp video_path="https://vimeo.com/ID"] shortcode
-    embedded in lesson page HTML.
+    Extract Vimeo video ID from the player iframe in lesson page HTML.
+    Matches: src="https://player.vimeo.com/video/ID?..."
     """
-    match = re.search(r'\[fwdevp[^\]]*video_path=["\']https://vimeo\.com/(\d+)["\']', html)
+    match = re.search(r'player\.vimeo\.com/video/(\d+)', html)
     if match:
         return match.group(1)
     return None
@@ -262,6 +330,8 @@ def _upsert_lesson(
             )
 
         stats["updated"] += 1
+        if doc_ref:
+            stats["_to_embed"].append(doc_ref.id)
         return "updated"
 
     else:
@@ -289,6 +359,7 @@ def _upsert_lesson(
 
         if not dry_run:
             lessons_ref.document(str(lesson_id)).set(doc)
+            stats["_to_embed"].append(str(lesson_id))
         else:
             logger.info(
                 f"[DRY RUN] CREATE originalId={original_id} "
@@ -313,6 +384,10 @@ def scrape_arutz_meir(
     dry_run: bool = False,
     max_pages: int | None = None,
     oldest_first: bool = False,
+    start_page: int | None = None,
+    end_page: int | None = None,
+    worker_id: int = 0,
+    flaresolverr_port: int = 8191,
 ) -> dict:
     """
     Main entry point for the Arutz Meir WordPress scraper.
@@ -322,7 +397,9 @@ def scrape_arutz_meir(
         dry_run: If True, log what would be written but make no Firestore writes.
         max_pages: Limit number of WP API pages to fetch (None = all).
         oldest_first: If True, fetch lessons in ascending ID order (oldest first).
-                      Useful for verifying the update path on old content already in Firestore.
+        start_page: Start from this page (overrides checkpoint). For parallel workers.
+        end_page: Stop after this page. For parallel workers.
+        worker_id: Worker ID for logging (default 0 = single worker).
 
     Returns:
         dict with scraping statistics.
@@ -336,6 +413,19 @@ def scrape_arutz_meir(
         logger.info(msg)
         print(msg, flush=True)
 
+    fs_port = flaresolverr_port
+    global _FS_PORT
+    _FS_PORT = fs_port
+
+    # Preflight: FlareSolverr must be running
+    if not check_flaresolverr(fs_port):
+        raise RuntimeError(
+            f"FlareSolverr is not running on port {fs_port}. "
+            f"Start it with: docker run -d --name flaresolverr -p {fs_port}:8191 "
+            f"ghcr.io/flaresolverr/flaresolverr:latest"
+        )
+    create_fs_session(fs_port)
+    _log(f"[ARUTZ MEIR] FlareSolverr ready on port {fs_port}")
     _log(f"[ARUTZ MEIR] Starting scraper dry_run={dry_run} max_pages={max_pages}")
 
     # Initialize Firestore
@@ -363,13 +453,15 @@ def scrape_arutz_meir(
         source_doc_ref = source_doc.reference
         source_data = source_doc.to_dict()
         last_scraped_at = source_data.get("lastScrapedAt")
-        # Page-level checkpoint: resume from last successfully completed page
-        resume_from_page = source_data.get("lastPageProcessed") or 1
+        # Page-level checkpoint: per-worker key so parallel workers don't collide
+        ck_key = f"lastPageProcessed" if worker_id == 0 else f"lastPageProcessed_w{worker_id}"
+        resume_from_page = source_data.get(ck_key) or (start_page or 1)
         if resume_from_page > 1:
-            _log(f"[ARUTZ MEIR] Resuming from page {resume_from_page} (checkpoint)")
+            _log(f"[ARUTZ MEIR] W{worker_id} resuming from page {resume_from_page} (checkpoint)")
         _log(f"[ARUTZ MEIR] Source doc found, lastScrapedAt={last_scraped_at}")
     else:
         _log("[ARUTZ MEIR] No source doc found — full scrape mode")
+        resume_from_page = start_page or 1
 
     # Build in-memory index of existing lessons for HTML skip optimization.
     # One bulk scan at startup avoids N per-lesson Firestore reads during scrape.
@@ -432,6 +524,7 @@ def scrape_arutz_meir(
         "pages_fetched": 0,
         "lessons_examined": 0,
         "sample_lessons": [],     # up to 3 detailed samples
+        "_to_embed": [],          # doc IDs of created/updated lessons
     }
 
     page = resume_from_page
@@ -441,24 +534,26 @@ def scrape_arutz_meir(
         if max_pages is not None and page > max_pages:
             logger.info(f"Reached max_pages={max_pages}, stopping")
             break
+        if end_page is not None and page > end_page:
+            _log(f"[ARUTZ MEIR] W{worker_id} reached end_page={end_page}, stopping")
+            break
 
         params["page"] = page
-        try:
-            response = _session.get(SHIURIM_ENDPOINT, params=params, timeout=45)
-            response.raise_for_status()
-        except Exception as e:
-            logger.error(f"Failed to fetch page {page}: {e}")
+        api_url = f"{SHIURIM_ENDPOINT}?{urlencode(params)}"
+        lessons_page, api_status, api_headers = _fs_json(api_url, fs_port)
+        if api_status != 200 or lessons_page is None:
+            logger.error(f"Failed to fetch page {page}: status={api_status}")
             stats["errors"] += 1
             break
 
         if total_pages is None:
-            total_pages = int(response.headers.get("X-WP-TotalPages", 1))
-            total_lessons = int(response.headers.get("X-WP-Total", 0))
-            logger.info(f"WP API reports {total_lessons} lessons across {total_pages} pages")
+            # FlareSolverr doesn't pass HTTP headers through — use large sentinel,
+            # rely on empty-page check to stop naturally.
+            total_pages = 9999
+            logger.info(f"WP API: paginating until empty page (headers not available via FlareSolverr)")
 
-        lessons_page = response.json()
-        if not lessons_page:
-            logger.info(f"Empty page {page}, stopping")
+        if not lessons_page or not isinstance(lessons_page, list):
+            logger.info(f"Empty page {page} (or WP error response), stopping")
             break
 
         stats["pages_fetched"] += 1
@@ -507,16 +602,18 @@ def scrape_arutz_meir(
                 vimeo_id = idx_entry["vimeoId"]
                 stats["skipped_html_fetch"] = stats.get("skipped_html_fetch", 0) + 1
             else:
-                try:
-                    html_response = _html_session.get(lesson_url, timeout=10)
-                    html = html_response.text
-
+                # Try both URL patterns: bare post ID first (new lessons), then shiur- slug
+                html = None
+                for candidate_url in [lesson_url, f"https://meirtv.com/shiurim/shiur-{original_id}/"]:
+                    html, html_status = _fs_html(candidate_url, fs_port)
+                    if html:
+                        break
+                if html:
                     site_audio_url = _extract_site_audio_url(html)
                     vimeo_id = _extract_vimeo_id(html)
-
-                    time.sleep(_LESSON_SLEEP)
-                except Exception as e:
-                    logger.warning(f"Failed to fetch HTML for wp_id={wp_post_id}: {e}")
+                else:
+                    logger.warning(f"Failed to fetch HTML for wp_id={wp_post_id}")
+                time.sleep(_LESSON_SLEEP)
 
             if not site_audio_url and not vimeo_id:
                 logger.debug(f"wp_id={wp_post_id} title='{title[:40]}' — no media found in HTML")
@@ -570,7 +667,8 @@ def scrape_arutz_meir(
 
         # Save page checkpoint so restarts resume here instead of page 1
         if not dry_run and source_doc_ref:
-            source_doc_ref.update({"lastPageProcessed": page})
+            ck_key = f"lastPageProcessed" if worker_id == 0 else f"lastPageProcessed_w{worker_id}"
+            source_doc_ref.update({ck_key: page})
 
         page += 1
         time.sleep(_PAGE_SLEEP)
@@ -589,6 +687,15 @@ def scrape_arutz_meir(
         logger.info("Updated source doc: cleared page checkpoint" +
                     (", set lastScrapedAt" if not oldest_first else " (oldest_first mode — lastScrapedAt not updated)"))
 
+    # Embed new/updated lessons for smart search
+    if not dry_run and stats["_to_embed"]:
+        from utils.embedder import embed_lessons_batch
+        embed_lessons_batch(db, stats["_to_embed"], collection_prefix)
+
+    # Refresh "ערוץ מאיר - אחרונים" label with 10 most recent lessons
+    if not dry_run:
+        _update_arutz_meir_label(db, collection_prefix)
+
     logger.info(
         f"Arutz Meir scraper done: "
         f"created={stats['created']} updated={stats['updated']} "
@@ -602,12 +709,44 @@ def scrape_arutz_meir(
     return stats
 
 
+def _update_arutz_meir_label(db, collection_prefix: str):
+    """Refresh 'ערוץ מאיר - אחרונים' with the 10 most recent lessons."""
+    from scrapers.bnei_david_scraper import _upsert_label
+
+    SOURCE_ID = 2
+    recent = (
+        db.collection(f'{collection_prefix}lessons')
+        .where('sourceId', '==', SOURCE_ID)
+        .order_by('timestamp', direction='DESCENDING')
+        .limit(10)
+        .get()
+    )
+    lesson_ids = [str(d.id) for d in recent if d.exists]
+    if lesson_ids:
+        _upsert_label(
+            db.collection(f'{collection_prefix}labels'),
+            'ערוץ מאיר - אחרונים',
+            SOURCE_ID,
+            lesson_ids,
+        )
+        logger.info(f"✅ Label 'ערוץ מאיר - אחרונים' updated with {len(lesson_ids)} lessons")
+
+
 # ---------------------------------------------------------------------------
 # Taxonomy term resolution (WP internal term ID → Firestore doc ID)
 # ---------------------------------------------------------------------------
 
-# Per-run cache: wp_term_id -> originalId (slug as int) or None
-_term_slug_cache: dict[tuple[str, int], int | None] = {}
+# Per-run cache: (taxonomy, wp_term_id) -> firestore_doc_id or None
+_term_doc_cache: dict[tuple[str, int], str | None] = {}
+
+# Firestore collection name per taxonomy
+_TAXONOMY_COLLECTION = {
+    "rabbis":           "ravs",
+    "shiurim-series":   "series",
+    "shiurim-category": "categories",
+}
+# Name field per collection
+_NAME_FIELD = {"ravs": "rav", "series": "serie", "categories": "category"}
 
 
 def _resolve_term_id(
@@ -618,39 +757,66 @@ def _resolve_term_id(
     collection_prefix: str,
 ) -> str | None:
     """
-    Given a list of WP internal term IDs, resolve the first one to a Firestore doc ID.
-
-    Strategy:
-    1. Fetch the WP term via /wp/v2/{taxonomy}/{term_id} to get its slug.
-    2. The slug is a numeric string = originalId in Firestore.
-    3. Look up originalId in the pre-loaded map.
+    Resolve a WP term ID to a Firestore doc ID.
+    If the term exists in the preloaded map: return immediately.
+    If not: fetch from WP API, compute originalId, create Firestore doc if needed.
     """
     for wp_term_id in wp_term_ids:
         cache_key = (taxonomy, wp_term_id)
-        if cache_key in _term_slug_cache:
-            orig_id = _term_slug_cache[cache_key]
-        else:
-            orig_id = _fetch_term_original_id(taxonomy, wp_term_id)
-            _term_slug_cache[cache_key] = orig_id
-
-        if orig_id is not None:
-            doc_id = orig_to_doc_map.get(orig_id)
+        if cache_key in _term_doc_cache:
+            doc_id = _term_doc_cache[cache_key]
             if doc_id:
                 return doc_id
-    return None
+            continue
 
+        # Fetch term from WP via FlareSolverr
+        term_data, term_status, _ = _fs_json(f"{BASE_URL}/{taxonomy}/{wp_term_id}", _FS_PORT)
+        if term_status != 200 or term_data is None:
+            logger.warning(f"Failed to fetch WP term {taxonomy}/{wp_term_id}: status={term_status}")
+            _term_doc_cache[cache_key] = None
+            continue
+        term = term_data
 
-def _fetch_term_original_id(taxonomy: str, wp_term_id: int) -> int | None:
-    """Fetch WP taxonomy term and return its slug as int (= originalId), or None."""
-    try:
-        r = _session.get(
-            f"{BASE_URL}/{taxonomy}/{wp_term_id}",
-            timeout=10,
-        )
-        if r.status_code == 200:
-            slug = r.json().get("slug", "")
-            if slug and slug.isdigit():
-                return int(slug)
-    except Exception as e:
-        logger.warning(f"Failed to fetch WP term {taxonomy}/{wp_term_id}: {e}")
+        slug = term.get("slug", "")
+        name = term.get("name", "")
+
+        # Compute originalId and look up existing Firestore doc
+        collection = _TAXONOMY_COLLECTION.get(taxonomy)
+        if not collection:
+            _term_doc_cache[cache_key] = None
+            continue
+
+        if slug.isdigit():
+            if collection == "ravs":
+                orig_id = int(slug)          # ravs: originalId = small int
+            else:
+                orig_id = get_hash_for_id(SOURCE_ID, int(slug))  # others: bigint hash
+            doc_id = orig_to_doc_map.get(orig_id)
+            if doc_id:
+                _term_doc_cache[cache_key] = doc_id
+                return doc_id
+        else:
+            orig_id = None  # non-numeric slug — genuinely new term
+
+        # Not in map → create new Firestore doc
+        from datetime import datetime
+        name_field = _NAME_FIELD[collection]
+        new_doc_id = f"{collection[:3]}_{wp_term_id}"  # e.g. rav_1248, ser_25402
+        new_doc = {
+            name_field:   name,
+            "sourceId":   SOURCE_ID,
+            "originalId": orig_id,
+            "wpTermId":   wp_term_id,
+            "totalCount": 0,
+            "createdAt":  datetime.now().isoformat(),
+            "updatedAt":  datetime.now().isoformat(),
+        }
+        doc_ref = db.collection(f"{collection_prefix}{collection}").document(new_doc_id)
+        doc_ref.set(new_doc)
+        orig_to_doc_map[orig_id] = new_doc_id  # update in-memory map
+        logger.info(f"Created new {collection} doc {new_doc_id}: {name}")
+
+        _term_doc_cache[cache_key] = new_doc_id
+        return new_doc_id
+
     return None
