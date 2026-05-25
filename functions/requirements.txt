@@ -6,7 +6,10 @@ yt-dlp>=2024.1.1
 
 # Firebase Admin SDK
 firebase-admin>=6.0.0
-google-cloud-firestore>=2.0.0
+google-cloud-firestore==2.19.0
+
+# Vertex AI (embeddings for vector search)
+google-cloud-aiplatform>=1.38.0
 
 # Google APIs
 google-api-python-client>=2.0.0
