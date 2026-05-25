@@ -74,7 +74,7 @@ def main():
         for url in [f'https://meirtv.com/shiurim/shiur-{orig_id}/', f'https://meirtv.com/shiurim/{orig_id}/']:
             html, status = fs_get(url)
             if status == 200 and html:
-                if 'error404' in html:  # WordPress 404 served with HTTP 200 via Cloudflare
+                if re.search(r'<body[^>]+class="[^"]*error404', html):  # WordPress 404 body class
                     continue
                 m = VIMEO_RE.search(html)
                 a = AUDIO_RE.search(html)

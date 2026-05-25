@@ -247,7 +247,7 @@ def main():
                     # FlareSolverr returns HTTP 200 even for WordPress 404 pages
                     # (Cloudflare passes them through). Detect WP 404 body class
                     # and fall through to try the next URL slug.
-                    if 'error404' in html:
+                    if re.search(r'<body[^>]+class="[^"]*error404', html):
                         logger.debug(f'  WP-404 on {url}, trying next slug')
                         continue
                     vimeo_id, site_audio_url = extract_from_html(html)
