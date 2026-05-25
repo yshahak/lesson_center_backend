@@ -76,6 +76,16 @@ def scrape_youtube_channels(collection_prefix=""):
             {"source_id": 76, "channel_id": "UCQ1y3pMsmhtUpfE-cYdaZgg", "category": "בית מדרש קהילתי כפר סבא", "label": "בית מדרש קהילתי כפר סבא"},
             {"source_id": 77, "channel_id": "UCTZDTOM7lJQia5sqZOZ4tZg", "category": "הרב חגי לונדין", "label": "הרב חגי לונדין"},
             {"source_id": 78, "channel_id": "UCHOD7ezqUbpV1_AjGzdcT7A", "category": "הרב גיא אללוף", "label": "הרב גיא אללוף"},
+            {"source_id": 79, "channel_id": "UCl1JXo-MwQD1gf9pTyAVy4A", "category": "הרב שמואל אליהו", "label": "הרב שמואל אליהו"},
+            {"source_id": 80, "channel_id": "UCllz39jFUb3HL1zJx7PCKEg", "category": "מכון עולמות", "label": "מכון עולמות"},
+            {"source_id": 81, "channel_id": "UCcHGO9721RdM4Bj9BATgnGQ", "category": "ישיבת רועה ישראל - יצהר", "label": "ישיבת רועה ישראל - יצהר"},
+            {"source_id": 82, "channel_id": "UCP79eU_7Mky-_p2kSA8PGMQ", "category": "הרב שלמה אבינר", "label": "הרב שלמה אבינר"},
+            {"source_id": 83, "channel_id": "UCgl-zxph-htP5qqPjMC7BMQ", "category": "הרב ניר מנוסי", "label": "הרב ניר מנוסי"},
+            {"source_id": 84, "channel_id": "UCsD1AZVfS5YI8ZBbt7ErApQ", "category": "הרב יוני לביא", "label": "הרב יוני לביא"},
+            {"source_id": 85, "channel_id": "UCdHjt2ox7DrxuwkrKRBDsTA", "category": "הרב יגאל לוינשטיין", "label": "הרב יגאל לוינשטיין"},
+            {"source_id": 86, "channel_id": "UCbT4-nZcIQlSfGTQs9easlQ", "category": "הרב בנימין חותה", "label": "הרב בנימין חותה"},
+            {"source_id": 87, "channel_id": "UC0tUHdaR25XS2RnemJSUVJX", "category": "הרב בנימין טבדי", "label": "הרב בנימין טבדי"},
+            {"source_id": 88, "channel_id": "UCGKMTTAiv5KRJFkKte3ILvA", "category": "רוח הזמן - מתן חסידים", "label": "רוח הזמן - מתן חסידים"},
             {"source_id": 2, "channel_id": "UCEAZVyOtukIOH4BJ3gHKdng", "category": "ערוץ מאיר", "label": "ערוץ מאיר - יוטיוב"},
             {"source_id": 1, "channel_id": "UC3MjXqiy3SNNSWiixX2Mybw", "category": "בני דוד - כללי", "label": "בני דוד - ערוץ יוטיוב"}
         ]
@@ -226,7 +236,7 @@ def extract_lessons_for_channel_id(source_id: int, channel_id: str, category: st
     add_labels_for_recent_lessons(source_id, category_doc_id, label)
 
     logger.info(f"✅ Extracted {len(new_lesson_ids)} new lessons for source {source_id}")
-    return {'lessons_added': len(new_lesson_ids)}
+    return {'lessons_added': len(new_lesson_ids), 'lesson_details': result.get('lesson_details', [])}
 
 def clear_labels_for_source(source_id: int):
     """Delete the label doc for this source (deterministic ID = label_{source_id})."""
@@ -436,15 +446,28 @@ def process_channel_videos(channel_id, source_id, category, label,
             logger.info(f"⚠️ exists_lesson_ids empty — scanning Firestore videoUrls to prevent duplicates from ID-scheme mismatch")
             lessons_ref_scan = firestore_db.db.collection(f'{firestore_db.collection_prefix}lessons')
             from urllib.parse import urlparse, parse_qs
-            for doc in lessons_ref_scan.where('sourceId', '==', source_id).stream():
-                url = doc.to_dict().get('videoUrl', '')
-                if url and 'youtube.com/watch?v=' in url:
-                    try:
-                        vid = parse_qs(urlparse(url).query).get('v', [None])[0]
-                        if vid:
-                            exists_lesson_ids.add(get_hash_for_id(source_id, get_hash_for_string(vid)))
-                    except Exception:
-                        pass
+            # Use paginated .get() with limit to avoid _retry streaming bug on large collections
+            PAGE_SIZE = 500
+            last_doc = None
+            while True:
+                q = lessons_ref_scan.where('sourceId', '==', source_id).limit(PAGE_SIZE)
+                if last_doc:
+                    q = q.start_after(last_doc)
+                page = q.get()
+                if not page:
+                    break
+                for doc in page:
+                    url = doc.to_dict().get('videoUrl', '')
+                    if url and 'youtube.com/watch?v=' in url:
+                        try:
+                            vid = parse_qs(urlparse(url).query).get('v', [None])[0]
+                            if vid:
+                                exists_lesson_ids.add(get_hash_for_id(source_id, get_hash_for_string(vid)))
+                        except Exception:
+                            pass
+                last_doc = page[-1]
+                if len(page) < PAGE_SIZE:
+                    break
             logger.info(f"📦 Populated {len(exists_lesson_ids)} synthetic IDs from existing videoUrls")
 
         # Phase 1: collect all new videos first (before deciding on playlist refresh)
@@ -595,7 +618,7 @@ def process_channel_videos(channel_id, source_id, category, label,
             series_doc_id = playlist_map.get(video_id, כללי_series_doc_id)
             serie_name = ''
             try:
-                serie_doc = firestore_db.db.collection(f'{collection_prefix}series').document(series_doc_id).get()
+                serie_doc = firestore_db.db.collection(f'{firestore_db.collection_prefix}series').document(series_doc_id).get()
                 if serie_doc.exists:
                     serie_name = serie_doc.to_dict().get('serie', '')
             except Exception:
