@@ -526,7 +526,8 @@ def scrape_arutz_meir(
         "errors": 0,
         "pages_fetched": 0,
         "lessons_examined": 0,
-        "sample_lessons": [],     # up to 3 detailed samples
+        "sample_lessons": [],     # legacy — kept for compatibility
+        "new_lesson_details": [], # ALL created lessons for Telegram
         "_to_embed": [],          # doc IDs of created/updated lessons
     }
 
@@ -645,7 +646,17 @@ def scrape_arutz_meir(
             try:
                 action = _upsert_lesson(lesson_data, db, collection_prefix, dry_run, stats, is_slug_fallback=is_slug_fallback)
 
-                # Collect sample lessons for reporting
+                # Collect all created lessons for Telegram notification
+                if action == "created":
+                    stats["new_lesson_details"].append({
+                        "title": title,
+                        "date": date_str,
+                        "vimeoId": vimeo_id,
+                        "siteAudioUrl": site_audio_url,
+                        "ravId": rav_id,
+                        "seriesId": series_id,
+                    })
+                # legacy sample (keep for compatibility)
                 if len(stats["sample_lessons"]) < 3:
                     stats["sample_lessons"].append({
                         "action": action,

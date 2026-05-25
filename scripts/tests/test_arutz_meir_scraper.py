@@ -176,3 +176,85 @@ def test_incremental_cutoff_returns_zero():
 
 # Import scrape_arutz_meir for test 7 and 8 at module level
 from scrapers.arutz_meir_scraper import scrape_arutz_meir
+
+
+# ---------------------------------------------------------------------------
+# Test 9: new_lesson_details populated for created lessons
+# ---------------------------------------------------------------------------
+
+def test_new_lesson_details_populated():
+    """Created lessons appear in new_lesson_details with title, date, vimeoId."""
+    import firebase_admin
+    from firebase_admin import firestore as fs
+    from datetime import timezone
+
+    try: firebase_admin.get_app()
+    except ValueError: firebase_admin.initialize_app(options={"projectId": "tora-or"})
+    db = fs.client()
+
+    # Set lastScrapedAt far in the past so we get some lessons
+    src = db.collection('sources').where('originalId', '==', 2).limit(1).get()[0]
+    original_last = src.to_dict().get('lastScrapedAt')
+    src.reference.update({'lastScrapedAt': '2026-05-24T00:00:00'})
+
+    try:
+        result = scrape_arutz_meir(dry_run=True, max_pages=1, flaresolverr_port=_FS_PORT)
+        created = result.get('created', 0)
+        details = result.get('new_lesson_details', [])
+
+        if created > 0:
+            assert len(details) == created, f"Expected {created} detail entries, got {len(details)}"
+            for d in details:
+                assert 'title' in d, "Missing title in new_lesson_details"
+                assert 'date' in d, "Missing date in new_lesson_details"
+            print(f"  ✓ {created} created lessons, {len(details)} detail entries")
+            print(f"  Sample: {details[0]['title'][:50]} [{details[0]['date']}] vimeoId={details[0].get('vimeoId')}")
+        else:
+            print(f"  ✓ No new lessons in this 1-page window (correct if up to date)")
+    finally:
+        src.reference.update({'lastScrapedAt': original_last})
+
+
+# ---------------------------------------------------------------------------
+# Test 10: Telegram notification includes lesson details
+# ---------------------------------------------------------------------------
+
+def test_telegram_notification_includes_details():
+    """notify_scrape_results formats Arutz Meir lesson details correctly."""
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)) + '/../../functions')
+    from utils.telegram_notifier import notify_scrape_results
+    import unittest.mock as mock
+
+    fake_result = {
+        'scrapers_run': 'arutz_meir',
+        'duration_seconds': 60,
+        'results': {
+            'arutz_meir': {
+                'created': 2,
+                'updated': 0,
+                'errors': 0,
+                'pages_fetched': 1,
+                'sample_lessons': [],
+                'new_lesson_details': [
+                    {'title': 'שיעור ראשון', 'date': '2026-05-25', 'vimeoId': '123456', 'siteAudioUrl': 'https://mp3.meirtv.co.il/wp2/1.mp3'},
+                    {'title': 'שיעור שני', 'date': '2026-05-25', 'vimeoId': None, 'siteAudioUrl': 'https://mp3.meirtv.co.il/wp2/2.mp3'},
+                ],
+            }
+        }
+    }
+
+    sent_messages = []
+    with mock.patch('utils.telegram_notifier._send', side_effect=lambda token, text: sent_messages.append(text)):
+        with mock.patch.dict(os.environ, {'TELEGRAM_BOT_TOKEN': 'fake_token'}):
+            notify_scrape_results(fake_result)
+
+    assert len(sent_messages) == 1, "Expected exactly 1 Telegram message"
+    msg = sent_messages[0]
+    assert 'שיעור ראשון' in msg, "First lesson title missing from message"
+    assert 'שיעור שני' in msg, "Second lesson title missing from message"
+    assert '🎥' in msg, "Video icon missing (lesson with vimeoId)"
+    assert '🔊' in msg, "Audio icon missing (audio-only lesson)"
+    assert '2026-05-25' in msg, "Date missing from message"
+    print(f"  ✓ Telegram message contains all lesson details")
+    print(f"  Message preview:\n{msg[:300]}")
