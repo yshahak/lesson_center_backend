@@ -7,6 +7,10 @@ Run from lesson_center_backend/functions/:
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)) + '/../functions')
 
+# Set API key before any imports that read it at module level
+_key_file = os.path.dirname(os.path.abspath(__file__)) + '/../google-services.json'
+os.environ['YOUTUBE_API_KEY'] = open(_key_file).read().split('"current_key": "')[1].split('"')[0]
+
 import firebase_admin
 from firebase_admin import firestore
 try: firebase_admin.get_app()
@@ -28,55 +32,30 @@ def fail(name, reason):
 
 print('\n=== youtube_scraper tests ===\n')
 
-# ── Test 1: paginated scan doesn't crash on large collections ──────────────
-print('1. Paginated scan of sourceId=2 (57K docs) — no _retry error')
+# ── Test 1: migration scan is gone — process_channel_videos has no full scan ─
+print('1. Migration scan removed — process_channel_videos source code check')
 try:
-    from urllib.parse import urlparse, parse_qs
-    from utils.firestore_helper import get_hash_for_id, get_hash_for_string
-    PAGE_SIZE = 500
-    last_doc = None
-    total = 0
-    ids = set()
-    while True:
-        q = db.collection('lessons').where('sourceId','==',2).limit(PAGE_SIZE)
-        if last_doc: q = q.start_after(last_doc)
-        page = q.get()
-        if not page: break
-        for doc in page:
-            url = doc.to_dict().get('videoUrl','')
-            if url and 'youtube.com/watch?v=' in url:
-                vid = parse_qs(urlparse(url).query).get('v',[None])[0]
-                if vid: ids.add(get_hash_for_id(2, get_hash_for_string(vid)))
-        total += len(page)
-        last_doc = page[-1]
-        if len(page) < PAGE_SIZE: break
-    ok(f'scanned {total} docs, found {len(ids)} youtube IDs')
+    import inspect
+    from scrapers.youtube_scraper import process_channel_videos
+    src = inspect.getsource(process_channel_videos)
+    if 'scanning Firestore videoUrls' in src:
+        fail('migration scan removed', 'old scan code still present in process_channel_videos')
+    else:
+        ok('migration scan code not present in process_channel_videos')
 except Exception as e:
-    fail('paginated scan', str(e))
+    fail('source inspection', str(e))
 
-# ── Test 2: same for sourceId=1 ────────────────────────────────────────────
-print('2. Paginated scan of sourceId=1 (43K docs) — no _retry error')
+# ── Test 2: lastScrapedAt-based cutoff still works ─────────────────────────
+print('2. lastScrapedAt present on sourceId=2 (incremental dedup works)')
 try:
-    PAGE_SIZE = 500
-    last_doc = None
-    total = 0
-    ids = set()
-    while True:
-        q = db.collection('lessons').where('sourceId','==',1).limit(PAGE_SIZE)
-        if last_doc: q = q.start_after(last_doc)
-        page = q.get()
-        if not page: break
-        for doc in page:
-            url = doc.to_dict().get('videoUrl','')
-            if url and 'youtube.com/watch?v=' in url:
-                vid = parse_qs(urlparse(url).query).get('v',[None])[0]
-                if vid: ids.add(get_hash_for_id(1, get_hash_for_string(vid)))
-        total += len(page)
-        last_doc = page[-1]
-        if len(page) < PAGE_SIZE: break
-    ok(f'scanned {total} docs, found {len(ids)} youtube IDs')
+    doc = db.collection('sources').document('2').get()
+    last = doc.to_dict().get('lastScrapedAt')
+    if last:
+        ok(f'lastScrapedAt={last[:19]}')
+    else:
+        fail('lastScrapedAt present', 'missing — scraper will process all videos on next run')
 except Exception as e:
-    fail('paginated scan sourceId=1', str(e))
+    fail('lastScrapedAt check', str(e))
 
 # ── Test 3: collection_prefix NameError is fixed ───────────────────────────
 print('3. collection_prefix NameError is fixed in lesson_details loop')
@@ -123,7 +102,8 @@ except Exception as e:
 # ── Test 6: extract_lessons_for_channel_id returns lesson_details ──────────
 print('6. extract_lessons_for_channel_id return value includes lesson_details key')
 try:
-    os.environ['YOUTUBE_API_KEY'] = open('../google-services.json').read().split('"current_key": "')[1].split('"')[0]
+    key_file = os.path.dirname(os.path.abspath(__file__)) + '/../google-services.json'
+    os.environ['YOUTUBE_API_KEY'] = open(key_file).read().split('"current_key": "')[1].split('"')[0]
     from scrapers.youtube_scraper import initialize_services, extract_lessons_for_channel_id
     initialize_services()
     # Use a small channel (sourceId=72 מכינת עצמונה) to avoid scanning 57K docs

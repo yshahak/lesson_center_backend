@@ -437,38 +437,8 @@ def process_channel_videos(channel_id, source_id, category, label,
         # Load current source data to check playlist map cache
         source_data = source_doc_ref.get().to_dict() or {}
 
-        # Safety: if exists_lesson_ids is empty for an existing source, the migration
-        # may have seeded Firestore with lessons under a different ID scheme (e.g.
-        # PostgreSQL bigint IDs). Scan existing videoUrls and compute their hash-based
-        # IDs so the dedup check correctly skips already-present videos.
-        # This is a one-time O(N) cost per channel on the first scrape after migration.
-        if not exists_lesson_ids:
-            logger.info(f"⚠️ exists_lesson_ids empty — scanning Firestore videoUrls to prevent duplicates from ID-scheme mismatch")
-            lessons_ref_scan = firestore_db.db.collection(f'{firestore_db.collection_prefix}lessons')
-            from urllib.parse import urlparse, parse_qs
-            # Use paginated .get() with limit to avoid _retry streaming bug on large collections
-            PAGE_SIZE = 500
-            last_doc = None
-            while True:
-                q = lessons_ref_scan.where('sourceId', '==', source_id).limit(PAGE_SIZE)
-                if last_doc:
-                    q = q.start_after(last_doc)
-                page = q.get()
-                if not page:
-                    break
-                for doc in page:
-                    url = doc.to_dict().get('videoUrl', '')
-                    if url and 'youtube.com/watch?v=' in url:
-                        try:
-                            vid = parse_qs(urlparse(url).query).get('v', [None])[0]
-                            if vid:
-                                exists_lesson_ids.add(get_hash_for_id(source_id, get_hash_for_string(vid)))
-                        except Exception:
-                            pass
-                last_doc = page[-1]
-                if len(page) < PAGE_SIZE:
-                    break
-            logger.info(f"📦 Populated {len(exists_lesson_ids)} synthetic IDs from existing videoUrls")
+        # Migration safety scan removed — lastScrapedAt-based pagination stop handles dedup.
+        # The scan was a one-time cost for the PostgreSQL migration and is no longer needed.
 
         # Phase 1: collect all new videos first (before deciding on playlist refresh)
         # We need to know if new_videos_found to decide whether to refresh.
