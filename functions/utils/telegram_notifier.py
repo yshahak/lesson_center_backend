@@ -45,100 +45,91 @@ def notify_scrape_results(results: dict):
         logger.info('TELEGRAM_BOT_TOKEN not set — skipping notification')
         return
 
-    from datetime import datetime, timezone
-    now = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
-
-    lines = [f'🕍 <b>ToraOr nightly scrape — {now}</b>']
-
     scrapers = results.get('results', {})
     total_new = 0
+    has_errors = False
+    lines = []
 
     # ── YouTube ──────────────────────────────────────────────────────────────
-    yt = scrapers.get('youtube', {})
-    if 'error' in yt:
-        lines.append(f'\n📺 <b>YouTube</b>: ❌ {yt["error"]}')
-    else:
-        yt_total = yt.get('lessons_added', 0)
-        total_new += yt_total
-        channels = yt.get('channel_details', [])
-        if channels:
-            lines.append(f'\n📺 <b>YouTube — {yt_total} new lessons</b>')
-            for ch in channels:
-                lines.append(f'\n  📡 <b>{ch["label"]}</b>')
-                for lesson in ch.get('lessons', []):
-                    title = lesson.get('title', '')
-                    serie = lesson.get('serie', '')
-                    date = lesson.get('date', '')
-                    dur = _fmt_duration(lesson.get('duration', 0))
-                    detail = f'  • {title}'
-                    if serie and serie != 'כללי':
-                        detail += f'\n    📚 {serie}'
-                    if date:
-                        detail += f'  [{date}]'
-                    if dur:
-                        detail += f'  ⏱{dur}'
-                    lines.append(detail)
+    if 'youtube' in scrapers:
+        yt = scrapers['youtube']
+        if 'error' in yt:
+            lines.append(f'📺 <b>YouTube</b>: ❌ {yt["error"]}')
+            has_errors = True
         else:
-            lines.append(f'\n📺 <b>YouTube</b>: no new lessons')
+            yt_total = yt.get('lessons_added', 0)
+            total_new += yt_total
+            channels = [ch for ch in yt.get('channel_details', []) if ch.get('lessons')]
+            if channels:
+                lines.append(f'📺 <b>YouTube — {yt_total} new lessons</b>')
+                for ch in channels:
+                    lines.append(f'\n  📡 <b>{ch["label"]}</b>')
+                    for lesson in ch.get('lessons', []):
+                        title = lesson.get('title', '')
+                        serie = lesson.get('serie', '')
+                        date = lesson.get('date', '')
+                        dur = _fmt_duration(lesson.get('duration', 0))
+                        detail = f'  • {title}'
+                        if serie and serie != 'כללי':
+                            detail += f'\n    📚 {serie}'
+                        if date:
+                            detail += f'  [{date}]'
+                        if dur:
+                            detail += f'  ⏱{dur}'
+                        lines.append(detail)
+            yt_errors = yt.get('errors', [])
+            if yt_errors:
+                lines.append(f'⚠️ YouTube errors ({len(yt_errors)}):')
+                for e in yt_errors[:3]:
+                    lines.append(f'  • {e.get("label","")}: {str(e.get("error",""))[:80]}')
+                has_errors = True
 
     # ── Bnei David ────────────────────────────────────────────────────────────
-    bd = scrapers.get('bnei_david', {})
-    if 'error' in bd:
-        lines.append(f'\n🏛 <b>Bnei David</b>: ❌ {bd["error"]}')
-    else:
-        bd_new = bd.get('created', 0)
-        bd_upd = bd.get('updated', 0)
-        total_new += bd_new
-        if bd_new > 0:
-            lines.append(f'\n🏛 <b>Bnei David — {bd_new} new lessons</b>')
-            for item in bd.get('sample_lessons', []):
-                if item.get('action') != 'created':
-                    continue
-                title = item.get('title', '')
-                lines.append(f'  • {title}')
-            new_series = bd.get('new_series_created', [])
-            for s in new_series:
-                lines.append(f'  📚 New series: {s}')
+    if 'bnei_david' in scrapers:
+        bd = scrapers['bnei_david']
+        if 'error' in bd:
+            lines.append(f'🏛 <b>Bnei David</b>: ❌ {bd["error"]}')
+            has_errors = True
         else:
-            lines.append(f'\n🏛 <b>Bnei David</b>: no new lessons ({bd_upd} updated)')
+            bd_new = bd.get('created', 0)
+            total_new += bd_new
+            if bd_new > 0:
+                lines.append(f'🏛 <b>Bnei David — {bd_new} new lessons</b>')
+                for item in bd.get('sample_lessons', []):
+                    if item.get('action') != 'created':
+                        continue
+                    lines.append(f'  • {item.get("title", "")}')
+                for s in bd.get('new_series_created', []):
+                    lines.append(f'  📚 New series: {s}')
 
     # ── Arutz Meir ────────────────────────────────────────────────────────────
-    am = scrapers.get('arutz_meir', {})
-    if 'error' in am:
-        lines.append(f'\n📻 <b>Arutz Meir</b>: ❌ {am["error"]}')
-    elif am:
-        am_new = am.get('created', 0)
-        am_upd = am.get('updated', 0)
-        total_new += am_new
-        if am_new > 0:
-            lines.append(f'\n📻 <b>Arutz Meir — {am_new} new lessons</b>')
-            for item in am.get('new_lesson_details', am.get('sample_lessons', [])):
-                # support both new_lesson_details and legacy sample_lessons
-                if isinstance(item, dict) and item.get('action') == 'updated':
-                    continue
-                title = item.get('title', '')
-                date = item.get('date') or item.get('dateStr', '')
-                vimeo = item.get('vimeoId')
-                audio = item.get('siteAudioUrl')
-                media = '🎥' if vimeo else ('🔊' if audio else '❓')
-                detail = f'  {media} {title}'
-                if date:
-                    detail += f'  [{date}]'
-                lines.append(detail)
+    if 'arutz_meir' in scrapers:
+        am = scrapers['arutz_meir']
+        if 'error' in am:
+            lines.append(f'📻 <b>Arutz Meir</b>: ❌ {am["error"]}')
+            has_errors = True
         else:
-            lines.append(f'\n📻 <b>Arutz Meir</b>: no new lessons ({am_upd} updated)')
-    else:
-        lines.append(f'\n📻 <b>Arutz Meir</b>: disabled')
+            am_new = am.get('created', 0)
+            total_new += am_new
+            if am_new > 0:
+                lines.append(f'📻 <b>Arutz Meir — {am_new} new lessons</b>')
+                for item in am.get('new_lesson_details', am.get('sample_lessons', [])):
+                    if isinstance(item, dict) and item.get('action') == 'updated':
+                        continue
+                    title = item.get('title', '')
+                    date = item.get('date') or item.get('dateStr', '')
+                    vimeo = item.get('vimeoId')
+                    audio = item.get('siteAudioUrl')
+                    media = '🎥' if vimeo else ('🔊' if audio else '❓')
+                    detail = f'  {media} {title}'
+                    if date:
+                        detail += f'  [{date}]'
+                    lines.append(detail)
 
-    # ── Errors / warnings ────────────────────────────────────────────────────
-    yt_errors = yt.get('errors', [])
-    if yt_errors:
-        lines.append(f'\n⚠️ YouTube errors ({len(yt_errors)}):')
-        for e in yt_errors[:3]:
-            lines.append(f'  • {e.get("label","")}: {str(e.get("error",""))[:80]}')
-
-    # ── Footer ────────────────────────────────────────────────────────────────
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
     duration = results.get('duration_seconds', 0)
-    lines.append(f'\n📊 <b>Total new: {total_new}</b>  ⏱ {int(duration)}s')
+    header = f'🕍 <b>ToraOr — {now}</b>'
+    footer = f'📊 <b>Total new: {total_new}</b>  ⏱ {int(duration)}s'
 
-    _send(token, '\n'.join(lines))
+    _send(token, '\n'.join([header] + lines + [f'\n{footer}']))

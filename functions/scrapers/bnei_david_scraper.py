@@ -20,6 +20,7 @@ import re
 import time
 from datetime import datetime, timezone
 from html import unescape
+from pyluach import dates as hebrew_dates
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -173,7 +174,7 @@ def _load_category_map(db, collection_prefix=""):
 
 def _extract_audio_file_id(html: str) -> str | None:
     """Extract stream_audio file_id from lesson page HTML."""
-    match = re.search(r'action=stream_audio&(?:amp;)?file_id=([^"&\s]+)', html)
+    match = re.search(r'action=stream_audio(?:&(?:amp;|#038;)?|&#038;)file_id=([^"&\s#]+)', html)
     if match:
         return match.group(1)
     return None
@@ -369,6 +370,7 @@ def _upsert_lesson(
             )
 
         stats["updated"] += 1
+        stats["_to_embed"].append(doc_ref.id)
         return "updated"
 
     else:
@@ -396,6 +398,7 @@ def _upsert_lesson(
 
         if not dry_run:
             lessons_ref.document(str(lesson_id)).set(doc)
+            stats["_to_embed"].append(str(lesson_id))
         else:
             logger.info(
                 f"[DRY RUN] CREATE wp_id={wp_post_id} "
@@ -486,6 +489,7 @@ def scrape_bnei_david(collection_prefix="", dry_run=False, max_pages=None):
         "pages_fetched": 0,
         "lessons_examined": 0,
         "sample_lessons": [],  # up to 3 detailed samples
+        "_to_embed": [],        # doc IDs of created/updated lessons to embed
     }
 
     page = 1
@@ -639,6 +643,15 @@ def scrape_bnei_david(collection_prefix="", dry_run=False, max_pages=None):
         })
         logger.info("Updated lastScrapedAt on source doc")
 
+    # Embed new/updated lessons for smart search
+    if not dry_run and stats["_to_embed"]:
+        from utils.embedder import embed_lessons_batch
+        embed_lessons_batch(db, stats["_to_embed"], collection_prefix)
+
+    # Refresh labels (mirrors what the old bnei_david_grabber.py did for the main page)
+    if not dry_run:
+        _update_labels(db, collection_prefix)
+
     logger.info(
         f"Bnei David scraper done: "
         f"created={stats['created']} updated={stats['updated']} "
@@ -647,3 +660,68 @@ def scrape_bnei_david(collection_prefix="", dry_run=False, max_pages=None):
         f"errors={stats['errors']} pages={stats['pages_fetched']}"
     )
     return stats
+
+
+def _upsert_label(labels_ref, label_name: str, source_id: int, lesson_ids: list):
+    """Update existing label doc by name, or create it if it doesn't exist."""
+    existing = labels_ref.where('label', '==', label_name).where('sourceId', '==', source_id).limit(1).get()
+    data = {
+        'label': label_name,
+        'sourceId': source_id,
+        'lessonIds': lesson_ids,
+        'updatedAt': datetime.now().isoformat(),
+    }
+    if existing:
+        existing[0].reference.update(data)
+    else:
+        labels_ref.add(data)
+    logger.info(f"✅ Label '{label_name}' updated with {len(lesson_ids)} lessons")
+
+
+def _update_labels(db, collection_prefix: str):
+    """
+    Refresh 'אחרונים - בני דוד' and 'מומלצים - בני דוד' labels.
+
+    Old grabber populated these from the main HTML page's Recent/Recommended rows.
+    We replicate the same intent using Firestore data:
+      - אחרונים  = 10 most recent lessons by timestamp
+      - מומלצים  = sticky WP posts (fetched live from WP API)
+    """
+    SOURCE_ID = 1
+    lessons_ref = db.collection(f'{collection_prefix}lessons')
+    labels_ref = db.collection(f'{collection_prefix}labels')
+
+    # --- אחרונים - בני דוד: 10 most recent by timestamp ---
+    recent_docs = (
+        lessons_ref
+        .where('sourceId', '==', SOURCE_ID)
+        .order_by('timestamp', direction='DESCENDING')
+        .limit(10)
+        .get()
+    )
+    recent_ids = [str(d.id) for d in recent_docs if d.exists]
+    if recent_ids:
+        _upsert_label(labels_ref, 'אחרונים - בני דוד', SOURCE_ID, recent_ids)
+
+    # --- מומלצים - בני דוד: sticky WP posts ---
+    try:
+        resp = requests.get(
+            'https://bneidavid.org/wp-json/wp/v2/lessons',
+            params={'sticky': 'true', 'per_page': 10, '_fields': 'id'},
+            timeout=10
+        )
+        if resp.ok:
+            sticky_wp_ids = list({item['id'] for item in resp.json()})[:10]
+            if sticky_wp_ids:
+                recommended_ids = [
+                    str(doc.id)
+                    for doc in lessons_ref
+                        .where('sourceId', '==', SOURCE_ID)
+                        .where('originalId', 'in', sticky_wp_ids)
+                        .get()
+                    if doc.exists
+                ]
+                if recommended_ids:
+                    _upsert_label(labels_ref, 'מומלצים - בני דוד', SOURCE_ID, recommended_ids)
+    except Exception as e:
+        logger.warning(f"Could not update מומלצים label: {e}")

@@ -47,12 +47,16 @@ def initialize_services(collection_prefix=""):
         )
         logger.info("✅ YouTube API client initialized")
 
-def scrape_youtube_channels(collection_prefix=""):
-    """Main function to scrape all configured YouTube channels"""
+def scrape_youtube_channels(collection_prefix="", source_ids=None):
+    """Main function to scrape all (or a subset of) configured YouTube channels.
+
+    Args:
+        source_ids: optional list of source_id ints to process. If None, all channels run.
+    """
     try:
         initialize_services(collection_prefix)
-        
-        # ALL 25 channels from original script
+
+        # ALL channels
         channels = [
             {"source_id": 50, "channel_id": "UCeDrtyuUbMLB_z6razI33dQ", "category": "אמונה-הסדר חיפה", "label": "הסדר חיפה - אחרונים"},
             {"source_id": 51, "channel_id": "UCBN2YMjFoJHX1qlpEcra29w", "category": "ישיבת המאירי", "label": "ישיבת המאירי - אחרונים"},
@@ -90,6 +94,9 @@ def scrape_youtube_channels(collection_prefix=""):
             {"source_id": 1, "channel_id": "UC3MjXqiy3SNNSWiixX2Mybw", "category": "בני דוד - כללי", "label": "בני דוד - ערוץ יוטיוב"}
         ]
         
+        if source_ids is not None:
+            channels = [c for c in channels if c['source_id'] in source_ids]
+
         results = {
             'channels_processed': 0,
             'lessons_added': 0,

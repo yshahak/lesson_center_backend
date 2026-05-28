@@ -32,10 +32,11 @@ logger = logging.getLogger(__name__)
 def scrape_lessons_http(request):
     """HTTP Cloud Function for manual triggering"""
     try:
-        request_json = request.get_json(silent=True)
-        scraper_type = request_json.get('scraper', 'all') if request_json else 'all'
+        request_json = request.get_json(silent=True) or {}
+        scraper_type = request_json.get('scraper', 'all')
+        source_ids = request_json.get('source_ids')  # list[int] or None
 
-        result = run_scrapers(scraper_type)
+        result = run_scrapers(scraper_type, source_ids=source_ids)
 
         return {
             'status': 'success',
@@ -51,27 +52,50 @@ def scrape_lessons_http(request):
 
 @functions_framework.cloud_event
 def scrape_lessons_scheduled(cloud_event):
-    """Scheduled Cloud Function (triggered by Cloud Scheduler)"""
+    """Scheduled Cloud Function (triggered by Cloud Scheduler via Pub/Sub).
+
+    Payload (base64-encoded JSON in cloud_event.data['message']['data']):
+        {"scraper": "youtube", "source_ids": [50, 51, ...]}   # YouTube batch
+        {"scraper": "bnei_david"}                              # Bnei David only
+        {"scraper": "all"}                                     # legacy full run
+    If payload is absent or empty, falls back to 'all'.
+    """
     try:
-        logger.info("Starting scheduled lesson scraping...")
-        result = run_scrapers('all')
+        import base64
+        payload = {}
+        try:
+            raw = cloud_event.data.get('message', {}).get('data', '')
+            if raw:
+                payload = json.loads(base64.b64decode(raw).decode())
+        except Exception:
+            pass
+
+        scraper_type = payload.get('scraper', 'all')
+        source_ids = payload.get('source_ids')  # list[int] or None
+        logger.info(f"Starting scheduled scraping — scraper={scraper_type} source_ids={source_ids}")
+        result = run_scrapers(scraper_type, source_ids=source_ids)
         logger.info(f"Scheduled scraping completed: {result}")
         return result
     except Exception as e:
         logger.error(f"Scheduled function error: {e}")
         raise
 
-def run_scrapers(scraper_type='all'):
-    """Run the specified scrapers"""
+def run_scrapers(scraper_type='all', source_ids=None):
+    """Run the specified scrapers.
+
+    Args:
+        scraper_type: 'all' | 'youtube' | 'bnei_david'
+        source_ids:   for YouTube — optional list[int] of source IDs to process
+    """
     results = {}
     start_time = get_timestamp()
-    
-    logger.info(f"🚀 Starting scraping session - type: {scraper_type}")
-    
+
+    logger.info(f"🚀 Starting scraping session - type: {scraper_type} source_ids={source_ids}")
+
     if scraper_type in ['all', 'youtube']:
         try:
             logger.info("📺 Running YouTube scraper...")
-            youtube_result = scrape_youtube_channels()
+            youtube_result = scrape_youtube_channels(source_ids=source_ids)
             results['youtube'] = youtube_result
             logger.info(f"✅ YouTube scraping complete: {youtube_result}")
         except Exception as e:

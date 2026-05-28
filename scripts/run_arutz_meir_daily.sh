@@ -14,26 +14,13 @@ FS_PORT=8191
 FS_CONTAINER="flaresolverr"
 DRY_RUN="${DRY_RUN:-0}"
 
-GCLOUD="/opt/homebrew/bin/gcloud"
-
 log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"; }
 
 log "========================================"
 log "Arutz Meir daily scraper starting"
 log "DRY_RUN=$DRY_RUN"
+log "TELEGRAM=$([ -n "${TELEGRAM_BOT_TOKEN:-}" ] && echo 'set' || echo 'NOT SET')"
 log "========================================"
-
-# ── Fetch Telegram token from GCP Secret Manager ──────────────────────────
-if [[ -z "${TELEGRAM_BOT_TOKEN:-}" ]]; then
-    log "Fetching TELEGRAM_BOT_TOKEN from Secret Manager..."
-    export TELEGRAM_BOT_TOKEN=$("$GCLOUD" secrets versions access latest \
-        --secret=telegram-bot-token --project=tora-or 2>/dev/null) || true
-    if [[ -z "$TELEGRAM_BOT_TOKEN" ]]; then
-        log "WARNING: Could not fetch TELEGRAM_BOT_TOKEN — Telegram notifications disabled"
-    else
-        log "TELEGRAM_BOT_TOKEN loaded"
-    fi
-fi
 
 # ── Start FlareSolverr if not already running ─────────────────────────────
 if docker ps --format '{{.Names}}' 2>/dev/null | grep -q "^${FS_CONTAINER}$"; then
