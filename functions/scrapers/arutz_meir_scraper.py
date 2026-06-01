@@ -596,8 +596,13 @@ def scrape_arutz_meir(
             total_pages = 9999
             logger.info(f"WP API: paginating until empty page (headers not available via FlareSolverr)")
 
-        if not lessons_page or not isinstance(lessons_page, list):
-            logger.info(f"Empty page {page} (or WP error response), stopping")
+        if not isinstance(lessons_page, list):
+            # WP returned an error dict (e.g. Cloudflare block or WP REST error)
+            logger.error(f"WP API returned non-list on page {page}: {str(lessons_page)[:200]}")
+            stats["errors"] += 1
+            break
+        if not lessons_page:
+            logger.info(f"Empty page {page} — no more results, stopping")
             break
 
         stats["pages_fetched"] += 1
@@ -664,6 +669,11 @@ def scrape_arutz_meir(
             if not site_audio_url and not vimeo_id:
                 logger.debug(f"wp_id={wp_post_id} title='{title[:40]}' — no media found in HTML")
                 stats["skipped_no_media"] += 1
+
+            # If duration not in HTML, try audio file then Vimeo as fallbacks
+            if html_duration == 0:
+                from utils.duration import get_duration
+                html_duration = get_duration(site_audio_url, vimeo_id)
 
             # Resolve taxonomy from WP term IDs via slug → originalId mapping
             # WP API returns arrays of integer term IDs (internal WP IDs, NOT slugs)
