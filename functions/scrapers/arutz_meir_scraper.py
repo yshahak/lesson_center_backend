@@ -219,6 +219,46 @@ def _extract_vimeo_id(html: str) -> str | None:
     return None
 
 
+def _extract_duration_from_html(html: str) -> int:
+    """
+    Extract lesson duration in seconds from the HTML pattern:
+      אורך השיעור: <strong> 30 דקות </strong>
+      אורך השיעור: <strong> שעה וחצי </strong>
+      אורך השיעור: <strong> 1:30:00 </strong>
+    Returns 0 if not found or unparseable.
+    """
+    m = re.search(r'אורך השיעור[^<]{0,20}<[^>]+>\s*([^<]+)\s*<', html)
+    if not m:
+        return 0
+    raw = m.group(1).strip()
+
+    # HH:MM:SS or MM:SS
+    time_m = re.match(r'^(\d+):(\d{2})(?::(\d{2}))?$', raw)
+    if time_m:
+        h, mn, s = time_m.group(1), time_m.group(2), time_m.group(3) or '0'
+        return int(h) * 3600 + int(mn) * 60 + int(s)
+
+    # "N דקות" (N minutes)
+    min_m = re.search(r'(\d+)\s*דקות', raw)
+    if min_m:
+        return int(min_m.group(1)) * 60
+
+    # "שעה וחצי" = 90 min, "שעה ורבע" = 75 min, "שעה" = 60 min
+    if 'שעה וחצי' in raw or 'שעה וחצי' in raw:
+        return 5400
+    if 'שעה ורבע' in raw:
+        return 4500
+    if 'שעתיים' in raw:
+        return 7200
+    if 'שעה' in raw:
+        hour_m = re.search(r'(\d+)\s*שעות?', raw)
+        if hour_m:
+            return int(hour_m.group(1)) * 3600
+        return 3600
+
+    return 0
+
+
 # ---------------------------------------------------------------------------
 # Firestore upsert
 # ---------------------------------------------------------------------------
@@ -615,7 +655,9 @@ def scrape_arutz_meir(
                 if html:
                     site_audio_url = _extract_site_audio_url(html)
                     vimeo_id = _extract_vimeo_id(html)
+                    html_duration = _extract_duration_from_html(html)
                 else:
+                    html_duration = 0
                     logger.warning(f"Failed to fetch HTML for wp_id={wp_post_id}")
                 time.sleep(_LESSON_SLEEP)
 
@@ -639,7 +681,7 @@ def scrape_arutz_meir(
                 "seriesId": series_id,
                 "categoryId": category_id,
                 "dateStr": date_str,
-                "duration": 0,  # duration not available without Vimeo API
+                "duration": html_duration,  # extracted from "אורך השיעור" in page HTML; 0 if absent
                 "timestamp": timestamp,
             }
 

@@ -72,9 +72,9 @@ def scrape_lessons_scheduled(cloud_event):
 
         scraper_type = payload.get('scraper', 'all')
         source_ids = payload.get('source_ids')  # list[int] or None
-        logger.info(f"Starting scheduled scraping — scraper={scraper_type} source_ids={source_ids}")
+        print(f"Starting scheduled scraping — scraper={scraper_type} source_ids={source_ids}")
         result = run_scrapers(scraper_type, source_ids=source_ids)
-        logger.info(f"Scheduled scraping completed: {result}")
+        print(f"Scheduled scraping completed: {result}")
         return result
     except Exception as e:
         logger.error(f"Scheduled function error: {e}")
@@ -90,24 +90,24 @@ def run_scrapers(scraper_type='all', source_ids=None):
     results = {}
     start_time = get_timestamp()
 
-    logger.info(f"🚀 Starting scraping session - type: {scraper_type} source_ids={source_ids}")
+    print(f"🚀 Starting scraping session - type: {scraper_type} source_ids={source_ids}")
 
     if scraper_type in ['all', 'youtube']:
         try:
-            logger.info("📺 Running YouTube scraper...")
+            print("📺 Running YouTube scraper...")
             youtube_result = scrape_youtube_channels(source_ids=source_ids)
             results['youtube'] = youtube_result
-            logger.info(f"✅ YouTube scraping complete: {youtube_result}")
+            print(f"✅ YouTube scraping complete: {youtube_result}")
         except Exception as e:
             logger.error(f"❌ YouTube scraping failed: {e}")
             results['youtube'] = {'error': str(e)}
     
     if scraper_type in ['all', 'bnei_david']:
         try:
-            logger.info("🏛️ Running Bnei David scraper...")
+            print("🏛️ Running Bnei David scraper...")
             bnei_david_result = scrape_bnei_david()
             results['bnei_david'] = bnei_david_result
-            logger.info(f"✅ Bnei David scraping complete: {bnei_david_result}")
+            print(f"✅ Bnei David scraping complete: {bnei_david_result}")
         except Exception as e:
             logger.error(f"❌ Bnei David scraping failed: {e}")
             results['bnei_david'] = {'error': str(e)}
@@ -116,10 +116,10 @@ def run_scrapers(scraper_type='all', source_ids=None):
     # Re-enable once the block lifts (check: curl -s -o /dev/null -w "%{http_code}" https://meirtv.com/)
     # if scraper_type in ['all', 'arutz_meir']:
     #     try:
-    #         logger.info("📻 Running Arutz Meir scraper...")
+    #         print("📻 Running Arutz Meir scraper...")
     #         arutz_meir_result = scrape_arutz_meir()
     #         results['arutz_meir'] = arutz_meir_result
-    #         logger.info(f"✅ Arutz Meir scraping complete: {arutz_meir_result}")
+    #         print(f"✅ Arutz Meir scraping complete: {arutz_meir_result}")
     #     except Exception as e:
     #         logger.error(f"❌ Arutz Meir scraping failed: {e}")
     #         results['arutz_meir'] = {'error': str(e)}
@@ -137,7 +137,7 @@ def run_scrapers(scraper_type='all', source_ids=None):
         'new_taxonomy': _collect_new_taxonomy(results),
     }
 
-    logger.info(f"🎯 Scraping session complete - Duration: {duration}s")
+    print(f"🎯 Scraping session complete - Duration: {duration}s")
 
     try:
         from utils.telegram_notifier import notify_scrape_results
@@ -285,7 +285,7 @@ def resolve_vimeo_url(request):
             url = data.get("url", "")
             if expires_at and expires_at > now and url:
                 expires_in = int(expires_at - now)
-                logger.info(f"vimeo_cache HIT for {video_id}, expires in {expires_in}s")
+                print(f"vimeo_cache HIT for {video_id}, expires in {expires_in}s")
                 return (
                     json.dumps({"url": url, "cached": True, "expires_in_seconds": expires_in}),
                     200,
@@ -296,12 +296,12 @@ def resolve_vimeo_url(request):
         logger.warning(f"vimeo_cache read failed for {video_id}: {e}")
 
     # --- Cache miss: resolve via yt-dlp ---
-    logger.info(f"vimeo_cache MISS for {video_id}, invoking yt-dlp")
+    print(f"vimeo_cache MISS for {video_id}, invoking yt-dlp")
     try:
         start = time.time()
         url = _resolve_via_ytdlp(video_id)
         elapsed = time.time() - start
-        logger.info(f"yt-dlp resolved {video_id} in {elapsed:.2f}s → {url[:80]}")
+        print(f"yt-dlp resolved {video_id} in {elapsed:.2f}s → {url[:80]}")
     except subprocess.TimeoutExpired:
         logger.error(f"yt-dlp timed out for {video_id}")
         return (json.dumps({"error": "yt-dlp timed out resolving Vimeo URL"}), 500,
@@ -324,7 +324,7 @@ def resolve_vimeo_url(request):
             "expires_at": expires_at,
             "video_id": video_id,
         })
-        logger.info(f"vimeo_cache STORED for {video_id}, TTL={_CACHE_TTL_SECONDS}s")
+        print(f"vimeo_cache STORED for {video_id}, TTL={_CACHE_TTL_SECONDS}s")
     except Exception as e:
         # Cache write failure is non-fatal — still return the URL
         logger.warning(f"vimeo_cache write failed for {video_id}: {e}")
@@ -506,9 +506,9 @@ def update_parasha_label_scheduled(cloud_event):
     Time zone: Asia/Jerusalem
     """
     try:
-        logger.info('Starting scheduled parasha label update...')
+        print('Starting scheduled parasha label update...')
         result = update_parasha_label()
-        logger.info(f'Parasha label update completed: {result}')
+        print(f'Parasha label update completed: {result}')
         return result
     except Exception as e:
         logger.error(f'Parasha label scheduled function error: {e}', exc_info=True)
